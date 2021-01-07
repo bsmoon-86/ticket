@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Post - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/blog-post.css" rel="stylesheet">
+
+</head>
+<script>
+  function index() {
+    location.href="/"
+  }
+</script>
+
+<body>
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row" style="margin: 20px 20px 20px 20px;">
+      <h3 class="input-group mb-3" style="text-align: center;">인증 Page</h3>
+
+      <form method="POST" action="/confirm2" class="row">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">등록</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
+      </form>
+        
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

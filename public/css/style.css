@@ -1,0 +1,335 @@
+@charset "utf-8";
+
+
+/***1.header css****/
+/***2.img_slide css****/
+/***3.index css****/
+/***4.좌석선택 css****/
+
+
+
+*{
+    list-style:none;
+    font-family: "맑은 고딕";
+}
+
+a{
+    color:black;
+    display: block;
+}
+
+/**********************1.header-css 작업*****************************/
+
+.top{
+    width:100%;
+    height:110px;
+    background:#fff;
+    position: relative;
+}
+
+.top-line{
+    height:70px;
+    line-height: 70px;
+}
+
+.logo{
+    float:left;
+    margin-top:10px;
+    font-size:2.2rem;
+}
+.serch{
+    width:250px;
+    height:30px;
+    background:orange;
+    float:right;
+    margin-top:17px;
+    position: relative; /*돋보기 부모박스*/
+}
+.gnb-box{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    background-color:#fff;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice: 1;
+/*    border-style: solid;
+    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;*/
+}
+.navi{
+    display: flex;
+    text-align: center;
+    padding-left:0;
+}
+.navi>li{
+    width:90%;
+    height:35px;
+    box-sizing: border-box;
+    background:#fff;
+}
+
+.navi li:hover{
+    background:#eee;
+}
+
+/*serch 박스 설정*/
+
+.serch input{
+    width:250px;
+    height:30px; 
+    border-radius: 0;
+}
+.serch button{
+    width:35px;
+    height:30px; 
+    padding: 4px;
+    padding-top:2px;
+    background:#333;
+    border-radius: 0;
+    color:#fff;
+}
+.serch button:hover{
+    color:orange;
+}
+
+/*자바스크립트 메뉴 상단고정*/
+.sticky{
+    position: fixed;
+    top:0;
+    z-index: 999;
+}
+
+
+/**********모바일 화면 header작업************/
+@media only screen and (max-width:768px){
+
+    .serch{
+        display: none;
+    }
+    
+    .logo{
+        width:100%;
+        text-align: center;
+    }
+    
+    
+}
+
+
+/**********************2.img_slide 이미지 슬라이드 작업*****************************/
+
+#img-slide{
+    width:90%;
+    margin:0 auto;
+    
+}
+#img-slide img{
+    width:100%;
+    text-align: center;
+}
+
+/*****좌석선택 및 예약 모바일 작업*****/
+@media only screen and (max-width:768px){
+
+#img-slide{
+    width:100%;
+    margin:0 auto;
+    
+    
+}
+#img-slide img{
+    width:150%;
+    text-align: right;
+}    
+
+    
+}
+
+
+/**********************3.index 인덱스 페이지 작업*****************************/
+
+.title_bg{
+    
+    
+}
+
+.title_bg h2{
+    padding:20px;
+    border-bottom: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    text-align: center;
+}
+
+.visual{
+    width:90%;
+    margin:0 auto;
+}
+/*.card-box a{
+    width:100%;
+    
+}*/
+
+.card-box img{
+    width:90%;
+    margin:0 auto;
+    margin-top:10px;
+    margin-left:10px;
+    
+}
+
+.card-title p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.card-title span{
+    display: block;
+    white-space:nowrap;
+    font-size:.9rem;
+}
+.card-title small{
+    color:#999999;
+}
+
+.jumbotron-img{
+    width:25%;
+    float:left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.jumbotron-body{
+    width:75%;
+    float:left;
+}
+.jumbotron-body h5{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    font-weight: bold;
+    font-size:1.2rem;
+    padding:10px 10px 5px 0;
+}
+
+.jumbotron-body p{
+    display: none;
+}
+
+.jumbotron-body div{
+    padding: 5px;
+    color:#fff;
+    font-weight: normal;
+}
+.jumbotron-body span{
+    display: block;
+    font-size:.9rem;
+}
+/**********모바일 화면 index 작업************/
+@media only screen and (max-width:768px){
+    
+    .jumbotron-body span{
+        display: none;
+    }
+    .jumbotron-body p{
+        display: block;
+        color:seagreen;
+    }
+    
+    
+    /*이벤트페이지 2종류 숨김*/
+    .m-none{
+        display: none;
+    }
+    .event-padding{
+        margin-top:3rem;
+    }
+}
+
+
+
+
+
+
+
+.price p{
+    margin-bottom:0;
+    font-size:.7rem;
+}
+
+
+/**********************4.좌석선택 예약페이지 작업*****************************/
+
+.h2-title{
+    line-height: 50px;
+}
+
+.reserve_title{
+    height:50px;
+    line-height: 50px;
+}
+.reserve_title h2{
+    font-size:1.8rem;
+}
+.price{
+    height:140px;
+    background:#fff;
+}
+.reserve_button{
+    height:150px;
+    background:#eee;
+}
+.reserve_button>div>button{
+    width:90px;
+    
+}
+.reserve_button>div:nth-child(1)>button{
+    width:202px;
+    margin-top:30px;
+}
+.button_box{
+    background:#eee;
+}
+
+/*좌석선택창*/
+
+.td-body td{
+    
+}
+.td-body a{
+    width:1.5rem;
+    height:1.5rem;
+    border:2px solid green;
+    cursor: pointer;
+}
+
+.green{ /*좌석선택시 변경될 색상*/
+    background:darkgreen;
+}
+
+.white{
+    background:white;
+}
+
+
+/*****좌석선택 및 예약 모바일 작업*****/
+@media only screen and (max-width:768px){
+
+    .reserve_title div{
+        text-align: center;
+        font-weight: bold;
+        font-size:1.3rem;
+    }
+    
+    .h2-title{
+        display: none;
+    }
+    .reserve_button>div>button{
+    width:100px;
+    }
+    .reserve_button>div:nth-child(1)>button{
+        width:202px;
+        margin-top:20px;
+    }
+
+    
+}

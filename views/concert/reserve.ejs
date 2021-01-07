@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heroic Features - Start Bootstrap Template</title>
+
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--Bootstrap cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="pt-10">
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar fixed-top" style="border-bottom: 1px solid #aaa; background:rgba(250,250,250,0.9)">
+        <div class="container">
+            <a class="navbar-brand" href="#">블록체인 티켓</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">공연 정보
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">공연 등록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">티켓 등록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">로그인</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container border text-center" style="margin-top:7rem">
+
+        <div class="conuainer border-bottom">
+            <h3 class="main"><%=data[0]%></h3>
+        </div>
+
+        <!--포스터이미지, 공연상세정보-->
+        <div class="row" style="padding:1rem">
+            <div class="col-lg-4 main-img">
+                <img src="<%=poster_img%>" class="rounded float-start" alt="img">
+            </div>
+            <div class="col-lg-8 text-left">
+
+                <div class="col">
+                    <table class="table table-borderless table-list">
+                        <tbody>
+                            <tr>
+                                <th scope="row">공연기간</th>
+                                <td><%=data[2]%></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">공연장</th>
+                                <td><%=data[1]%></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">관람시간</th>
+                                <td><%=
+                                        concert[0].showtime+"분"
+                                    %></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">장르</th>
+                                <td>
+                                    <%if(concert[0].genre == 0){%>
+                                    뮤지컬
+                                    <%} else if(concert[0].genre == 1){%>
+                                    콘서트
+                                    <%} else if(concert[0].genre == 2){%>
+                                    연극
+                                    <%}%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">관람등급</th>
+                                <td>
+                                    <%if(concert[0].rating == 0){%>
+                                    전 연령 입장 가능
+                                    <%} else if(concert[0].rating == 1){%>
+                                    미취학 아동 입장 불가
+                                    <%} else if(concert[0].rating == 2){%>
+                                    15세 이하 입장 불가
+                                    <%} else if(concert[0].rating == 3){%>
+                                    청소년 입장 불가
+                                    <%}%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">할인혜택</th>
+                                <td>
+                                    <select>
+                                        <option>무이자할부</option>
+                                        <option>농협:2-6개월</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+       <div class="container-fiuld">
+        <div class="d-flex border-bottom border-top">
+            <div class="col">날짜선택</div>
+            <div class="col">시간선택</div>
+            <div class="col">가격안내</div>
+        </div>
+        <form action="/ticket/buy" method="post">
+            <div class="card-body" style="display: none;" >
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertname" value="<%=data[0]%>">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId" value="<%=concert[0].id%>">
+            </div>
+            <div class="row reservation">
+                <!--날짜선택-->
+                <div class="col-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="date" value="<%=concert[0].date%>" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            <%=
+                                concert[0].date.slice(0,4)+"년"+concert[0].date.slice(4,6)+"월"+concert[0].date.slice(6,8)+"일"
+                            %>
+                        </label>
+                    </div>
+                </div>
+                <!--시간선택-->
+                <div class="col-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="time" value="<%=concert[0].time%>" id="flexRadioDefault3">
+                        <label class="form-check-label" for="flexRadioDefault3">
+                            <%=
+                                concert[0].time.slice(0,2)+" : "+concert[0].time.slice(2,4)
+                            %>
+                        </label>
+                    </div>
+                </div>
+                <!--좌석현황-->
+                <div class="col-4 price">
+                    <p>VIP&nbsp;&nbsp;&nbsp;<strong>160,000원</strong></p>
+                    <p>R&nbsp;&nbsp;&nbsp;<strong>130,000원</strong></p>
+                    <p>S&nbsp;&nbsp;&nbsp;<strong>110,000원</strong></p>
+                    <p>A&nbsp;&nbsp;&nbsp;<strong>90,000원</strong></p>
+                    <p>B&nbsp;&nbsp;&nbsp;<strong>60,000원</strong></p>
+                </div>
+            </div>
+            <!--./reservation-->
+            </div>
+            
+            
+
+            <!--예약하기 버튼-->
+            <div class="d-grid gap-2 col-12 mx-auto border-top">
+                <button class="btn btn-primary" type="submit">예약하기</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container border" style="margin-top:1rem">
+
+        <!--상세정보 서브메뉴작업-->
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">상세정보</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="avaluation-tab" data-bs-toggle="tab" href="#avaluation" role="tab" aria-controls="profile" aria-selected="false">기대평</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="qna-tab" data-bs-toggle="tab" href="#qna" role="tab" aria-controls="contact" aria-selected="false">Q&amp;A</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="place-tab" data-bs-toggle="tab" href="#place" role="tab" aria-controls="contact" aria-selected="false">공연장안내</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="explanation-tab" data-bs-toggle="tab" href="#explanation" role="tab" aria-controls="contact" aria-selected="false">예매안내</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                상세페이지<br>    
+                <img class="img-fluid rounded" style="width: 100%;" src="<%=info_img%>" alt="">  
+            </div>
+            <div class="tab-pane fade" id="avaluation" role="tabpanel" aria-labelledby="avaluation-tab">기대평</div>
+            <div class="tab-pane fade" id="qna" role="tabpanel" aria-labelledby="qna-tab">Q&amp;A</div>
+            <div class="tab-pane fade" id="place" role="tabpanel" aria-labelledby="place-tab">공연장안내</div>
+            <div class="tab-pane fade" id="explanation" role="tabpanel" aria-labelledby="explanation-tab">예매안내</div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

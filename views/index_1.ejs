@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heroic Features - Start Bootstrap Template</title>
+
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--Bootstrap cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script>
+              jQuery(document).ready(function(){
+        $(document).mousemove(function(e){      //마우스 이동시 move에 좌표 입력
+        });
+        $(document).mousedown(function(e){      //마우스 클릭시 click에 좌표 입력
+            $.post("click", {x: e.pageX, y: e.pageY});
+        });
+      })
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar fixed-top" style="border-bottom: 1px solid #aaa; background:rgba(250,250,250,0.9)">
+        <div class="container">
+            <a class="navbar-brand" href="#">블록체인 티켓</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/">공연 정보
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/concert/regist">공연 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/ticket">티켓 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">로그인</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--header-slide-->
+    <header id="carouselExampleCaptions" class="carousel slide container" data-bs-ride="carousel" style="margin-top:4rem">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="http://tkfile.yes24.com/Upload2/Display/202009/20200925/wel_mv_000.jpg/dims/quality/70/" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="http://tkfile.yes24.com/Upload2/Display/202011/20201106/wel_mv_21344c.jpg/dims/quality/70/" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="http://tkfile.yes24.com/Upload2/Display/202011/20201102/wel_mv_37843.jpg/dims/quality/70/" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </header>
+
+
+
+    <!-- Page Content -->
+    <div class="container my-3">
+
+
+        <!-- Page Features -->
+        <div class="row">
+
+            <h2 class="col-12 text-center">Ticket Open</h2>
+
+
+            <%for(var i = 0; i < concert.length; i++){%>
+              <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100 card-radius">
+                  <img class="card-img-top" src="<%=concert[i].poster_img%>" alt="">
+                  <div class="card-body">
+                    <h4 class="card-title"><%=concert[i].name%></h4>
+                    <p class="card-text fs-6">
+                      <%=concert[i].date%><br>
+                      <%=concert[i].place%>
+                    </p>
+                  </div>
+                  <div class="card-footer text-center">
+                    <a href="/concert/index?concert=<%=concert[i].id%>" class="btn btn-outline-primary">공연 상세 정보</a>
+                  </div>
+                </div>
+              </div>
+            <%}%>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100 card-radius">
+                    <img class="card-img-top" src="https://ticketimage.interpark.com/Play/image/large/20/20010583_p.gif" alt="cats">
+                    <div class="card-body">
+                        <span class="badge border border-warning">소셜단독</span>
+                        <span class="badge border border-info">MD추천</span><br><br>
+
+                        <h5 class="card-title fs-5">뮤지컬 〈캣츠〉 40주년 내한공연 앙코르</h5>
+                        <p class="card-text fs-6">
+                            2020.12.11 - 2021.01.16 <br>
+                            세종문화회관 대극장
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-outline-primary">공연 상세 정보</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+
+
+    </div>
+    <!-- /.container -->
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

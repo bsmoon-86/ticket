@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+    <head>    
+        <meta charset="UTF-8">    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+        <title>QR 코드 생성기</title>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
+    </head>
+    
+    <header>
+        
+    </header>
+
+  <body>
+    <% if (data) {%>     
+        <div class="text-center">    
+            <h5>QR Code</h5>    
+            <img src="<%=data%>" alt="" style="width:100px; height:100px;">    
+        </div>    
+    <% } %>  
+
+
+  </body>
+</html>

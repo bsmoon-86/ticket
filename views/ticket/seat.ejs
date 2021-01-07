@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heroic Features - Start Bootstrap Template</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--Bootstrap cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+    <!--font-awesome-->
+    <script src="https://kit.fontawesome.com/5f8c8c97ed.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+
+
+    <!-- Navigation header 임시파일-->
+    <div class="top">
+
+        <div class="top-line">
+            <div class="container">
+                <h1 class="logo"><a href="#">블록체인티켓</a></h1>
+                <div class="serch">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="search" aria-label="Search">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="gnb-box" id="submenu_bar">
+            <nav class="container-fluid">
+                <ul class="navi">
+                    <li><a href="#">메뉴</a></li>
+                    <li><a href="#">메뉴</a></li>
+                    <li><a href="#">메뉴</a></li>
+                    <li><a href="#">메뉴</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <script>
+        var TopMenu, TopMenuPosition;
+        TopMenu = document.getElementById('submenu_bar');
+        TopMenuPositon = TopMenu.offsetTop;
+
+        function submenu_bar_fixed() {
+            if (window.pageYOffset >= TopMenuPositon) {
+                TopMenu.classList.add("sticky");
+            } else {
+                TopMenu.classList.remove("sticky");
+            }
+        }
+        document.addEventListener('scroll', submenu_bar_fixed);
+    </script>
+    <!--navigation header 완료-->
+
+
+
+    <div class="container border" style="margin-top:2rem;">
+        <!--전체 겉 박스-->
+
+        <div class="row d-flex reserve_title border-bottom">
+            <h2 class="col-3 h2-title">좌석선택</h2>
+            <div class="col">뮤지컬 〈캣츠〉 40주년 내한공연 앙코르</div>
+        </div>
+
+        <div class="row">
+            <!--내부 컨텐츠 박스-->
+
+            <div class="col-md-8">
+                <div class="tab-content text-center" id="v-pills-tabContent">
+
+                    <!--1층 좌석선택-->
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <table class="table">
+                            <div class="td-title">
+                                <h5>screen</h5>
+                            </div>
+
+                            <tbody class="td-body">
+                                <tr>
+                                    <th>A</th>
+                                    <td><a hef="#" style="background:gray;cursor:none;">X</a></td>
+                                    <td><a hef="#">2</a></td>
+                                    <td><a hef="#">3</a></td>
+                                    <td><a hef="#">4</a></td>
+                                    <td><a hef="#">5</a></td>
+                                    <td><a hef="#">6</a></td>
+                                    <td><a hef="#">7</a></td>
+                                    <td><a hef="#">8</a></td>
+                                    <td><a hef="#">9</a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--2층 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <table class="table">
+                            <div class="td-title">
+                                <h5>screen</h5>
+                            </div>
+
+                            <tbody class="td-body">
+                                <tr>
+                                    <th>A</th>
+                                    <td><a hef="#" style="background:gray;cursor:none;">X</a></td>
+                                    <td><a hef="#">2</a></td>
+                                    <td><a hef="#">3</a></td>
+                                    <td><a hef="#">4</a></td>
+                                    <td><a hef="#">5</a></td>
+                                    <td><a hef="#">6</a></td>
+                                    <td><a hef="#">7</a></td>
+                                    <td><a hef="#">8</a></td>
+                                    <td><a hef="#">9</a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--3층 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <table class="table">
+                            <div class="td-title">
+                                <h5>screen</h5>
+                            </div>
+
+                            <tbody class="td-body">
+                                <tr>
+                                    <th>A</th>
+                                    <td><a hef="#" style="background:gray;cursor:none;">X</a></td>
+                                    <td><a hef="#">2</a></td>
+                                    <td><a hef="#">3</a></td>
+                                    <td><a hef="#">4</a></td>
+                                    <td><a hef="#">5</a></td>
+                                    <td><a hef="#">6</a></td>
+                                    <td><a hef="#">7</a></td>
+                                    <td><a hef="#">8</a></td>
+                                    <td><a hef="#">9</a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--마우스클릭시 배경색 변경-->
+            <script type="text/javascript">
+                $(function() {
+                    $('.td-body a').click(function() {
+                        $(this).addClass('green')
+                    });
+                });
+            </script>
+
+
+
+            <div class="col-md-4">
+                <!--자리선택 버튼 / 1층 2층 3층-->
+                <div class="row button_box">
+                    <div class="d-flex align-items-start" style="height:140px; margin:0 auto;">
+                        <div class="nav flex-column nav-pills me-3 map_btn" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin: 0 auto;">
+                            <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">1층</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">2층</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">3층</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <!--좌석현황/가격-->
+                    <div class="col-12 price">
+                        좌석가격
+                    </div>
+
+                </div>
+                <div class="row text-center reserve_button">
+                    <!--예약하기 취소,새로고침 버튼-->
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary btn-lg">예약하기</button>
+                    </div>
+
+                    <div class="col-12 ">
+                        <button type="button" class="btn btn-secondary btn-sm">취소하기</button>
+                        <button type="button" class="btn btn-secondary btn-sm"><a href="reserve-2.html">새로고침</a></button>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!--./ 내부 컨텐츠 박스-->
+    </div>
+    <!--./ 전체 겉 박스-->
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Post - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/blog-post.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<script>
+  function index() {
+    location.href="/"
+  }
+
+  function ticket_regist(){
+    $("concertId").attr("value", concertId);
+    $("ticketId").attr("value", ticketId);
+    $("date").attr("value", concertId);
+    $("time").attr("value", concertId);
+    $("price").attr("value", concertId);
+    $("concertId").attr("value", concertId);
+    $("concertId").attr("value", concertId);
+    $("concertId").attr("value", concertId);
+
+  }
+</script>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">블록체인 티켓</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/manager/main">메인</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/concert/regist">공연 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/hall">공연장 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">로그아웃</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row" style="margin: 20px 20px 20px 20px;">
+      <h3 class="input-group mb-3" style="text-align: center;">공연 등록</h3>
+
+      <form method="POST" action="/concert/regist2" class="row">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 ID</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연명</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 장소</span>
+          <select class="form-select" aria-label="Default select example" id="selectbox" name = "place">
+            <option selected>공연장을 선택해주세요</option>
+            <% for (var i = 0; i < hall.length; i++){%>
+            <option value="<%=hall[i].name%>"><%=hall[i].name%></option>
+            <%}%>
+          </select>
+          <% for (var i = 0; i < hall.length; i++){%>
+            <input id="<%=hall[i].name%>" value="<%=hall[i].seat1%>,<%=hall[i].seat2%>,<%=hall[i].seat3%>,<%=hall[i].seat4%>,<%=hall[i].seat5%>" style="display: none;">
+            <%}%>
+          <script>  
+            $('#selectbox').on("change", function(e) {
+              var state = $('#selectbox option:selected').val();
+              var state2 = $('#'+state).val().split(",");
+              alert(state2);
+              $('#vip').val(state2[0]);
+              $('#r').val(state2[1]);
+              $('#s').val(state2[2]);
+              $('#a').val(state2[3]);
+              $('#b').val(state2[4]);
+            });
+          </script>
+          <div >
+            <input type="text" id="vip" name="vip">
+            <input type="text" id="r" name="r">
+            <input type="text" id="s" name="s">
+            <input type="text" id="a" name="a">
+            <input type="text" id="b" name="b">
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 날짜</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="date" id="date">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 시간</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="time" id="time">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">관람 시간(분)</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="showtime" id="showtime">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 장르</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="genre" id="genre">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">관람 등급</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="rating" id="rating">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 포스터 url</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url1" id="url1">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 정보 url</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url2" id=url2>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">VIP석</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat1">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">R석</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat2">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">S석</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat3">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">A석</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat4">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">B석</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat5">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">등록</button>
+        <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
+      </form>
+        
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

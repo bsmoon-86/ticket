@@ -1,17 +1,18 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
+require('dotenv').config();
 
-var mysql = require('mysql2');
-const { slice } = require("../Library/mykeepin-verify-sdk/example/config/encryptedVp");
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '1234',
-  database: 'test'
-})
+
+var mysql = require("mysql2");
+var connection = mysql.createConnection({
+  host: process.env.host,
+  port: process.env.port, // db 포트
+  user: process.env.user, // user 이름
+  password: process.env.password, // 비밀번호
+  database: process.env.database, // database 이름
+});
 
 
 module.exports = function(){
@@ -36,7 +37,7 @@ module.exports = function(){
                 //console.log(result.length)
                 for(var i=0; i < result.length; i++){            
                     let options = {
-                        uri: "http://localhost:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+i,
+                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+i,
                         method: 'get'
                     };
                     //console.log(options);
@@ -56,74 +57,83 @@ module.exports = function(){
         //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
     })
 
-    //티켓 선택 
+    //좌석 선택 
     router.post("/buy", function(req, res, next){
         //var did = req.body.did;
-        var date = req.body.date;
-        var time = req.body.time;
-        var concertname = req.body.concertname;
-        var concertId = req.body.concertId;
-        var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-        const person = function test(){
-            return mykeepin();
+        console.log(req.session.name);
+        if(!req.session.name){
+            res.redirect("/login")
+        }else{
+            var date = req.body.date;
+            var time = req.body.time;
+            var concertname = req.body.concertname;
+            var concertId = req.body.concertId;
+            var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
+            const person = function test(){
+                return mykeepin();
+            }
+            person().then(function(result){
+                console.log(result[0]);
+                console.log("date=", date, "time=", time, "concertId =", concertId);
+                res.render("ticket/seat" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname});
+            })
         }
-        person().then(function(result){
-            console.log(result[0]);
-            console.log("date=", date, "time=", time, "concertId =", concertId);
-            res.render("ticket/seat" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname});
-        })
     })
 
     //티켓 등록 
     router.post("/regist", async function(req, res, next){
-        var concertId = req.body.concertId;
-        var ticketId = req.body.ticketId;
-        var date = req.body.date;
-        var time = req.body.time;
-        var seat = req.body.seat;
-        var price = req.body.price;
-        var discount = "0";
-        var discountRate = 0;
-        var fee = req.body.fee;
-        var cancleDate = req.body.cancleDate;
-        var cancleFee = req.body.cancleFee;    
+        if(!req.session.name){
+            res.redirect("/login")
+        }else{
+            var concertId = req.body.concertId;
+            var ticketId = req.body.ticketId;
+            var date = req.body.date;
+            var time = req.body.time;
+            var seat = req.body.seat;
+            var price = req.body.price;
+            var discount = "0";
+            var discountRate = 0;
+            var fee = req.body.fee;
+            var cancleDate = req.body.cancleDate;
+            var cancleFee = req.body.cancleFee;    
 
-        let options = {
-            uri: "http://localhost:8080/api/v1/regist_ticket",
-            method: 'post',
-            json: {
-                concertId: concertId,
-                ticketId: ticketId,
-                date: date,
-                time: time,
-                seat: seat,
-                discount: discount,
-                price: price,
-                discountRate: discountRate,
-                fee: fee,
-                cancleDate: cancleDate,
-                cancleFee: cancleFee,
-            },
-        };
-        request.post(options, function(err,httpResponse,body){
-            if(err){
-                console.log(err)
-            }else{        
-                connection.query(                               //블록에 티켓 정보를 저장 후 DB에도 같은 정보를 저장
-                    `insert into ticket (concertId, ticketId, date, time, seat, discount, price,
-                    discountRate, fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,0)`,
-                    [concertId, ticketId, date, time, seat, discount, price, discountRate, fee, cancleDate, cancleFee],
-                    function(err, result){
-                        if(err){
-                            console.log(err)
-                        }else{
-                            console.log(body)
-                            res.redirect("/")
+            let options = {
+                uri: "http://kairos-link.iptime.org:8080/api/v1/regist_ticket",
+                method: 'post',
+                json: {
+                    concertId: concertId,
+                    ticketId: ticketId,
+                    date: date,
+                    time: time,
+                    seat: seat,
+                    discount: discount,
+                    price: price,
+                    discountRate: discountRate,
+                    fee: fee,
+                    cancleDate: cancleDate,
+                    cancleFee: cancleFee,
+                },
+            };
+            request.post(options, function(err,httpResponse,body){
+                if(err){
+                    console.log(err)
+                }else{        
+                    connection.query(                               //블록에 티켓 정보를 저장 후 DB에도 같은 정보를 저장
+                        `insert into ticket (concertId, ticketId, date, time, seat, discount, price,
+                        discountRate, fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,0)`,
+                        [concertId, ticketId, date, time, seat, discount, price, discountRate, fee, cancleDate, cancleFee],
+                        function(err, result){
+                            if(err){
+                                console.log(err)
+                            }else{
+                                console.log(body)
+                                res.redirect("/")
+                            }
                         }
-                    }
-                )
-            }
-        })
+                    )
+                }
+            })
+        }
     })
 
     //티켓 정보 변경
@@ -140,7 +150,7 @@ module.exports = function(){
         var cancleDate = req.body.cancleDate;
         var cancleFee = req.body.cancleFee;    
         let options = {
-            uri: "http://localhost:8080/api/v1/update_ticket",
+            uri: "http://kairos-link.iptime.org:8080/api/v1/update_ticket",
             method: 'post',
             json: {
                 concertId: concertId,
@@ -184,7 +194,7 @@ module.exports = function(){
         var payment = req.body.payment;
         console.log(did[0]);
         let options = {
-            uri: "http://localhost:8080/api/v1/buy_ticket",
+            uri: "http://kairos-link.iptime.org:8080/api/v1/buy_ticket",
             method: 'post',
             json: {
                 concertId: concertId,
@@ -228,7 +238,7 @@ module.exports = function(){
                     ticketerPhoneNumber = result[0].phone;
                     ticketerEmail = result[0].email;
                     let options = {
-                        uri: "http://localhost:8080/api/v1/transfer_ticket",
+                        uri: "http://kairos-link.iptime.org:8080/api/v1/transfer_ticket",
                         method: 'post',
                         json: {
                             concertId: concertId,

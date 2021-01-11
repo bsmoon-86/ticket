@@ -1,16 +1,18 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
+require('dotenv').config();
 
-var mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '1234',
-  database: 'test'
-})
+
+var mysql = require("mysql2");
+var connection = mysql.createConnection({
+  host: process.env.host,
+  port: process.env.port, // db 포트
+  user: process.env.user, // user 이름
+  password: process.env.password, // 비밀번호
+  database: process.env.database, // database 이름
+});
 
 module.exports = function() {
     

@@ -1,0 +1,677 @@
+@charset "utf-8";
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+/***1.header css****/
+/***2.img_slide css****/
+/***3.index css****/
+/***4.좌석선택 css****/
+/***5.좌석선택 css****/
+/***6.좌석선택 css****/
+
+
+
+*{
+    list-style:none;
+    font-family: 'Jeju Gothic',
+    sans-serif;
+}
+
+a{
+    color:black;
+    display: block;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+
+
+/**********************1.header-css 작업*****************************/
+
+.top {
+    width: 100%;
+    height: auto;
+
+    position: relative;
+}
+
+.top-line {
+    height: 80px;
+    line-height: 80px;
+    background: #fff;
+}
+
+.logo {
+    float: left;
+    margin-top: 8px;
+}
+.logo img{
+    width:90%;
+}
+.serch {
+    width: 250px;
+    height: 30px;
+    background: orange;
+    float: right;
+    margin-top: 17px;
+    position: relative;
+    /*돋보기 부모박스*/
+}
+
+.gnb-box {
+    width: 100%;
+    height: 45px;
+    line-height: 40px;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice: 1;
+
+}
+
+.navi {
+    display: flex;
+    height: 40px;
+    text-align: center;
+    padding-left: 0;
+
+
+}
+
+.navi>li {
+    width: 80%;
+    height: 40px;
+    margin: 2px;
+    box-sizing: border-box;
+    border-radius: 50px;
+}
+
+.navi li:hover {
+    background-position: top;
+    color: #8d78b1;
+}
+
+/*serch 박스 설정*/
+
+.serch input {
+    width: 250px;
+    height: 30px;
+    border-radius: 0;
+}
+
+.serch button {
+    width: 35px;
+    height: 30px;
+    padding: 4px;
+    padding-top: 2px;
+    background: #333;
+    border-radius: 0;
+    color: #fff;
+}
+
+.serch button:hover {
+    color: orange;
+}
+
+/*자바스크립트 메뉴 상단고정*/
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+
+/**********모바일 화면 header작업************/
+@media only screen and (max-width:768px) {
+
+    .gnb-box {
+        display: none;
+    }
+
+    .serch {
+        display: none;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .top-line {
+        border-bottom-style: solid;
+        border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        border-image-slice: 2;
+    }
+
+}
+
+
+
+/*모바일 버전 header 부분 편집*/
+
+.logo_menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: -4px;
+}
+
+.overlay {
+    height: 30%;
+    width: 0;
+    position: fixed;
+    z-index: 99;
+    top: 6%;
+    left: 0;
+    background-color: rgba(250, 250, 250, 1);
+    overflow-x: hidden;
+    transition: 0.5s;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice: 2;
+}
+
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    margin-top: 13px;
+}
+
+.overlay a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media only screen and (max-width:768px) {
+
+    .logo_menu {
+        display: block;
+    }
+
+    .overlay a {
+        font-size: 20px
+    }
+
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+
+    
+
+
+}
+
+
+/**********************2.img_slide 이미지 슬라이드 작업*****************************/
+
+
+.visual {
+    width: 90%;
+    margin: 0 auto;
+    margin-top:120px;
+}
+
+
+#img-slide{
+    width:90%;
+    margin:0 auto;
+}
+#img-slide img{
+    width:100%;
+    text-align: center;
+}
+
+/* 모바일 메뉴 작업 */
+.m-menu, .m-menu a{
+    display: none;
+
+}
+
+/*****2.img_slide 이미지 슬라이드 작업*****/
+@media only screen and (max-width:768px){
+
+    .visual {
+        width: 100%;
+        margin: 0 auto;
+        margin-top:80px;
+    }
+
+    #img-slide {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #img-slide img {
+        width: 200%;
+        text-align: left;
+    }
+
+  
+.m-menu,
+.m-menu a {
+    display: block;
+
+
+}
+.m-menu{
+    width: 100%;
+    margin: 0 auto;
+    margin-top:1.5rem;
+}
+
+
+.m-menu span{
+    display: block;
+    font-size:.8rem;
+    padding-top:10px;
+}
+
+
+/* 모바일 공간박스 */
+
+.m-box{
+    height:10px;
+    background:#eee;
+    margin:1.5rem 0 2rem 0;
+    box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2) inset,
+    0px 0px 2px rgba(200, 200, 200, 0.4)
+}
+
+}
+
+
+
+/**********************3.index 인덱스 페이지 작업*****************************/
+
+
+.title_bg h3{
+    padding:20px;
+    font-size:1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.title_bg h3::before{
+    content:"___";
+    color:#46c0f7;
+}
+
+.title_bg h3::after {
+    content: "___";
+    color: #46c0f7;
+}
+
+.card-box a{
+    width:100%;
+    text-align: center;
+}
+
+.card-box img{
+    width:90%;
+    margin:0 auto;
+    margin-top:10px;
+    background:tan;
+}
+
+.card-title {
+    text-align: left;
+}
+
+.card-title p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.card-title span{
+    display: block;
+    white-space:nowrap;
+    font-size:.9rem;
+}
+.card-title small{
+    color:#999999;
+}
+
+.jumbotron-img{
+    width:25%;
+    float:left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.jumbotron-body{
+    width:75%;
+    float:left;
+}
+.jumbotron-body h5{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    font-weight: bold;
+    font-size:1.2rem;
+    padding:10px 10px 5px 0;
+}
+
+.jumbotron-body p{
+    display: none;
+}
+
+.jumbotron-body div{
+    padding: 5px;
+    color:#fff;
+    font-weight: normal;
+}
+.jumbotron-body span{
+    display: block;
+    font-size:.9rem;
+}
+
+.card-box a:hover{
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color:#fff;
+}
+
+.card-box a:hover small{
+    color:#fff;
+}
+
+/**********모바일 화면 index 작업************/
+@media only screen and (max-width:768px){
+    
+    .jumbotron-body span{
+        display: none;
+    }
+    .jumbotron-body p{
+        display: block;
+        color:seagreen;
+    }
+    
+    
+    /*이벤트페이지 2종류 숨김*/
+    .m-none{
+        display: none;
+    }
+    .event-padding{
+        margin-top:3rem;
+    }
+
+
+
+
+
+
+}
+
+
+
+/**********************4.sub_list 페이지 작업*****************************/
+
+.h-title{
+    width:80%;
+    height:100px;
+    margin:0 auto;
+    position: relative;
+}
+.sub_list{
+    position: absolute;
+    right:0rem;
+    bottom:0;
+    font-size:.8rem
+}
+.sub_list li{
+    float:left;
+}
+
+.price p{
+    margin-bottom:0;
+    font-size:.7rem;
+}
+.no_center{
+    width:80%;
+    margin:0 auto;
+
+}
+
+
+/**********************5.예약페이지 작업*****************************/
+
+.main{
+    width:100%;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    height:60px;
+    line-height: 60px;
+}
+.reserve-wrap{
+    margin-top:2rem;
+    padding-bottom:2rem;
+}
+.main-img{
+    padding-bottom:2rem;
+    border-bottom:1px solid #ddd;
+}
+
+.table-wrap{
+    margin-top:1rem;
+}
+.table-wrap tbody{
+    text-align: justify;
+}
+.reserve-choice form{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.reserve-choice>div>div:nth-child(1){
+    background:#ddd;
+    border-radius: 20px 0 0 20px;
+}
+.reserve-choice>div>div:nth-child(2) {
+    background:#ddd;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+}
+.reserve-choice>div>div:nth-child(3) {
+    background:#ddd;
+    border-radius: 0 20px 20px 0;
+}
+
+.price-list p{
+    font-size:.5rem;
+    margin:0;
+    padding:2px;
+}
+.reserve-button{
+    width:50%;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-radius: 20px;
+}
+.reserve-button button{
+    width:50%;
+}
+/**********모바일 화면 index 작업************/
+@media only screen and (max-width:768px){
+
+    .sub_list_wrap{
+        display: none;
+    }
+    .reserve-wrap{
+        margin-top:4.9em;
+    }
+
+    .title-txt{
+        display: none;
+    }
+    .main{
+        font-size:1.2rem;
+    }
+}
+
+/**********************5.좌석선택 예약페이지 작업*****************************/
+
+.h2-title{
+    line-height: 50px;
+}
+
+.reserve_title{
+    height:50px;
+    line-height: 50px;
+}
+.reserve_title h2{
+    font-size:1.8rem;
+}
+.price{
+    height:140px;
+    background:#fff;
+}
+.reserve_button{
+    height:150px;
+    background:#eee;
+}
+.reserve_button>div>button{
+    width:90px;
+    
+}
+.reserve_button>div:nth-child(1)>button{
+    width:202px;
+    margin-top:30px;
+}
+.button_box{
+    background:#eee;
+}
+
+/*좌석선택창*/
+
+.td-body a{
+    width:1.5rem;
+    height:1.5rem;
+    border:2px solid green;
+    cursor: pointer;
+}
+
+.green{ /*좌석선택시 변경될 색상*/
+    background:darkgreen;
+}
+
+.white{
+    background:white;
+}
+
+
+/*****좌석선택 및 예약 모바일 작업*****/
+@media only screen and (max-width:768px){
+
+    .reserve_title div{
+        text-align: center;
+        font-weight: bold;
+        font-size:1.3rem;
+    }
+    
+    .h2-title{
+        display: none;
+    }
+    .reserve_button>div>button{
+    width:100px;
+    }
+    .reserve_button>div:nth-child(1)>button{
+        width:202px;
+        margin-top:20px;
+    }
+
+    
+}
+
+
+
+/**********************6.로그인 페이지 작업*****************************/
+
+.login_wrap{
+	    width:100%;
+	    height:100%;
+	    margin: 0;
+  		padding-top: 80px;
+  		padding-bottom: 40px;
+        
+    
+}
+.login_wrap .card {
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login_wrap .card-title{
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color:#fff;
+}
+
+.login_wrap .form-signin .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.login_wrap .card-body button{
+    background:#fff;
+    color:#333333;
+    border-style: solid;
+    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;
+}
+.login_wrap .card-body button:hover{
+    border-style: solid;
+    border-image: linear-gradient(to left, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;
+}
+.login-link{
+    width: 100%;
+    margin:0 auto;
+}
+
+.login-link a{
+    margin:20px 0 0 0;
+}
+
+/**********************7.회원가입 페이지 작업*****************************/
+
+
+/*제목앞 이모티콘*/
+.signup label::before {
+  content: "* ";
+    color:firebrick;
+}
+.ck-type label::before{
+    content:"";
+}
+
+/*회원구분*/
+.ck-type{
+    width:100%;
+    margin:0 auto;
+}
+.ck-type label{
+    width:50%;
+       text-align: center;
+    border:1px solid #eee;
+}

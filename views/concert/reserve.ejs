@@ -25,41 +25,29 @@
 
 </head>
 
-<body class="pt-10">
+<body>
 
 
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar fixed-top" style="border-bottom: 1px solid #aaa; background:rgba(250,250,250,0.9)">
-        <div class="container">
-            <a class="navbar-brand" href="#">블록체인 티켓</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">공연 정보
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">공연 등록</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">티켓 등록</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <div class="header">
+        <%- include ("../hall/header.ejs") %>
+    </div>
 
-    <div class="container border text-center" style="margin-top:7rem">
+    <div class="h-title container sub_list_wrap" style="margin-top:8rem;">
+        <nav>
+            <ul class="sub_list">
+                <li><a href="#">HOME&nbsp;&nbsp;</a></li>
+                <li>&nbsp;&gt;&nbsp;&nbsp;콘서트</li>
+                <li>&nbsp;&gt;&nbsp;&nbsp;뮤지컬</li>
+            </ul>
+        </nav>
 
-        <div class="conuainer border-bottom">
+    </div>
+
+    <div class="container border text-center reserve-wrap">
+
+        <div class="row">
             <h3 class="main"><%=data[0]%></h3>
         </div>
 
@@ -69,12 +57,15 @@
                 <img src="<%=poster_img%>" class="rounded float-start" alt="img">
             </div>
             <div class="col-lg-8 text-left">
-
-                <div class="col">
+                <div class="col title-txt">아무 소리도 들리지 않는 고요한 밤 은은한 달빛이 어우러지는 거대한 고양이들의 놀이터 일년 중 단 하루 열리는 '젤리클 축제'에 여러분을
+                    초대합니다.
+                </div>
+                
+                <div class="col table-wrap">
                     <table class="table table-borderless table-list">
                         <tbody>
                             <tr>
-                                <th scope="row">공연기간</th>
+                                <th scope="row" class="th-list">공연기간</th>
                                 <td><%=data[2]%></td>
                             </tr>
                             <tr>
@@ -113,35 +104,27 @@
                                     <%}%>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">할인혜택</th>
-                                <td>
-                                    <select>
-                                        <option>무이자할부</option>
-                                        <option>농협:2-6개월</option>
-                                    </select>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-       <div class="container-fiuld">
-        <div class="d-flex border-bottom border-top">
-            <div class="col">날짜선택</div>
-            <div class="col">시간선택</div>
-            <div class="col">가격안내</div>
+       <div class="container-fiuld reserve-choice">
+
+        <div class="d-flex" style="justify-content: center;">
+            <div class="p-2 flex-fill">날짜선택</div>
+            <div class="p-2 flex-fill">시간선택</div>
+            <div class="p-2 flex-fill">가격안내</div>
         </div>
         <form action="/ticket/buy" method="post">
             <div class="card-body" style="display: none;" >
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertname" value="<%=data[0]%>">
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId" value="<%=concert[0].id%>">
             </div>
-            <div class="row reservation">
+            <div class="d-flex reservation">
                 <!--날짜선택-->
-                <div class="col-4">
+                <div class="col-4 align-self-center">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="date" value="<%=concert[0].date%>" id="flexRadioDefault1">
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -152,7 +135,7 @@
                     </div>
                 </div>
                 <!--시간선택-->
-                <div class="col-4">
+                <div class="col-4 align-self-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="time" value="<%=concert[0].time%>" id="flexRadioDefault3">
                         <label class="form-check-label" for="flexRadioDefault3">
@@ -163,7 +146,7 @@
                     </div>
                 </div>
                 <!--좌석현황-->
-                <div class="col-4 price">
+                <div class="col-4 align-self-center price-list">
                     <p>VIP&nbsp;&nbsp;&nbsp;<strong>160,000원</strong></p>
                     <p>R&nbsp;&nbsp;&nbsp;<strong>130,000원</strong></p>
                     <p>S&nbsp;&nbsp;&nbsp;<strong>110,000원</strong></p>
@@ -174,16 +157,20 @@
             <!--./reservation-->
             </div>
             
-            
 
             <!--예약하기 버튼-->
-            <div class="d-grid gap-2 col-12 mx-auto border-top">
-                <button class="btn btn-primary" type="submit">예약하기</button>
+            <div class="d-grid gap-2 col-12 mx-auto reserve-button">
+                <button class="btn" type="submit">예약하기</button>
             </div>
         </form>
     </div>
 
-    <div class="container border" style="margin-top:1rem">
+<!--모바일 공간박스-->
+<div class="container-fluid m-box">
+</div>
+
+
+    <div class="container" style="margin-top:1rem">
 
         <!--상세정보 서브메뉴작업-->
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">

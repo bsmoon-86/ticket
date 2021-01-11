@@ -1,29 +1,48 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
+var moment = require("moment");
+require("moment-timezone");
+require('dotenv').config();
+moment.tz.setDefault("Asia/Seoul");
 
-var mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '1234',
-  database: 'test'
-})
+var mysql = require("mysql2");
+var connection = mysql.createConnection({
+  host: process.env.host,
+  port: process.env.port, // db 포트
+  user: process.env.user, // user 이름
+  password: process.env.password, // 비밀번호
+  database: process.env.database, // database 이름
+});
 
 module.exports = function() {
     
-    router.get("/", function(req, res, next){
-        res.render("concert/concert");
-    })
-
 
     router.route("/index").get(function(req, res, next){
-        var concert = req.query.concert;                                          
+        var concert = req.query.concert;    
+        var x = req.query.x;        
+        var y = req.query.y;    
+        var time = req.query.time;  
+        var name = req.query.name;                                
         console.log(concert)
+
+        var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간 
+        console.log(date);
+          connection.query(
+            "insert into mouse(time, time2, x_position, y_position, name) values (?,?,?,?,?)",
+            [date, time, x, y, name],
+            function (err, result) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("insert success");
+              }
+            }
+          );
+
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://localhost:8080/api/v1/get_concert?concertId="+concert,
+            uri: "http://kairos-link.iptime.org:8080/api/v1/get_concert?concertId="+concert,
             method: 'get',
             json:true //json으로 보낼경우 true로 해주어야 header값이 json으로 설정됩니다.
         };
@@ -48,7 +67,7 @@ module.exports = function() {
                                   console.log("err2 =", err2)
                               }else{
                                   console.log(result2);
-                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, ticket:result2});   
+                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, ticket:result2, loggedname : req.session.name});   
                               }
                           }
                       )
@@ -98,80 +117,80 @@ module.exports = function() {
 
         console.log(vip, r, s, a, b);
 
-        for(var i = 0; i < vip; i++){
-            connection.query(
-                `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "vip"+i, date, time, "vip"+i, seat1, 0, 0, 0, 0, 0, 0],
-                function(err, result){
-                    if(err){
-                        console.log("ticket insert error = ", err)
-                    }else{
-                        console.log(result)
-                    }
-                }
-            )
-        }
-        for(var i = 0; i < r; i++){
-            connection.query(
-                `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "r"+i, date, time, "r"+i, seat2, 0, 0, 0, 0, 0, 0],
-                function(err, result){
-                    if(err){
-                        console.log("ticket insert error = ", err)
-                    }else{
-                        console.log(result)
-                    }
-                }
-            )
-        }
-        for(var i = 0; i < s; i++){
-            connection.query(
-                `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "s"+i, date, time, "s"+i, seat3, 0, 0, 0, 0, 0, 0],
-                function(err, result){
-                    if(err){
-                        console.log("ticket insert error = ", err)
-                    }else{
-                        console.log(result)
-                    }
-                }
-            )
-        }
-        for(var i = 0; i < a; i++){
-            connection.query(
-                `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "a"+i, date, time, "a"+i, seat4, 0, 0, 0, 0, 0, 0],
-                function(err, result){
-                    if(err){
-                        console.log("ticket insert error = ", err)
-                    }else{
-                        console.log(result)
-                    }
-                }
-            )
-        }
-        for(var i = 0; i < b; i++){
-            connection.query(
-                `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "b"+i, date, time, "b"+i, seat5, 0, 0, 0, 0, 0, 0],
-                function(err, result){
-                    if(err){
-                        console.log("ticket insert error = ", err)
-                    }else{
-                        console.log(result)
-                    }
-                }
-            )
-        }
+        // for(var i = 0; i < vip; i++){
+        //     connection.query(
+        //         `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
+        //             fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+        //         [concertId, "vip"+i, date, time, "vip"+i, seat1, 0, 0, 0, 0, 0, 0],
+        //         function(err, result){
+        //             if(err){
+        //                 console.log("ticket insert error = ", err)
+        //             }else{
+        //                 console.log(result)
+        //             }
+        //         }
+        //     )
+        // }
+        // for(var i = 0; i < r; i++){
+        //     connection.query(
+        //         `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
+        //             fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+        //         [concertId, "r"+i, date, time, "r"+i, seat2, 0, 0, 0, 0, 0, 0],
+        //         function(err, result){
+        //             if(err){
+        //                 console.log("ticket insert error = ", err)
+        //             }else{
+        //                 console.log(result)
+        //             }
+        //         }
+        //     )
+        // }
+        // for(var i = 0; i < s; i++){
+        //     connection.query(
+        //         `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
+        //             fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+        //         [concertId, "s"+i, date, time, "s"+i, seat3, 0, 0, 0, 0, 0, 0],
+        //         function(err, result){
+        //             if(err){
+        //                 console.log("ticket insert error = ", err)
+        //             }else{
+        //                 console.log(result)
+        //             }
+        //         }
+        //     )
+        // }
+        // for(var i = 0; i < a; i++){
+        //     connection.query(
+        //         `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
+        //             fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+        //         [concertId, "a"+i, date, time, "a"+i, seat4, 0, 0, 0, 0, 0, 0],
+        //         function(err, result){
+        //             if(err){
+        //                 console.log("ticket insert error = ", err)
+        //             }else{
+        //                 console.log(result)
+        //             }
+        //         }
+        //     )
+        // }
+        // for(var i = 0; i < b; i++){
+        //     connection.query(
+        //         `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
+        //             fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+        //         [concertId, "b"+i, date, time, "b"+i, seat5, 0, 0, 0, 0, 0, 0],
+        //         function(err, result){
+        //             if(err){
+        //                 console.log("ticket insert error = ", err)
+        //             }else{
+        //                 console.log(result)
+        //             }
+        //         }
+        //     )
+        // }
 
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://localhost:8080/api/v1/regist_concert",
+            uri: "http://kairos-link.iptime.org:8080/api/v1/regist_concert",
             method: 'post',
             json: {
                 concertId : concertId,
@@ -221,7 +240,7 @@ module.exports = function() {
         var seat4 = req.body.seat4;
         var seat5 = req.body.seat5;
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://localhost:8080/api/v1/update_concert",
+            uri: "http://kairos-link.iptime.org:8080/api/v1/update_concert",
             method: 'put',
             json: {
                 concertId : concertId,
@@ -252,26 +271,7 @@ module.exports = function() {
         })
     })
 
-    
-    //공연 조회
-    router.route("/view").get(function(req, res, next){   
-        var concert = req.query.concert;                                          
-        console.log(concert)
-        let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://localhost:8080/api/v1/get_concert?concertId="+concert,
-            method: 'get',
-            json:true //json으로 보낼경우 true로 해주어야 header값이 json으로 설정됩니다.
-        };
-        request.get(options, function(err,httpResponse,body){                               //contract를 통하여 받은 return 값은 body라는 변수로 등록
-            if(err){
-            console.log(err)
-            }else{
-                console.log(body);
-                console.log(httpResponse);
-            res.render("concert/view", {data: body, concert: concert});                     
-            }
-        })
-    })
+ 
     
     return router;
 }

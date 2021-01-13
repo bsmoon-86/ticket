@@ -57,28 +57,6 @@ module.exports = function(){
         //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
     })
 
-    //좌석 선택 
-    router.post("/buy", function(req, res, next){
-        //var did = req.body.did;
-        console.log(req.session.name);
-        if(!req.session.name){
-            res.redirect("/login")
-        }else{
-            var date = req.body.date;
-            var time = req.body.time;
-            var concertname = req.body.concertname;
-            var concertId = req.body.concertId;
-            var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-            const person = function test(){
-                return mykeepin();
-            }
-            person().then(function(result){
-                console.log(result[0]);
-                console.log("date=", date, "time=", time, "concertId =", concertId);
-                res.render("concert/seat_selection" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname, loggedname : req.session.name});
-            })
-        }
-    })
 
     //티켓 등록 
     router.post("/regist", async function(req, res, next){

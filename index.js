@@ -110,11 +110,11 @@ app.use("/concert", concertRoute);
 var ticketRoute = require("./routes/ticket")();
 app.use("/ticket", ticketRoute);
 
-var hallRoute = require("./routes/hall")();
-app.use("/hall", hallRoute);
+var loginRoute = require("./routes/login")();
+app.use("/login", loginRoute);
 
-var managerRoute = require("./routes/login")();
-app.use("/login", managerRoute);
+var managerRoute = require("./routes/manager")();
+app.use("/manager", managerRoute);
 
 server.listen(port, function () {
   console.log("웹 서버 시작", port);

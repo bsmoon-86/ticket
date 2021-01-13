@@ -3,65 +3,96 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Blog Post - Start Bootstrap Template</title>
+    <title>Heroic Features - Start Bootstrap Template</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="../css/blog-post.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../vendor/bootstrap/css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--Bootstrap cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+    <!--font-awesome-->
+    <script src="https://kit.fontawesome.com/5f8c8c97ed.js" crossorigin="anonymous"></script>
+
 
 </head>
-<script>
-  function index() {
-    location.href="/"
-  }
-</script>
 
-<body>
+<body class="login_wrap">
 
 
-  <!-- Page Content -->
-  <div class="container">
+    <div class="card align-middle signup" style="width:70%;">
 
-    <div class="row" style="margin: 20px 20px 20px 20px;">
-      <h3 class="input-group mb-3" style="text-align: center;">회원 가입</h3>
-
-      <form method="POST" action="/manager/signup2" class="row">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "id">
+        <div class="card-title" style="padding-top:30px;">
+            <h2 class="card-title text-center">회원가입</h2>
         </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "pass">
+
+
+        <div class="card-body">
+            <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/signup">
+
+                <label for="inputid">회원구분</label>   
+                <div class="row ck-type">
+                    <label for="inputradio" class="p-2">
+                        <input type="radio" class="form-control" name="linkcode" value="1" required autofocus>개인회원
+                    </label>                 
+                    <label for="inputradio" class="p-2">
+                        <input type="radio" class="form-control" name="linkcode" value="0" required autofocus>사업자회원
+                    </label>
+                </div>               
+
+                <hr>
+                <label for="inputid">아이디</label>                  
+                <input type="text" class="form-control" placeholder="ID" name="id" required autofocus><br>  
+
+                <label for="inputpassword">비밀번호</label>    
+                <input type="password" id="upw" class="form-control" name="pass" placeholder="Password" required><br>
+
+                <label for="inputpassword-ck">비밀번호 확인</label>    
+                <input type="password" id="upw" class="form-control" name="confirm_pass" placeholder="Password" required><br>  
+
+                <label for="inputemail">E-mail</label>    
+                <input type="email" id="floatingInputInvalid" class="form-control" name="email" placeholder="abc@example.com" required><br> 
+
+                <label for="inputname">이름</label>                  
+                <input type="text" class="form-control" name="name" placeholder="NAME" required autofocus><br> 
+
+                <label for="inputphon">휴대폰번호</label>                  
+                <input type="tel" class="form-control" placeholder="" id="floatingInputValue" name="phone" required autofocus><br>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me">이용약관에 동의합니다.
+                    </label>
+                </div>
+                <br>
+
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">
+                        회원가입<i class="fa fa-check spaceLeft"></i>
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        가입취소<i class="fa fa-times spaceLeft"></i>
+                    </button>
+                </div>
+
+            </form>
+
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">등록</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
-      </form>
-        
-    </div>
-    <!-- /.row -->
+</div>
 
-  </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

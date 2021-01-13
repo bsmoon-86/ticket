@@ -1,0 +1,37 @@
+<script>
+    var x = [];
+    var y = [];
+    var time = [];        
+    var t1;
+    var t2;
+
+    jQuery(document).ready(function(){
+        $(document).mousedown(function(e){      //마우스 클릭시 click에 좌표 입력
+            var tt = new Date().getTime();
+            
+            if(!t1){
+                x.push(e.pageX);
+                y.push(e.pageY);
+                time.push("0");
+                console.log("x = ", x , "y =", y, "time = 0");
+                t1= tt;
+                $('#x').val(x);
+                $('#y').val(y);
+                $('#time_rap').val(time);
+                console.log(t1);
+            }else{
+                t2 = tt;
+                console.log("t2 = ",t2)
+                console.log("t2-t1 = ",t2-t1)
+                x.push(e.pageX);
+                y.push(e.pageY);
+                time.push(t2-t1);
+                $('#x').val(x);
+                $('#y').val(y);
+                $('#time_rap').val(time);
+                console.log("x = ", x , "y =", y, "time = ", time);
+                t1= t2;
+            }
+        });
+    })
+</script>

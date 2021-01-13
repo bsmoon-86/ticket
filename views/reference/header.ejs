@@ -95,24 +95,35 @@
         
         
         <div id="myNav" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-title">
+                <a href="/">HOME</a>
+                <%if(!loggedname){%>
+                <a href="/login">LOGIN</a>
+                <%}else{%>
+                <a href="/logout">LOGOUT</a>
+                <%}%>
+            </div>
+            <div>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">close&times;</a>
             <ul class="overlay-content">
-                    <li><a href="#">공연</a></li>
-                    <li><a href="#">전시</a></li>
-                    <li><a href="#">스포츠</a></li>
+                    <li><i class="fas fa-headphones-alt"></i><a href="javascript:menu('0')">공연</a></li>
+                    <li><i class="fas fa-images"></i><a href="javascript:menu('1')">전시</a></li>
+                    <li><i class="fas fa-running"></i><a href="javascript:menu('2')">스포츠</a></li>
                     <%if(!loggedname){%>
-                    <li><a href="/login">로그인</a></li>
-                    <%}else{%>
-                    <li><a href="/logout">로그아웃</a></li>
+                    <li><i class="fas fa-ticket-alt"></i><a href="#">마이페이지</a></li>
                     <%}%>
             </ul>
+            </div>
+            <div class="overlay-line">
+
+            </div>
         </div>
         
         
         
         <script>
             function openNav() {
-                document.getElementById("myNav").style.width = "100%";
+                document.getElementById("myNav").style.width = "60%";
             }
 
             function closeNav() {

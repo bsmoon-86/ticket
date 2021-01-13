@@ -51,10 +51,10 @@
               <a class="nav-link" href="/manager/main">메인</a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="/concert/regist">공연 등록</a>
+            <a class="nav-link" href="/manager/regist">공연 등록</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/hall">공연장 등록</a>
+            <a class="nav-link" href="/manager/hall">공연장 등록</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">로그아웃</a>
@@ -70,7 +70,7 @@
     <div class="row" style="margin: 20px 20px 20px 20px;">
       <h3 class="input-group mb-3" style="text-align: center;">공연 등록</h3>
 
-      <form method="POST" action="/concert/regist2" class="row">
+      <form method="POST" action="/manager/regist2" class="row">
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">공연 ID</span>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId">
@@ -94,7 +94,6 @@
             $('#selectbox').on("change", function(e) {
               var state = $('#selectbox option:selected').val();
               var state2 = $('#'+state).val().split(",");
-              alert(state2);
               $('#vip').val(state2[0]);
               $('#r').val(state2[1]);
               $('#s').val(state2[2]);

@@ -4,9 +4,10 @@
 /***1.header css****/
 /***2.img_slide css****/
 /***3.index css****/
-/***4.좌석선택 css****/
+/***4.예약페이지 css****/
 /***5.좌석선택 css****/
-/***6.좌석선택 css****/
+/***6.로그인 css****/
+/***7.회원가입 css****/
 
 
 
@@ -27,20 +28,21 @@ a:hover{
 }
 
 
-
 /**********************1.header-css 작업*****************************/
 
 .top {
     width: 100%;
-    height: auto;
-
+    height:auto;
     position: relative;
+    z-index: 99;
+    top:0;
+
 }
 
 .top-line {
     height: 80px;
     line-height: 80px;
-    background: #fff;
+    background:#fff;
 }
 
 .logo {
@@ -74,8 +76,6 @@ a:hover{
     height: 40px;
     text-align: center;
     padding-left: 0;
-
-
 }
 
 .navi>li {
@@ -117,9 +117,12 @@ a:hover{
 .sticky {
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 996;
 }
 
+.header-box{
+    padding-top: 7.813em;
+}
 
 /**********모바일 화면 header작업************/
 @media only screen and (max-width:768px) {
@@ -142,6 +145,9 @@ a:hover{
         border-image-slice: 2;
     }
 
+    .header-box {
+        padding-top: 5em;
+    }
 }
 
 
@@ -156,47 +162,83 @@ a:hover{
 }
 
 .overlay {
-    height: 30%;
+    height: 100%;
     width: 0;
     position: fixed;
-    z-index: 99;
-    top: 6%;
-    left: 0;
-    background-color: rgba(250, 250, 250, 1);
-    overflow-x: hidden;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background:#fff;
     transition: 0.5s;
-    border-bottom-style: solid;
-    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    border-image-slice: 2;
+    overflow: hidden;
 }
 
-.overlay-content {
+.overlay-title{
     position: relative;
-    top: 15%;
-    width: 100%;
+    width:100%;
+    height:80px;
     text-align: center;
-    margin-top: 13px;
+    background-image: linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
 }
-
-.overlay a {
-    padding: 10px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+.overlay-title a{
+    position:absolute;
+}
+.overlay-title a:nth-child(1){
+    top:27px;
+    left:13px;
+    width: 74px;
+    height: 28px;
+    color: #ffffff;
+}
+.overlay-title a:nth-child(2),
+.overlay-title a:nth-child(3) {
+    top:27px;
+    left:70%;
+    width: 63px;
+    height: 23px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    border:1px solid #fff;
+}
+.overlay-content{
+    position:absolute;
+    left:-10%;
+    width:120%;
+}
+.overlay-content li{
+    width:100%;
+    height:50px;
+    margin-top: 20px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;
+}
+.overlay-content li a {
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+}
+.overlay-content i{
+    vertical-align: middle;
+    padding:0 5% 0 10%;
 }
 
 .overlay a:hover,
 .overlay a:focus {
-    color: #f1f1f1;
+    color: #aaa;
 }
 
-.overlay .closebtn {
+.closebtn {
     position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+    z-index: 999;
+    top: 400px;
+    left: 0px;
+    width:100%;
+    font-size: 20px;
+    color: #fff;
+    background:linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    text-align: center;
 }
 
 @media only screen and (max-width:768px) {
@@ -205,15 +247,8 @@ a:hover{
         display: block;
     }
 
-    .overlay a {
-        font-size: 20px
-    }
 
-    .overlay .closebtn {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
+
 
     
 
@@ -227,7 +262,6 @@ a:hover{
 .visual {
     width: 90%;
     margin: 0 auto;
-    margin-top:120px;
 }
 
 
@@ -246,13 +280,14 @@ a:hover{
 
 }
 
+
+
 /*****2.img_slide 이미지 슬라이드 작업*****/
 @media only screen and (max-width:768px){
 
     .visual {
         width: 100%;
         margin: 0 auto;
-        margin-top:80px;
     }
 
     #img-slide {
@@ -424,36 +459,9 @@ a:hover{
 
 
 
-/**********************4.sub_list 페이지 작업*****************************/
-
-.h-title{
-    width:80%;
-    height:100px;
-    margin:0 auto;
-    position: relative;
-}
-.sub_list{
-    position: absolute;
-    right:0rem;
-    bottom:0;
-    font-size:.8rem
-}
-.sub_list li{
-    float:left;
-}
-
-.price p{
-    margin-bottom:0;
-    font-size:.7rem;
-}
-.no_center{
-    width:80%;
-    margin:0 auto;
-
-}
 
 
-/**********************5.예약페이지 작업*****************************/
+/**********************4.예약페이지 작업*****************************/
 
 .main{
     width:100%;
@@ -507,6 +515,23 @@ a:hover{
 .reserve-button button{
     width:50%;
 }
+
+/* 상세페이지 작업 */
+.details-wrap{
+    max-width:75em;
+}
+.details {
+    width: 100%;
+    height:60px;
+    background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+}
+.details li a{
+    height:40px;
+    border:none;
+    background:none;
+    margin:10px 5px 5px 5px;
+}
+
 /**********모바일 화면 index 작업************/
 @media only screen and (max-width:768px){
 
@@ -523,26 +548,57 @@ a:hover{
     .main{
         font-size:1.2rem;
     }
+
+    .details-wrap {
+        width:100%;
+       
+    }
+
 }
 
 /**********************5.좌석선택 예약페이지 작업*****************************/
 
-.h2-title{
-    line-height: 50px;
+.seat-wrap{
+    padding:0;
+    margin:0 auto;
+    background:tan;
 }
-
 .reserve_title{
-    height:50px;
-    line-height: 50px;
+    width: 100%;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    height: 60px;
+    line-height: 60px;
+    padding:0;
+    margin:0;
 }
 .reserve_title h2{
     font-size:1.8rem;
+    line-height: 50px;
 }
-.price{
+
+.left-article {
+    width: 65%;
+    background:white;
+}
+
+.right-article {
+    width: 35%;
+}
+/* .button_box {
+    width: 100%;
+    margin:0 auto;
+    background: red;
+}
+
+.seat-price-box{
+    width:100%;
+    margin:0 auto;
     height:140px;
     background:#fff;
 }
 .reserve_button{
+    width:100%;
+    margin:0 auto;
     height:150px;
     background:#eee;
 }
@@ -553,10 +609,8 @@ a:hover{
 .reserve_button>div:nth-child(1)>button{
     width:202px;
     margin-top:30px;
-}
-.button_box{
-    background:#eee;
-}
+} */
+
 
 /*좌석선택창*/
 
@@ -579,12 +633,12 @@ a:hover{
 /*****좌석선택 및 예약 모바일 작업*****/
 @media only screen and (max-width:768px){
 
-    .reserve_title div{
+    .reserve_title{
         text-align: center;
         font-weight: bold;
         font-size:1.3rem;
+        padding-left:5%;
     }
-    
     .h2-title{
         display: none;
     }
@@ -592,7 +646,6 @@ a:hover{
     width:100px;
     }
     .reserve_button>div:nth-child(1)>button{
-        width:202px;
         margin-top:20px;
     }
 
@@ -607,7 +660,6 @@ a:hover{
 	    width:100%;
 	    height:100%;
 	    margin: 0;
-  		padding-top: 80px;
   		padding-bottom: 40px;
         
     
@@ -652,8 +704,35 @@ a:hover{
 .login-link a{
     margin:20px 0 0 0;
 }
+/***** 로그인페이지 모바일 작업*****/
+@media only screen and (max-width:768px) {
+
+    .login_wrap {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding-bottom: 40px;
+        
+
+    }
+
+    .login_wrap .card {
+        margin: 0 auto;
+        float: none;
+        margin-bottom: 10px;
+        box-shadow: none;
+        border:none;
+        border-bottom-style: solid;
+        border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+        border-image-slice: 1;
+    }
+
+
+}
+
 
 /**********************7.회원가입 페이지 작업*****************************/
+
 
 
 /*제목앞 이모티콘*/
@@ -674,4 +753,14 @@ a:hover{
     width:50%;
        text-align: center;
     border:1px solid #eee;
+}
+/***** 회원가입페이지 모바일 작업*****/
+@media only screen and (max-width:768px) {
+
+    .form-signin{
+        width:90%;
+        margin:0 auto;
+    }
+
+
 }

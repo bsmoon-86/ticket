@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ("../reference/head.ejs") %>
+    <%- include ("../reference/click.ejs") %>
+
+    <script>
+        function info(concert, name){
+        }
+    </script>
+</head>
+
+
+<body>
+
+  <div class="header">
+    <%- include ("../reference/header.ejs") %>
+</div>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row" style="margin: 20px 20px 20px 20px;">
+      <h3 class="input-group mb-3" style="text-align: center;">티켓 결제</h3>
+
+      <form method="post" action="/ticket/payment" class="row">
+        
+        <div>
+          <input type="text" id="x" name="x">
+          <input type="text" id="y" name="y">
+          <input type="text" id="time_rap" name="time_rap">
+      </div>
+        <div class="card-body">
+          <input type="text" name = "concertId" value="<%=concertId%>">
+          <input type="text" name = "date" value="<%=date%>">
+          <input type="text" name = "time" value="<%=time%>">
+        </div>
+        <table class="table table-striped">
+          <tr>
+            <td>결제 방법</td>
+            <td><input type="text" name="payment"/></td>
+          </tr>
+        </table>
+        <button type="submit">티켓 결제</button>
+      </form>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

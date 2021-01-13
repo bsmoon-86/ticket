@@ -75,7 +75,7 @@ module.exports = function(){
             person().then(function(result){
                 console.log(result[0]);
                 console.log("date=", date, "time=", time, "concertId =", concertId);
-                res.render("ticket/seat" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname});
+                res.render("concert/seat_selection" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname, loggedname : req.session.name});
             })
         }
     })

@@ -119,7 +119,7 @@ module.exports = function() {
             console.log("time = ", time);
             console.log("date = ", date);
             console.log("concertId = ", concertId);
-            res.render("concert/payment", {x:x, y:y, time_rap:time_rap, date: date, time: time, concertId : concertId, loggedname : req.session.name});
+            res.render("concert/payment", {x:x, y:y, time_rap:time_rap, date: date, time: time, seat: seat, price: price,  concertId : concertId, loggedname : req.session.name});
         }
 
     })

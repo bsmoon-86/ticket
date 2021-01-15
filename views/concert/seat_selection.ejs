@@ -6,6 +6,9 @@
     <%- include ("../reference/click.ejs") %>
 
     <script>
+
+
+
         function info(concert, name){
             console.log("info suc")
             console.log("index_1 name = ",name)
@@ -23,94 +26,247 @@
     </div>
 
 
-    <div class="container border" style="margin-top:2rem;">
+
+
+    <div class="header-box">
+        <!--메뉴바 pixed 공간 확보 박스-->
+    </div>
+
+    <div class="container-fluid seat-wrap">
         <!--전체 겉 박스-->
 
-        <div class="row d-flex reserve_title border-bottom">
-            <h2 class="col-3 h2-title">좌석선택</h2>
-            <div class="col"><%=concertId%></div>
+        <div class="d-flex reserve_title border-bottom" >
+            <h2 class="h2-title">좌석선택</h2>
+            <div>뮤지컬 〈캣츠〉 40주년 내한공연 앙코르</div>
+
+            <div class="date-box">
+                <h5>다른날짜보기</h5>
+                    <select name="date">
+                        <option value="">날짜선택</option>
+                        <option value="date1"><%=date%></option>
+                    </select>
+                    <select name="time">
+                        <option value="">시간 선택</option>
+                        <option value="date1"><%=time%></option>
+                    </select>
+            </div>
         </div>
-        <form method="POST" action="/concert/payment">
-            <div class="row">
-                <!--내부 컨텐츠 박스-->
 
-                <div class="col-md-8">
-                    <div class="tab-content text-center" id="v-pills-tabContent">
 
-                        <!--1층 좌석선택-->
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <table class="table">
-                                <div class="td-title">
-                                    <h5>screen</h5>
+        <div class="row article-box border">
+            <!--내부 컨텐츠 박스-->
+
+            <div class="left-article">
+                <div class="tab-content text-center" id="v-pills-tabContent">
+
+
+                    <!--1층 좌석선택-->
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="first-wrap">
+                            <h5>STAGE</h5>
+
+                            <div class="d-flex rectangle-wrap">
+
+                                <div class="seat-number">
+                                    <span>A</span>
+                                    <span>B</span>
+                                    <span>C</span>
+                                    <span>D</span>
+                                    <span>E</span>
+                                    <span>D</span>
                                 </div>
+                                <div class="left1 input-style">
 
-                                <tbody class="td-body">
-                                    <tr>
-                                        <th>A</th>
-                                        <td><a hef="#" style="background:gray;cursor:none;">X</a></td>
-                                        <td><a hef="#">2</a></td>
-                                        <td><a hef="#">3</a></td>
-                                        <td><a hef="#">4</a></td>
-                                        <td><a hef="#">5</a></td>
-                                        <td><a hef="#">6</a></td>
-                                        <td><a hef="#">7</a></td>
-                                        <td><a hef="#">8</a></td>
-                                        <td><a hef="#">9</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                                    <%for(var i = 001; i < hall.seat2/2+1;i++){%>
+                                    <p style="background:skyblue;" title="R<%=i%>">
+                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
+                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
 
+                                </div>
+                                <div class="center1 input-style">
 
-                <div >
-                    <input type="text" id="concertId" name="concertId" value="<%=concertId%>">
-                    <input type="text" id="x" name="x">
-                    <input type="text" id="y" name="y">
-                    <input type="text" id="time_rap" name="time_rap">
-                </div>
+                                    <%for(var i = 001; i < hall.seat1+1;i++){%>
+                                    <p style="background:green;" title="VIP<%=i%>">
+                                        <input type="checkbox" id="vip<%=i%>" name="seat" value="vip<%=i%>">
+                                        <label for="vip<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
 
-                <div class="col-md-4">
-                    <!--자리선택 버튼 / 1층 2층 3층-->
-                    <div class="row button_box">
-                        <div class="d-flex align-items-start" style="height:140px; margin:0 auto;">
-                            <div class="nav flex-column nav-pills me-3 map_btn" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin: 0 auto;">
-                                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">1층</a>
-                                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">2층</a>
-                                <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">3층</a>
+                                </div>
+                                <div class="right1 input-style">
+                                    <%for(var i = hall.seat2/2+1; i < hall.seat2+1;i++){%>
+                                    <p style="background:skyblue;" title="R<%=i%>">
+                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
+                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
 
-                    <div class="row text-center">
+                    <!--2층 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="first-wrap">
+                            <h5>STAGE</h5>
+
+                            <div class="d-flex flex-column rectangle-wrap2">
+
+                                <div class="center2-1 input-style">
+
+                                    <%for(var i = 001; i < hall.seat3+1;i++){%>
+                                    <p style="background:orange;" title="S<%=i%>">
+                                        <input type="checkbox" id="s<%=i%>" name="seat" value="s<%=i%>">
+                                        <label for="s<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+
+                                </div>
+                                <div class="center2-2 input-style">
+
+                                    <%for(var i = 001; i < hall.seat4+1;i++){%>
+                                    <p style="background:greenyellow;" title="A<%=i%>">
+                                        <input type="checkbox" id="a<%=i%>" name="seat" value="a<%=i%>">
+                                        <label for="a<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+
+                                </div>
+                                <div class="center2-3 input-style">
+                                    <%for(var i = 001; i < hall.seat5+1;i++){%>
+                                    <p style="background:purple;" title="B<%=i%>">
+                                        <input type="checkbox" id="b<%=i%>" name="seat" value="b<%=i%>">
+                                        <label for="b<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="right-article">
+                <form method="POST" action="/concert/payment">
+
+                    
+                    <div style="display: none;">
+                        <input type="text" id="concertId" name="concertId" value="<%=concert[0].id%>">
+                        <input type="text" name="date" value="<%=date%>">
+                        <input type="text" name="time" value="<%=time%>">
+                        <input type="text" id="n_seat" name="seat">
+                        <input type="text" id="n_price" name="price">
+                        <input type="text" id="x" name="x">
+                        <input type="text" id="y" name="y">
+                        <input type="text" id="time_rap" name="time_rap">
+
+                    </div>
+
+                    <!--자리선택 버튼 / 1층 2층 3층-->
+                    <div class="button_box">
+
+                
+                            <div class="nav flex-column me-3 map_btn" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                                    <span>R</span>
+                                    <span>VIP</span>
+                                    <span>R</span>
+                                </a>    
+                                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                                    <span>S</span>
+                                    <span>A</span>
+                                    <span>B</span>
+                                </a>
+                    
+                        </div>
+                        
+                    </div>
+
+                    <div class="row text-center seat-price-box" style="overflow: hidden;">
+                    
+                        
                         <!--좌석현황/가격-->
-                        <div class="col-12 price">
-                            좌석가격
+                        <div class="seat-price">
+                        
+                            <h6>선택좌석안내</h6>
+                            <div style="width:100%;overflow:hidden;word-wrap:break-word;" id="seat">선택좌석 화면 표시</div> 
+
+                        </div>
+
+                        <div class="seat-price">
+                            <ul>
+                                <li id="price">0 원</li>
+                                <li>최종결제금액 : </li>
+                            </ul>
                         </div>
 
                     </div>
                     <div class="row text-center reserve_button">
                         <!--예약하기 취소,새로고침 버튼-->
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-lg">예약하기</button>
-                        </div>
-
-                        <div class="col-12 ">
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.href='/'">취소하기</button>
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.reload()">새로고침</a></button>
-                        </div>
+        
+                            <button type="button" class="btn btn-primary btn-lg" style="font-size:1rem;" onclick="javascript:history.go(-1)">이전단계</button>
+                            <button type="submit" class="btn btn-primary btn-lg" style="font-size:1rem;">예약하기</button>
 
                     </div>
-                </div>
-
-
+                    
+                </form>
             </div>
+
+
+        </div>
         <!--./ 내부 컨텐츠 박스-->
-        </form>
     </div>
     <!--./ 전체 겉 박스-->
 
+    <script>
+        var select = [];
+        $(document).ready(function(){
+            $("input[name=seat]").change(function(){
+                var price = 0;
+                select = [];
+                for(var i= 001; i < 101; i++){
+                    if($("#vip"+i).is(":checked")){
+                        select.push($("#vip"+i).val());
+                        price += "<%=concert[0].seat1%>"*1
+                    }
+                    if($("#r"+i).is(":checked")){
+                        select.push($("#r"+i).val());
+                        price += "<%=concert[0].seat2%>"*1
+                    }
+                    if($("#s"+i).is(":checked")){
+                        select.push($("#s"+i).val());
+                        price += "<%=concert[0].seat3%>"*1
+                    }
+                    if($("#a"+i).is(":checked")){
+                        select.push($("#a"+i).val());
+                        price += "<%=concert[0].seat4%>"*1
+                    }
+                    if($("#b"+i).is(":checked")){
+                        select.push($("#b"+i).val());
+                        price += "<%=concert[0].seat5%>"*1
+                    }
+                }
+                
+            // alert(select.sort());
+            console.log("price = ", price);
+            $("#seat").html(select.sort());
+            $("#price").html(price + "원");
+            $("#n_seat").val(select.sort());
+            $("#n_price").val(price);
+            });
+            
+        });
+    </script>
 
 
 

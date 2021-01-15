@@ -33,29 +33,18 @@ module.exports = function() {
             console.log(err)
             }else{
             console.log(body);
-            connection.query(
-                `select * from concert where id=?`,
-                [concert],
-                function(err, result){
-                    if (err){
-                        console.log(err);
-                    }else{
-                      console.log(result);
-                      connection.query(
-                          `select * from ticket where concertId = ?`,
-                          [concert],
-                          function(err2, result2){
-                              if(err2){
-                                  console.log("err2 =", err2)
-                              }else{
-                                  console.log(result2);
-                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, ticket:result2, loggedname : req.session.name});   
-                              }
-                          }
-                      )
+                connection.query(
+                    `select * from concert where id=?`,
+                    [concert],
+                    function(err, result){
+                        if (err){
+                            console.log(err);
+                        }else{
+                        console.log(result);
+                            res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                        }
                     }
-                }
-              )              
+                )              
             }
         })
     })
@@ -70,24 +59,47 @@ module.exports = function() {
         }else{
             var date = req.body.date;
             var time = req.body.time;
-            var concertname = req.body.concertname;
             var concertId = req.body.concertId;
-            var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-            const person = function test(){
-                return mykeepin();
-            }
-            person().then(function(result){
-                console.log(result[0]);
-                console.log("date=", date, "time=", time, "concertId =", concertId);
-                res.render("concert/seat_selection" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname, loggedname : req.session.name});
-            })
+            
+            connection.query(
+                `select * from concert where id=?`,
+                [concertId],
+                function(err, result){
+                    if (err){
+                        console.log(err);
+                    }else{
+                    console.log(result);
+                        connection.query(
+                            `select * from hall where name=?`,
+                            [result[0].place],
+                            function(err, result2){
+                                if(err){
+                                    console.log("select => ", err)
+                                }else{
+                                    console.log(result2[0].seat1);
+                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], time : time, date : date, loggedname : req.session.name});   
+
+                                }
+
+                            }
+                        )
+                            
+                    }
+                }
+            )   
+            // var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
+            // const person = function test(){
+            //     return mykeepin();
+            // }
+            // person().then(function(result){
+            //     console.log(result[0]);
+            //     console.log("date=", date, "time=", time, "concertId =", concertId);
+            //     res.render("concert/seat_selection" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname, loggedname : req.session.name});
+            // })
         }
     })
 
     router.post("/payment", function(req, res, next){
-        console.log(req.session.name);
-        console.log(x);
-        console.log(y);
         if(!req.session.name){
             res.redirect("/login")
         }else{
@@ -97,6 +109,16 @@ module.exports = function() {
             var x = req.body.x;
             var y = req.body.y;
             var time_rap = req.body.time_rap;
+            var seat = req.body.seat;
+            var price = req.body.price;
+            console.log("seat = ", seat);
+            console.log("price = ", price);
+            console.log("x = ", x);
+            console.log("y = ", y);
+            console.log("time_rap = ", time_rap);
+            console.log("time = ", time);
+            console.log("date = ", date);
+            console.log("concertId = ", concertId);
             res.render("concert/payment", {x:x, y:y, time_rap:time_rap, date: date, time: time, concertId : concertId, loggedname : req.session.name});
         }
 

@@ -35,7 +35,7 @@
     <div class="card align-middle signup">
 
         <div class="card-title" style="padding-top:30px;">
-            <h2 class="card-title text-center">회원가입</h2>
+            <h2 class="text-center">회원가입</h2>
         </div>
 
 
@@ -57,10 +57,13 @@
                 <input type="text" class="form-control" placeholder="ID" name="id" required autofocus><br>  
 
                 <label for="inputpassword">비밀번호</label>    
-                <input type="password" id="upw" class="form-control" name="pass" placeholder="Password" required><br>
+                <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" required><br>
 
                 <label for="inputpassword-ck">비밀번호 확인</label>    
-                <input type="password" id="upw" class="form-control" name="confirm_pass" placeholder="Password" required><br>  
+                <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Password" required><br> 
+
+                <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
+                <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 
                 <label for="inputemail">E-mail</label>    
                 <input type="email" id="floatingInputInvalid" class="form-control" name="email" placeholder="abc@example.com" required><br> 
@@ -78,9 +81,8 @@
                 </div>
                 <br>
 
-
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" id="signup" class="btn btn-primary">
                         회원가입<i class="fa fa-check spaceLeft"></i>
                     </button>
                     <button type="submit" class="btn btn-warning">
@@ -88,6 +90,27 @@
                     </button>
                 </div>
 
+                <script type="text/javascript"> 
+                    $(function(){ 
+                        $("#alert-success").hide(); 
+                        $("#alert-danger").hide(); 
+                        $("input").keyup(function(){ 
+                            var pwd1=$("#pass").val(); 
+                            var pwd2=$("#confirm_pass").val(); 
+                            if(pwd1 != "" || pwd2 != ""){ 
+                                if(pwd1 == pwd2){ 
+                                    $("#alert-success").show(); 
+                                    $("#alert-danger").hide(); 
+                                    $("#signup").removeAttr("disabled"); 
+                                }else{ 
+                                    $("#alert-success").hide(); 
+                                    $("#alert-danger").show(); 
+                                    $("#signup").attr("disabled", "disabled"); 
+                                } 
+                            } 
+                        }); 
+                    }); 
+                </script>
             </form>
 
         </div>

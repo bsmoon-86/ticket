@@ -77,8 +77,8 @@ app.get("/", function (req, res) {
 
 //QR code 만들기
 app.get("/qrcode", function(req, res) {
-  var concert = req.query.concert;
-  var cofirm = "http://kairos-link.iptime.org:3333/confirm?concert=" + concert;     //input 값 변수
+  var concertId = req.query.concertId;
+  var cofirm = "http://kairos-link.iptime.org:3333/ticket?concertId=" + concertId;     //input 값 변수
 
     QRCode.toDataURL(cofirm, function (err, url) {
       let data = url.replace(/.*,/,'')
@@ -103,6 +103,33 @@ app.get("/logout", function(req, res){
     });
 })
 
+app.post("/sql", function(req, res){
+  connection.query(
+    `select * from mouse`,
+    function(err, result){
+      if(err){
+        console.log("sql error => ", err)
+      }else{
+        console.log(result);
+        res.json(result);
+      }
+    }
+  )
+})
+
+app.get("/sql", function(req, res){
+  connection.query(
+    `select * from mouse`,
+    function(err, result){
+      if(err){
+        console.log("sql error => ", err)
+      }else{
+        console.log(result);
+        res.json(result);
+      }
+    }
+  )
+})
 
 var concertRoute = require("./routes/concert")();
 app.use("/concert", concertRoute);

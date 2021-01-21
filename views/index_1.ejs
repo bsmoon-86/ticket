@@ -16,12 +16,8 @@
 
 <body>
 
-    <div class="header" style="background:tan;">
+    <div class="header">
         <%- include ("./reference/header.ejs") %>
-    </div>
-
-    <div class="header-box">
-        <!--메뉴바 pixed 공간 확보 박스-->
     </div>
 
     <!--header-slide-->
@@ -120,21 +116,24 @@
             </div>
 
             <%for(var i = 0; i < concert.length; i++){%>
-              <div class="col-lg-3 col-md-4 col-6 mb-4">
-                <div class="card h-20 card-radius card-box">
-                    <a href="javascript:info('<%=concert[i].id%>')">
-                        <img class="card-img-top" src="<%=concert[i].poster_img%>" alt="">
-                        <div class="card-body card-title">
-                            <p><strong><%=concert[i].name%></strong></p>
-                            <div class="card-text fs-6">
-                            <span><%=concert[i].date%></span>
-                            <small><%=concert[i].place%></small>
-                            </div>
-                        </div>
-                  </a>
+                <div class="col-lg-3 col-md-4 col-6 mb-3 p-2">
+                  <div class="card card-radius card-box">
+                      <a href="javascript:info('<%=concert[i].id%>', '<%=loggedname%>')">
+                          <div class="card-img-top">
+                              <img src="<%=concert[i].poster_img%>" alt="">
+                          </div>
+                          
+                          <div class="card-body card-title ">
+                              <p><strong><%=concert[i].name%></strong></p>
+                              <div class="card-text fs-6">
+                              <span><%=concert[i].date%></span>
+                              <small><%=concert[i].place%></small>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
                 </div>
-              </div>
-            <%}%>
+              <%}%>
             
             <div class="col-lg-3 col-md-4 col-6 mb-4">
                 <div class="card h-20 card-radius card-box">

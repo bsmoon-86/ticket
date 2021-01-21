@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <%- include ("../reference/head.ejs") %>
+
+</head>
+
+<body class="login_wrap">
+
+
+        <div class="card align-middle" style="width:30rem;">
+
+            <div class="card-title" style="padding-top:30px;">
+                <h2 class="text-center">LOGIN</h2>
+            </div>
+
+            <div class="card-body">
+                <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/ticket/search">
+                    <input type="text" name="concertId" value="<%=concertId%>" style="display: none;">
+                    <label for="inputEmail" class="sr-only">이름</label>
+                    <input type="text" class="form-control" placeholder="Your ID" name="name" required autofocus><br>
+                    <label for="inputPassword" class="sr-only">Email</label>
+                    <input type="text" class="form-control" placeholder="email" name="email" required><br>
+                    <label for="inputPassword" class="sr-only">Phone</label>
+                    <input type="text" class="form-control" placeholder="phone" name="phone" required><br>
+                    <button id="btn-Yes" class="btn btn-lg btn-block" type="submit">인   증</button>
+
+
+                </form>
+
+            </div>
+        </div>
+
+
+</body>
+
+</html>

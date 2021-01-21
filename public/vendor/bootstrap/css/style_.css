@@ -31,15 +31,17 @@ a:hover{
 
 .top {
     width: 100%;
-    height: 120px;
+    height:auto;
     position: relative;
     z-index: 99;
+    top:0;
+
 }
 
 .top-line {
     height: 80px;
     line-height: 80px;
-    background: #fff;
+    background:#fff;
 }
 
 .logo {
@@ -112,14 +114,13 @@ a:hover{
 
 /*자바스크립트 메뉴 상단고정*/
 .sticky {
-    width:100%;
     position: fixed;
     top: 0;
     z-index: 996;
 }
 
 .header-box{
-    display: none;
+    padding-top: 7.813em;
 }
 
 /**********모바일 화면 header작업************/
@@ -137,9 +138,6 @@ a:hover{
         text-align: center;
     }
 
-    .top{
-        height:80px;
-    }
     .top-line {
         border-bottom-style: solid;
         border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
@@ -147,7 +145,7 @@ a:hover{
     }
 
     .header-box {
-        display: none;
+        padding-top: 5em;
     }
 }
 
@@ -263,7 +261,6 @@ a:hover{
 .visual {
     width: 90%;
     margin: 0 auto;
-    
 }
 
 
@@ -358,62 +355,36 @@ a:hover{
     color: #46c0f7;
 }
 
-
-
-/* 티켓존 카드박스 높이 조정 시작(21일)*/
-.card-box{
-    width: 100%;
-    height: 100%;
-}
-
-.card-box a {
-    width: 100%;
+.card-box a{
+    width:100%;
     text-align: center;
 }
-.card-img-top {
-    width:90%;
-    padding-top:0.5em;
-    margin:0 auto;
-    
-}
-.card-img-top img{
-    width:100%;
-    height:300px;
-    border-bottom:1px solid #ddd;
-   
-}
-.card-text {
-    width: 100%;
-    height: 50px;
-    text-align: left;
-    margin:0;
-}
-.card-title{
+
+.card-box img{
     width:90%;
     margin:0 auto;
-    padding:0;
+    margin-top:10px;
+    background:tan;
 }
 
-.card-title p {
-    width:100%;
-    margin:0;
-    padding:10px 0;
+.card-title {
+    text-align: left;
+}
+
+.card-title p{
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-
+    white-space:nowrap;
 }
-​ .card-title span {
+
+.card-title span{
     display: block;
-    font-size: .7rem;
+    white-space:nowrap;
+    font-size:.9rem;
 }
-
-.card-title small {
-    display: block;
-    color: #999999;
-    font-size: .7rem;
+.card-title small{
+    color:#999999;
 }
-
 
 .jumbotron-img{
     width:25%;
@@ -588,10 +559,9 @@ a:hover{
 
 .seat-wrap {
     max-width: 75em;
-    padding:0;
+    padding: 0;
     margin: 0 auto;
     background: #fff;
-    margin-top:2em;
 }
 
 .reserve_title {
@@ -1323,7 +1293,7 @@ input[type=password] {
     margin-top:0;
 }
 .pay-tab li{
-    float: left;
+    display: inline-block;
     width:50%;
     border:1px solid #ddd;
 
@@ -1507,7 +1477,7 @@ input[type=password] {
 }
 
 .find-tab li {
-
+    display: inline-block;
     float: left;
     width: 50%;
     border: 1px solid #ddd;
@@ -1542,28 +1512,19 @@ input[type=password] {
 
 .find-tab label {
     width: 100%;
-    margin-top: 10px;
-    font-size: 1rem;
-}
-
-.find-tab label:before {
-    content: "*";
-    color: red;
-    padding-right: 10px;
-
+    margin-top: 5px;
+    font-size: .8rem;
 }
 
 .find-tab .tabCon button {
-    width: 90%;
-    height: 35px;
-    max-width: 22em;
-    margin-top: 20px;
+    width: 50%;
+    max-width: 20rem;
+    margin-top: 15px;
     border-style: solid;
     border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
-    border-image-slice: 2;
+    border-image-slice: 1;
     background: #fff;
 }
-
 
 
 /*************마이페이지 (1.18일)**************/
@@ -1899,7 +1860,6 @@ input[type=password] {
     padding: 0;
     margin: 0 auto;
     background: #fff;
-    margin-top:2em;
 }
 
 .reserve_title {
@@ -1915,8 +1875,7 @@ input[type=password] {
 
 .reserve_title h2 {
     font-size: 1.8rem;
-    line-height: 60px;
-    padding:0px 10px;
+    line-height: 50px;
 }
 
 /* 다른날짜박스 */
@@ -2087,7 +2046,7 @@ input[type=password] {
     display: inline-block;
     width: 0.8em;
     height: 0.8em;
-    border: none;
+    border: 1px solid #eee;
 }
 
 /* 체크된 상태 스타일 */
@@ -2355,185 +2314,67 @@ input[type=password] {
 .button_box2 {
     min-width: 300px;
     height: 300px;
-    padding: 0;
+    padding-top: 0;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
     background-color: #eee;
     position: relative;
 }
-.first-wrap .rect{
-    background-color:rgb(149, 184, 121, 0.5);
-}
+
 .map_btn2 {
     width: 100%;
     text-align: center;
-    background-image: url(/img/map2.png);
-    background-position: 50%;
-    background-size:330px;
-    background-repeat: no-repeat;
 }
 
 .map_btn2 a:nth-child(1) {
     width: 100%;
     height: 130px;
     text-align: center;
-    background-image: url(/img/img1.png);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+
 
 }
 
-.map_btn2 a:focus {
-    opacity: 0.4;
+.map_btn2 a:nth-child(1) img {
+    width: auto;
+    height: inherit;
 }
 
 .map_btn2 a:nth-child(2) {
-     width: 40%;
-     height: 150px;
-     text-align: center;
-    background-image: url(/img/img3.png);
-    background-size:auto 100%;
-    background-position: right;
-    background-repeat: no-repeat;
-    padding:0;
+    width: 40%;
+    height: 150px;
+    text-align: right;
+
+}
+
+.map_btn2 a:nth-child(2) img {
+    width: auto;
+    height: inherit;
 }
 
 .map_btn2 a:nth-child(3) {
-    min-width: 20%;
-    height: 70px;
-    text-align: center;
-    background-image: url(/img/img2.png);
-    background-size: contain;
-    background-position:bottom center;
-    background-repeat: no-repeat;
-    padding: 0;
-    margin-top:90px
-}
-
-.map_btn2 a:nth-child(4) {
     width: 40%;
     height: 150px;
-    text-align: center;
-    background-image: url(/img/img4.png);
-    background-size:auto 100%;
-    background-position: left;
-    background-repeat: no-repeat;
-    padding:0;
-}
-
-/* 스포츠 좌석 좌측*/
-.sport2-1 {
-    max-width: 18.5em;
-    min-width: 18.5em;
-    background: #eee;
-}
-
-.sport2-2 {
-    max-width: 27.8em;
-    min-width: 27.8em;
-    background: #eee;
+    text-align: right;
 
 }
 
-
-/* 스포츠 센터 좌측*/
-.sport3-1 {
-    max-width: 9.5em;
-    min-width: 9.5em;
-    background: #eee;
+.map_btn2 a:nth-child(3) img {
+    width: auto;
+    height: inherit;
 }
 
-.sport3-2 {
-    max-width: 13.9em;
-    min-width: 13.9em;
-    background: #eee;
-
-}
-/* 스포츠 우측 좌측*/
-.sport4-1 {
-    max-width: 18.5em;
-    min-width: 18.5em;
-    background: #eee;
-}
-
-.sport4-2 {
-    max-width: 27.8em;
-    min-width: 27.8em;
-    background: #eee;
-
-}
-.sport1-1 p{
-    width: 20em;
-    height: 4em;
-    line-height: 2em;
-    font-size:.9rem;
-}
-.sport1-2 p {
-    width: 20em;
-    height:3em;
-    margin-top:2em;
-    padding-top:1em;
-    border-top:2px solid #ddd;
-}
-.sport1-2 form{
-    width:20em;
-    height:8em;
-
-}
-.sport1-2 select{
-    width:3em;
-
-}
-/*****좌석선택 및 예약 모바일 작업*****/
-@media only screen and (max-width:768px){
-
-    /* 스포츠 좌석 좌측*/
-    .sport2-1 {
-        max-width: 11.5em;
-        min-width: 11.5em;
-        background: #eee;
-    }
-
-    .sport2-2 {
-        max-width: 17.3em;
-        min-width: 17.3em;
-        background: #eee;
-
-    }
-
-
-    /* 스포츠 센터 좌측*/
-    .sport3-1 {
-        max-width: 6em;
-        min-width: 6em;
-        background: #eee;
-    }
-
-    .sport3-2 {
-        max-width: 12em;
-        min-width: 12em;
-        background: #eee;
-
-    }
-
-    /* 스포츠 우측 좌측*/
-    .sport4-1 {
-        max-width: 11.5em;
-        min-width: 11.5em;
-        background: #eee;
-    }
-
-    .sport4-2 {
-        max-width: 17.3em;
-        min-width: 17.3em;
-        background: #eee;
-
-    }
+.map_btn2 a:nth-child(2) {
+    width: 40%;
+    height: 150px;
+    text-align: right;
 
 }
 
-
-
-
+.map_btn2 a:nth-child(2) img {
+    width: auto;
+    height: inherit;
+}
 
 
 
@@ -2615,7 +2456,9 @@ input[type=password] {
     float: left;
 }
 
-
+regist-footer {
+    clear: both;
+}
 
 @media only screen and (max-width:768px) {
     .regist-container {
@@ -2743,91 +2586,4 @@ input[type=password] {
     background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
 }
 
-/******관리자페이지 대시보드 table css(20일)******/
-.regist-title {
-    width: 90%;
-    height: 50px;
-    margin: 0 auto;
-    line-height: 50px;
-    font-weight: bold;
-}
-.regist-table {
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    background: #fff;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
-}
-.regist-table thead tr {
-    width: 100%;
-    height: 40px;
-}
-.regist-table tbody {
-    width: 100%;
-    height: 100px;
-    border-top: 1px solid #ddd;
-}
-/*id 테이블 작업*/
-.regist-table tbody td:nth-child(1) {
-    width: 10%;
-    padding: 10px 0;
-    font-size: .7rem;
-}
-/*포스터 테이블 작업*/
-.regist-table tbody td:nth-child(2) {
-    width: 20%;
-    padding: 10px 0;
-}
-.regist-table tbody td:nth-child(2) a {
-    width: 100%;
-    height: 100px;
-}
-.regist-table tbody td:nth-child(2) img {
-    width: auto;
-    height: 100%;
-}
-/*등록된 정보 테이블 작업*/
-.regist-table tbody td:nth-child(3) {
-    width: 40%;
-    padding: 10px 0;
-    text-align: left;
-}
-.regist-table tbody td:nth-child(3) ul {
-    padding: 0;
-    margin: 0;
-    font-size: .7rem;
-}
-.regist-information li:nth-child(1) {
-    font-size: 1rem;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.regist-information li:nth-child(1) span {
-    margin-right: 10px;
-    font-size: .7rem;
-}
-.regist-information li:nth-child(1) ~ li {
-    margin-top: 2px
-}
-/*QR코드 테이블 작업*/
-.regist-table tbody td:nth-child(4) {
-    width: 20%;
-    padding: 10px 0;
-}
-.regist-table tbody td:nth-child(4) button {
-    width: 30%;
-    background: #fff;
-    border: 1px solid #aaa;
-    font-size: .9rem;
-}
-/*수정/삭제 테이블 작업*/
-.regist-table tbody td:nth-child(5) {
-    width: 10%;
-    padding: 10px 0;
-}
-.regist-table tbody td:nth-child(5) button {
-    background: #fff;
-    border: 1px solid #aaa;
-    font-size: .9rem;
-}
+

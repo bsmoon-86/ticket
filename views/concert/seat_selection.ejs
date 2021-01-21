@@ -26,12 +26,6 @@
     </div>
 
 
-
-
-    <div class="header-box">
-        <!--메뉴바 pixed 공간 확보 박스-->
-    </div>
-
     <div class="container-fluid seat-wrap">
         <!--전체 겉 박스-->
 
@@ -77,31 +71,63 @@
                                 </div>
                                 <div class="left1 input-style">
 
-                                    <%for(var i = 001; i < hall.seat2/2+1;i++){%>
-                                    <p style="background:skyblue;" title="R<%=i%>">
-                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
-                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
-
+                                    <%for(var i = 0; i < hall.seat2/2;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 'r'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:skyblue;" title="R<%=i%>">
+                                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
+                                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="R<%=i%>">
+                                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>" disabled>
+                                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
                                 </div>
                                 <div class="center1 input-style">
 
-                                    <%for(var i = 001; i < hall.seat1+1;i++){%>
-                                    <p style="background:green;" title="VIP<%=i%>">
-                                        <input type="checkbox" id="vip<%=i%>" name="seat" value="vip<%=i%>">
-                                        <label for="vip<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
+                                    <%for(var i = 0; i < hall.seat1;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 'vip'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:green;" title="VIP<%=i%>">
+                                                        <input type="checkbox" id="vip<%=i%>" name="seat" value="vip<%=i%>">
+                                                        <label for="vip<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="VIP<%=i%>">
+                                                        <input type="checkbox" id="vip<%=i%>" name="seat" value="vip<%=i%>" disabled>
+                                                        <label for="vip<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
 
                                 </div>
                                 <div class="right1 input-style">
-                                    <%for(var i = hall.seat2/2+1; i < hall.seat2+1;i++){%>
-                                    <p style="background:skyblue;" title="R<%=i%>">
-                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
-                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
+                                    <%for(var i = hall.seat2/2; i < hall.seat2;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 'r'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:skyblue;" title="R<%=i%>">
+                                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>">
+                                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="R<%=i%>">
+                                                        <input type="checkbox" id="r<%=i%>" name="seat" value="r<%=i%>" disabled>
+                                                        <label for="r<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
                                 </div>
                                 
                             </div>
@@ -116,32 +142,66 @@
                             <div class="d-flex flex-column rectangle-wrap2">
 
                                 <div class="center2-1 input-style">
-
-                                    <%for(var i = 001; i < hall.seat3+1;i++){%>
-                                    <p style="background:orange;" title="S<%=i%>">
-                                        <input type="checkbox" id="s<%=i%>" name="seat" value="s<%=i%>">
-                                        <label for="s<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
+                                    <%for(var i = 0; i < hall.seat3;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 's'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:orange;" title="S<%=i%>">
+                                                        <input type="checkbox" id="s<%=i%>" name="seat" value="s<%=i%>">
+                                                        <label for="s<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="S<%=i%>">
+                                                        <input type="checkbox" id="s<%=i%>" name="seat" value="s<%=i%>" disabled>
+                                                        <label for="s<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
 
                                 </div>
                                 <div class="center2-2 input-style">
 
-                                    <%for(var i = 001; i < hall.seat4+1;i++){%>
-                                    <p style="background:greenyellow;" title="A<%=i%>">
-                                        <input type="checkbox" id="a<%=i%>" name="seat" value="a<%=i%>">
-                                        <label for="a<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
+                                    <%for(var i = 0; i < hall.seat4;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 'a'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:greenyellow;" title="A<%=i%>">
+                                                        <input type="checkbox" id="a<%=i%>" name="seat" value="a<%=i%>">
+                                                        <label for="a<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="A<%=i%>">
+                                                        <input type="checkbox" id="a<%=i%>" name="seat" value="a<%=i%>" disabled>
+                                                        <label for="a<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
 
                                 </div>
                                 <div class="center2-3 input-style">
-                                    <%for(var i = 001; i < hall.seat5+1;i++){%>
-                                    <p style="background:purple;" title="B<%=i%>">
-                                        <input type="checkbox" id="b<%=i%>" name="seat" value="b<%=i%>">
-                                        <label for="b<%=i%>"><span>&nbsp;</span></label>
-                                    </p>
-                                    <%}%>
+
+                                    <%for(var i = 0; i < hall.seat5;i++){
+                                        for(var j = 0; j < ticket.length;j++){
+                                            if(ticket[j].ticketId == 'b'+i){
+                                                if(ticket[j].state == 0){%>
+                                                    <p style="background:purple;" title="B<%=i%>">
+                                                        <input type="checkbox" id="b<%=i%>" name="seat" value="b<%=i%>">
+                                                        <label for="b<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}else{%>
+                                                    <p style="background:black;" title="B<%=i%>">
+                                                        <input type="checkbox" id="b<%=i%>" name="seat" value="b<%=i%>" disabled>
+                                                        <label for="b<%=i%>"><span>&nbsp;</span></label>
+                                                    </p>
+                                                <%}
+                                            }
+                                        }
+                                    }%>
+
                                 </div>
                                 
                             </div>
@@ -234,7 +294,7 @@
             $("input[name=seat]").change(function(){
                 var price = 0;
                 select = [];
-                for(var i= 001; i < 101; i++){
+                for(var i= 0; i < 100; i++){
                     if($("#vip"+i).is(":checked")){
                         select.push($("#vip"+i).val());
                         price += "<%=concert[0].seat1%>"*1

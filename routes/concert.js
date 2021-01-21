@@ -76,8 +76,23 @@ module.exports = function() {
                                 if(err){
                                     console.log("select => ", err)
                                 }else{
-                                    console.log(result2[0].seat1);
-                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], time : time, date : date, loggedname : req.session.name});   
+                                    connection.query(
+                                        `select * from ticket where concertId = ?`,
+                                        [concertId],
+                                        function(err, result3){
+                                            if(err){
+                                                console.log("select2 => ", err)
+                                            }else{
+                                                if(result[0].genre == 0){
+                                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                }else if(result[0].genre == 1){
+                                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                }else if(result[0].genre == 2){
+                                                    res.render("concert/seat_selection_sport", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                }
+                                            }
+                                        }
+                                    )
 
                                 }
 
@@ -111,17 +126,111 @@ module.exports = function() {
             var time_rap = req.body.time_rap;
             var seat = req.body.seat;
             var price = req.body.price;
-            console.log("seat = ", seat);
-            console.log("price = ", price);
-            console.log("x = ", x);
-            console.log("y = ", y);
-            console.log("time_rap = ", time_rap);
-            console.log("time = ", time);
-            console.log("date = ", date);
-            console.log("concertId = ", concertId);
-            res.render("concert/payment", {x:x, y:y, time_rap:time_rap, date: date, time: time, seat: seat, price: price,  concertId : concertId, loggedname : req.session.name});
+            connection.query(
+                `select * from concert where id=?`,
+                [concertId],
+                function(err, result){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        res.render("concert/payment", {x:x, y:y, time_rap:time_rap, date: date, time: time, seat: seat, price: price,  concertId : concertId, concert: result, loggedname : req.session.name});
+                    }
+                }
+            )
         }
 
+    })
+
+    router.post("/regist", function(req, res, next){
+        var concertId = req.body.concertId;
+        var ticketId = req.body.ticketId;
+        var x = req.body.x;
+        var y = req.body.y;
+        var time_rap = req.body.time_rap;
+        var ticket = ticketId.split(",");
+        var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
+        console.log(ticket);
+
+        var function1 = async function query(ticket_num){
+            connection.query(
+                `select * from ticket where concertId = ? and ticketId = ?`,
+                [concertId, ticket_num],
+                function(err, result){
+                    if(err){
+                        console.log("regist result => ", err)
+                    }else{
+                        console.log(result[0])
+                        let options = {
+                            uri: "http://localhost:8080/api/v1/buy_ticket",
+                            method: 'post',
+                            json: {
+                                concertId: result[0].concertId,
+                                ticketId: result[0].ticketId,
+                                date: result[0].date,
+                                time: result[0].time,
+                                seat: result[0].seat,
+                                discount: "false",
+                                price: result[0].price,
+                                discountRate: result[0].discountRate,
+                                fee: result[0].fee,
+                                cancleDate: result[0].cancleDate,
+                                cancleFee: result[0].cancleFee,
+                                ticketerName : req.session.name,
+                                ticketerPhoneNumber : req.session.phone,
+                                ticketerEmail : req.session.email
+                            },
+                        };
+                        request.post(options, function(err,httpResponse,body){
+                            if(err){
+                                console.log(err)
+                            }else{     
+                                console.log(body);                                              
+                            }
+                        })
+                    }
+                }
+            )
+        }
+
+        var function2 = async function query(ticket_num){
+            connection.query(
+                `update ticket set state = ?, user=?, name=? where concertId = ? and ticketId = ?`,
+                [1, req.session.user, req.session.name, concertId, ticket_num],
+                function(err, result1){
+                    if(err){
+                        console.log("regist update = ", err)
+                    }else{
+                        console.log(result1);
+                        console.log(concertId);
+                        console.log(ticket_num);
+                    }
+                }
+            )     
+        }
+
+        for(var i = 0; i < ticket.length; i++){
+            ticket_ = ticket[i];
+            function1(ticket[i]).then(function(result){
+                console.log(result);
+            })
+            function2(ticket[i]).then(function(result2){
+                console.log(result2);
+            })
+        }
+
+        
+        connection.query(
+            `insert mouse (time, time2, x_position, y_position, id) values (?,?,?,?,?)`,
+            [date, time_rap, x, y, req.session.user],
+            function(err, mouse){
+                if(err){
+                    console.log("mouse insert => ", err)
+                }else{
+                    console.log(mouse);
+                }
+            }
+        )
+        res.redirect("/");
     })
 
 

@@ -3,26 +3,13 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Blog Post - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../css/blog-post.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <%- include ("../reference/head.ejs") %>
 
 </head>
 <script>
   function index() {
     location.href="/"
   }
-
   function ticket_regist(){
     $("concertId").attr("value", concertId);
     $("ticketId").attr("value", ticketId);
@@ -32,63 +19,87 @@
     $("concertId").attr("value", concertId);
     $("concertId").attr("value", concertId);
     $("concertId").attr("value", concertId);
-
   }
 </script>
 
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">블록체인 티켓</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/manager/main">메인</a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/manager/regist">공연 등록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/manager/hall">공연장 등록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">로그아웃</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
+<body class="regist-wrap">
+  
+  
+  <div class="regist-container">
+    
+     <div class="regist-header">
+         <h1 class="regist-logo"><a href="/manager">로고</a></h1>
+         
+         <nav class="regist-gnb">
+             <ul class="regist-navi">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/manager">대시보드</a>
+                  </li>                
+                 <li class="nav-item">
+                    <a class="nav-link" href="/manager/regist">공연 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/manager/hall">공연장 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                  </li>
+                  
+             </ul>
+         </nav>
+         
+     </div>
+     
+     <div class="regist-body">
+         <div class="regist-body-top">
+             <h2 class="regist-body-title">공연 등록</h2>
+             
+             
+         </div>
+         <div class="regist-body-middle">
+             
+             <!-- Page Content -->
   <div class="container">
 
     <div class="row" style="margin: 20px 20px 20px 20px;">
-      <h3 class="input-group mb-3" style="text-align: center;">공연 등록</h3>
 
       <form method="POST" action="/manager/regist2" class="row">
+   <div class="input-bg-1">
+           <div class="regist-h mb-3">공연 정보</div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">공연 ID</span>
+              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId" required>
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="inputGroup-sizing-default">공연명</span>
+              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name" required>
+            </div>
+    </div>
+        
+    <div class="input-bg-1 input-none">
+       
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">공연 ID</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 날짜</span>
+          <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="date" id="date" required>
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">공연명</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
+          <span class="input-group-text" id="inputGroup-sizing-default">공연 시간</span>
+          <input type="time" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="time" id="time" required>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">관람 시간(분)</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="showtime" id="showtime" required>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">공연 장소</span>
-          <select class="form-select" aria-label="Default select example" id="selectbox" name = "place">
+          <select class="form-select regist-option" aria-label="Default select example" id="selectbox" name = "place" required>
             <option selected>공연장을 선택해주세요</option>
             <% for (var i = 0; i < hall.length; i++){%>
             <option value="<%=hall[i].name%>"><%=hall[i].name%></option>
             <%}%>
           </select>
           <% for (var i = 0; i < hall.length; i++){%>
-            <input id="<%=hall[i].name%>" value="<%=hall[i].seat1%>,<%=hall[i].seat2%>,<%=hall[i].seat3%>,<%=hall[i].seat4%>,<%=hall[i].seat5%>" style="display: none;">
+            <input id="<%=hall[i].name%>" value="<%=hall[i].seat1%>,<%=hall[i].seat2%>,<%=hall[i].seat3%>,<%=hall[i].seat4%>,<%=hall[i].seat5%>" style="display:none;">
             <%}%>
           <script>  
             $('#selectbox').on("change", function(e) {
@@ -108,35 +119,52 @@
             <input type="text" id="a" name="a">
             <input type="text" id="b" name="b">
           </div>
-        </div>
+        </div>        
         <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">공연 날짜</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="date" id="date">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">공연 시간</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="time" id="time">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">관람 시간(분)</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="showtime" id="showtime">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">공연 장르</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="genre" id="genre">
+            <span class="input-group-text" id="inputGroup-sizing-default">공연 장르</span>
+             <select class="form-select regist-option" aria-label="Default select example" id="selectbox2" name = "genre" required>
+              <option value="0">
+                  뮤지컬
+              </option>
+              <option value="1">
+                  전시
+              </option>
+              <option value="2">
+                  스포츠
+              </option>
+            </select>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">관람 등급</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="rating" id="rating">
+          <select class="form-select regist-option" aria-label="Default select example" id="selectbox2" name = "rating" required>
+              <option value="0">
+                  전연령 관람가능
+              </option>
+              <option value="1">
+                  미취학아동 입장불가
+              </option>
+              <option value="2">
+                  15세 미만 입장불가
+              </option>
+              <option value="2">
+                  청소년 입장불가
+              </option>
+            </select>
         </div>
+        
+    </div>    
+    <div class="input-bg-1">    
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">공연 포스터 url</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url1" id="url1">
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url1" id="url1" required>
         </div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">공연 정보 url</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url2" id=url2>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="url2" id=url2 value="모바일 화면에서는 보여지지 않습니다." required>
         </div>
+     </div> 
+    <div class="input-bg-1">
+        <div class="regist-h mb-3">좌석 가격</div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">VIP석</span>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat1">
@@ -158,15 +186,31 @@
           <span class="input-group-text" id="inputGroup-sizing-default">B석</span>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat5">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">등록</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
+        
+    </div>    
+        <div class="regist-h">
+        <button type="submit" class="btn btn-primary btn-lg regist-button" style="margin-right: 10px;">등록</button>
+        <button type="button" class="btn btn-secondary btn-lg regist-button" onclick=index();>취소</button>
+        </div>
+        
       </form>
         
     </div>
     <!-- /.row -->
 
   </div>
-  <!-- /.container -->
+  <!-- /.container --> 
+             
+             
+             
+         </div>
+     </div>
+     
+      
+  </div>
+
+
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

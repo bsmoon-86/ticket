@@ -3,18 +3,7 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Blog Post - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="../css/blog-post.css" rel="stylesheet">
+  <%- include ("../reference/head.ejs") %>
 
 </head>
 <script>
@@ -23,41 +12,51 @@
   }
 </script>
 
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">블록체인 티켓</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/manager">메인</a>
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/manager/regist">공연 등록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/manager/hall">공연장 등록</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">로그아웃</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<body class="regist-wrap">
+  
+  
+  <div class="regist-container">
+    
+     <div class="regist-header">
+         <h1 class="regist-logo"><a href="/manager">로고</a></h1>
+         
+         <nav class="regist-gnb">
+             <ul class="regist-navi">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/manager">대시보드</a>
+                  </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/manager/regist">공연 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/manager/hall">공연장 등록</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                  </li>
+                  
+             </ul>
+         </nav>
+         
+     </div>
+     
+     <div class="regist-body">
+         <div class="regist-body-top">
+             <h2 class="regist-body-title">공연장 등록</h2>
+             
+             
+         </div>
+         <div class="regist-body-middle">
+             
   <!-- Page Content -->
   <div class="container">
 
     <div class="row" style="margin: 20px 20px 20px 20px;">
-      <h3 class="input-group mb-3" style="text-align: center;">공연장 등록</h3>
 
       <form method="POST" action="/manager/hall2" class="row">
+      
+      <div class="input-bg-1">
+       <div class="regist-h mb-3">공연장 정보</div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
@@ -70,6 +69,9 @@
           <span class="input-group-text" id="inputGroup-sizing-default">연락처</span>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "phone">
         </div>
+      </div>
+      <div class="input-bg-1"> 
+       <div class="regist-h mb-3">공연 좌석 수</div>
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">VIP 좌석수</span>
           <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat1">
@@ -90,15 +92,28 @@
           <span class="input-group-text" id="inputGroup-sizing-default">B 좌석수</span>
           <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat5">
         </div>
-        <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">등록</button>
-        <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
+       </div>    
+        <div class="regist-h">
+        <button type="submit" class="btn btn-primary btn-lg regist-button" style="margin-right: 10px;">등록</button>
+        <button type="button" class="btn btn-secondary btn-lg regist-button" onclick=index();>취소</button>
+        </div>
       </form>
         
     </div>
     <!-- /.row -->
 
   </div>
-  <!-- /.container -->
+  <!-- /.container -->            
+             
+             
+             
+         </div>
+     </div>
+     
+      
+  </div>
+
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">

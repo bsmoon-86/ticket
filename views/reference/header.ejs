@@ -40,42 +40,45 @@
 
 <body>
     <!-- Navigation header 임시파일-->
-    <div class="top" id="submenu_bar">
+    <div class="top">
+        <div  id="submenu_bar">
 
-        <div class="top-line">
-            <div class="container">
-                <h1 class="logo"><a href="/"><img src="../img/logo.png" alt="logo"></a></h1>
+            <div class="top-line">
+                <div class="container">
+                    <h1 class="logo"><a href="/"><img src="../img/logo.png" alt="logo"></a></h1>
 
-                <!--모바일 버전일때 보이는 버튼-->
-                <span class="logo_menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                    <!--모바일 버전일때 보이는 버튼-->
+                    <span class="logo_menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
-                <div class="serch">
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="search" aria-label="Search">
-                        <button class="btn" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
+                    <div class="serch">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="search" aria-label="Search">
+                            <button class="btn" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <!--모바일 화면에서는 보이지 않음-->
+            <div class="gnb-box" >
+                <nav class="container gnb">
+                    <ul class="navi">
+                        <li><a href="javascript:menu('9')">HOME</a></li>
+                        <li><a href="javascript:menu('0')">공연</a></li>
+                        <li><a href="javascript:menu('1')">전시</a></li>
+                        <li><a href="javascript:menu('2')">스포츠</a></li>
+                        <%if(!loggedname){%>
+                        <li><a href="/login">로그인</a></li>
+                        <%}else{%>
+                        <li><a href="/login/mypage">마이페이지</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+                        <%}%>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <!--모바일 화면에서는 보이지 않음-->
-        <div class="gnb-box" >
-            <nav class="container gnb">
-                <ul class="navi">
-                    <li><a href="javascript:menu('9')">HOME</a></li>
-                    <li><a href="javascript:menu('0')">공연</a></li>
-                    <li><a href="javascript:menu('1')">전시</a></li>
-                    <li><a href="javascript:menu('2')">스포츠</a></li>
-                    <%if(!loggedname){%>
-                    <li><a href="/login">로그인</a></li>
-                    <%}else{%>
-                    <li><a href="/logout">로그아웃</a></li>
-                    <%}%>
-                </ul>
-            </nav>
-        </div>
-        </div>
+    </div>
         
         
         <script>
@@ -109,8 +112,8 @@
                     <li><i class="fas fa-headphones-alt"></i><a href="javascript:menu('0')">공연</a></li>
                     <li><i class="fas fa-images"></i><a href="javascript:menu('1')">전시</a></li>
                     <li><i class="fas fa-running"></i><a href="javascript:menu('2')">스포츠</a></li>
-                    <%if(!loggedname){%>
-                    <li><i class="fas fa-ticket-alt"></i><a href="#">마이페이지</a></li>
+                    <%if(loggedname){%>
+                    <li><i class="fas fa-ticket-alt"></i><a href="/login/mypage">마이페이지</a></li>
                     <%}%>
             </ul>
             </div>

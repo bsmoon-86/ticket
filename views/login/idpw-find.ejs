@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include ("../reference/head.ejs") %>
+
+
+</head>
+
+<body>
+
+    <div class="find-wrap">
+        
+        <div class="find-title">
+            <div class="find-title-box">
+                <h5 class="find-h5">아이디/비밀번호 찾기</h5>
+            </div>
+        </div> 
+         
+        
+        <div class="find-body-bg">
+            <div class="find-body">
+                <ul class="find-tab">
+                     <li id="tab1" class="btnCon">
+                        <a class="btn first" href="#tab1">아이디찾기 </a>
+                        
+                        <div class="tabCon">
+                                <span>아이디 찾기는 가입하셨던 이름, 이메일로 확인하실 수 있습니다.</span>
+                                <label>이&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;<input type="text" size="30px" name="txt1"></label>
+                                <label>이메일&nbsp;&nbsp;<input type="email" size="30px" name="email1"></label>
+                                <button>찾기</button>
+                                
+                                <button style="display: none;">로그인페이지로 이동</button> <!--찾기 후 보여지는 버튼-->
+                        </div>
+                    </li>
+                    <li id="tab2" class="btnCon">
+                        <a class="btn first" href="#tab2">비밀번호찾기 </a>
+                        <div class="tabCon">
+                               <span>비밀번호 찾기는 가입하셨던 아이디, 이름, 이메일로 확인하실 수 있습니다.</span>
+                                <label>아이디&nbsp;&nbsp;<input type="text" size="30px" name="txt2"></label>
+                                <label>이&nbsp;&nbsp;&nbsp;름&nbsp;&nbsp;<input type="text" size="30px" name="txt2"></label>
+                                <label>이메일&nbsp;&nbsp;<input type="email" size="30px" name="email2"></label>
+                                <button>찾기</button>
+                                
+                                <button style="display: none;">로그인페이지로 이동</button> <!--찾기 후 보여지는 버튼-->
+                        </div>
+                    </li>
+                    
+                </ul>           
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    <script>
+    location.href = "#tab1";
+    </script>
+
+</body>
+
+</html>

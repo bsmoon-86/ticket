@@ -18,26 +18,28 @@ var connection = mysql.createConnection({
 module.exports = function(){
 
     router.get("/", function(req, res, next){
-        res.render("ticket/regist");
+        var concertId = req.query.concertId;
+        res.render("confirm/login", {concertId: concertId});
     })
 
-    
-
-    //티켓 확인
-    router.post("/search", function(req, res, next){    
+     //티켓 확인
+     router.post("/search", function(req, res, next){    
         var concertId = req.body.concertId;
-        // var ticketId = req.body.ticketId;
+        var name = req.body.name;
+        var email = req.body.email;
+        var phone = req.body.phone;
+        
         var ticket = [];
-        connection.query(`select * from ticket where concertId =?`,
-        [concertId],
-        async function(err, result){
+        connection.query(`select * from ticket where concertId =? and name = ?`,
+        [concertId, name],
+        function(err, result){
             if(err){
                 console.log("err", err)
             }else{
                 //console.log(result.length)
                 for(var i=0; i < result.length; i++){            
                     let options = {
-                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+i,
+                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+result[i].ticketId,
                         method: 'get'
                     };
                     //console.log(options);
@@ -45,17 +47,67 @@ module.exports = function(){
                         if(err){
                         console.log(err)
                         }else{
-                        //console.log(body);
-                        ticket.push(body);
+                        console.log(body);
+                        ticket.push(body.split(","));
                         }
                     })
                 };    
-                console.log(ticket)
+                
+                setTimeout(function(){
+                    connection.query(
+                        `select * from concert where id=?`,
+                        [concertId],
+                        function(err, result2){
+                            console.log(ticket)
+                            console.log(result2)
+                            //res.json(ticket);
+                            res.render("confirm/myticket" ,{concert : result2, ticket: ticket})
+
+                        }
+                    )
+                }, 1000);
             }
         }
         )
         //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
     })
+
+    
+
+    // //티켓 확인
+    // router.post("/search", function(req, res, next){    
+    //     var concertId = req.body.concertId;
+    //     // var ticketId = req.body.ticketId;
+    //     var ticket = [];
+    //     connection.query(`select * from ticket where concertId =?`,
+    //     [concertId],
+    //     async function(err, result){
+    //         if(err){
+    //             console.log("err", err)
+    //         }else{
+    //             //console.log(result.length)
+    //             for(var i=0; i < result.length; i++){            
+    //                 let options = {
+    //                     uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+i,
+    //                     method: 'get'
+    //                 };
+    //                 //console.log(options);
+    //                 request.get(options, function(err,httpResponse,body){
+    //                     if(err){
+    //                     console.log(err)
+    //                     }else{
+    //                     console.log(body);
+    //                     ticket.push(body);
+    //                     }
+    //                 })
+    //             };    
+    //             console.log(ticket)
+    //             res.json(ticket);
+    //         }
+    //     }
+    //     )
+    //     //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
+    // })
 
 
     //티켓 등록 

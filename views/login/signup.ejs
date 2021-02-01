@@ -10,9 +10,6 @@
 
 <body class="login_wrap">
 
-    <div class="header" style="background:tan;">
-        <%- include ("../reference/header.ejs") %>
-    </div>
 
     <div class="card align-middle signup">
 
@@ -22,7 +19,7 @@
 
 
         <div class="card-body">
-            <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/signup">
+            <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/signup2">
 
                 <label for="inputid">회원구분</label>   
                 <div class="row ck-type">
@@ -49,6 +46,9 @@
 
                 <label for="inputemail">E-mail</label>    
                 <input type="email" id="floatingInputInvalid" class="form-control" name="email" placeholder="abc@example.com" required><br> 
+
+                <label for="inputname">생년월일 / 사업자번호</label>                  
+                <input type="text" class="form-control" name="birth" placeholder="Birth" required autofocus><br> 
 
                 <label for="inputname">이름</label>                  
                 <input type="text" class="form-control" name="name" placeholder="NAME" required autofocus><br> 

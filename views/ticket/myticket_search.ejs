@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <%- include ("../reference/head.ejs") %>
+
+</head>
+
+<body>
+    
+    <div class="header" style="background:tan;">
+        <%- include ("../reference/header.ejs") %>
+    </div>
+
+    <div class="ticket-search-wrap">
+
+        <h2>티켓 조회하기</h2>
+        <form method="POST" action="/ticket/search">
+            <div class="ticket-search-bg">
+
+                <label>티켓ID</label>
+                <input type="text" name="ticketId" required>
+
+            </div>
+
+            <button class="button" type="submit">조회하기</button>
+        </form>
+        
+    </div>
+    
+</body>
+
+</html>

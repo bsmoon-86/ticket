@@ -22,54 +22,105 @@ module.exports = function(){
         res.render("confirm/login", {concertId: concertId});
     })
 
-     //티켓 확인
-     router.post("/search", function(req, res, next){    
-        var concertId = req.body.concertId;
-        var name = req.body.name;
-        var email = req.body.email;
-        var phone = req.body.phone;
-        
-        var ticket = [];
-        connection.query(`select * from ticket where concertId =? and name = ?`,
-        [concertId, name],
-        function(err, result){
-            if(err){
-                console.log("err", err)
-            }else{
-                //console.log(result.length)
-                for(var i=0; i < result.length; i++){            
-                    let options = {
-                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+result[i].ticketId,
-                        method: 'get'
-                    };
-                    //console.log(options);
-                    request.get(options, function(err,httpResponse,body){
-                        if(err){
-                        console.log(err)
-                        }else{
-                        console.log(body);
-                        ticket.push(body.split(","));
-                        }
-                    })
-                };    
-                
-                setTimeout(function(){
-                    connection.query(
-                        `select * from concert where id=?`,
-                        [concertId],
-                        function(err, result2){
-                            console.log(ticket)
-                            console.log(result2)
-                            //res.json(ticket);
-                            res.render("confirm/myticket" ,{concert : result2, ticket: ticket})
+    
+    //세부 티켓의 정보 확인 페이지 
+    router.get("/ticket_info", function(req, res, next){
+        var ticketId = req.query.ticket;
+        console.log(ticketId);
+        connection.query(
+            `select * from ticket where ticketId = ?`,
+            [ticketId],
+            function(err, result){
+                if(err){
+                    console.log("ticket_info sql error => ", err)
+                }else{
+                    console.log("ticket_info => ", result)
+                    res.render("ticket/myticket", {ticket : result});
+                }
+            }
 
+
+
+        )
+    })
+
+    //티켓 조회 페이지 
+    router.get("/search", function(req, res, next){
+        res.render("ticket/myticket_search" ,{loggedname : req.session.name});
+    })
+    
+
+     //티켓 정보 조회 (로그인 없이 가능)
+    router.post("/search", function(req, res, next){    
+        var ticketId = req.body.ticketId;
+
+        connection.query(
+            `select * from ticket where ticketId=?`,
+            [ticketId],
+            function(err, result){
+                //res.json(ticket);
+                let options = {
+                    uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
+                    method: 'get'
+                };
+                //console.log(options);
+                request.get(options, function(err,httpResponse,body){
+                    if(err){
+                    console.log(err)
+                    }else{
+                    console.log(body.split(","));
+                    res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
+                    // ticket.push(body);
+                    }
+                })
+
+            }
+        )
+    })
+
+    router.post("/transfer", function(req, res, next){
+        var ticket = req.body.ticketId;
+        var concertId;
+        var ticketId;
+        connection.query(
+            `select * from ticket where ticketId = ?`,
+            [ticket],
+            function(err, result){
+                if(err){
+                    console.log("transfer error => ", err)
+                }else{
+                    concertId = result[0].concertId;
+                    ticketId = result[0].ticketId;
+                    connection.query(
+                        `select id from user where linkcode='1'`,
+                        function(err2, result2){
+                            console.log(result2);
+                            res.render("ticket/myticket_transfer", {loggedname: req.session.name, concertId : concertId, ticketId: ticketId, user: result2});
                         }
                     )
-                }, 1000);
+                }
             }
-        }
         )
-        //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
+    })
+
+    router.post("/check", function(req, res, next){
+        var id = req.body.id;
+        console.log(id)
+        connection.query(
+            `select * from user where id = ?`,
+            [id],
+            function(err, result){
+                if(err){
+                    console.log("check select error =>" , err)
+                }else{
+                    if(result.length > 0){
+                        res.send(true);
+                    }else{
+                        res.send(false);
+                    }
+                }
+            }
+        )
     })
 
     
@@ -247,10 +298,10 @@ module.exports = function(){
     
 
     //티켓 소유자 변경
-    router.post("/transfer", function(req, res, next){
-        var concertId = req.body.concertId_t;
-        var ticketId = req.body.ticketId_t;
-        var transferId = req.body.transferId;
+    router.post("/transfer2", function(req, res, next){
+        var concertId = req.body.concertId;
+        var ticketId = req.body.ticketId;
+        var transferId = req.body.transferticketer;
         var ticketerName ="";
         var ticketerPhoneNumber = "";
         var ticketerEmail = "";
@@ -283,7 +334,18 @@ module.exports = function(){
                         console.log(err)
                         }else{
                             console.log(body)
-                            res.redirect("/ticket")
+                            connection.query(
+                                `update ticket set user =? , name =? where ticketId =?`,
+                                [transferId, ticketerName, ticketId],
+                                function(err2, result2){
+                                    if(err2){
+                                        console.log("ticket trans update error =", err2)
+                                    }else{
+                                        console.log(result2);
+                                        res.redirect("/login/mypage")
+                                    }
+                                }
+                            )
                         }
                     })
 

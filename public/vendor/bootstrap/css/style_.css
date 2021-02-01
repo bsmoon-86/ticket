@@ -31,17 +31,15 @@ a:hover{
 
 .top {
     width: 100%;
-    height:auto;
+    height: 120px;
     position: relative;
     z-index: 99;
-    top:0;
-
 }
 
 .top-line {
     height: 80px;
     line-height: 80px;
-    background:#fff;
+    background: #fff;
 }
 
 .logo {
@@ -114,13 +112,14 @@ a:hover{
 
 /*자바스크립트 메뉴 상단고정*/
 .sticky {
+    width:100%;
     position: fixed;
     top: 0;
     z-index: 996;
 }
 
 .header-box{
-    padding-top: 7.813em;
+    display: none;
 }
 
 /**********모바일 화면 header작업************/
@@ -138,6 +137,9 @@ a:hover{
         text-align: center;
     }
 
+    .top{
+        height:80px;
+    }
     .top-line {
         border-bottom-style: solid;
         border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
@@ -145,7 +147,7 @@ a:hover{
     }
 
     .header-box {
-        padding-top: 5em;
+        display: none;
     }
 }
 
@@ -261,6 +263,7 @@ a:hover{
 .visual {
     width: 90%;
     margin: 0 auto;
+    
 }
 
 
@@ -355,36 +358,68 @@ a:hover{
     color: #46c0f7;
 }
 
-.card-box a{
-    width:100%;
+
+/* 티켓존 카드박스 높이 조정 시작(22일)*/
+
+.card-box {
+    width: 100%;
+    height: 100%;
+}
+
+.card-box a {
+    width: 100%;
     text-align: center;
 }
 
-.card-box img{
-    width:90%;
-    margin:0 auto;
-    margin-top:10px;
-    background:tan;
+.card-img-top {
+    width: 90%;
+    padding-top: 0.5em;
+    margin: 0 auto;
+
+}
+
+.card-img-top img {
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.card-text {
+    width: 100%;
+    height: 50px;
+    text-align: left;
+    margin: 0;
 }
 
 .card-title {
-    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
 }
 
-.card-title p{
+.card-title p {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
+
 }
 
-.card-title span{
+​ .card-title span {
     display: block;
-    white-space:nowrap;
-    font-size:.9rem;
+    font-size: .7rem;
 }
-.card-title small{
-    color:#999999;
+
+.card-title small {
+    display: block;
+    color: #999999;
+    font-size: .7rem;
 }
+
+
 
 .jumbotron-img{
     width:25%;
@@ -448,14 +483,15 @@ a:hover{
     .event-padding{
         margin-top:3rem;
     }
-
-
-
-
-
+.card-img-top img {
+    width: 100%;
+    height: 185px;
+    border-bottom: 1px solid #ddd;
 
 }
 
+
+}
 
 
 
@@ -538,9 +574,9 @@ a:hover{
         display: none;
     }
     .reserve-wrap{
-        margin-top:4.9em;
+        margin-top:0;
+        border-top:none;
     }
-
     .title-txt{
         display: none;
     }
@@ -559,9 +595,10 @@ a:hover{
 
 .seat-wrap {
     max-width: 75em;
-    padding: 0;
+    padding:0;
     margin: 0 auto;
     background: #fff;
+    margin-top:2em;
 }
 
 .reserve_title {
@@ -1293,7 +1330,7 @@ input[type=password] {
     margin-top:0;
 }
 .pay-tab li{
-    display: inline-block;
+    float: left;
     width:50%;
     border:1px solid #ddd;
 
@@ -1477,7 +1514,7 @@ input[type=password] {
 }
 
 .find-tab li {
-    display: inline-block;
+
     float: left;
     width: 50%;
     border: 1px solid #ddd;
@@ -1512,19 +1549,28 @@ input[type=password] {
 
 .find-tab label {
     width: 100%;
-    margin-top: 5px;
-    font-size: .8rem;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.find-tab label:before {
+    content: "*";
+    color: red;
+    padding-right: 10px;
+
 }
 
 .find-tab .tabCon button {
-    width: 50%;
-    max-width: 20rem;
-    margin-top: 15px;
+    width: 90%;
+    height: 35px;
+    max-width: 22em;
+    margin-top: 20px;
     border-style: solid;
     border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
-    border-image-slice: 1;
+    border-image-slice: 2;
     background: #fff;
 }
+
 
 
 /*************마이페이지 (1.18일)**************/
@@ -1860,6 +1906,7 @@ input[type=password] {
     padding: 0;
     margin: 0 auto;
     background: #fff;
+    margin-top:2em;
 }
 
 .reserve_title {
@@ -1875,7 +1922,8 @@ input[type=password] {
 
 .reserve_title h2 {
     font-size: 1.8rem;
-    line-height: 50px;
+    line-height: 60px;
+    padding:0px 10px;
 }
 
 /* 다른날짜박스 */
@@ -2046,7 +2094,7 @@ input[type=password] {
     display: inline-block;
     width: 0.8em;
     height: 0.8em;
-    border: 1px solid #eee;
+    border: none;
 }
 
 /* 체크된 상태 스타일 */
@@ -2314,67 +2362,185 @@ input[type=password] {
 .button_box2 {
     min-width: 300px;
     height: 300px;
-    padding-top: 0;
-    background-repeat: no-repeat;
-    background-size: auto 100%;
-    background-position: center;
+    padding: 0;
     background-color: #eee;
     position: relative;
 }
-
+.first-wrap .rect{
+    background-color:rgb(149, 184, 121, 0.5);
+}
 .map_btn2 {
     width: 100%;
     text-align: center;
+    background-image: url(/img/map2.png);
+    background-position: 50%;
+    background-size:330px;
+    background-repeat: no-repeat;
 }
 
 .map_btn2 a:nth-child(1) {
     width: 100%;
     height: 130px;
     text-align: center;
-
+    background-image: url(/img/img1.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 
 }
 
-.map_btn2 a:nth-child(1) img {
-    width: auto;
-    height: inherit;
+.map_btn2 a:focus {
+    opacity: 0.4;
 }
 
 .map_btn2 a:nth-child(2) {
-    width: 40%;
-    height: 150px;
-    text-align: right;
-
-}
-
-.map_btn2 a:nth-child(2) img {
-    width: auto;
-    height: inherit;
+     width: 40%;
+     height: 150px;
+     text-align: center;
+    background-image: url(/img/img3.png);
+    background-size:auto 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding:0;
 }
 
 .map_btn2 a:nth-child(3) {
+    min-width: 20%;
+    height: 70px;
+    text-align: center;
+    background-image: url(/img/img2.png);
+    background-size: contain;
+    background-position:bottom center;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin-top:90px
+}
+
+.map_btn2 a:nth-child(4) {
     width: 40%;
     height: 150px;
-    text-align: right;
+    text-align: center;
+    background-image: url(/img/img4.png);
+    background-size:auto 100%;
+    background-position: left;
+    background-repeat: no-repeat;
+    padding:0;
+}
+
+/* 스포츠 좌석 좌측*/
+.sport2-1 {
+    max-width: 18.5em;
+    min-width: 18.5em;
+    background: #eee;
+}
+
+.sport2-2 {
+    max-width: 27.8em;
+    min-width: 27.8em;
+    background: #eee;
 
 }
 
-.map_btn2 a:nth-child(3) img {
-    width: auto;
-    height: inherit;
+
+/* 스포츠 센터 좌측*/
+.sport3-1 {
+    max-width: 9.5em;
+    min-width: 9.5em;
+    background: #eee;
 }
 
-.map_btn2 a:nth-child(2) {
-    width: 40%;
-    height: 150px;
-    text-align: right;
+.sport3-2 {
+    max-width: 13.9em;
+    min-width: 13.9em;
+    background: #eee;
+
+}
+/* 스포츠 우측 좌측*/
+.sport4-1 {
+    max-width: 18.5em;
+    min-width: 18.5em;
+    background: #eee;
+}
+
+.sport4-2 {
+    max-width: 27.8em;
+    min-width: 27.8em;
+    background: #eee;
+
+}
+.sport1-1 p{
+    width: 20em;
+    height: 4em;
+    line-height: 2em;
+    font-size:.9rem;
+}
+.sport1-2 p {
+    width: 20em;
+    height:3em;
+    margin-top:2em;
+    padding-top:1em;
+    border-top:2px solid #ddd;
+}
+.sport1-2 form{
+    width:20em;
+    height:8em;
+
+}
+.sport1-2 select{
+    width:3em;
+
+}
+/*****좌석선택 및 예약 모바일 작업*****/
+@media only screen and (max-width:768px){
+
+    /* 스포츠 좌석 좌측*/
+    .sport2-1 {
+        max-width: 11.5em;
+        min-width: 11.5em;
+        background: #eee;
+    }
+
+    .sport2-2 {
+        max-width: 17.3em;
+        min-width: 17.3em;
+        background: #eee;
+
+    }
+
+
+    /* 스포츠 센터 좌측*/
+    .sport3-1 {
+        max-width: 6em;
+        min-width: 6em;
+        background: #eee;
+    }
+
+    .sport3-2 {
+        max-width: 12em;
+        min-width: 12em;
+        background: #eee;
+
+    }
+
+    /* 스포츠 우측 좌측*/
+    .sport4-1 {
+        max-width: 11.5em;
+        min-width: 11.5em;
+        background: #eee;
+    }
+
+    .sport4-2 {
+        max-width: 17.3em;
+        min-width: 17.3em;
+        background: #eee;
+
+    }
 
 }
 
-.map_btn2 a:nth-child(2) img {
-    width: auto;
-    height: inherit;
-}
+
+
+
 
 
 
@@ -2456,9 +2622,7 @@ input[type=password] {
     float: left;
 }
 
-regist-footer {
-    clear: both;
-}
+
 
 @media only screen and (max-width:768px) {
     .regist-container {
@@ -2493,14 +2657,19 @@ regist-footer {
         margin: 0;
     }
 
-    .regist-navi li a {
-        float: left;
+    .regist-navi li{
+        float:left;
         width: 25%;
-        height: 50px;
-        line-height: 40px;
-        padding-left: 30px;
-        color: #fff;
         text-align: center;
+        }
+
+    .regist-navi li a {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+        font-size: 0.8rem;
+        padding: 0;
     }
 
     .regist-body {
@@ -2585,5 +2754,237 @@ regist-footer {
 .regist-button:nth-child(1) {
     background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
 }
+/******관리자페이지 대시보드 table css(22일)******/
+.regist-title {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    font-weight: bold;
+}
+.regist-table {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+.regist-table thead tr {
+    width: 100%;
+    height: 40px;
+}
+.regist-table tbody {
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #ddd;
+}
+/*id 테이블 작업*/
+.regist-table tbody td:nth-child(1) {
+    width: 10%;
+    font-size: .7rem;
+}
+/*포스터 테이블 작업*/
+.regist-table tbody td:nth-child(2) {
+    width: 20%;
+}
+.regist-table tbody td:nth-child(2) a {
+    width: 100%;
+    height: 100px;
+}
+.regist-table tbody td:nth-child(2) img {
+    width: auto;
+    height: 100%;
+}
+/*등록된 정보 테이블 작업*/
+.regist-table tbody td:nth-child(3) {
+    width: 40%;
+    text-align: left;
+}
+.regist-table tbody td:nth-child(3) ul {
+    padding: 0;
+    margin: 0;
+    font-size: .7rem;   
+}
+.regist-information li:nth-child(1) {
+    font-size: 1rem;
+}
+.regist-information li:nth-child(1) span {
+    font-size: .7rem;
+}
+.regist-information li:nth-child(1) ~ li {
+    margin-top: 2px
+}
+/*QR코드 테이블 작업*/
+.regist-table tbody td:nth-child(4) {
+    width: 20%;
+}
+.regist-table tbody td:nth-child(4) button {
+    min-width: 30%;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-size: .9rem;
+   
+}
+/*수정/삭제 테이블 작업*/
+.regist-table tbody td:nth-child(5) {
+    width: 10%;
+    padding: 10px 0;
+}
+.regist-table tbody td:nth-child(5) button {
+    min-width: 30%;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-size: .9rem;
+}
+
+/*************error 페이지 작업(22일작업)*****************/
+
+.error-wrap{
+    width:100%;
+    height:auto;
+    max-width:50em;
+    background:#fff;
+    margin:0 auto;
+    padding:8em 0 5em 0;
+    text-align: center;
+}
+.error-icon{
+    width:100%;
+}
+.error-icon i{
+    color: #46c0f7; 
+}
+
+.error-message{
+    width:100%;
+    padding:20px;
+}
+.error-btn{
+    padding:.5rem;
+    background:#46c0f7;
+    border-radius: 30px;
+    border:none;
+    
+}
+/**********************2.img_slide 이미지 슬라이드 작업 (22일작업 파일)*****************************/
 
 
+.visual {
+    width: 90%;
+    max-width:75em;
+    margin: 0 auto;
+    
+}
+
+#img-slide{
+    width:100%;
+    margin:0 auto;
+}
+
+#img-slide div{
+    width:100%;
+    height:400px;
+}
+#img-slide div:nth-child(1){
+    background-image: url('http://tkfile.yes24.com/Upload2/Display/202009/20200925/wel_mv_000.jpg/dims/quality/70/');
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size:cover;
+   
+}
+#img-slide div:nth-child(2) {
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202101/MainVisual_bd119d0d-1b0a-4307-a1ad-069eab13322b.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+#img-slide div:nth-child(3) {
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202010/MainVisual_f9542470-630f-47d8-b835-59065dd6fa62.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+#img-slide div a{
+    width:100%;
+    height: 100%;
+}
+
+/* 모바일 메뉴 작업 */
+.m-menu, .m-menu a{
+    display: none;
+
+}
+
+
+
+/*****2.img_slide 이미지 슬라이드 작업*****/
+@media only screen and (max-width:768px){
+
+    .visual {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #img-slide {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
+  
+.m-menu,
+.m-menu a {
+    display: block;
+
+
+}
+.m-menu{
+    width: 100%;
+    margin: 0 auto;
+    margin-top:1.5rem;
+}
+
+
+.m-menu span{
+    display: block;
+    font-size:.8rem;
+    padding-top:10px;
+}
+
+/* 모바일 공간박스 */
+
+.m-box{
+    height:10px;
+    background:#eee;
+    margin:1.5rem 0 2rem 0;
+    box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2) inset,
+    0px 0px 2px rgba(200, 200, 200, 0.4)
+}
+
+#img-slide div {
+    width: 100%;
+    height: 300px;
+}
+
+#img-slide div:nth-child(1) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2101/210105090614_20009551.gif');
+    background-repeat: no-repeat;
+    background-position:center top;
+    background-size:cover;
+
+}
+
+#img-slide div:nth-child(2) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2012/201211113931_20010583.gif');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+
+#img-slide div:nth-child(3) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2010/201006035547_20007956.gif');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <%- include ("../reference/head.ejs") %>
+
+</head>
+
+<body>
+    
+
+    <div class="ticket-search-wrap">
+
+        <h2>티켓 양도하기</h2>
+        <form method="POST" action="/ticket/transfer2">
+            <div class="ticket-search-bg">
+                <div style="display: none;">
+                    <input type="text" name="concertId" value="<%=concertId%>">
+                    <input type="text" name="ticketId" value="<%=ticketId%>">
+                </div>
+
+                <label>양도할 ID</label>
+                <input type="text" name="transferticketer" id="transferticketer" required>
+                <input type="button" class="btn" id="transfer" value="확인">
+
+                <div class="alert alert-success" id="alert-success">아이디가 확인되었습니다.</div> 
+                <div class="alert alert-danger" id="alert-danger">일치하는 아이디가 없습니다.</div>
+
+            </div>
+            
+
+            <button id="signup" class="button" type="submit">양도하기</button>
+        </form>
+        
+    </div>
+
+    
+    <script type="text/javascript"> 
+        $(function(){ 
+            var user = "<%=user.length%>"
+            console.log(user)
+            console.log("<%=user[0].id%>")
+            $("#alert-success").hide(); 
+            $("#alert-danger").hide(); 
+            $("#transfer").click(function(){ 
+                var id1=$("#transferticketer").val(); 
+                $.post("/ticket/check", {
+                    id : id1
+                },function(data, textStatus){
+                    console.log(data);
+                    if(data == true){ 
+                        $("#alert-success").show(); 
+                        $("#alert-danger").hide(); 
+                        $("#signup").removeAttr("disabled"); 
+                    }else{ 
+                        $("#alert-success").hide(); 
+                        $("#alert-danger").show(); 
+                        $("#signup").attr("disabled", "disabled"); 
+                    } 
+                })
+                
+            }); 
+        }); 
+    </script>
+    
+</body>
+
+</html>

@@ -68,10 +68,12 @@
                         <li><a href="javascript:menu('0')">공연</a></li>
                         <li><a href="javascript:menu('1')">전시</a></li>
                         <li><a href="javascript:menu('2')">스포츠</a></li>
+                        <li><a href="/ticket/search">티켓 조회</a></li>
                         <%if(!loggedname){%>
                         <li><a href="/login">로그인</a></li>
                         <%}else{%>
                         <li><a href="/login/mypage">마이페이지</a></li>
+                        <li><a href="/login/ticket_wallet">티켓지갑</a></li>
                         <li><a href="/logout">로그아웃</a></li>
                         <%}%>
                     </ul>
@@ -112,8 +114,10 @@
                     <li><i class="fas fa-headphones-alt"></i><a href="javascript:menu('0')">공연</a></li>
                     <li><i class="fas fa-images"></i><a href="javascript:menu('1')">전시</a></li>
                     <li><i class="fas fa-running"></i><a href="javascript:menu('2')">스포츠</a></li>
+                    <li><i class="fab fa-sistrix"></i><a href="/ticket/search">티켓 조회</a></li>
                     <%if(loggedname){%>
                     <li><i class="fas fa-ticket-alt"></i><a href="/login/mypage">마이페이지</a></li>
+                    <li><i class="fas fa-wallet"></i></i><a href="/login/ticket_wallet">티켓 지갑</a></li>
                     <%}%>
             </ul>
             </div>

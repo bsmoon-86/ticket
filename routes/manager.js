@@ -2,7 +2,9 @@ var express = require("express");
 var router = express.Router();
 const request = require('request');
 require('dotenv').config();
+var Crypto = require("crypto");
 
+var secretKey = process.env.secretKey;
 
 
 var mysql = require("mysql2");
@@ -73,10 +75,12 @@ module.exports = function() {
         console.log(vip, r, s, a, b);
 
         for(var i = 0; i < vip; i++){
+            var ticket = concertId+"-"+"vip"+i;
+            var encrypted = Crypto.createHmac('sha256', secretKey).update(ticket).digest('hex');
             connection.query(
                 `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "vip"+i, date, time, "vip"+i, seat1, 0, 0, 0, 0, 0, 0],
+                    fee, cancleDate, cancleFee, state, poster_img, c_name, place) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [concertId, encrypted, date, time, "vip"+i, seat1, 0, 0, 0, 0, 0, 0, url1, name, place],
                 function(err, result){
                     if(err){
                         console.log("ticket insert error = ", err)
@@ -87,10 +91,12 @@ module.exports = function() {
             )
         }
         for(var i = 0; i < r; i++){
+            var ticket = concertId+"-"+"r"+i;
+            var encrypted = Crypto.createHmac('sha256', secretKey).update(ticket).digest('hex');
             connection.query(
                 `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "r"+i, date, time, "r"+i, seat2, 0, 0, 0, 0, 0, 0],
+                    fee, cancleDate, cancleFee, state, poster_img, c_name, place) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [concertId, encrypted, date, time, "r"+i, seat2, 0, 0, 0, 0, 0, 0, url1, name, place],
                 function(err, result){
                     if(err){
                         console.log("ticket insert error = ", err)
@@ -101,10 +107,12 @@ module.exports = function() {
             )
         }
         for(var i = 0; i < s; i++){
+            var ticket = concertId+"-"+"s"+i;
+            var encrypted = Crypto.createHmac('sha256', secretKey).update(ticket).digest('hex');
             connection.query(
                 `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "s"+i, date, time, "s"+i, seat3, 0, 0, 0, 0, 0, 0],
+                    fee, cancleDate, cancleFee, state, poster_img, c_name, place) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [concertId, encrypted, date, time, "s"+i, seat3, 0, 0, 0, 0, 0, 0, url1, name, place],
                 function(err, result){
                     if(err){
                         console.log("ticket insert error = ", err)
@@ -115,10 +123,12 @@ module.exports = function() {
             )
         }
         for(var i = 0; i < a; i++){
+            var ticket = concertId+"-"+"a"+i;
+            var encrypted = Crypto.createHmac('sha256', secretKey).update(ticket).digest('hex');
             connection.query(
                 `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "a"+i, date, time, "a"+i, seat4, 0, 0, 0, 0, 0, 0],
+                    fee, cancleDate, cancleFee, state, poster_img, c_name, place) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [concertId, encrypted, date, time, "a"+i, seat4, 0, 0, 0, 0, 0, 0, url1, name, place],
                 function(err, result){
                     if(err){
                         console.log("ticket insert error = ", err)
@@ -129,10 +139,12 @@ module.exports = function() {
             )
         }
         for(var i = 0; i < b; i++){
+            var ticket = concertId+"-"+"b"+i;
+            var encrypted = Crypto.createHmac('sha256', secretKey).update(ticket).digest('hex');
             connection.query(
                 `insert into ticket (concertId, ticketId, date, time, seat, price, discount, discountRate, 
-                    fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
-                [concertId, "b"+i, date, time, "b"+i, seat5, 0, 0, 0, 0, 0, 0],
+                    fee, cancleDate, cancleFee, state, poster_img, c_name, place) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+                [concertId, encrypted, date, time, "b"+i, seat5, 0, 0, 0, 0, 0, 0, url1, name, place],
                 function(err, result){
                     if(err){
                         console.log("ticket insert error = ", err)

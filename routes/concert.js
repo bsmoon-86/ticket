@@ -17,11 +17,10 @@ var connection = mysql.createConnection({
 });
 
 module.exports = function() {
-    
 
     router.route("/index").get(function(req, res, next){
         var concert = req.query.concert;                                
-        console.log(concert)
+        // console.log(concert)
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
             uri: "http://kairos-link.iptime.org:8080/api/v1/get_concert?concertId="+concert,
@@ -49,14 +48,35 @@ module.exports = function() {
         })
     })
 
+
+    router.post("/select", function(req, res, next){
+        var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
+        const person = function test(){
+            return mykeepin();
+        }
+        
+        person().then(function(result2){
+            console.log(result2[1]);
+            if(result2[1] == req.session.name){
+                next();
+            }else{
+                    res.render("error")
+            }
+
+        })
+        
+        // if(!req.session.name){
+        //     res.redirect("/login")
+        // }else{
+        // }  
+        // console.log(req.session.name);
+
+    })
+    
     
     //좌석 선택 
     router.post("/select", function(req, res, next){
         //var did = req.body.did;
-        console.log(req.session.name);
-        if(!req.session.name){
-            res.redirect("/login")
-        }else{
             var date = req.body.date;
             var time = req.body.time;
             var concertId = req.body.concertId;
@@ -80,15 +100,20 @@ module.exports = function() {
                                         `select * from ticket where concertId = ?`,
                                         [concertId],
                                         function(err, result3){
+                                            var min = Math.ceil(1);
+                                            var max = Math.floor(4);
+                                            var ran = Math.floor(Math.random() * (max - min)) + min; 
                                             if(err){
                                                 console.log("select2 => ", err)
                                             }else{
                                                 if(result[0].genre == 0){
-                                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    res.render("concert/seat_selection"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
                                                 }else if(result[0].genre == 1){
                                                     res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
                                                 }else if(result[0].genre == 2){
-                                                    res.render("concert/seat_selection_sport", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                }else if(result[0].genre == 3){
+                                                    res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
                                                 }
                                             }
                                         }
@@ -102,18 +127,8 @@ module.exports = function() {
                     }
                 }
             )   
-            // var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-            // const person = function test(){
-            //     return mykeepin();
-            // }
-            // person().then(function(result){
-            //     console.log(result[0]);
-            //     console.log("date=", date, "time=", time, "concertId =", concertId);
-            //     res.render("concert/seat_selection" ,{did : result, date : date, time : time ,concertId : concertId, concertname : concertname, loggedname : req.session.name});
-            // })
-        }
     })
-
+    //티켓 결제 페이지 이동
     router.post("/payment", function(req, res, next){
         if(!req.session.name){
             res.redirect("/login")
@@ -141,6 +156,8 @@ module.exports = function() {
 
     })
 
+
+    //티켓 구매 및 등록
     router.post("/regist", function(req, res, next){
         var concertId = req.body.concertId;
         var ticketId = req.body.ticketId;
@@ -150,10 +167,13 @@ module.exports = function() {
         var ticket = ticketId.split(",");
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticket);
+        var did = [];
+        
+        
 
         var function1 = async function query(ticket_num){
             connection.query(
-                `select * from ticket where concertId = ? and ticketId = ?`,
+                `select * from ticket where concertId = ? and seat = ?`,
                 [concertId, ticket_num],
                 function(err, result){
                     if(err){
@@ -161,7 +181,7 @@ module.exports = function() {
                     }else{
                         console.log(result[0])
                         let options = {
-                            uri: "http://localhost:8080/api/v1/buy_ticket",
+                            uri: "http://kairos-link.iptime.org:8080/api/v1/buy_ticket",
                             method: 'post',
                             json: {
                                 concertId: result[0].concertId,
@@ -184,7 +204,15 @@ module.exports = function() {
                             if(err){
                                 console.log(err)
                             }else{     
-                                console.log(body);                                              
+                                console.log(body);  
+                                var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
+                                const person = function test(){
+                                    return mykeepin();
+                                }
+                                person().then(function(result2){
+                                    console.log(result2);
+                                    did.push(result2);
+                                })                                            
                             }
                         })
                     }
@@ -194,7 +222,7 @@ module.exports = function() {
 
         var function2 = async function query(ticket_num){
             connection.query(
-                `update ticket set state = ?, user=?, name=? where concertId = ? and ticketId = ?`,
+                `update ticket set state = ?, user=?, name=? where concertId = ? and seat = ?`,
                 [1, req.session.user, req.session.name, concertId, ticket_num],
                 function(err, result1){
                     if(err){
@@ -220,8 +248,8 @@ module.exports = function() {
 
         
         connection.query(
-            `insert mouse (time, time2, x_position, y_position, id) values (?,?,?,?,?)`,
-            [date, time_rap, x, y, req.session.user],
+            `insert mouse (time, time2, x_position, y_position, id, seat) values (?,?,?,?,?,?)`,
+            [date, time_rap, x, y, req.session.user, ticketId],
             function(err, mouse){
                 if(err){
                     console.log("mouse insert => ", err)
@@ -232,6 +260,7 @@ module.exports = function() {
         )
         res.redirect("/");
     })
+
 
 
     //공연 변경

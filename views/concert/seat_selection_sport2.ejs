@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ("../reference/head.ejs") %>
+</head>
+
+<body>
+
+
+
+
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
+
+    <div class="container-fluid seat-wrap">
+        <!--전체 겉 박스-->
+
+        <div class="d-flex reserve_title border-bottom" >
+            <h2 class="h2-title">좌석선택</h2>
+            <div>두산 VS LG</div>
+
+            <div class="date-box">
+                <h5>다른날짜보기</h5>
+                    <select name="date">
+                        <option value="">날짜선택</option>
+                        <option value="date1">2020.12.24</option>
+                        <option value="date2">2020.12.27</option>
+                    </select>
+                    <select name="time">
+                        <option value="">시간 선택</option>
+                        <option value="date1">14:00 PM</option>
+                        <option value="date2">19:00 PM</option>
+                    </select>
+            </div>
+        </div>
+
+        <div class="row article-box border">
+            <!--내부 컨텐츠 박스-->
+
+            <div class="left-article">
+                <div class="tab-content text-center" id="v-pills-tabContent">
+
+                    <!--외야석 좌석선택-->
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                    <!--**스포츠 예약 페이지 외야석**-->
+                    <h5 class="rect">STARDIUM</h5>
+
+                        <div class="second-wrap">
+
+
+                            <div class="d-flex flex-column rectangle-wrap-second2">
+                                    
+                                <div class="sport1-1 input-style ">
+                                    <P>외야석은 자유석(비지정석) 입니다.<br>
+                                    구매하실 티켓 수량을 선택해 주세요.</P>
+                                </div> 
+
+                                <div class="sport1-2 input-style ">
+                                   <form>
+                                        <select>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                        </select>
+                                        <p>
+                                            <label>남은 좌석 수량 :</label>
+                                            <input type="text" size="15px" >
+                                        </p>
+                                    </form>
+                                </div> <!--./sport form-box-->
+    
+                            </div>
+                            <!--**스포츠 예약 페이지 외야석**-->
+
+                        </div>
+                    </div>
+
+                    <!--좌측 지정석 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <!--**스포츠 예약 페이지 외야석**-->
+                    <h5 class="rect">STARDIUM</h5>                       
+                        <div class="second-wrap">
+
+                            
+                            <div class="d-flex flex-row rectangle-wrap-second">
+
+                                <div class="sport2-1 input-style">
+                                    <%for(var i = 1; i < 101;i++){%>
+                                    <p style="background:red;" title="red<%=i%>">
+                                        <input type="checkbox" id="red<%=i%>" name="red" value="red<%=i%>">
+                                        <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>  
+                                <div class="sport2-2 input-style">
+                                    <%for(var i = 1; i < 41;i++){%>
+                                    <p style="background:skyblue;" title="sky<%=i%>">
+                                        <input type="checkbox" id="sky<%=i%>" name="sky" value="sky<%=i%>">
+                                        <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>  
+                                  
+
+                            </div>
+                            <div class="d-flex flex-row rectangle-wrap-second">
+                                <div class="sport2-3 input-style">
+                                    <%for(var i = 1; i < 91;i++){%>
+                                    <p style="background:blue;" title="blue<%=i%>">
+                                        <input type="checkbox" id="blue<%=i%>" name="blue" value="blue<%=i%>">
+                                        <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <!--**스포츠 예약 페이지 좌측**-->
+
+                        </div>
+                    </div>
+
+                    <!--중앙 프리미엄 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile2" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <!--**스포츠 예약 페이지 외야석**-->
+                        <h5 class="rect">STARDIUM</h5>
+
+                        <div class="second-wrap">
+
+                            <div class="d-flex flex-column rectangle-wrap-second2">
+
+                                <div class="sport3-1 input-style">
+                                    <%for(var i = 1; i < 51;i++){%>
+                                    <p style="background:orange;" title="Premium<%=i%>">
+                                        <input type="checkbox" id="Premium<%=i%>" name="Premium" value="Premium<%=i%>">
+                                        <label for="Premium<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column rectangle-wrap-second2">
+                                <div class="sport3-2 input-style">
+                                    <%for(var i = 1; i < 51;i++){%>
+                                    <p style="background:blue;" title="Cseat<%=i%>">
+                                        <input type="checkbox" id="Cseat<%=i%>" name="Cseat" value="Cseat<%=i%>">
+                                        <label for="Cseat<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                                
+                            </div>
+                            <!--**스포츠 예약 페이지 중앙석**-->
+
+                        </div>
+                    </div>
+
+                <!--우측 지정석 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile3" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <!--**스포츠 예약 페이지 외야석**-->
+                    <h5 class="rect">STARDIUM</h5>    
+
+                        <div class="second-wrap">
+
+                            <div class="d-flex flex-row rectangle-wrap-second">
+
+                                <div class="sport2-2 input-style">
+                                    <%for(var i = 1; i < 41;i++){%>
+                                    <p style="background:skyblue;" title="sky<%=i%>">
+                                        <input type="checkbox" id="sky<%=i%>" name="sky" value="sky<%=i%>">
+                                        <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>  
+                                
+                                <div class="sport2-1 input-style">
+                                    <%for(var i = 1; i < 101;i++){%>
+                                    <p style="background:red;" title="red<%=i%>">
+                                        <input type="checkbox" id="red<%=i%>" name="red" value="red<%=i%>">
+                                        <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>  
+
+                            </div>
+
+                             <div class="d-flex flex-row rectangle-wrap-second">
+                                <div class="sport2-3 input-style">
+                                    <%for(var i = 1; i < 91;i++){%>
+                                    <p style="background:blue;" title="blue<%=i%>">
+                                        <input type="checkbox" id="blue<%=i%>" name="blue" value="blue<%=i%>">
+                                        <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                    </p>
+                                    <%}%>
+                                </div>
+                            </div>
+                            <!--**스포츠 예약 페이지 좌측**-->
+                            
+                        </div>
+                    </div>        
+
+                </div>
+            </div>
+
+            <script>
+                $( document ).ready( function() {
+                    $( '.map_btn2 a:nth-child(1)' ).click( function() {
+                        $( this ).parent().css({"background":"url(/img/sport1.gif)", 
+                                                "background-repeat": "no-repeat" , 
+                                                "background-position": "center"});
+                        
+                    } );
+
+                    $( '.map_btn2 a:nth-child(2)' ).click( function() {
+                        $( this ).parent().css({"background":"url(/img/sport2.gif)", 
+                                                "background-repeat": "no-repeat" , 
+                                                "background-position": "center"});
+                    } );
+
+                    $( '.map_btn2 a:nth-child(3)' ).click( function() {
+                        $( this ).parent().css({"background":"url(/img/sport3.gif)", 
+                                                "background-repeat": "no-repeat" , 
+                                                "background-position": "center"});
+                    } );
+
+                    $( '.map_btn2 a:nth-child(4)' ).click( function() {
+                        $( this ).parent().css({"background":"url(/img/sport4.gif)", 
+                                                "background-repeat": "no-repeat" , 
+                                                "background-position": "center"});
+                    } );
+                } );
+
+            </script>
+
+
+
+            <div class="right-article">
+
+                <!--스포츠좌석 탭메뉴-->
+                <div class="button_box2">
+            
+                        <div class="nav me-3 map_btn2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            
+                            <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"></a>    
+                            <a class="nav-link" id="v-pills-content-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                            <a class="nav-link" id="v-pills-content2-tab" data-bs-toggle="pill" href="#v-pills-profile2" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                            <a class="nav-link" id="v-pills-content3-tab" data-bs-toggle="pill" href="#v-pills-profile3" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                        </div>
+                    
+                </div>
+
+                <div class="row text-center seat-price-box" style="overflow: hidden;">
+            
+                    <!--좌석현황/가격-->
+                    <div class="seat-price">
+                       
+                            <h6>선택좌석안내</h6>
+    
+                            <div style="width:100%;overflow:hidden;word-wrap:break-word;">
+                               선택좌석 화면 표시
+                            </div>
+                        
+                    </div>
+                    <div class="seat-price">
+                        <ul>
+                            <li>100,000 원</li>
+                            <li>최종결제금액 : </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="row text-center reserve_button">
+                    <!--예약하기 취소 버튼-->
+                        <button type="button" class="btn btn-primary btn-lg" >예약하기</button>
+                        <button type="button" class="btn btn-primary btn-lg" >이전단계</button>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!--./ 내부 컨텐츠 박스-->
+    </div>
+    <!--./ 전체 겉 박스-->
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

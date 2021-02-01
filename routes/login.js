@@ -2,6 +2,13 @@ var express = require("express");
 var router = express.Router();
 const request = require('request');
 require('dotenv').config();
+var Crypto = require("crypto");
+
+var secretKey = process.env.secretKey;
+
+var moment = require("moment");
+require("moment-timezone");
+moment.tz.setDefault("Asia/Seoul");
 
 
 
@@ -33,6 +40,8 @@ module.exports = function() {
         var email = req.body.email;
         var phone = req.body.phone;
         var linkcode = req.body.linkcode;
+        var encrypted = Crypto.createHmac('sha256', secretKey).update(password).digest('hex');
+        console.log(encrypted);
         connection.query(
             `select * from user where id =?`,
             [id],
@@ -44,8 +53,8 @@ module.exports = function() {
                         console.log("존재하는 id")
                     }else{
                         connection.query(
-                            `insert into user (id, pass, name, birth, email, phone, linkcode) values (?,?,?,?,?,?,?)`,
-                            [id, password, name, birth, email, phone, linkcode],
+                            `insert into user (id, password, name, birth, email, phone, linkcode) values (?,?,?,?,?,?,?)`,
+                            [id, encrypted, name, birth, email, phone, linkcode],
                             function(err, result){
                                 if(err){
                                     console.log("err", err)
@@ -68,9 +77,11 @@ module.exports = function() {
     router.post("/main", function(req, res, next){
         var id = req.body.id;
         var pass = req.body.pass;
+        var encrypted = Crypto.createHmac('sha256', secretKey).update(pass).digest('hex');
+        var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         connection.query(
             `select * from user where id = ? and password = ?`,
-            [id, pass],
+            [id, encrypted],
             function(err, result){
                 if(err){
                     console.log("login err", err)
@@ -80,6 +91,7 @@ module.exports = function() {
                         req.session.name = result[0].name;
                         req.session.phone = result[0].phone;
                         req.session.email = result[0].email;
+                        req.session.logintime = date;
 
                         if(result[0].linkcode == "0"){
                             connection.query(
@@ -100,8 +112,18 @@ module.exports = function() {
                                     if (err){
                                         console.log(err);
                                     }else{
-                                        console.log(result);
-                                        res.render("index_1", {concert : result, loggedname : req.session.name});
+                                        connection.query(
+                                            `insert into login (id, login) values (?,?)`,
+                                            [req.session.user, req.session.logintime],
+                                            function(err2, result2){
+                                                if(err2){
+                                                    console.log("login time DB insert => " , err2)
+                                                }else{
+                                                    console.log(result);
+                                                    res.render("index_1", {concert : result, loggedname : req.session.name});
+                                                }
+                                            }
+                                        )
                                     }
                                 }
                             )
@@ -118,52 +140,78 @@ module.exports = function() {
         res.redirect("/manager/main")
     })
 
-    router.get("/mypage", function(req, res, next){
-        if(!req.session.user){
-            res.redirect("/login")
-        }else{
-            var concert = [];
+    var mypage_ticket;
+    var mypage_user;
 
-            var function1 = async function query(result){
-                for(var i=0;i <result.length;i++){
+    router.get("/mypage", function(req, res, next){
+        connection.query(
+            `select * from ticket where user =?`,
+            [req.session.user],
+            function(err, result){
+                if(err){
+                    console.log("mypage select error => ", err)
+                }else{
+                    mypage_ticket = result;
                     connection.query(
-                        `select * from concert where id =?`,
-                        [result[i].concertId],
-                        function(err, result2){
-                            if(err){
-                                console.log("poster reload error => ", err)
+                        `select * from user where id = ?`,
+                        [req.session.user],
+                        function(err2, result2){
+                            if(err2){
+                                console.log(err)
                             }else{
-                                concert.push(result2[0]);
-                                console.log(concert);
+                                mypage_user = result2;
+                                next();  
                             }
                         }
                     )
                 }
-                
-                return poster;
             }
+        )
+    })
 
-            connection.query(
-                `select * from ticket where user =?`,
-                [req.session.user],
-                function(err, result){
-                    if(err){
-                        console.log("mypage select error => ", err)
-                    }else{
-                        function1(result).then(function(result2){
-                            console.log(result2);
-                        
-                    })
-                    setTimeout(function(){
-                        res.render("login/mypage", {loggedname : req.session.name, loggedemail : req.session.email, ticket : result, concert : concert});
-                    }, 500);
-                        
-                    }
-                }
-            )
-
+    router.get("/mypage", function(req, res, next){
+        if(!req.session.user){
+            res.redirect("/login")
+        }else{
+            res.render("login/mypage", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, user: mypage_user});
         }
     })
+
+
+    router.get("/ticket_wallet", function(req, res, next){
+        connection.query(
+            `select * from ticket where user =?`,
+            [req.session.user],
+            function(err, result){
+                if(err){
+                    console.log("mypage select error => ", err)
+                }else{
+                    mypage_ticket = result;
+                    connection.query(
+                        `select * from user where id = ?`,
+                        [req.session.user],
+                        function(err2, result2){
+                            if(err2){
+                                console.log(err)
+                            }else{
+                                mypage_user = result2;
+                                next();  
+                            }
+                        }
+                    )
+                }
+            }
+        )
+    })
+
+    router.get("/ticket_wallet", function(req, res, next){
+        if(!req.session.user){
+            res.redirect("/login")
+        }else{
+            res.render("login/mywallet", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, user: mypage_user});
+        }
+    })
+
 
     
     return router;

@@ -20,47 +20,31 @@
         </div> 
          
         
-            <div class="mypage-body">
-                <h6>내정보</h6>
-                <div class="my-box">
-                    <div class="my-face">
-                        <a href="#">
-                            <img src="https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png" alt="myface">
-                        </a>
-                    </div>
-                    <div class="my-intro">
-                        <ul>
-                            <li><%=loggedname%></li>
-                            <li><%=loggedemail%></li>
-                        </ul>
-                    </div>
-                    <a class="intro-link">내정보 &gt;</a>
-                </div>       
-            </div>
-            
-            
-             <div class="mypage-body">
-                <h6>마이티켓</h6>
-                <%for(var i=0;i < ticket.length; i++){%>
-                <div class="mypage-ticket-box">
-                   <a href="/concert/ticket_info?ticket=">
-                        <div class="mypage-ticket-img">
-                            <div><img src="<%=concert[i].poster_img%>" alt="img"></div>
-                        </div>
-                        <div class="mypage-ticket-intro">
-                            <ul>
-                                <li><%=concert[i].name%></li>
-                                <li><%=ticket[i].date%></li>
-                                <li><%=concert[i].place%></li>
-                                <li><%=ticket[i].seat%></li>
-                            </ul>
-                        </div>
-                   </a>
+        <div class="mypage-body">
+            <h6>내정보</h6>
+            <div class="my-box">
+                <div class="my-intro">
+                    <ul>
+                        <li><%=user[0].name%></li>
+                        <li><%=user[0].id%></li>
+                        <li><%=user[0].birth%></li>
+                        <li><%=user[0].phone%></li>
+                        <li><%=user[0].email%></li>
+                    </ul>
                 </div>
-                <%}%>  
-                    
-                     
-            </div><!--./mypage-body-->
+                <a class="intro-link">내정보 &gt;</a>
+                <div class="my-box2">
+                    MY 리뷰
+                </div>
+            </div>       
+        </div>
+
+        <div class="mypage-body">
+            <div class="my-box">
+                <h6 class="txt"><i class="far fa-bell"></i>나른한 오늘 핫한 스포츠는 어때요?</h6>
+            </div>
+        </div>
+
         
         
     </div>

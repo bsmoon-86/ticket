@@ -2713,5 +2713,7 @@ ftitle
 }
 
 .footer_body{
-    padding: 1rem 0;
+    padding: 30px 0;
+    height:200px;
+
 }

@@ -9,27 +9,39 @@
         <style>
 
             /* 배경 */
+
+            .graph_wrap{
+                width:1400px;
+                height:fit-content;
+                background:tan;
+            }
             .graph{
-                height:100%;
-                position: relative;
+                width:400px;
+                height:fit-content;
+                
             }
             .graph canvas{
-                margin:0.4rem;
                 background:#fff;
                 border-radius: 10px;
                 box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
             }
+            /* .graph_wrap table:nth-child(1){
+                float:left;
+                width:fit-content;
 
+            } */
+
+
+
+            /* 조회아이디, 예매횟수 */
             .graph_title{
-                width:1292px;
+                width:100%;
                 height:80px;
                 background:#333;
                 text-align: center;
             }
-            /* 조회아이디, 예매횟수 */
-            
             .graph_title form{
-                width:400px;
+                width:300px;
                 line-height: 80px;
                 margin-left:20px;
                 text-align: left;
@@ -45,8 +57,7 @@
             }
             .graph_title form input+input{
                 position:absolute;
-                top:26px;
-                left:209px;
+                margin-top:26px;
                 width:50px;
                 height:28px;
                 background:#000;
@@ -54,7 +65,7 @@
                 border:none;
             }
             .title_2{
-                width:200px;
+                width:fit-content;
                 float:right;
                 background:#333;
                 color:#fff;
@@ -67,19 +78,27 @@
 
             .graph_list{
                 float:left;
+                width:fit-content;
                 height:1033px;
-                padding-left:30px;
-                padding-top:1rem;
                 text-align: center;
-                
+                margin-left:1rem;
+                margin-top:1rem;
+                position: relative;
             }
             .graph td{
+                width:420px;
+                height:420px;
                 float:right;
+                margin:.5rem;
             }
             .graph td:nth-child(2){
                 clear: both;
                 float:left;
             }
+            .graph td:nth-child(3){
+                float:right;
+            }
+            
             .graph_wrap table:nth-child(1){
                 float:left;
             }
@@ -94,7 +113,7 @@
             .xy{
                 position:absolute;
                 top:125px;
-                left:445px;
+                left:428px;
                 width:400px;
                 height:400px;
                 background:#fff;
@@ -113,7 +132,7 @@
             }
 
             .macro{
-                height:109px;
+            
                 text-align: center;
                 color:#333;
                 background:#fff;
@@ -161,22 +180,9 @@
                     </td>
                 </tr>
                 <tr>
-                <%    
-                var time = click[0].time2;
-                var time_ = time.split(",");
-                var rap = 0;
-                for (var i = 0; i < time_.length; i++){
-                    if(i != 0 && time_[i] != 0){
-                        if(time_[i] - time[i-1] < 1000){
-                            rap++
-                        };
-                    }
-                }
-                var per = rap / (time_.length - 2) * 100;
-                %>
-                    <td class="macro" rowspan="2">이 계정은 매크로일 확률이 <b style="color: red;"><%=per%>%</b> 입니다.</td>
+                    <td class="macro" rowspan="2"><p>매크로 안내</p></td>
                 </tr>
-            </table>
+        </table>
 
 
 

@@ -235,6 +235,10 @@ app.get("/chart", function(req, res){
   res.render("concert/seat_selection_soccer1");
 })
 
+app.get("/error", function(req, res){
+  res.render("error");
+})
+
 var concertRoute = require("./routes/concert")();
 app.use("/concert", concertRoute);
 

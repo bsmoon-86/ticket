@@ -180,7 +180,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="macro" rowspan="2"><p>매크로 안내</p></td>
+                    <%    
+                    var time = click[0].time2;
+                    var time_ = time.split(",");
+                    var rap = 0;
+                    for (var i = 0; i < time_.length; i++){
+                        if(i != 0 && time_[i] != 0){
+                            if(time_[i] - time[i-1] < 1000){
+                                rap++
+                            };
+                        }
+                    }
+                    var per = rap / (time_.length - 2) * 100;
+                    %>
+                        <td class="macro" rowspan="2">이 계정은 매크로일 확률이 <b style="color: red;"><%=per%>%</b> 입니다.</td>
                 </tr>
         </table>
 

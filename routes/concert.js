@@ -50,33 +50,33 @@ module.exports = function() {
 
 
     router.post("/select", function(req, res, next){
-        var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-        const person = function test(){
-            return mykeepin();
-        }
+        // var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
+        // const person = function test(){
+        //     return mykeepin();
+        // }
         
-        person().then(function(result2){
-            console.log(result2[1]);
-            if(result2[1] == req.session.name){
-                next();
-            }else{
-                    res.render("error")
-            }
+        // person().then(function(result2){
+        //     console.log(result2[1]);
+        //     if(result2[1] == req.session.name){
+        //         next();
+        //     }else{
+        //             res.render("error")
+        //     }
 
-        })
+        // })
         
-        // if(!req.session.name){
-        //     res.redirect("/login")
-        // }else{
-        // }  
-        // console.log(req.session.name);
+        if(!req.session.name){
+            res.redirect("/login")
+        }else{
+            next();
+        }  
+        console.log(req.session.name);
 
     })
     
     
     //좌석 선택 
     router.post("/select", function(req, res, next){
-        //var did = req.body.did;
             var date = req.body.date;
             var time = req.body.time;
             var concertId = req.body.concertId;

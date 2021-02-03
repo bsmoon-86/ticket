@@ -58,21 +58,25 @@ module.exports = function(){
             `select * from ticket where ticketId=?`,
             [ticketId],
             function(err, result){
-                //res.json(ticket);
-                let options = {
-                    uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
-                    method: 'get'
-                };
-                //console.log(options);
-                request.get(options, function(err,httpResponse,body){
-                    if(err){
-                    console.log(err)
-                    }else{
-                    console.log(body.split(","));
-                    res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
-                    // ticket.push(body);
-                    }
-                })
+                if(result.length > 0){
+                    let options = {
+                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
+                        method: 'get'
+                    };
+                    //console.log(options);
+                    request.get(options, function(err,httpResponse,body){
+                        if(err){
+                        console.log(err)
+                        }else{
+                        console.log(httpResponse);
+                        console.log(body.split(","));
+                        res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
+                        // ticket.push(body);
+                        }
+                    })
+                }else{
+                    res.redirect("/error")
+                }
 
             }
         )

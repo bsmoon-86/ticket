@@ -422,14 +422,12 @@ a:hover{
     width: 90%;
     padding-top: 0.5em;
     margin: 0 auto;
-
 }
 
 .card-img-top img {
     width: 100%;
     height: 300px;
     border-bottom: 1px solid #ddd;
-
 }
 
 .card-text {
@@ -478,13 +476,14 @@ a:hover{
 .jumbotron-body{
     width:75%;
     float:left;
+    font-size: .8rem;
 }
 .jumbotron-body h5{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space:nowrap;
     font-weight: bold;
-    font-size:1.2rem;
+    font-size:1rem;
     padding:10px 10px 5px 0;
 }
 
@@ -493,7 +492,7 @@ a:hover{
 }
 
 .jumbotron-body div{
-    padding: 5px;
+    padding: 3px;
     color:#fff;
     font-weight: normal;
 }
@@ -552,6 +551,8 @@ a:hover{
 .reserve-wrap{
     margin-top:2rem;
     padding-bottom:2rem;
+    border:1px solid #eee;
+
 }
 .main-img{
     padding-bottom:2rem;
@@ -722,16 +723,9 @@ a:hover{
     width: 100%;
     height: auto;
     padding: 30px 0;
+    overflow-x: scroll;
 }
 
-.first-wrap h5 {
-    width: 65%;
-    height: 35px;
-    background: #eee;
-    margin: 0 auto;
-    line-height: 35px;
-    color: darkgrey;
-}
 
 
 /* 체크박스 */
@@ -996,47 +990,21 @@ a:hover{
         border-bottom-style: solid;
         border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
         border-image-slice: 2;
+        margin-top:300px;
     }
+
 
     .right-article {
         width: 100%;
         height:auto;
     }
-
-    .left1,
-    .right1 {
-        max-width: 3.2em;
-        min-width: 3.2em;
-        padding-left: 0px;
+    .button_box{
+        position:absolute;
+        top:130px;
+        text-align: center;
     }
 
-    .center1 {
-        max-width: 12em;
-        min-width: 12em;
-    }
-
-    /* 2층 체크박스 */
-    .center2-1 {
-        max-width: 14.5em;
-        min-width: 14.5em;
-        background: #eee;
-    }
-
-    .center2-2 {
-        max-width: 14.5em;
-        min-width: 14.5em;
-        background: #eee;
-
-    }
-
-    .center2-3 {
-        max-width: 14.5em;
-        min-width: 14.5em;
-        background: #eee;
-
-    }
-
-    .button_box>div {
+     .button_box>div {
         max-width: 15rem;
         margin-top: 40px;
         text-align: center;
@@ -1308,6 +1276,7 @@ input[type=password] {
     height:40px;
     line-height:50px;
     margin-bottom:0;
+    overflow-x: scroll;
 }
 .pay-title-box li:nth-child(2) p{
     width:100%;
@@ -1384,9 +1353,8 @@ input[type=password] {
     margin-top:0;
 }
 .pay-tab li{
-    float: left;
-    width:50%;
-    border:1px solid #ddd;
+    width:100%;
+    padding-top:1rem;
 
 }
 .pay-tab li a{
@@ -2714,6 +2682,5 @@ ftitle
 
 .footer_body{
     padding: 30px 0;
-    height:200px;
-
+    height:fit-content;
 }

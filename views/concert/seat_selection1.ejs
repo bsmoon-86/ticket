@@ -56,8 +56,9 @@
 
                     <!--1층 좌석선택-->
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h5 class="rect3">STAGE</h5>
                         <div class="first-wrap">
-                            <h5>STAGE</h5>
+                            
 
                             <div class="d-flex rectangle-wrap">
 
@@ -136,8 +137,9 @@
 
                     <!--2층 좌석선택-->
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <h5 class="rect3">STAGE</h5>
                         <div class="first-wrap">
-                            <h5>STAGE</h5>
+                            
 
                             <div class="d-flex flex-column rectangle-wrap2">
 
@@ -273,9 +275,12 @@
                     </div>
                     <div class="row text-center reserve_button">
                         <!--예약하기 취소,새로고침 버튼-->
+
+
+
         
                             <button type="button" class="btn btn-primary btn-lg" style="font-size:1rem;" onclick="javascript:history.go(-1)">이전단계</button>
-                            <button type="submit" class="btn btn-primary btn-lg" style="font-size:1rem;">예약하기</button>
+                            <button type="submit" id="reserve" class="btn btn-primary btn-lg" style="font-size:1rem;">예약하기</button>
 
                     </div>
                     
@@ -291,6 +296,15 @@
     <script>
         var select = [];
         $(document).ready(function(){
+
+            
+            console.log($("#n_seat").val());
+            if($("#n_seat").val() ==""){
+                $("#reserve").attr("disabled", "disabled"); 
+            }else{
+                $("#reserve").removeAttr("disabled"); 
+            }
+
             $("input[name=seat]").change(function(){
                 var price = 0;
                 select = [];
@@ -323,6 +337,13 @@
             $("#price").html(price + "원");
             $("#n_seat").val(select.sort());
             $("#n_price").val(price);
+            console.log($("#n_seat").val);
+
+            if($("#n_seat").val() ==""){
+                $("#reserve").attr("disabled", "disabled"); 
+            }else{
+                $("#reserve").removeAttr("disabled"); 
+            }
             });
             
         });

@@ -239,6 +239,16 @@ app.get("/error", function(req, res){
   res.render("error");
 })
 
+app.get("/n", function(req, res){
+  res.render("naver");
+})
+
+app.get("/pay", function(req, res){
+  // console.log(req);
+  console.log(req.query.concertId);
+  res.redirect("/");
+})
+
 var concertRoute = require("./routes/concert")();
 app.use("/concert", concertRoute);
 

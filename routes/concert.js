@@ -158,12 +158,12 @@ module.exports = function() {
 
 
     //티켓 구매 및 등록
-    router.post("/regist", function(req, res, next){
-        var concertId = req.body.concertId;
-        var ticketId = req.body.ticketId;
-        var x = req.body.x;
-        var y = req.body.y;
-        var time_rap = req.body.time_rap;
+    router.get("/regist", function(req, res, next){
+        var concertId = req.query.concertId;
+        var ticketId = req.query.ticketId;
+        var x = req.query.x;
+        var y = req.query.y;
+        var time_rap = req.query.time_rap;
         var ticket = ticketId.split(",");
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticket);

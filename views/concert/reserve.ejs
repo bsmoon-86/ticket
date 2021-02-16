@@ -3,6 +3,7 @@
 
 <head>
     <%- include ("../reference/head.ejs") %>
+    <%- include ("../reference/click.ejs") %>
 </head>
 
 <body>
@@ -90,6 +91,9 @@
             <div class="card-body" style="display: none;" >
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertname" value="<%=data[0]%>">
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId" value="<%=concert[0].id%>">
+                <input type="text" id="x" name="x">
+                <input type="text" id="y" name="y">
+                <input type="text" id="time_rap" name="time_rap">
             </div>
             <div class="d-flex reservation">
                 <!--날짜선택-->

@@ -50,6 +50,15 @@ module.exports = function() {
 
 
     router.post("/select", function(req, res, next){
+        var time_rap = req.body.time_rap;
+        var time_rap2 = time_rap.split(",");
+        var mecro = 0;
+        for(var i =0; i < time_rap2.length; i++){
+            if(time_rap2[i] < 1000){
+                mecro++;
+            }
+        }
+        console.log(mecro);
         // var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
         // const person = function test(){
         //     return mykeepin();
@@ -68,9 +77,59 @@ module.exports = function() {
         if(!req.session.name){
             res.redirect("/login")
         }else{
-            next();
+            if(mecro < 3){
+                var date = req.body.date;
+                var time = req.body.time;
+                var concertId = req.body.concertId;
+                
+                connection.query(
+                    `select * from concert where id=?`,
+                    [concertId],
+                    function(err, result){
+                        if (err){
+                            console.log(err);
+                        }else{
+                        console.log(result);
+                            connection.query(
+                                `select * from hall where name=?`,
+                                [result[0].place],
+                                function(err, result2){
+                                    if(err){
+                                        console.log("select => ", err)
+                                    }else{
+                                        connection.query(
+                                            `select * from ticket where concertId = ?`,
+                                            [concertId],
+                                            function(err, result3){
+                                                if(err){
+                                                    console.log("select2 => ", err)
+                                                }else{
+                                                    var ran = 1;
+                                                    if(result[0].genre == 0){
+                                                        res.render("concert/seat_selection"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    }else if(result[0].genre == 1){
+                                                        res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    }else if(result[0].genre == 2){
+                                                        res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    }else if(result[0].genre == 3){
+                                                        res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                                    }
+                                                }
+                                            }
+                                        )
+
+                                    }
+
+                                }
+                            )
+                                
+                        }
+                    }
+                )   
+            }else{
+                next();
+            }
         }  
-        console.log(req.session.name);
 
     })
     
@@ -168,7 +227,7 @@ module.exports = function() {
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticket);
         var did = [];
-        
+        console.log(req.query.resultCode);
         
 
         var function1 = async function query(ticket_num){
@@ -236,29 +295,32 @@ module.exports = function() {
             )     
         }
 
-        for(var i = 0; i < ticket.length; i++){
-            ticket_ = ticket[i];
-            function1(ticket[i]).then(function(result){
-                console.log(result);
-            })
-            function2(ticket[i]).then(function(result2){
-                console.log(result2);
-            })
+        if(req.query.resultCode == "Success"){
+            for(var i = 0; i < ticket.length; i++){
+                function1(ticket[i]).then(function(result){
+                    console.log(result);
+                })
+                function2(ticket[i]).then(function(result2){
+                    console.log(result2);
+                })
+            }
+        
+            connection.query(
+                `insert mouse (time, time2, x_position, y_position, id, seat) values (?,?,?,?,?,?)`,
+                [date, time_rap, x, y, req.session.user, ticketId],
+                function(err, mouse){
+                    if(err){
+                        console.log("mouse insert => ", err)
+                    }else{
+                        console.log(mouse);
+                    }
+                }
+            )
+            res.redirect("/");
+        }else{
+            res.render("error")
         }
 
-        
-        connection.query(
-            `insert mouse (time, time2, x_position, y_position, id, seat) values (?,?,?,?,?,?)`,
-            [date, time_rap, x, y, req.session.user, ticketId],
-            function(err, mouse){
-                if(err){
-                    console.log("mouse insert => ", err)
-                }else{
-                    console.log(mouse);
-                }
-            }
-        )
-        res.redirect("/");
     })
 
 

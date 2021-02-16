@@ -597,14 +597,13 @@ a:hover{
     margin:0;
     padding:2px;
 }
-.reserve-button{
-    width:50%;
-    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    border-radius: 20px;
-}
 .reserve-button button{
     width:50%;
-    font-size:.8rem;
+    max-width: 15rem;
+    padding:.3rem;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-radius: 20px;
+    border:none;
 }
 
 /* 상세페이지 작업 */

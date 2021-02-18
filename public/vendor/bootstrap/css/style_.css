@@ -31,7 +31,7 @@ a:hover{
 
 .top {
     width: 100%;
-    height:140px;
+    height:138px;
     position: relative;
     z-index: 99;
 }
@@ -62,27 +62,33 @@ a:hover{
 
 .gnb-box {
     width: 100%;
+    margin:0 auto;
+    height: 50px;
+    padding:0;
+    line-height: 50px;
+    background:#fff;
+}
+.gnb{
+    width: 100%;
     max-width: 75rem;
     margin:0 auto;
-    height: 45px;
-    line-height: 40px;
-    border-image-slice: 1;
-
+   
 }
-
 .navi {
     display: flex;
-    height: 40px;
+    height: 50px;
     text-align: center;
     padding-left: 0;
     background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
 }
+
 .navi>li {
     width: 80%;
     height: 40px;
     margin: 2px;
     box-sizing: border-box;
     border-radius: 50px;
+    
 }
 
 .navi li:hover {
@@ -423,12 +429,14 @@ a:hover{
     width: 90%;
     padding-top: 0.5em;
     margin: 0 auto;
+
 }
 
 .card-img-top img {
     width: 100%;
     height: 300px;
     border-bottom: 1px solid #ddd;
+
 }
 
 .card-text {
@@ -477,7 +485,7 @@ a:hover{
 .jumbotron-body{
     width:75%;
     float:left;
-    font-size: .8rem;
+    font-size:.8rem;
 }
 .jumbotron-body h5{
     overflow: hidden;
@@ -589,14 +597,13 @@ a:hover{
     margin:0;
     padding:2px;
 }
-.reserve-button{
-    width:50%;
-    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    border-radius: 20px;
-}
 .reserve-button button{
     width:50%;
-    font-size:.8rem;
+    max-width: 15rem;
+    padding:.3rem;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-radius: 20px;
+    border:none;
 }
 
 /* 상세페이지 작업 */
@@ -622,7 +629,7 @@ a:hover{
         display: none;
     }
     .reserve-wrap{
-        margin-top:0;
+        margin-top:8px;
         border-top:none;
     }
 
@@ -727,6 +734,14 @@ a:hover{
     overflow-x: scroll;
 }
 
+/* .tab-pane h5 {
+    width: 100%;
+    height: 35px;
+    background: #eee;
+    margin: 0 auto;
+    line-height: 35px;
+    color: rgb(131, 120, 120);
+} */
 
 
 /* 체크박스 */
@@ -785,12 +800,14 @@ a:hover{
 
 .center2-1 {
     max-width: 23.4em;
+    min-width: 23.4em;
     height: auto;
     background: #eee;
 }
 
 .center2-2 {
     max-width: 23.4em;
+    min-width: 23.4em;
     height: auto;
     background: #eee;
 
@@ -798,6 +815,7 @@ a:hover{
 
 .center2-3 {
     max-width: 23.4em;
+    min-width: 23.4em;
     height: auto;
     background: #eee;
 
@@ -947,6 +965,7 @@ a:hover{
     background: rgba(36, 36, 36, 0.24);
 }
 
+
 /*****좌석선택 및 예약 모바일 작업*****/
 @media only screen and (max-width:768px) {
 
@@ -954,6 +973,7 @@ a:hover{
         width: 100%;
         padding: 0;
         margin: 0 auto;
+        position: relative;
     }
 
     .reserve_title {
@@ -984,6 +1004,7 @@ a:hover{
         margin: 1px;
     }
 
+
     .left-article {
         width: 100%;
         height:auto;
@@ -993,7 +1014,6 @@ a:hover{
         border-image-slice: 2;
         margin-top:300px;
     }
-
 
     .right-article {
         width: 100%;
@@ -1005,7 +1025,8 @@ a:hover{
         text-align: center;
     }
 
-     .button_box>div {
+
+    .button_box>div {
         max-width: 15rem;
         margin-top: 40px;
         text-align: center;
@@ -1308,16 +1329,17 @@ input[type=password] {
 }
 .coupon-list ul{
     width:100%;
-    padding:0;
+    height:50px;
+    padding:0 0.5rem;
     text-align:center;
 }
 .coupon-list li{
-    display: inline-block;
+    float:left;
     text-align:left;
-    width:48%;
+    width:fit-content;
 }
 .coupon-list li:nth-child(2){
-    text-align: right;
+    float: right;
 }
 .coupon-list button{
     line-height: 30px;
@@ -1358,6 +1380,12 @@ input[type=password] {
     padding-top:1rem;
 
 }
+/* .pay-tab li {
+    float: left;
+    width: 50%;
+    border: 1px solid #ddd;
+
+} */
 .pay-tab li a{
     display: block;
     padding:0;
@@ -1960,42 +1988,107 @@ input[type=password] {
 }
 
 /********* 티켓조회하기 페이지(27일) **********/
-.ticket-search-wrap{
-    width:100%;
-    max-width:50rem;
+
+/* .ticket-search-wrap{
+    width:95%;
+    max-width: 60rem;
     height:auto;
     margin:0 auto;
-    padding:1rem 0;
+    padding:2rem 0;
     text-align: center;
-}
-.ticket-search-wrap h2{
-    width:fit-content;
-    font-size:1.2rem;
-    padding:1rem;
-    margin:0 auto;
-}
-.ticket-search-bg{
-    width:90%;
-    max-width:35em;
-    height:auto;
-    margin:0.5rem auto;
-    padding:.9rem;
     background:#fff;
-    text-align: center;
+} */
+
+.ticket-search-wrap form{
+    width:95%;
+    max-width: 60rem;
+    height:auto;
+    margin:0 auto;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    padding: 3rem 0;
     border-radius: 1rem;
-    font-size:.9rem;
+    text-align: center;
 }
+
+.ticket-search-wrap h2{
+    width:100%;
+    max-width: 75rem;
+    height:200px;
+    line-height: 100px;
+    background:#eee;
+    /* width:fit-content; */
+    font-size:2rem;
+    padding:3rem;
+    margin:3rem auto;
+    text-align: center;
+   
+}
+
 .ticket-search-bg label{
     margin-right:.3rem;
+    font-size:1.2rem;
 }
+
 .ticket-search-bg label::before{
     content:"*";
     color:red;
     padding-right:.2rem;
 }
 
+/* 양도페이지 */
+.ticket-search-bg2 label::before {
+    content: "*";
+    color: red;
+    padding-right: .2rem;
+}
 
+@media only screen and (max-width:768px){
+.ticket-search-wrap {
+    width:100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 3rem 0;
+    text-align: center;
+    background: #fff;
+    
+}
+.ticket-search-wrap form {
+    width:95%;
+    margin:0 auto;
+    padding: 1rem 0;
+    border-radius: 1rem;
+}
+
+.ticket-search-wrap h2 {
+    width: fit-content;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.ticket-search-bg label {
+    margin-right: .3rem;
+}
+
+.ticket-search-bg label::before {
+    content: "*";
+    color: red;
+    padding-right: .2rem;
+}
+
+    /* .ticket-search-bg {
+        width: 95%;
+        max-width: 35em;
+        height: auto;
+        margin: 0.5rem auto;
+        padding: .9rem;
+        background: #fff;
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+        border-radius: 1rem;
+        font-size: .9rem;
+    } */
+}
 
 
 /*스포츠좌석 예약*/

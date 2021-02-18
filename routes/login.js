@@ -100,6 +100,7 @@ module.exports = function() {
                                 function(err, result){
                                     if(err){
                                         console.log("login manager err => ", err)
+                                        res.redirect("/login")
                                     }else{
                                         res.render("manager/main", {concert : result});
                                     }
@@ -118,6 +119,7 @@ module.exports = function() {
                                             function(err2, result2){
                                                 if(err2){
                                                     console.log("login time DB insert => " , err2)
+                                                    res.redirect("/login")
                                                 }else{
                                                     console.log(result);
                                                     res.render("index_1", {concert : result, loggedname : req.session.name});
@@ -130,6 +132,7 @@ module.exports = function() {
                         }
                     } else{
                         console.log("아이디나 비밀번호가 맞지 않습니다.")
+                        res.redirect("/login")
                     }
                 }
             }

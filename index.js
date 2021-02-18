@@ -9,6 +9,7 @@ var port = 3333;
 var path = require("path");
 var session = require("express-session");
 var moment = require("moment");
+const request = require('request');
 require("moment-timezone");
 require('dotenv').config();
 moment.tz.setDefault("Asia/Seoul");
@@ -82,12 +83,12 @@ app.get("/", function (req, res) {
 app.post("/qrcode", function(req, res) {
   var ticketId = req.body.ticketId;
   var name = req.body.name;
-  var cofirm ={
-    ticketId : ticketId,
-    name : name,
-    phone : req.session.phone,
-    email : req.session.email,
-  }   //input 값 변수
+  var cofirm = {
+    "ticketId" : ticketId,
+    "name" : name,
+    "phone" : req.session.phone,
+    "email" : req.session.email 
+  }  //input 값 변수
     QRCode.toDataURL(JSON.stringify(cofirm), function (err, url) {
       //console.log(url)
       let data = url.replace(/.*,/,'')
@@ -221,13 +222,39 @@ app.post("/canvas", function(req,res){
 
 
 
-app.post("/search", function(req, res){
-  var ticketId = req.body.ticketId;
-  var name = req.body.name;
-  console.log(ticketId);
-  console.log(name);
-  console.log(req.body);
-  res.send(name);
+app.get("/search", function(req, res){
+  var ticketId = req.query.ticketId;
+  // var name = req.query.name;
+  // var phone = req.query.phone;
+  // var email = req.query.email;
+  
+  connection.query(
+    `select * from ticket where ticketId=?`,
+    [ticketId],
+    function(err, result){
+        if(result.length > 0){
+            let options = {
+                uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
+                method: 'get'
+            };
+            //console.log(options);
+            request.get(options, function(err,httpResponse,body){
+                if(err){
+                console.log(err)
+                }else{
+                console.log(httpResponse);
+                console.log(body.split(","));
+                res.send(body.split(","));
+                //res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
+                // ticket.push(body);
+                }
+            })
+        }else{
+          res.send("empty");
+        }
+
+    }
+)
 })
 
 
@@ -239,8 +266,11 @@ app.get("/error", function(req, res){
   res.render("error");
 })
 
-app.get("/n", function(req, res){
-  res.render("naver");
+app.get("/ticket1", function(req, res){
+  console.log("android connecting")
+  // var input = req.body;
+  // console.log(input)
+  // res.json(input);
 })
 
 app.get("/pay", function(req, res){

@@ -27,19 +27,23 @@ a:hover{
 }
 
 
-/**********************1.header-css 작업*****************************/
+/**********************1.header-css 작업(2월16일)*****************************/
 
 .top {
     width: 100%;
     height:138px;
     position: relative;
     z-index: 99;
+    background-color: #fff;
 }
 
 .top-line {
+    width:100%;
+    max-width: 75rem;
+    margin: 0 auto;
     height: 95px;
     line-height: 95px;
-    background: #fff;
+
 }
 
 .logo {
@@ -47,18 +51,10 @@ a:hover{
     margin-top: 8px;
 }
 .logo img{
-    width:80%;
-    padding-top:15px;
+    width:90%;
+    padding-top:17px;
 }
-.serch {
-    width: 250px;
-    height: 30px;
-    background: orange;
-    float: right;
-    margin-top: 35px;
-    position: relative;
-    /*돋보기 부모박스*/
-}
+
 
 .gnb-box {
     width: 100%;
@@ -67,6 +63,7 @@ a:hover{
     padding:0;
     line-height: 50px;
     background:#fff;
+    border-block:1px solid #ddd;
 }
 .gnb{
     width: 100%;
@@ -79,43 +76,58 @@ a:hover{
     height: 50px;
     text-align: center;
     padding-left: 0;
-    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    /* background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%); */
 }
 
 .navi>li {
     width: 80%;
-    height: 40px;
+    height: 43px;
     margin: 2px;
     box-sizing: border-box;
     border-radius: 50px;
-    
+    font-weight:500;
+
 }
 
 .navi li:hover {
-    background-position: top;
-    color: #8d78b1;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1) inset;
 }
 
 /*serch 박스 설정*/
 
+.serch{
+    width:25%;
+    float: right;
+    margin-top: 38px;
+    position: relative;
+    /*돋보기 부모박스*/
+}
+
 .serch input {
-    width: 250px;
-    height: 30px;
-    border-radius: 0;
+    width: 100%;
+    height: 35px;
+    background:#fff;
+    /* border-bottom-style: solid;
+    border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice:3; */
+    border:1px solid #ddd;
+    border-radius: 1rem;
 }
 
 .serch button {
-    width: 35px;
-    height: 30px;
-    padding: 4px;
-    padding-top: 2px;
-    background: #333;
-    border-radius: 0;
-    color: #fff;
+    position: absolute;
+    top:1px;
+    right:0;
+    z-index: 999;
+    padding:0;
+    width:35px;
+    height:35px;
+    border:none;
+    background:rgba(250, 250, 250, 0);
 }
-
-.serch button:hover {
-    color: orange;
+.serch button i{
+    display: inherit;
+    color:#7881f6;
 }
 
 /*자바스크립트 메뉴 상단고정*/
@@ -124,6 +136,7 @@ a:hover{
     position: fixed;
     top: 0;
     z-index: 996;
+    background:#fff;
 }
 
 .header-box{
@@ -146,7 +159,7 @@ a:hover{
     }
 
     .top{
-        height:80px;
+        height:95px;
     }
     .top-line {
         border-bottom-style: solid;
@@ -267,10 +280,11 @@ a:hover{
 
 
 .visual {
-    width: 90%;
-    max-width:75em;
-    margin: 0 auto;
-    
+    width: 100%;
+    max-width: 80rem;
+    margin:0 auto;
+    margin-top:1rem;
+    background:#fff;
 }
 
 #img-slide{
@@ -280,7 +294,7 @@ a:hover{
 
 #img-slide div{
     width:100%;
-    height:400px;
+    height:350px;
 }
 #img-slide div:nth-child(1){
     background-image: url('http://tkfile.yes24.com/Upload2/Display/202009/20200925/wel_mv_000.jpg/dims/quality/70/');
@@ -565,7 +579,7 @@ a:hover{
 }
 .main-img{
     padding-bottom:2rem;
-    border-bottom:1px solid #ddd;
+    border-bottom:none;
 }
 
 .table-wrap{
@@ -597,6 +611,7 @@ a:hover{
     margin:0;
     padding:2px;
 }
+
 .reserve-button button{
     width:50%;
     max-width: 15rem;
@@ -605,6 +620,9 @@ a:hover{
     border-radius: 20px;
     border:none;
 }
+/* .reserve-button button{
+    font-size:.8rem;
+} */
 
 /* 상세페이지 작업 */
 .details-wrap{
@@ -629,7 +647,7 @@ a:hover{
         display: none;
     }
     .reserve-wrap{
-        margin-top:8px;
+        margin-top:1rem;
         border-top:none;
     }
 
@@ -643,6 +661,10 @@ a:hover{
     .details-wrap {
         width:100%;
        
+    }
+    .main-img {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #ddd;
     }
 
 }
@@ -1095,8 +1117,8 @@ a:hover{
     height: 100%;
     margin: 0 auto;
     padding-bottom: 40px;
-
-
+    margin-top:10%;
+    background:#eee;
 }
 
 .login_wrap .card {
@@ -1175,11 +1197,14 @@ a:hover{
 /***** 로그인페이지 모바일 작업*****/
 @media only screen and (max-width:768px) {
 
+
+
     .login_wrap {
         width: 100%;
         height: 100%;
         margin: 0;
         padding-bottom: 40px;
+        background:#fff;
     }
 
     .login_wrap .card {
@@ -1251,7 +1276,7 @@ input[type=password] {
     background:#fff;
     max-width:75em;
     margin:0 auto;
-    padding:0;
+    padding:1rem 0;
 }
 
 
@@ -1259,40 +1284,37 @@ input[type=password] {
 .pay-title{
     margin:0 auto;
     width:90%;
-    height:100px;
-    line-height: 100px;
+    height:auto;
+    padding:.1rem 0;
     background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
     
 }
-.pay-title-box{
-    width:100%;
-    height:80px;
-    padding-top:10px;
-    
-}
+
 .pay-title-box ul{
     display: flex;
     width:100%;
-    height:80px;
-    line-height: 80px;
-    padding:0;
+    height:auto;
+    padding:.5rem;
+    margin-top:.9rem;
     text-align: center;
+    background:rgba(250, 250, 250, 0.3);
 
 }
 .pay-title-box li{
     width:20%;
-    background:rgba(250,250,250,0.3);
+    height:auto;
 }
 .pay-title-box ul li img{
     width:3rem;
     background:#fff;
 }
-.pay-title-box li:nth-child(2){
-    width:80%;
-    background:rgba(250,250,250,0.3);
+.pay-title-box li:nth-child(2) {
+    width: 80%;
     text-align: left;
-    
+
 }
+
+/* 
 .pay-title-box li:nth-child(2) h6{
     width:100%;
     height:40px;
@@ -1306,7 +1328,8 @@ input[type=password] {
     line-height:30px;
     margin-bottom:0;
     font-size:.8rem;
-}
+} */
+
 /*할인쿠폰*/
 .pay-coupon-bg{
     margin:0 auto;
@@ -1479,9 +1502,9 @@ input[type=password] {
     }
         .pay-title{
         width:100%;
-        height:100px;
+        /* height:100px;
         line-height: 100px;
-        background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+        background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%); */
 
     }
     .pay-coupon-bg{
@@ -1617,7 +1640,7 @@ input[type=password] {
     max-width: 22em;
     margin-top: 20px;
     border-style: solid;
-    border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
     border-image-slice: 2;
     background: #fff;
 }
@@ -1628,7 +1651,7 @@ input[type=password] {
 .mypage-wrap {
     background: #fff;
     max-width: 75em;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 0;
 }
 
@@ -1636,7 +1659,7 @@ input[type=password] {
     margin: 0 auto;
     width: 100%;
     height: 70px;
-    background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
     margin-bottom:20px;
 }
 
@@ -2043,11 +2066,13 @@ input[type=password] {
 }
 
 @media only screen and (max-width:768px){
+
+
 .ticket-search-wrap {
     width:100%;
     height: auto;
     margin: 0 auto;
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: center;
     background: #fff;
     
@@ -2058,12 +2083,13 @@ input[type=password] {
     padding: 1rem 0;
     border-radius: 1rem;
 }
-
 .ticket-search-wrap h2 {
     width: fit-content;
-    font-size: 1.2rem;
-    padding: 1rem;
-    margin: 0 auto;
+    height:100px;
+    font-size: 1.5rem;
+    padding: .5rem;
+    margin: .5rem auto;
+    background: #fff;
 }
 
 .ticket-search-bg label {
@@ -2716,14 +2742,14 @@ ftitle
 /*푸터 css*/
 
 .footer_wrap{
-    width:90%;
+    width:100%;
     height:auto;
     color:#eee;
     text-align: center;
     display: flex;
     margin:0 auto;
     font-size:.9rem;
-    
+
 }
 .footer_bg{
     width:100%;
@@ -2733,11 +2759,11 @@ ftitle
     padding:1rem 0;
 }
 .footer_wrap>a{
-    width:25%;
+    width:30%;
 }
 .footer_wrap>p{
     text-align: left;
-    width:75%;
+    width:60%;
     padding-left:5rem;
 }
 .footer_wrap small{
@@ -2786,6 +2812,7 @@ ftitle
     width:100%;
     padding:0;
     height:fit-content;
+    background:#333;
 }
 
 .date-box{

@@ -38,9 +38,6 @@ module.exports = function(){
                     res.render("ticket/myticket", {ticket : result, loggedname : req.session.name});
                 }
             }
-
-
-
         )
     })
 

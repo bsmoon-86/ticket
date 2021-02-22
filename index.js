@@ -75,30 +75,6 @@ app.get("/", function (req, res) {
   
 });
 
-
-
-//QR code 만들기
-app.post("/qrcode", function(req, res) {
-  var ticketId = req.body.ticketId;
-  var name = req.body.name;
-  var cofirm = {
-    "ticketId" : ticketId,
-    "name" : name,
-    "phone" : req.session.phone,
-    "email" : req.session.email 
-  }  //input 값 변수
-    QRCode.toDataURL(JSON.stringify(cofirm), function (err, url) {
-      //console.log(url)
-      let data = url.replace(/.*,/,'')
-      let img = new Buffer.from(data,'base64')
-      res.writeHead(200,{
-          'Content-Type' : 'image/png',
-          'Content-Length' : img.length
-      })
-      res.end(img);
-  })
-});
-
 app.get("/qrcode2", function(req, res) {
   var cofirm = {
     "ticketId" : "e3f370c6d51e6098ff4fac992a789e9f09241fc01b1db8ea7b32df75bd12d3ca",

@@ -5,11 +5,16 @@
 
 
     <%- include ("../reference/head.ejs") %>
+    <script type="text/javascript" src="../vendor/bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../vendor/bootstrap/js/qrcode.js"></script>
 
 </head>
 
+<script type="text/javascript">
+    
+</script>
 <body>
-
+    
     <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
@@ -41,6 +46,7 @@
              
              <div class="my-ticket-intro">
                  <ul class="my-ticket-intro1">
+                    <li id="qrcode"></li>
                     <li><%=ticket[0].date%> | <%=ticket[0].time%></li>
                     <li><%=ticket[0].seat%></li>
                     <li><%=ticket[0].place%></li>
@@ -57,14 +63,14 @@
                          <li>소유자<span><%=ticket[0].user%></span> </li>                         
                  </ul>
                     <div class="my-ticket-intro3">
-                        <form method="POST" action="/qrcode">
+                        <!-- <form method="POST" action="/qrcode"> -->
                         <div style="display: none;">
                             <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
                             <input type="text" name="name" value="<%=ticket[0].name%>">
                         </div>
                         <p>현장 본인인증 후 사용가능 한 티켓입니다.</p>
-                        <button class="button" type="submit">인증하기</button>
-                        </form>
+                        <button class="button" onclick="makeCode('<%=ticket[0].ticketId%>', '<%=ticket[0].name%>')">인증하기</button>
+                        <!-- </form> -->
                         
                         <form method="POST" action="/ticket/transfer" style="margin-top: 0.5rem;">
                         <div style="display: none;">
@@ -82,7 +88,11 @@
 
     <script>
         var i =1;
+
+
         $(document).ready(function(){
+            
+            $("#qrcode").hide();
 
             $(".toggle").hide();
             // $("ul > li:first-child a").next().show();
@@ -94,7 +104,24 @@
                     i++
                 return false;
             });
-        });        
+        });
+
+        
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 150,
+            height : 150
+        });
+        
+        function makeCode (ticketId, name) {	
+            $("#qrcode").show();
+            var elText = "{ticketId : "+ticketId+",name : "+name+"}";
+            
+            
+            qrcode.makeCode(elText);
+        }
+        $("#qrcode > img").css({"margin":"auto"});
+</script>
+
     </script>
  
     <!-- Footer -->

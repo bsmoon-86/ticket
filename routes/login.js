@@ -25,14 +25,14 @@ var connection = mysql.createConnection({
 module.exports = function() {
 
     router.get("/", function(req, res, next){
-        res.render("login/login");
+        res.render("login/login", {loggedname : req.session.name});
     })
 
     router.get("/signup", function(req, res, next){
-        res.render("login/signup")
+        res.render("login/signup", {loggedname : req.session.name})
     })
 
-    router.post("/signup2", function(req, res, next){
+    router.post("/signup", function(req, res, next){
         var id = req.body.id;
         var password = req.body.pass;
         var name = req.body.name;
@@ -53,8 +53,8 @@ module.exports = function() {
                         console.log("존재하는 id")
                     }else{
                         connection.query(
-                            `insert into user (id, password, name, birth, email, phone, linkcode) values (?,?,?,?,?,?,?)`,
-                            [id, encrypted, name, birth, email, phone, linkcode],
+                            `insert into user (id, password, name, email, phone, linkcode) values (?,?,?,?,?,?)`,
+                            [id, encrypted, name, email, phone, linkcode],
                             function(err, result){
                                 if(err){
                                     console.log("err", err)
@@ -102,7 +102,7 @@ module.exports = function() {
                                         console.log("login manager err => ", err)
                                         res.redirect("/login")
                                     }else{
-                                        res.render("manager/main", {concert : result});
+                                        res.render("manager/main", {concert : result, loggedname : req.session.name});
                                     }
                                 }
                             )
@@ -144,29 +144,19 @@ module.exports = function() {
     })
 
     var mypage_ticket;
+    var ticket_used;
     var mypage_user;
 
     router.get("/mypage", function(req, res, next){
         connection.query(
-            `select * from ticket where user =?`,
+            `select * from user where id = ?`,
             [req.session.user],
-            function(err, result){
-                if(err){
-                    console.log("mypage select error => ", err)
+            function(err2, result2){
+                if(err2){
+                    console.log(err)
                 }else{
-                    mypage_ticket = result;
-                    connection.query(
-                        `select * from user where id = ?`,
-                        [req.session.user],
-                        function(err2, result2){
-                            if(err2){
-                                console.log(err)
-                            }else{
-                                mypage_user = result2;
-                                next();  
-                            }
-                        }
-                    )
+                    mypage_user = result2;
+                    next();  
                 }
             }
         )
@@ -183,7 +173,18 @@ module.exports = function() {
 
     router.get("/ticket_wallet", function(req, res, next){
         connection.query(
-            `select * from ticket where user =?`,
+            `select * from ticket where user =? and state = 9`,
+            [req.session.user],
+            function(err, result){
+                if(err){
+                    console.log("mypage select error => ", err)
+                }else{
+                    ticket_used = result;
+                }
+            }
+        )
+        connection.query(
+            `select * from ticket where user =? and state = 1`,
             [req.session.user],
             function(err, result){
                 if(err){
@@ -211,7 +212,7 @@ module.exports = function() {
         if(!req.session.user){
             res.redirect("/login")
         }else{
-            res.render("login/mywallet", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, user: mypage_user});
+            res.render("login/mywallet", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, ticket_used : ticket_used , user: mypage_user});
         }
     })
 

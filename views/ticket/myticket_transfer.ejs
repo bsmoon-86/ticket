@@ -9,24 +9,27 @@
 </head>
 
 <body>
-    
-    <div class="header" style="background:tan;">
+
+    <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
-
+    
+<div class="body">
     <div class="ticket-search-wrap">
 
         <h2>티켓 양도하기</h2>
         <form method="POST" action="/ticket/transfer2">
-            <div class="ticket-search-bg">
+            <div class="ticket-search-bg2">
                 <div style="display: none;">
                     <input type="text" name="concertId" value="<%=concertId%>">
                     <input type="text" name="ticketId" value="<%=ticketId%>">
                 </div>
 
+                <div>
                 <label>양도할 ID</label>
                 <input type="text" name="transferticketer" id="transferticketer" required>
                 <input type="button" class="btn" id="transfer" value="확인">
+                </div>
 
                 <div class="alert alert-success" id="alert-success">아이디가 확인되었습니다.</div> 
                 <div class="alert alert-danger" id="alert-danger">일치하는 아이디가 없습니다.</div>
@@ -38,7 +41,11 @@
         </form>
         
     </div>
-
+</div> 
+     <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>      
     
     <script type="text/javascript"> 
         $(function(){ 
@@ -67,12 +74,7 @@
             }); 
         }); 
     </script>
-
-    <!— Footer —>
-    <footer class="footer" style="margin-top: 35rem;">
-        <%- include ("../reference/footer.ejs") %>
-    </footer>
-    
+   
 </body>
 
 </html>

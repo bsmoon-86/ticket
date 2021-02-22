@@ -10,6 +10,12 @@
 
 <body>
 
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
+
+
+<div class="body">
     <div class="myticket-wrap">
        
         
@@ -72,6 +78,8 @@
          
         
     </div>
+</div>
+
     <script>
         var i =1;
         $(document).ready(function(){
@@ -88,7 +96,11 @@
             });
         });        
     </script>
-    
+ 
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>      
 
 </body>
 

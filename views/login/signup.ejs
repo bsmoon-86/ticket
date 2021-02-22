@@ -8,10 +8,14 @@
 
 </head>
 
-<body class="login_wrap">
+<body>
 
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>    
 
-    <div class="card align-middle signup">
+<div class="body">    
+    <div class="login_wrap card align-middle signup">
 
         <div class="card-title" style="padding-top:30px;">
             <h2 class="text-center">회원가입</h2>
@@ -335,6 +339,11 @@
 
         </div>
 </div>
+</div>
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>
 
 
 </body>

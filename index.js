@@ -14,8 +14,6 @@ require("moment-timezone");
 require('dotenv').config();
 moment.tz.setDefault("Asia/Seoul");
 
-
-
 var mysql = require("mysql2");
 var connection = mysql.createConnection({
   host: process.env.host,
@@ -88,6 +86,25 @@ app.post("/qrcode", function(req, res) {
     "name" : name,
     "phone" : req.session.phone,
     "email" : req.session.email 
+  }  //input 값 변수
+    QRCode.toDataURL(JSON.stringify(cofirm), function (err, url) {
+      //console.log(url)
+      let data = url.replace(/.*,/,'')
+      let img = new Buffer.from(data,'base64')
+      res.writeHead(200,{
+          'Content-Type' : 'image/png',
+          'Content-Length' : img.length
+      })
+      res.end(img);
+  })
+});
+
+app.get("/qrcode2", function(req, res) {
+  var cofirm = {
+    "ticketId" : "e3f370c6d51e6098ff4fac992a789e9f09241fc01b1db8ea7b32df75bd12d3ca",
+    "name" : "김태경",
+    "phone" : "01084969889",
+    "email" : "moduedu@gmail.com" 
   }  //input 값 변수
     QRCode.toDataURL(JSON.stringify(cofirm), function (err, url) {
       //console.log(url)
@@ -242,15 +259,32 @@ app.get("/search", function(req, res){
                 if(err){
                 console.log(err)
                 }else{
-                console.log(httpResponse);
-                console.log(body.split(","));
-                res.send(body.split(","));
-                //res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
-                // ticket.push(body);
+                  console.log(result[0].state);
+                  if(result[0].state == 1){
+                    connection.query(
+                      `update ticket set state = 9 where ticketId = ?`,
+                      [ticketId],
+                      function(err2, result2){
+                        if(err2){
+                          console.log("scan sql2 error =", err2)
+                        }else{
+                          //console.log(httpResponse);
+                          console.log(body.split(","));
+                          res.send(body.split(","));
+                        }
+                      }
+                    )
+                  }else{    
+                    res.json({
+                      "result" : "Ticket used"
+                    });
+                  }
                 }
             })
         }else{
-          res.send("empty");
+          res.json({
+            "result" : "empty"
+          });
         }
 
     }

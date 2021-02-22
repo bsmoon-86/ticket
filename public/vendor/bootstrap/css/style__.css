@@ -64,9 +64,7 @@ a:hover{
     padding:0;
     line-height: 50px;
     background:#fff;
-    border:1px solid #ddd;
-    border-left:none;
-    border-right:none;
+    border-block:1px solid #ddd;
    
 }
 .gnb{
@@ -300,9 +298,9 @@ a:hover{
     height:350px;
 }
 #img-slide div:nth-child(1){
-    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202010/MainVisual_4071e68b-a84f-4cca-8f9f-e1911f5c2a55.jpg');
+    background-image: url('http://tkfile.yes24.com/Upload2/Display/202009/20200925/wel_mv_000.jpg/dims/quality/70/');
     background-repeat: no-repeat;
-    background-position:center;
+    background-position:center center;
     background-size:cover;
    
 }
@@ -313,7 +311,7 @@ a:hover{
     background-size: cover;
 }
 #img-slide div:nth-child(3) {
-    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202102/MainVisual_72d4cfdc-95a0-4c87-830c-24ecf3d21cd0.jpg');
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202010/MainVisual_f9542470-630f-47d8-b835-59065dd6fa62.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
@@ -401,8 +399,6 @@ a:hover{
     background-position: center top;
     background-size: cover;
 }
-
-
 }
 
 
@@ -581,8 +577,8 @@ a:hover{
     margin-top:2rem;
     padding-bottom:2rem;
     border:1px solid #eee;
-}
 
+}
 .main-img{
     padding-bottom:2rem;
     border-bottom:none;
@@ -597,7 +593,6 @@ a:hover{
 
 .reserve-wrap div:nth-child(1){
     padding:1rem 0;
-
 }
 .reserve-choice form{
     margin-top:10px;
@@ -666,11 +661,9 @@ a:hover{
     .title-txt{
         display: none;
     }
-
     .main{
         font-size:1.2rem;
         width:100%;
-
     }
 
     .details-wrap {
@@ -680,10 +673,6 @@ a:hover{
     .main-img {
         padding-bottom: 2rem;
         border-bottom: 1px solid #ddd;
-    }
-
-    .reserve-wrap>div:nth-child(1) {
-      padding-top:0;
     }
 
 }

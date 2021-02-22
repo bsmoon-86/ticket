@@ -20,6 +20,7 @@
         <%- include ("./reference/header.ejs") %>
     </div>
 
+    <div class="body_main">
     <!--header-slide-->
     <header id="carouselExampleCaptions" class="carousel slide visual" data-bs-ride="carousel">
         <ol class="carousel-indicators">
@@ -44,15 +45,18 @@
 
                 </a>
             </div>
+
+
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"></span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden"></span>
-        </a>
+                    <a class="carousel-control-prev slide_btn" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+            <a class="carousel-control-next slide_btn" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+
     </header>
 
     <!—모바일 메뉴 스타일—>
@@ -148,6 +152,7 @@
                         <div class="jumbotron-img">
                             <img src="https://ticketimage.interpark.com/Play/image/large/20/20010593_p.gif"
                                 width="70%" height="100%" alt="...">
+                                
                         </div>
                         <div class="jumbotron-body">
                             <div class="badge bg-danger">신규오픈</div>
@@ -233,7 +238,7 @@
         </div>
     </div>
 
-
+</div>
     <!-- Footer -->
     <footer class="footer">
         <%- include ("./reference/footer.ejs") %>

@@ -8,9 +8,12 @@
 
 <body>
 
-    <div class="header" style="background:tan;">
+    <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
+
+<div class="body">
+
     <div class="mypage-wrap">
         
         <div class="mypage-title">
@@ -18,7 +21,6 @@
                 <h5 class="mypage-h5">마이페이지</h5>
             </div>
         </div> 
-         
         
         <div class="mypage-body">
             <h6>내정보</h6>
@@ -41,14 +43,17 @@
 
         <div class="mypage-body">
             <div class="my-box">
-                <h6 class="txt"><i class="far fa-bell"></i>나른한 오늘 핫한 스포츠는 어때요?</h6>
+                <h6 class="txt"><i class="far fa-bell"></i>&nbsp;&nbsp;나른한 오늘 핫한 스포츠는 어때요?</h6>
             </div>
         </div>
-
-        
-        
+ 
     </div>
-    
+
+</div>        
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>      
 
 </body>
 

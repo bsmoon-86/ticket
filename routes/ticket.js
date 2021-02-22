@@ -19,7 +19,7 @@ module.exports = function(){
 
     router.get("/", function(req, res, next){
         var concertId = req.query.concertId;
-        res.render("confirm/login", {concertId: concertId});
+        res.render("confirm/login", {concertId: concertId, loggedname : req.session.name});
     })
 
     
@@ -35,7 +35,7 @@ module.exports = function(){
                     console.log("ticket_info sql error => ", err)
                 }else{
                     console.log("ticket_info => ", result)
-                    res.render("ticket/myticket", {ticket : result});
+                    res.render("ticket/myticket", {ticket : result, loggedname : req.session.name});
                 }
             }
 
@@ -70,7 +70,7 @@ module.exports = function(){
                         }else{
                         console.log(httpResponse);
                         console.log(body.split(","));
-                        res.render("ticket/search_ticket" ,{ticket : result, user : body.split(",")})
+                        res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
                         // ticket.push(body);
                         }
                     })
@@ -346,7 +346,7 @@ module.exports = function(){
                                         console.log("ticket trans update error =", err2)
                                     }else{
                                         console.log(result2);
-                                        res.redirect("/login/mypage")
+                                        res.redirect("/login/ticket_wallet")
                                     }
                                 }
                             )

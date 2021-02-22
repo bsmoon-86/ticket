@@ -41,22 +41,21 @@
 <body>
     <!-- Navigation header 임시파일-->
     <div class="top">
-        <div  id="submenu_bar">
+
+        <div id="submenu_bar">
 
             <div class="top-line">
-                <div class="container">
+                <div>
                     <h1 class="logo"><a href="/"><img src="../img/logo.png" alt="logo"></a></h1>
 
                     <!--모바일 버전일때 보이는 버튼-->
                     <span class="logo_menu" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
                     <div class="serch">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="search" aria-label="Search">
-                            <button class="btn" type="submit">
+                            <input class="form-control" type="text" placeholder="search" aria-label="Search">
+                            <button>
                                 <i class="fas fa-search"></i>
                             </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -64,17 +63,17 @@
             <div class="gnb-box" >
                 <nav class="gnb">
                     <ul class="navi">
-                        <li><a href="javascript:menu('9')">HOME</a></li>
-                        <li><a href="javascript:menu('0')">공연</a></li>
-                        <li><a href="javascript:menu('1')">전시</a></li>
-                        <li><a href="javascript:menu('2')">스포츠</a></li>
-                        <li><a href="/ticket/search">티켓 조회</a></li>
+                        <li><a href="/" style="color:#46c0f7;">HOME</a></li>
+                        <li><a href="javascript:menu('0')" style="color:#46c0f7;">공연</a></li>
+                        <li><a href="javascript:menu('1')" style="color:#46c0f7;">전시</a></li>
+                        <li><a href="javascript:menu('2')" style="color:#7881f6;">스포츠</a></li>
+                        <li><a href="/ticket/search" style="color:#7881f6;">티켓 조회</a></li>
                         <%if(!loggedname){%>
-                        <li><a href="/login">로그인</a></li>
+                        <li><a href="/login" style="color:#a44af5;">로그인</a></li>
                         <%}else{%>
-                        <li><a href="/login/mypage">마이페이지</a></li>
-                        <li><a href="/login/ticket_wallet">티켓지갑</a></li>
-                        <li><a href="/logout">로그아웃</a></li>
+                        <li><a href="/login/mypage" style="color:#a44af5;">마이페이지</a></li>
+                        <li><a href="/login/ticket_wallet" style="color:#a44af5;">티켓지갑</a></li>
+                        <li><a href="/logout" style="color:#a44af5;">로그아웃</a></li>
                         <%}%>
                     </ul>
                 </nav>
@@ -90,6 +89,7 @@
             function submenu_bar_fixed() {
                 if (window.pageYOffset >= TopMenuPositon) {
                     TopMenu.classList.add("sticky");
+
                 } else {
                     TopMenu.classList.remove("sticky");
                 }

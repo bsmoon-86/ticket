@@ -1,335 +1,3113 @@
 @charset "utf-8";
 
-
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 /***1.header css****/
 /***2.img_slide css****/
 /***3.index css****/
-/***4.좌석선택 css****/
+/***4.예약페이지 css****/
+/***5.좌석선택 css****/
+/***6.로그인 css****/
+/***7.회원가입 css****/
 
 
 
-*{
-    list-style:none;
-    font-family: "맑은 고딕";
+* {
+    list-style: none;
+    font-family: 'Nanum Gothic';
 }
 
-a{
-    color:black;
+a {
+    color: black;
     display: block;
+    text-decoration: none;
 }
 
-/**********************1.header-css 작업*****************************/
+a:hover {
+    text-decoration: none;
+}
 
-.top{
-    width:100%;
-    height:110px;
-    background:#fff;
+
+/**********************1.header-css 작업(2월16일)*****************************/
+
+.top {
+    width: 100%;
+    height: 138px;
     position: relative;
+    z-index: 99;
+    background-color: #fff;
+
 }
 
-.top-line{
-    height:70px;
-    line-height: 70px;
+.top-line {
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    height: 95px;
+    line-height: 95px;
+
 }
 
-.logo{
-    float:left;
-    margin-top:10px;
-    font-size:2.2rem;
+.logo {
+    float: left;
+    margin-top: 8px;
 }
-.serch{
-    width:250px;
-    height:30px;
-    background:orange;
-    float:right;
-    margin-top:17px;
-    position: relative; /*돋보기 부모박스*/
+
+.logo img {
+    width: 90%;
+    padding-top: 17px;
 }
-.gnb-box{
-    width:100%;
-    height:40px;
-    line-height: 40px;
-    background-color:#fff;
-    border-bottom-style: solid;
-    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    border-image-slice: 1;
-/*    border-style: solid;
-    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
-    border-image-slice: 1;*/
+
+
+.gnb-box {
+    width: 100%;
+    margin: 0 auto;
+    height: 50px;
+    padding: 0;
+    line-height: 50px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+
 }
-.navi{
+
+.gnb {
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+
+}
+
+.navi {
     display: flex;
+    height: 50px;
     text-align: center;
-    padding-left:0;
-}
-.navi>li{
-    width:90%;
-    height:35px;
-    box-sizing: border-box;
-    background:#fff;
+    padding-left: 0;
+    /* background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%); */
 }
 
-.navi li:hover{
-    background:#eee;
+.navi>li {
+    width: 80%;
+    height: 43px;
+    margin: 2px;
+    box-sizing: border-box;
+    border-radius: 50px;
+    font-weight: 500;
+
+}
+
+.navi li:hover {
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1) inset;
 }
 
 /*serch 박스 설정*/
 
-.serch input{
-    width:250px;
-    height:30px; 
-    border-radius: 0;
+.serch {
+    width: 25%;
+    float: right;
+    margin-top: 38px;
+    position: relative;
+    /*돋보기 부모박스*/
 }
-.serch button{
-    width:35px;
-    height:30px; 
-    padding: 4px;
-    padding-top:2px;
-    background:#333;
-    border-radius: 0;
-    color:#fff;
+
+.serch input {
+    width: 100%;
+    height: 35px;
+    background: #fff;
+    /* border-bottom-style: solid;
+    border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice:3; */
+    border: 1px solid #ddd;
+    border-radius: 1rem;
 }
-.serch button:hover{
-    color:orange;
+
+.serch button {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    z-index: 999;
+    padding: 0;
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: rgba(250, 250, 250, 0);
+}
+
+.serch button i {
+    display: inherit;
+    color: #7881f6;
 }
 
 /*자바스크립트 메뉴 상단고정*/
-.sticky{
+.sticky {
+    width: 100%;
     position: fixed;
-    top:0;
-    z-index: 999;
+    top: 0;
+    z-index: 996;
+    background: #fff;
 }
 
+.header-box {
+    display: none;
+}
 
 /**********모바일 화면 header작업************/
-@media only screen and (max-width:768px){
+@media only screen and (max-width:768px) {
 
-    .serch{
+    .gnb-box {
         display: none;
     }
-    
-    .logo{
-        width:100%;
-        text-align: center;
+
+    .serch {
+        display: none;
     }
-    
-    
+
+    .logo {
+        text-align: left;
+    }
+
+    .logo img {
+        width: 70%;
+        padding-top: 17px;
+        padding-left:7px;
+    }
+
+    .top {
+        height: 95px;
+    }
+
+    .top-line {
+        border-bottom-style: solid;
+        border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        border-image-slice: 2;
+    }
+
+    .header-box {
+        display: none;
+    }
 }
 
 
-/**********************2.img_slide 이미지 슬라이드 작업*****************************/
 
-#img-slide{
-    width:90%;
-    margin:0 auto;
-    
+/******모바일 버전 header 부분 편집(1.27일)******/
+
+.logo_menu {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: -4px;
 }
-#img-slide img{
-    width:100%;
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    background: #fff;
+    transition: 0.5s;
+    overflow: hidden;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.16) inset;
+}
+
+.overlay-title {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    background-image: linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
+}
+
+.overlay-title a {
+    position: absolute;
+}
+
+.overlay-title a:nth-child(1) {
+    top: 27px;
+    left: 13px;
+    width: 74px;
+    height: 28px;
+    color: #ffffff;
+}
+
+.overlay-title a:nth-child(2),
+.overlay-title a:nth-child(3) {
+    top: 27px;
+    left: 70%;
+    width: 63px;
+    height: 23px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    border: 1px solid #fff;
+}
+
+.overlay-content {
+    position: absolute;
+    left: -10%;
+    width: 120%;
+    padding: 0;
+}
+
+.overlay-content li {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    padding-left: 5%;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.overlay-content li a {
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+}
+
+.overlay-content i {
+    vertical-align: middle;
+    padding: 0 5% 0 10%;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    opacity: 0.9;
+}
+
+.closebtn {
+    position: absolute;
+    z-index: 999;
+    top: 28rem;
+    left: 0px;
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
     text-align: center;
 }
 
-/*****좌석선택 및 예약 모바일 작업*****/
-@media only screen and (max-width:768px){
+@media only screen and (max-width:768px) {
 
-#img-slide{
-    width:100%;
-    margin:0 auto;
-    
-    
-}
-#img-slide img{
-    width:150%;
-    text-align: right;
-}    
+    .logo_menu {
+        display: block;
+    }
 
-    
 }
+
+/**********************2.img_slide 이미지 슬라이드 작업 (22일작업 파일)*****************************/
+
+
+.visual {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    /* background:rgba(167, 201, 211, 0.2) */
+}
+
+#img-slide {
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+#img-slide div {
+    width: 100%;
+    height: 350px;
+}
+
+#img-slide div:nth-child(1) {
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202010/MainVisual_4071e68b-a84f-4cca-8f9f-e1911f5c2a55.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+#img-slide div:nth-child(2) {
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202101/MainVisual_bd119d0d-1b0a-4307-a1ad-069eab13322b.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#img-slide div:nth-child(3) {
+    background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202102/MainVisual_72d4cfdc-95a0-4c87-830c-24ecf3d21cd0.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#img-slide div a {
+    width: 100%;
+    height: 100%;
+}
+
+/* 모바일 메뉴 작업 */
+.m-menu,
+.m-menu a {
+    display: none;
+
+}
+
+
+
+/*****2.img_slide 이미지 슬라이드 작업*****/
+@media only screen and (max-width:768px) {
+
+    .visual {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #img-slide {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
+
+    .m-menu,
+    .m-menu a {
+        display: block;
+
+
+    }
+
+    .m-menu {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 1.5rem;
+    }
+
+
+    .m-menu span {
+        display: block;
+        font-size: .8rem;
+        padding-top: 10px;
+    }
+
+    /* 모바일 공간박스 */
+
+    .m-box {
+        height: 10px;
+        background: #eee;
+        margin: 1.5rem 0 2rem 0;
+        box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2) inset,
+            0px 0px 2px rgba(200, 200, 200, 0.4)
+    }
+
+    #img-slide div {
+        width: 100%;
+        height: 300px;
+    }
+
+    #img-slide div:nth-child(1) {
+        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2101/210105090614_20009551.gif');
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+
+    }
+
+    #img-slide div:nth-child(2) {
+        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2012/201211113931_20010583.gif');
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+    }
+
+    #img-slide div:nth-child(3) {
+        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2010/201006035547_20007956.gif');
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: cover;
+    }
+
+
+}
+
 
 
 /**********************3.index 인덱스 페이지 작업*****************************/
 
-.title_bg{
-    
-    
-}
 
-.title_bg h2{
-    padding:20px;
-    border-bottom: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    text-align: center;
-}
-
-.visual{
-    width:90%;
-    margin:0 auto;
-}
-/*.card-box a{
-    width:100%;
-    
-}*/
-
-.card-box img{
-    width:90%;
-    margin:0 auto;
-    margin-top:10px;
-    margin-left:10px;
-    
-}
-
-.card-title p{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space:nowrap;
-}
-.card-title span{
-    display: block;
-    white-space:nowrap;
-    font-size:.9rem;
-}
-.card-title small{
-    color:#999999;
-}
-
-.jumbotron-img{
-    width:25%;
-    float:left;
-    overflow: hidden;
-    text-align: center;
-}
-
-.jumbotron-body{
-    width:75%;
-    float:left;
-}
-.jumbotron-body h5{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space:nowrap;
+.title_bg h3 {
+    padding: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size:1.2rem;
-    padding:10px 10px 5px 0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
 }
 
-.jumbotron-body p{
+.title_bg h3::before {
+    content: "___";
+    color: #46c0f7;
+}
+
+.title_bg h3::after {
+    content: "___";
+    color: #46c0f7;
+}
+
+
+
+/* 티켓존 카드박스 높이 조정 시작(22일)*/
+
+.card-box {
+    width: 100%;
+    height: 100%;
+}
+
+.card-box a {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.card-img-top {
+    width: 90%;
+    padding-top: 0.5em;
+    margin: 0 auto;
+
+}
+
+.card-img-top img {
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.card-text {
+    width: 100%;
+    height: 50px;
+    text-align: left;
+    margin: 0;
+}
+
+.card-title {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.card-title p {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+​ .card-title span {
+    display: block;
+    font-size: .7rem;
+}
+
+.card-title small {
+    display: block;
+    color: #999999;
+    font-size: .7rem;
+}
+
+
+
+.jumbotron-img {
+    width: 25%;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.jumbotron-body {
+    width: 75%;
+    float: left;
+    font-size: .8rem;
+}
+
+.jumbotron-body h5 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px 10px 5px 0;
+}
+
+.jumbotron-body p {
     display: none;
 }
 
-.jumbotron-body div{
-    padding: 5px;
-    color:#fff;
+.jumbotron-body div {
+    padding: 3px;
+    color: #fff;
     font-weight: normal;
 }
-.jumbotron-body span{
+
+.jumbotron-body span {
     display: block;
-    font-size:.9rem;
+    font-size: .9rem;
 }
+
+.card-box a:hover {
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color: #fff;
+}
+
+.card-box a:hover small {
+    color: #fff;
+}
+
 /**********모바일 화면 index 작업************/
-@media only screen and (max-width:768px){
-    
-    .jumbotron-body span{
+@media only screen and (max-width:768px) {
+
+    .jumbotron-body span {
         display: none;
     }
-    .jumbotron-body p{
+
+    .jumbotron-body p {
         display: block;
-        color:seagreen;
+        color: seagreen;
     }
-    
-    
+
+
     /*이벤트페이지 2종류 숨김*/
-    .m-none{
+    .event-padding {
+        margin-top: 3rem;
         display: none;
     }
-    .event-padding{
-        margin-top:3rem;
+
+    .card-img-top img {
+        width: 100%;
+        height: 185px;
+        border-bottom: 1px solid #ddd;
     }
+
+
 }
 
 
 
 
 
+/**********************4.예약페이지 작업*****************************/
 
-
-.price p{
-    margin-bottom:0;
-    font-size:.7rem;
-}
-
-
-/**********************4.좌석선택 예약페이지 작업*****************************/
-
-.h2-title{
-    line-height: 50px;
+.main {
+    width: 95%;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    height: auto;
+    margin: 0 auto;
+    padding: 1.5rem;
 }
 
-.reserve_title{
-    height:50px;
-    line-height: 50px;
-}
-.reserve_title h2{
-    font-size:1.8rem;
-}
-.price{
-    height:140px;
-    background:#fff;
-}
-.reserve_button{
-    height:150px;
-    background:#eee;
-}
-.reserve_button>div>button{
-    width:90px;
-    
-}
-.reserve_button>div:nth-child(1)>button{
-    width:202px;
-    margin-top:30px;
-}
-.button_box{
-    background:#eee;
+.reserve-wrap {
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    border: 1px solid #eee;
 }
 
-/*좌석선택창*/
-
-.td-body td{
-    
-}
-.td-body a{
-    width:1.5rem;
-    height:1.5rem;
-    border:2px solid green;
-    cursor: pointer;
+.main-img {
+    padding-bottom: 2rem;
+    border-bottom: none;
 }
 
-.green{ /*좌석선택시 변경될 색상*/
-    background:darkgreen;
+.table-wrap {
+    margin-top: 1rem;
 }
 
-.white{
-    background:white;
+.table-wrap tbody {
+    text-align: justify;
+}
+
+.reserve-wrap div:nth-child(1) {
+    padding: 1rem 0;
+
+}
+
+.reserve_tab {
+    display: flexbox;
+    flex-direction: row;
+}
+
+.reserve-choice>div>div:nth-child(1) {
+    background: #ddd;
+    border-radius: 20px 0 0 20px;
+}
+
+.reserve-choice>div>div:nth-child(2) {
+    background: #ddd;
+    border-left: 2px solid #fff;
+    border-right: 2px solid #fff;
+}
+
+.reserve-choice>div>div:nth-child(3) {
+    background: #ddd;
+    border-radius: 0 20px 20px 0;
+}
+
+.price-list p {
+    font-size: .5rem;
+    margin: 0;
+    padding: 2px;
+}
+
+.reserve-button button {
+    width: 50%;
+    max-width: 15rem;
+    padding: .3rem;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-radius: 20px;
+    border: none;
+    margin-top:.8rem;
+}
+.reservation{
+    display: flex;
+    flex-direction: row;
+}
+
+/* 상세페이지 작업 */
+.details-wrap {
+    max-width: 75em;
+}
+
+.details {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+}
+
+.details li a {
+    height: 40px;
+    border: none;
+    background: none;
+    margin: 10px 5px 5px 5px;
+}
+
+/**********모바일 화면 index 작업************/
+@media only screen and (max-width:768px) {
+
+    .sub_list_wrap {
+        display: none;
+    }
+
+    .reserve-wrap {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .title-txt {
+        display: none;
+    }
+
+    .main {
+        font-size: 1.2rem;
+        width: 100%;
+
+    }
+
+    .details-wrap {
+        width: 100%;
+
+    }
+
+    .main-img {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .reserve-wrap>div:nth-child(1) {
+        padding-top: 0;
+    }
+
+    .reservation>div:nth-child(1){
+        width:100%;
+    }
+    .form-check{
+        width:100%;
+        height:auto;
+        padding:0;
+        margin:0;
+    }
+    .form-check label{
+        font-size: .8rem;
+    }
+    .form-check input{
+        display: block;
+        margin:0 auto;
+    }
+    .mb_none{
+        display: none;
+    }
+
+}
+
+/**********************5.좌석선택 예약페이지 작업*****************************/
+
+.seat-wrap {
+    width: 90%;
+    padding: 1rem;
+    margin: 0 auto;
+    margin-bottom: 16rem;
+    background: #fff;
+    margin-top: 2em;
+    border: 1px solid #eee;
+}
+
+.reserve_title {
+    position: relative;
+    width: 100%;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    height: 60px;
+    line-height: 60px;
+    padding: 0;
+    margin: 0;
+
+}
+
+.reserve_title h2 {
+    font-size: 1.8rem;
+    line-height: 60px;
+    padding: 0 1rem;
+}
+
+/* 다른날짜박스 */
+.date-box {
+    width: 30%;
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    right: 7%;
+    background: rgba(250, 250, 250, 0.2);
+    text-align: center;
+}
+
+.date-box h5 {
+    font-size: .9rem;
+    height: 4px;
+    margin-top: 4px;
+}
+
+.date-box select {
+    width: 40%;
+    height: 20px;
+    display: block;
+    float: left;
+    margin-left: 6%;
+    margin-top: 10px;
+    font-size: .8rem;
+
+}
+
+.article-box {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+}
+
+.left-article {
+    width: 55%;
+    height: auto;
+    padding: 0;
+    position: relative;
+}
+
+.tab-content {
+    margin-top: 5rem;
+}
+
+.right-article {
+    width: 45%;
+    border-left: 2px solid #ddd;
+    padding: 0;
+}
+
+.right-article div {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 좌석선택 페이지 */
+.first-wrap {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+    overflow-x: scroll;
+}
+
+/* .tab-pane h5 {
+    width: 100%;
+    height: 35px;
+    background: #eee;
+    margin: 0 auto;
+    line-height: 35px;
+    color: rgb(131, 120, 120);
+} */
+
+
+/* 체크박스 */
+.rectangle-wrap {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+    margin-top: 30px;
+
+}
+
+.seat-number span {
+    width: 10px;
+    font-size: 0.4em;
+    display: block;
+
+}
+
+.rectangle-wrap div {
+    margin: 5px;
+}
+
+.left1 {
+    max-width: 4.7em;
+    min-width: 4.7em;
+    background: #eee;
+
+}
+
+.center1 {
+    max-width: 18.5em;
+    min-width: 18.5em;
+    background: #eee;
+
+}
+
+.right1 {
+    max-width: 4.7em;
+    min-width: 4.7em;
+    background: #eee;
+
+}
+
+/* 2층좌석페이지 */
+
+.rectangle-wrap2 {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.rectangle-wrap2 div {
+    margin-top: 10px;
+}
+
+.center2-1 {
+    max-width: 23.4em;
+    min-width: 23.4em;
+    height: auto;
+    background: #eee;
+}
+
+.center2-2 {
+    max-width: 23.4em;
+    min-width: 23.4em;
+    height: auto;
+    background: #eee;
+
+}
+
+.center2-3 {
+    max-width: 23.4em;
+    min-width: 23.4em;
+    height: auto;
+    background: #eee;
+
+}
+
+.input-style {
+    margin: 0 auto;
+    text-align: center;
+    line-height: 10px;
+}
+
+.input-style p {
+    width: .8em;
+    height: .8em;
+    float: left;
+    margin: 1px 1px 0 1px;
+}
+
+.input-style input[type=checkbox] {
+    display: none;
+}
+
+
+/* 체크안된 상태 스타일 */
+.input-style input[type="checkbox"]+label span {
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    border: 1px solid #eee;
+}
+
+/* 체크된 상태 스타일 */
+.input-style input[type="checkbox"]:checked+label span {
+    background: cornflowerblue;
+}
+
+/* 버튼페이지 */
+.button_box {
+    height: 250px;
+    padding: 5px 0 20px 0;
+    background-image: url(/img/map.jpg);
+    background-repeat: no-repeat;
+    background-size: 350px;
+    background-position: center
+}
+
+.map_btn {
+    width: 60%;
+}
+
+.button_box>div {
+    max-width: 15rem;
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.button_box>div a {
+    height: 80px;
+    display: block;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.seat-price-box {
+    width: 100%;
+    height: auto;
+    background: #eee;
+    padding: .5rem 0 0 0;
+
+}
+
+.seat-price ul {
+    margin: 0 auto;
+    width: 100%;
+    height: 30px;
+    background: #fff;
+    margin-top: 45px;
+}
+
+.seat-price li {
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+
+}
+
+.reserve_button button {
+    width: 45%;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border: none;
+    color: #fff;
+    margin: 5px auto;
+    font-size: .8rem;
+}
+
+/* 버튼페이지 내부박스 */
+
+
+.map_btn a span {
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: .8rem;
+    background: #fff;
+}
+
+.map_btn a+a span {
+    display: block;
+    width: 70%;
+    height: 20px;
+    line-height: 20px;
+    margin: 5px auto;
+    font-size: .7rem;
+    background: #fff;
+}
+
+.map_btn a:nth-child(1) span:nth-child(1),
+.map_btn a:nth-child(1) span:nth-child(3) {
+    color: skyblue;
+    border: 1px solid skyblue;
+}
+
+.map_btn a:nth-child(1) span:nth-child(2) {
+    color: green;
+    border: 1px solid green;
+}
+
+.map_btn a:nth-child(2) span:nth-child(1) {
+    color: orange;
+    border: 1px solid orange;
+}
+
+.map_btn a:nth-child(2) span:nth-child(2) {
+    color: lightgreen;
+    border: 1px solid lightgreen;
+}
+
+.map_btn a:nth-child(2) span:nth-child(3) {
+    color: purple;
+    border: 1px solid purple;
+}
+
+
+.map_btn a.active {
+    background: rgba(36, 36, 36, 0.24);
 }
 
 
 /*****좌석선택 및 예약 모바일 작업*****/
-@media only screen and (max-width:768px){
+@media only screen and (max-width:768px) {
 
-    .reserve_title div{
-        text-align: center;
-        font-weight: bold;
-        font-size:1.3rem;
+    .seat-wrap {
+        width: 100%;
+        padding: 0;
+        margin: 0 auto;
+        position: relative;
+        border: none;
     }
-    
-    .h2-title{
+
+    .reserve_title {
+        width: 100%;
+        height: auto;
+        font-weight: bold;
+        font-size: 1rem;
+        padding-left: 5%;
+    }
+
+    .reserve_title div {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+
+    }
+
+    .reserve_tab {
+        margin-top: 2rem;
+    }
+
+    .h2-title {
         display: none;
     }
-    .reserve_button>div>button{
-    width:100px;
-    }
-    .reserve_button>div:nth-child(1)>button{
-        width:202px;
-        margin-top:20px;
+
+    .seat-number span {
+        font-size: 2px;
     }
 
-    
+
+    .rectangle-wrap div {
+        margin: 1px;
+    }
+
+
+    .left-article {
+        width: 100%;
+        height: auto;
+        padding-left: 0;
+        border-bottom-style: solid;
+        border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        border-image-slice: 2;
+        margin-top: 300px;
+    }
+
+    .right-article {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+
+    .button_box {
+        position: absolute;
+        top: 80px;
+        text-align: center;
+    }
+
+
+    .button_box>div {
+        max-width: 15rem;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .button_box>div a {
+        padding: 0px;
+        margin-top: 5px;
+
+    }
+
+
+    /* 모바일 체크박스수정 */
+
+    /* .input-style p {
+        width: .45em;
+        height: .45em;
+        float: left;
+        margin: 1px 1px 7px 1px;
+    } */
+
+    /* 체크안된 상태 스타일 */
+    /* .input-style input[type="checkbox"]+label span {
+        display: inline-block;
+        width: .45em;
+        height: .45em;
+        border: 1px solid #333;
+    } */
+
+
+    /*다른날짜보기 부분*/
+    .date-box {
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        top: 55px;
+        left: 0;
+        background: rgba(250, 250, 250, 0.2);
+    }
+
+    .date-box h5 {
+        width: 20%;
+        height: 25px;
+        float: left;
+        line-height: 25px;
+        font-size: .6rem;
+        font-weight: bold;
+        border-right: 1px solid #333;
+        margin-top: 8px;
+    }
+
+    .date-box select {
+        width: 35%;
+        float: left;
+        margin-top: 10px;
+        margin-left: 3%;
+    }
+
+}
+
+/**********************6.로그인 페이지 작업*****************************/
+
+.login_wrap {
+    width: 100%;
+    max-width: 40rem;
+    height: 100%;
+    margin: 4rem auto;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+.login_wrap .card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+    border-image-slice: 1;
+}
+
+.login_wrap .card-title {
+    width: 100%;
+    height: auto;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color: #fff;
+}
+
+.login_wrap .form-signin .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.login_wrap .card-body button {
+    background: #fff;
+    color: #333333;
+    border-style: solid;
+    border-image: linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;
+}
+
+.login_wrap .card-body button:hover {
+    border-style: solid;
+    border-image: linear-gradient(to left, #01c9ca 0%, #3886FF 100%);
+    border-image-slice: 1;
+}
+
+.login-link {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.login-link a {
+    margin: 10px 0 0 0;
+    font-size: 1rem;
+}
+
+/*sns 추가*/
+.sns-body {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.sns-body p {
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
+.sns-body a {
+    display: inline-block;
+    margin: 5%;
+}
+
+.sns-body img {
+    width: 4rem;
+
+}
+
+/***** 로그인페이지 모바일 작업*****/
+@media only screen and (max-width:768px) {
+
+
+
+    .login_wrap {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding-bottom: 40px;
+        background: #fff;
+        border: none;
+    }
+
+    .login_wrap .card {
+        margin: 0 auto;
+        float: none;
+        margin-bottom: 10px;
+        box-shadow: none;
+        border: none;
+        border-bottom-style: solid;
+        border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
+        border-image-slice: 1;
+    }
+
+    .sns-body img {
+        width: 3rem;
+    }
+
+    .login-link a {
+        margin: 10px 0 0 0;
+        font-size: .8rem;
+    }
+
+}
+
+
+/**********************7.회원가입 페이지 작업*****************************/
+
+
+
+/*제목앞 이모티콘*/
+.signup label::before {
+    content: "* ";
+    color: firebrick;
+}
+
+.ck-type label::before {
+    content: "";
+}
+
+/*회원구분*/
+.ck-type {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.ck-type label {
+    width: 50%;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+input[type=password] {
+    font-family: "Nanum Gothic";
+}
+
+/***** 회원가입페이지 모바일 작업*****/
+@media only screen and (max-width:768px) {
+
+    .form-signin {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+
+
+}
+
+
+/*결제페이지*/
+
+.pay-wrap {
+    background: #fff;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #eee;
+}
+
+.body {
+    max-width: 75em;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 2rem 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.body_main {
+    max-width: 80em;
+    height: fit-content;
+    margin: 0 auto;
+    padding: .5rem;
+    /* border:1px solid #eee; */
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+/*내결제 정보*/
+.pay-title {
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+
+}
+
+.pay-title-box {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.pay-title-box ul {
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: .5rem;
+    /* margin-top:.9rem; */
+    text-align: center;
+}
+
+.pay-title-box li {
+    width: 20%;
+    height: auto;
+}
+
+.pay-title-box ul li img {
+    width: 3rem;
+    background: #fff;
+}
+
+.pay-title-box li:nth-child(2) {
+    width: 80%;
+    text-align: left;
+
+}
+
+/* 
+.pay-title-box li:nth-child(2) h6{
+    width:100%;
+    height:40px;
+    line-height:50px;
+    margin-bottom:0;
+    overflow-x: scroll;
+}
+.pay-title-box li:nth-child(2) p{
+    width:100%;
+    height:40px;
+    line-height:30px;
+    margin-bottom:0;
+    font-size:.8rem;
+} */
+
+/*할인쿠폰*/
+.pay-coupon-bg {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 80%;
+    height: 110px;
+    background: #fff;
+    padding: 10px 0 10px 0;
+}
+
+.pay-coupon {
+    margin: 0 auto;
+    width: 90%;
+    height: 80px;
+}
+
+.coupon-list {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #ddd;
+}
+
+.coupon-list ul {
+    width: 100%;
+    height: 50px;
+    padding: 0 0.5rem;
+    text-align: center;
+}
+
+.coupon-list li {
+    float: left;
+    text-align: left;
+    width: fit-content;
+}
+
+.coupon-list li:nth-child(2) {
+    float: right;
+}
+
+.coupon-list button {
+    line-height: 30px;
+    border: 1px solid #bbb;
+    background: #fff;
+}
+
+.pay-h5 {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-weight: normal;
+    font-size: 1.1rem;
+}
+
+/*결제수단*/
+.pay-body-bg {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 80%;
+    height: 200px;
+    background: #fff;
+    padding: 10px 0 10px 0;
+}
+
+.pay-body {
+    margin: 0 auto;
+    width: 90%;
+    height: 185px;
+}
+
+.pay-tab {
+    width: 100%;
+    height: 125px;
+    position: relative;
+    padding: 0;
+    margin-top: 0;
+}
+
+.pay-tab li {
+    width: 100%;
+    padding-top: 1rem;
+
+}
+
+/* .pay-tab li {
+    float: left;
+    width: 50%;
+    border: 1px solid #ddd;
+
+} */
+.pay-tab li a {
+    display: block;
+    padding: 0;
+    height: 80px;
+    line-height: 80px;
+}
+
+.tabCon {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    height: 55px;
+    border: 1px solid #ddd;
+
+}
+
+.tabCon select {
+    width: 30%;
+    margin-left: 35%;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.pay-tab li:nth-child(2) select {
+    width: 30%;
+    margin-left: 20%;
+}
+
+.pay-tab li:nth-child(2) select+select {
+    width: 30%;
+    margin-left: 0;
+}
+
+.btnCon:target a {
+    color: red;
+}
+
+.btnCon:target .tabCon {
+    display: inline-block;
+}
+
+
+/*결제예정금액*/
+.pay-bottom-bg {
+    margin: 0 auto;
+    width: 100%;
+    height: 245px;
+    background: #eee;
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+.pay-bottom {
+    margin: 0 auto;
+    width: 70%;
+    height: 136px;
+    text-align: left;
+}
+
+.pay {
+    width: 100%;
+    padding: 0;
+    background: #fff;
+}
+
+.pay li {
+    margin: 0 auto;
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    padding: 0;
+
+}
+
+.pay li:nth-child(2) {
+    border-top: 1px solid #ddd;
+    font-size: 1.3rem;
+    color: crimson;
+}
+
+.pay-bottom-bg button {
+    width: 70%;
+    height: 60px;
+    margin-top: 20px;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+}
+
+@media only screen and (max-width:768px) {
+
+    .pay-title-box ul {
+        width: 100%;
+
+    }
+
+    .pay-wrap {
+        background: #eee;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        border: none;
+    }
+
+    .pay-title {
+        width: 100%;
+        /* height:100px;
+        line-height: 100px;
+        background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%); */
+
+    }
+
+    .pay-coupon-bg {
+        margin-top: 10px;
+        width: 100%;
+        height: 110px;
+        background: #fff;
+        padding: 10px 0 10px 0;
+    }
+
+    .pay-body-bg {
+        margin-top: 10px;
+        width: 100%;
+        height: 200px;
+        background: #fff;
+        padding: 10px 0 10px 0;
+    }
+
+    .pay-bottom-bg {
+        width: 100%;
+        height: 245px;
+        background: #eee;
+        padding-top: 10px;
+        text-align: center;
+
+    }
+
+    .body {
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+
+}
+
+/*************아이디 비밀번호 찾기(1.18일)**************/
+
+.find-wrap {
+    background: #fff;
+    max-width: 75em;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.find-title {
+    margin: 0 auto;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+
+}
+
+.find-title-box {
+    width: 100%;
+    height: 80px;
+    padding-top: 10px;
+
+}
+
+.find-h5 {
+    color: #fff;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+
+.find-body-bg {
+    margin-top: 10px;
+    width: 100%;
+    height: 200px;
+    background: #fff;
+    padding: 10px 0 10px 0;
+}
+
+.find-body {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 50em;
+    height: 252px;
+}
+
+.find-tab {
+    width: 100%;
+    height: 125px;
+    position: relative;
+    padding: 0;
+    margin-top: 0;
+}
+
+.find-tab li {
+
+    float: left;
+    width: 50%;
+    border: 1px solid #ddd;
+
+}
+
+.find-tab li a {
+    display: block;
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+}
+
+.find-tab .tabCon {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.find-tab .tabCon span {
+    font-size: .9em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.find-tab label {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.find-tab label:before {
+    content: "*";
+    color: red;
+    padding-right: 10px;
+
+}
+
+.find-tab .tabCon button {
+    width: 90%;
+    height: 35px;
+    max-width: 22em;
+    margin-top: 20px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice: 2;
+    background: #fff;
+}
+
+
+
+/*************마이페이지 (1.18일)**************/
+.mypage-wrap {
+    background: #fff;
+    max-width: 75em;
+    margin: 3rem auto;
+    padding: 0;
+    margin-bottom: 18rem;
+}
+
+.mypage-title {
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    margin-bottom: 3rem;
+    padding: 3rem 0;
+}
+
+.mypage-title-box {
+    width: 100%;
+    height: 70px;
+    padding-top: 10px;
+
+}
+
+.mypage-h5 {
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.mypage-body {
+    width: 100%;
+    max-width: 60em;
+    height: auto;
+    background: #fff;
+    margin: 0 auto;
+    padding: 0 0 25px 0;
+}
+
+.mypage-body>h6 {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0 25px 0;
+    font-size: 1.3rem;
+}
+
+.mypage-body .txt {
+
+    padding: 0 10px;
+}
+
+.my-box {
+    width: 90%;
+    height: auto;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    position: relative;
+    padding: 1rem 0;
+}
+
+.my-box2 {
+    width: fit-content;
+    height: auto;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    padding: .5rem 1.4rem;
+    text-align: center;
+}
+
+.my-intro {
+    width: 100%;
+}
+
+.my-intro ul {
+    padding-top: .5rem;
+    padding-left: 3rem;
+}
+
+.my-intro li {
+    font-size: .8rem;
+    margin-top: 5px;
+    color: #777;
+}
+
+.my-intro li:nth-child(1) {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.intro-link {
+    position: absolute;
+    right: 5%;
+    top: 1.5rem;
+    font-size: .8rem;
+    color: #777;
+    cursor: pointer;
+}
+
+.pick {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: .5rem 0;
+    display: flex;
+    text-align: center;
+}
+
+.pick li {
+    width: 50%;
+    height: auto;
+    background: orange;
+}
+
+.pick li a {
+    width: auto;
+    height: 10rem;
+    background: orchid;
+}
+
+.pick li a img {
+    height: 100%;
+}
+
+.pick li span {
+    font-size: .8rem;
+}
+
+
+/*티켓결제내역*/
+.mypage-ticket-box {
+    margin-bottom: 10px;
+}
+
+.mypage-ticket-box a {
+    display: block;
+    width: 90%;
+    height: auto;
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+}
+
+.mypage-ticket-box2>div {
+    display: block;
+    width: 90%;
+    height: auto;
+
+    background: #fff;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+    text-align: center;
+}
+
+.mypage-ticket-box2 p {
+    width: 100%;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+.ticket_us {
+    margin-top: 25px;
+}
+
+.mypage-ticket-img {
+    width: 20%;
+    height: 150px;
+    min-width: 7em;
+}
+
+.mypage-ticket-img div {
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.mypage-ticket-img img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.mypage-ticket-intro {
+    width: 80%;
+}
+
+.mypage-ticket-intro li:nth-child(1) {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.mypage-ticket-intro li:nth-child(2) {
+    font-size: .8rem;
+    margin-top: 5px;
+}
+
+.mypage-ticket-intro li:nth-child(3) {
+    font-size: .8rem;
+    margin-top: 5px;
+}
+
+.mypage-ticket-intro li:nth-child(4) {
+    font-size: .7rem;
+    color: #777;
+    margin-top: 30px;
+}
+
+@media only screen and (max-width:768px) {
+    .mypage-wrap {
+        background: #fff;
+        max-width: 75em;
+        margin: 0rem auto;
+        padding: 0;
+    }
+
+    .mypage-title {
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+        background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        margin-bottom: 2rem;
+        padding: .8rem 0;
+    }
+
+    .mypage-h5 {
+        color: #fff;
+        line-height: 50px;
+        text-align: center;
+        font-size: 1.7rem;
+    }
+
+}
+
+/*************마이티켓 (1.18일)**************/
+
+.myticket-wrap {
+    max-width: 50em;
+    height: auto;
+    margin: 5rem auto;
+    padding: 0 0 10px 0;
+    background: linear-gradient(to bottom, #01c9ca 0%, #a44af5 100%);
+}
+
+
+.myticket-title {
+    margin: 0 auto;
+    width: 100%;
+    height: 80px;
+    background: #333;
+    position: relative;
+    font-size: 1.1rem;
+
+}
+
+.myticket-title-box {
+    padding-top: 25px;
+    color: #fff;
+
+}
+
+.myticket-title-box a {
+    color: #fff;
+    float: left;
+    margin-left: 2%;
+    font-size: 1.5rem;
+}
+
+.myticket-h5 {
+    float: left;
+    margin-left: 20px;
+    padding-top: 5px;
+}
+
+.my-circle {
+    position: absolute;
+    left: 45%;
+    bottom: -25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+    background: #333;
+
+}
+
+.my-ticket-box {
+    width: 85%;
+    max-width: 60em;
+    height: auto;
+    margin: 35px auto;
+    background: rgba(250, 250, 250, 1);
+}
+
+/*티켓타이틀*/
+.my-ticket-title {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.my-ticket-box h6 {
+    font-size: 1.3rem;
+    padding: 1.5rem 0 1rem 0;
+}
+
+/*티켓 이미지*/
+.my-ticket-poster {
+    width: 100%;
+    height: 300px;
+    background: #eee;
+    text-align: center;
+}
+
+.my-ticker-poster-img {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.my-ticker-poster-img img {
+    width: auto;
+    height: 100%;
+}
+
+/*티켓 중요 내용*/
+.my-ticket-intro {
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.my-ticket-intro1 {
+    padding: 15px 0 0 0;
+    width: 95%;
+    height: auto;
+    line-height: 22px;
+    text-align: center;
+    margin-bottom: 0;
+    margin: 0 auto;
+    border-bottom: 1px solid #777;
+}
+
+.my-ticket-intro1 li {
+    font-size: .9rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: orangered;
+}
+
+.my-ticket-intro1 li:nth-child(3) {
+    color: #333;
+    font-size: .8rem;
+    margin-top: 5px;
+}
+
+/*티켓번호, 결제수단, 결제금액 등*/
+.my-ticket-intro2 {
+    width: 90%;
+    max-width: 40em;
+    height: auto;
+    padding: 15px 0 1rem 10%;
+    margin: 0 auto;
+}
+
+.my-ticket-intro2 li {
+    width: 80%;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+}
+
+.my-ticket-intro2 span {
+    float: right;
+    display: block;
+    font-weight: normal;
+    font-size: .8rem;
+    text-align: right;
+}
+
+/*티켓설명란(27일)*/
+.my-ticket-intro3 {
+    width: 100%;
+    height: auto;
+    line-height: 1rem;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    font-size: .8rem;
+    padding: .8rem;
+}
+
+.my-ticket-intro3 p {
+    margin-bottom: .5rem;
+}
+
+.button {
+    padding: .3rem .8rem;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border: none;
+    font-size: .9rem;
+    transition: .3s ease-out;
+    color: #fff;
+}
+
+.button:hover {
+    opacity: .7;
+    transition: .3s ease-out;
+
+}
+
+.toggle {
+    width: 100%;
+    height: auto;
+    font-size: .8rem;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+/********* 티켓조회하기 페이지(27일) **********/
+
+/* .ticket-search-wrap{
+    width:95%;
+    max-width: 60rem;
+    height:auto;
+    margin:0 auto;
+    padding:2rem 0;
+    text-align: center;
+    background:#fff;
+} */
+
+.ticket-search-wrap form {
+    width: 95%;
+    max-width: 60rem;
+    height: auto;
+    margin: 5rem auto;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+    padding: 5rem 0;
+    border-radius: 1rem;
+    text-align: center;
+    margin-bottom: 25rem;
+}
+
+.ticket-search-wrap h2 {
+    width: 90%;
+    max-width: 75rem;
+    height: auto;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    /* width:fit-content; */
+    font-size: 1.8rem;
+    padding: 4rem;
+    margin: 3rem auto;
+    text-align: center;
+    color: #fff;
+
+}
+
+.ticket-search-bg label {
+    margin-right: .3rem;
+    font-size: 1.2rem;
+}
+
+.ticket-search-bg label::before {
+    content: "*";
+    color: red;
+    padding-right: .2rem;
+}
+
+/* 양도페이지 */
+.ticket-search-bg2 label::before {
+    content: "*";
+    color: red;
+    padding-right: .2rem;
+}
+
+@media only screen and (max-width:768px) {
+
+    .myticket-wrap {
+        margin: 0rem;
+
+    }
+
+    .ticket-search-wrap {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+        background: #fff;
+        margin-bottom: 15rem;
+    }
+
+    .ticket-search-wrap form {
+        width: 95%;
+        margin: 0 auto;
+        padding: 1rem 0;
+        border-radius: 1rem;
+    }
+
+    .ticket-search-wrap h2 {
+        width: 100%;
+        font-size: 1.7rem;
+        margin: 0 auto;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        color: #fff;
+    }
+
+    .ticket-search-bg label {
+        margin-right: .3rem;
+    }
+
+    .ticket-search-bg label::before {
+        content: "*";
+        color: red;
+        padding-right: .2rem;
+    }
+
+    /* .ticket-search-bg {
+        width: 95%;
+        max-width: 35em;
+        height: auto;
+        margin: 0.5rem auto;
+        padding: .9rem;
+        background: #fff;
+        text-align: center;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+        border-radius: 1rem;
+        font-size: .9rem;
+    } */
+}
+
+
+/*스포츠좌석 예약*/
+
+.button_box2 {
+    width: 300px;
+    height: 300px;
+    padding: 0;
+    position: relative;
+    background-image: url(/img/sport1.gif);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #eee;
+}
+
+.rect {
+    width: 90%;
+    height: 35px;
+    background: rgb(149, 184, 121, 0.5);
+    margin: 0 auto;
+    line-height: 35px;
+    color: darkgrey;
+}
+
+.map_btn2 a:nth-child(1) {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    padding: 0;
+}
+
+.map_btn2 a:nth-child(2) {
+    min-width: 43%;
+    height: 150px;
+    padding: 0;
+    position: absolute;
+    top: 150px;
+    z-index: 99;
+}
+
+.map_btn2 {
+    width: 100%;
+    height: 100%;
+}
+
+.map_btn2 a:nth-child(3) {
+    min-width: 14%;
+    height: 150px;
+    padding: 0;
+    position: absolute;
+    top: 150px;
+    right: 43%;
+    z-index: 99;
+}
+
+.map_btn2 a:nth-child(4) {
+    min-width: 43%;
+    height: 150px;
+    padding: 0;
+    position: absolute;
+    top: 150px;
+    right: 0;
+    z-index: 99;
+}
+
+
+/* 스포츠 좌석/우측 좌측*/
+.second-wrap {
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+    margin: 0 auto;
+    overflow: scroll;
+}
+
+.rectangle-wrap-second {
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-left: 2.8px;
+}
+
+.rectangle-wrap-second2 {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-left: 2.8px;
+}
+
+.sport2-1 {
+    width: 300px;
+}
+
+.sport2-2 {
+    width: 120px;
+}
+
+.sport2-3 {
+    width: 450px;
+}
+
+.sport3-1 {
+    width: 150px;
+}
+
+.sport3-2 {
+    width: 150px;
+}
+
+
+/* 스포츠 우측 좌측*/
+
+.sport1-1 p {
+    width: 20em;
+    height: 4em;
+    line-height: 2em;
+    font-size: .9rem;
+}
+
+.sport1-2 p {
+    width: 20em;
+    height: 3em;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 2px solid #ddd;
+}
+
+.sport1-2 form {
+    width: 20em;
+    height: 8em;
+
+}
+
+.sport1-2 select {
+    width: 3em;
+
+}
+
+/********* 축구 좌석 페이지 배경(26일) **********/
+
+.third-wrap {
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+    margin: 0 auto;
+    overflow: scroll;
+}
+
+.rect3 {
+    width: 90%;
+    height: 35px;
+    background: rgb(149, 184, 121, 0.5);
+    margin: 0 auto;
+    line-height: 35px;
+    color: darkgrey;
+}
+
+/* 축구장 좌석 안내 */
+.rectangle-wrap3 {
+    width: 750px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: #eee;
+    padding-left: 2.8px;
+}
+
+.rectangle-wrap3-1 {
+    width: 750px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: #eee;
+    padding-left: 2.8px;
+}
+
+.rectangle-wrap3-2 {
+    width: 380px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: #eee;
+    padding-left: 2.8px;
+    text-align: center;
+}
+
+.soccer1-1,
+.soccer1-2,
+.soccer2-1,
+.soccer3-1,
+.soccer4-1,
+.soccer4-2 {
+    width: 100%;
+}
+
+/* 축구장 좌석 top*/
+
+.soccer-select {
+    width: 100%;
+    height: 100px
+}
+
+.soccer-select p {
+    width: 100%;
+    line-height: 25px;
+    font-size: .8rem;
+    margin-bottom: 10px;
+}
+
+.soccer-select form {
+    margin-top: 3rem;
+}
+
+.soccer-select input {
+    width: 30px;
+    height: 20px;
+}
+
+.button_box3 {
+    width: 100%;
+    height: 300px;
+    padding: 0;
+    background-image: url(/img/soccer2.gif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.soccerimg1 {
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/soccer2.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.soccerimg2 {
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/soccer3.gif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.soccerimg3 {
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/soccer4.gif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.soccerimg4 {
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/soccer5.gif);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.map_btn3 a:nth-child(1) {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding: 0;
+}
+
+.map_btn3 a:nth-child(2) {
+    min-width: 50%;
+    height: 100px;
+    padding: 0;
+    position: absolute;
+    top: 100px;
+    z-index: 99;
+}
+
+.map_btn3 a:nth-child(3) {
+    min-width: 50%;
+    height: 100px;
+    padding: 0;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    z-index: 99;
+}
+
+.map_btn3 a:nth-child(4) {
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    padding: 0;
+    margin-top: 100px;
+}
+
+
+/**************관리자 페이지 작업****************/
+
+.regist-wrap {
+    margin: 0;
+    padding: 0;
+    color: #333;
+
+}
+
+.regist-container {
+    width: 100%;
+    max-width: 120em;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+}
+
+.regist-header {
+    width: 20%;
+    height: auto;
+    background: #333;
+}
+
+.regist-navi {
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.regist-navi li a {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    line-height: 40px;
+    padding-left: 30px;
+    color: #fff;
+}
+
+.regist-navi li a:hover {
+    background: #555;
+}
+
+.regist-logo {
+    width: 100%;
+    height: 120px;
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+}
+
+ftitle .regist-logo a {
+    text-align: center;
+    line-height: 120px;
+    color: #fff;
+}
+
+.regist-body {
+    width: 80%;
+    height: auto;
+    background: #eee;
+    padding-bottom: 5px;
+}
+
+.regist-body-top {
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 0 0 0 10px;
+}
+
+.regist-body-top h2 {
+    font-size: 1.3rem;
+    line-height: 60px;
+}
+
+.regist-body-title {
+    float: left;
+}
+
+
+
+@media only screen and (max-width:768px) {
+    .regist-container {
+        width: 100%;
+        max-width: 120em;
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
+        display: flow-root;
+    }
+
+    .regist-header {
+        width: 100%;
+        height: 130px;
+        background: #333;
+    }
+
+    .regist-logo {
+        width: 100%;
+        height: 80px;
+        background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        margin-bottom: 0;
+    }
+
+    .regist-logo a {
+        line-height: 85px;
+    }
+
+    .regist-navi {
+        padding: 0;
+        width: 100%;
+        margin: 0;
+    }
+
+    .regist-navi li {
+        float: left;
+        width: 25%;
+        text-align: center;
+    }
+
+    .regist-navi li a {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        font-size: .8rem;
+        color: #fff;
+        padding: 0;
+    }
+
+    .regist-body {
+        width: 100%;
+        margin-left: 0px;
+        height: auto;
+        background: #fff;
+
+    }
+
+    .regist-body-top {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        padding-left: 0;
+    }
+
+    .regist-body-title {
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        text-align: center;
+    }
+
+}
+
+
+
+/********** 관리자 페이지 공연등록*************/
+
+.input-bg-1 {
+    width: 100%;
+    background: #fff;
+    height: auto;
+    padding-top: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.input-bg-1 div {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.input-group-text {
+    width: 150px;
+}
+
+.input-none>div input {
+    display: none;
+}
+
+.input-none>div>input {
+    display: block;
+}
+
+.regist-h {
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.input-group input[value] {
+    color: #999;
+}
+
+.regist-option {
+    width: 40%;
+    border-color: #ccc;
+}
+
+.regist-button {
+    height: 35px;
+    padding-top: 3px;
+    background: #fff;
+    color: #333;
+    border-style: solid;
+    border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    border-image-slice: 2;
+}
+
+.regist-button:nth-child(1) {
+    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+}
+
+/******관리자페이지 대시보드 table css(22일)******/
+.regist-title {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.regist-table {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.regist-table thead tr {
+    width: 100%;
+    height: 40px;
+}
+
+.regist-table tbody {
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #ddd;
+}
+
+/*id 테이블 작업*/
+.regist-table tbody td:nth-child(1) {
+    width: 10%;
+    font-size: .7rem;
+}
+
+/*포스터 테이블 작업*/
+.regist-table tbody td:nth-child(2) {
+    width: 20%;
+}
+
+.regist-table tbody td:nth-child(2) a {
+    width: 100%;
+    height: 100px;
+}
+
+.regist-table tbody td:nth-child(2) img {
+    width: auto;
+    height: 100%;
+}
+
+/*등록된 정보 테이블 작업*/
+.regist-table tbody td:nth-child(3) {
+    width: 40%;
+    text-align: left;
+}
+
+.regist-table tbody td:nth-child(3) ul {
+    padding: 0;
+    margin: 0;
+    font-size: .7rem;
+}
+
+.regist-information li:nth-child(1) {
+    font-size: 1rem;
+}
+
+.regist-information li:nth-child(1) span {
+    font-size: .7rem;
+}
+
+.regist-information li:nth-child(1)~li {
+    margin-top: 2px
+}
+
+/*QR코드 테이블 작업*/
+.regist-table tbody td:nth-child(4) {
+    width: 20%;
+}
+
+.regist-table tbody td:nth-child(4) button {
+    min-width: 30%;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-size: .9rem;
+
+}
+
+/*수정/삭제 테이블 작업*/
+.regist-table tbody td:nth-child(5) {
+    width: 10%;
+    padding: 10px 0;
+}
+
+.regist-table tbody td:nth-child(5) button {
+    min-width: 30%;
+    background: #fff;
+    border: 1px solid #aaa;
+    font-size: .9rem;
+}
+
+/*error 페이지 작업*/
+
+.error-wrap {
+    width: 100%;
+    height: auto;
+    max-width: 50em;
+    background: #fff;
+    margin: 0 auto;
+    padding: 8em 0 5em 0;
+    text-align: center;
+}
+
+.error-icon {
+    width: 100%;
+}
+
+.error-icon i {
+    color: #46c0f7;
+}
+
+.error-message {
+    width: 100%;
+    padding: 20px;
+}
+
+.error-btn {
+    padding: .5rem;
+    background: #46c0f7;
+    border-radius: 30px;
+    border: none;
+
+}
+
+.btn {
+    padding: .1rem 0.5rem;
+    border: 1px solid #888;
+}
+
+.evnet-wrap {
+    display: none;
+}
+
+@media only screen and (max-width:768px) {
+
+    .evnet-wrap {
+        display: block;
+        width: 100%;
+        height: auto;
+
+    }
+
+}
+
+/*푸터 css*/
+
+.footer_wrap {
+    width: 100%;
+    height: fit-content;
+    color: #eee;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 0;
+    font-size: .9rem;
+
+}
+
+.footer_bg {
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    background: #333;
+    padding: 1rem 0;
+}
+
+.footer_wrap>a {
+    width: 30%;
+}
+
+.footer_wrap>p {
+    text-align: left;
+    width: 60%;
+    padding-left: 5rem;
+}
+
+.footer_wrap small {
+    font-size: .8rem;
+    color: #ddd;
+}
+
+.footer_box {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+}
+
+.footer_box li {
+    display: inline-block;
+    overflow-wrap: break-word;
+}
+
+.footer_box a {
+    font-size: .8rem;
+    overflow-wrap: break-word;
+    color: #ddd;
+}
+
+.footer_box a:hover {
+    opacity: 0.5;
+}
+
+@media only screen and (max-width:768px) {
+    .footer_wrap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer_wrap>a {
+        width: 100%;
+    }
+
+    .footer_wrap>a img {
+        width: 35%;
+        margin-bottom: 1rem;
+    }
+
+    .footer_wrap>p {
+        width: 100%;
+        text-align: center;
+        padding-left: 0;
+    }
+}
+
+.footer_body {
+    width: 100%;
+    height: 175px;
+    padding: 0;
+    margin: 0;
+    background: #333;
+}
+
+.date-box {
+    display: none;
+}
+
+.footer_mg {
+    margin-top: 25rem;
 }

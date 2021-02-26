@@ -8,52 +8,69 @@
 
 <body>
 
+    <!-- header gnb -->
     <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
 
-<div class="body">
+    <!-- body(background css) -->
+    <div class="body">
 
-    <div class="mypage-wrap">
-        
-        <div class="mypage-title">
-            <div class="mypage-title-box">
-                <h5 class="mypage-h5">마이페이지</h5>
-            </div>
-        </div> 
-        
-        <div class="mypage-body">
-            <h6>내정보</h6>
-            <div class="my-box">
-                <div class="my-intro">
-                    <ul>
-                        <li><%=user[0].name%></li>
-                        <li><%=user[0].id%></li>
-                        <li><%=user[0].birth%></li>
-                        <li><%=user[0].phone%></li>
-                        <li><%=user[0].email%></li>
-                    </ul>
-                </div>
-                <a class="intro-link">내정보 &gt;</a>
-                <div class="my-box2">
-                    MY 리뷰
-                </div>
-            </div>       
-        </div>
+        <!-- 마이페이지 wrap -->
+        <div class="mypage-wrap">
 
-        <div class="mypage-body">
-            <div class="my-box">
-                <h6 class="txt"><i class="far fa-bell"></i>&nbsp;&nbsp;나른한 오늘 핫한 스포츠는 어때요?</h6>
+            <div class="mypage-title">
+                <div class="mypage-title-box">
+                    <h5 class="mypage-h5">마이페이지</h5>
+                </div>
             </div>
+
+            <div class="mypage-body">
+                <h6>내정보</h6>
+                <div class="my-box">
+                    <div class="my-intro">
+                        <ul>
+                            <li>
+                                <%=user[0].name%>
+                            </li>
+                            <li>
+                                <%=user[0].id%>
+                            </li>
+                            <li>
+                                <%=user[0].birth%>
+                            </li>
+                            <li>
+                                <%=user[0].phone%>
+                            </li>
+                            <li>
+                                <%=user[0].email%>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="intro-link">내정보 &gt;</a>
+                    <div class="my-box2">
+                        MY 리뷰
+                    </div>
+                </div>
+            </div>
+
+            <!-- 추천 멘트 -->
+            <div class="mypage-body">
+                <div class="my-box">
+                    <h6 class="txt"><i class="far fa-bell"></i>&nbsp;&nbsp;나른한 오늘 핫한 스포츠는 어때요?</h6>
+                </div>
+            </div>
+
         </div>
- 
+        <!-- 마이페이지 wrap -->
+        
     </div>
+    <!-- /.body(background css) -->
 
-</div>        
     <!-- Footer -->
     <footer class="footer">
         <%- include ("../reference/footer.ejs") %>
-    </footer>      
+    </footer>
 
 </body>
 

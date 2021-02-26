@@ -10,64 +10,71 @@
 
 <body>
 
+    <!-- header gnb --> 
     <div class="header">
         <%- include ("../reference/header.ejs") %>
-    </div>    
+    </div>
 
-<div class="body">    
-    <div class="login_wrap card align-middle signup">
+    <!-- body(background css) -->
+    <div class="body">
+        <div class="login_wrap card align-middle signup">
 
-        <div class="card-title" style="padding-top:30px;">
-            <h2 class="text-center">회원가입</h2>
-        </div>
+            <div class="card-title" style="padding-top:30px;">
+                <h2 class="text-center">회원가입</h2>
+            </div>
 
+            <!-- 회원가입 정보입력 -->
+            <div class="card-body">
+                <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/signup">
 
-        <div class="card-body">
-            <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/signup">
+                    <label for="inputid">회원구분</label>
+                    <div class="row ck-type">
+                        <label for="inputradio" class="p-2">
+                            <input type="radio" class="form-control" name="linkcode" value="1" required autofocus>개인회원
+                        </label>
+                        <label for="inputradio" class="p-2">
+                            <input type="radio" class="form-control" name="linkcode" value="0" required autofocus>사업자회원
+                        </label>
+                    </div>
 
-                <label for="inputid">회원구분</label>   
-                <div class="row ck-type">
-                    <label for="inputradio" class="p-2">
-                        <input type="radio" class="form-control" name="linkcode" value="1" required autofocus>개인회원
-                    </label>                 
-                    <label for="inputradio" class="p-2">
-                        <input type="radio" class="form-control" name="linkcode" value="0" required autofocus>사업자회원
-                    </label>
-                </div>               
+                    <hr>
 
-                <hr>
-                <label for="inputid">아이디</label>                  
-                <input type="text" class="form-control" placeholder="ID" name="id" required autofocus><br>  
+                    <label for="inputid">아이디</label>
+                    <input type="text" class="form-control" placeholder="ID" name="id" required autofocus><br>
 
-                <label for="inputpassword">비밀번호</label>    
-                <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" required><br>
+                    <label for="inputpassword">비밀번호</label>
+                    <input type="password" class="form-control" name="pass" id="pass" placeholder="Password"
+                        required><br>
 
-                <label for="inputpassword-ck">비밀번호 확인</label>    
-                <input type="password" class="form-control" name="confirm_pass" id="confirm_pass" placeholder="Password" required><br> 
+                    <label for="inputpassword-ck">비밀번호 확인</label>
+                    <input type="password" class="form-control" name="confirm_pass" id="confirm_pass"
+                        placeholder="Password" required><br>
 
-                <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div> 
-                <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+                    <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+                    <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 
-                <label for="inputemail">E-mail</label>    
-                <input type="email" id="floatingInputInvalid" class="form-control" name="email" placeholder="abc@example.com" required><br> 
+                    <label for="inputemail">E-mail</label>
+                    <input type="email" id="floatingInputInvalid" class="form-control" name="email"
+                        placeholder="abc@example.com" required><br>
 
-                <label for="inputname">이름</label>                  
-                <input type="text" class="form-control" name="name" placeholder="NAME" required autofocus><br> 
+                    <label for="inputname">이름</label>
+                    <input type="text" class="form-control" name="name" placeholder="NAME" required autofocus><br>
 
-                <label for="inputphon">휴대폰번호</label>                  
-                <input type="tel" class="form-control" placeholder="" id="floatingInputValue" name="phone" required autofocus><br>
+                    <label for="inputphon">휴대폰번호</label>
+                    <input type="tel" class="form-control" placeholder="" id="floatingInputValue" name="phone" required
+                        autofocus><br>
 
-                <div class="checkbox">
+                    <div class="checkbox">
 
-                    <label for="inputphon">어바웃더티켓 개인정보처리방침 </label>                  
-                    <textarea class="form-control" readonly="readonly" style="display: block; height:150px;">
+                        <label for="inputphon">어바웃더티켓 개인정보처리방침 </label>
+                        <textarea class="form-control" readonly="readonly" style="display: block; height:150px;">
 어바웃더티켓 개인정보 처리방침
                         
  어바웃더티켓(이하 '회사'라 한다)은 개인정보 보호법 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리지침을 수립․공개합니다.
 
+
+
 제1조(개인정보의 처리목적) 회사는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.
-
-
 
   1. 홈페이지 회원 가입 및 관리
 
@@ -81,10 +88,10 @@
 
      민원인의 신원 확인, 민원사항 확인, 사실조사를 위한 연락․통지, 처리결과 통보 등의 목적으로 개인정보를 처리합니다.
 
+
+
+
 제2조(개인정보의 처리 및 보유기간) ① 회사는 법령에 따른 개인정보 보유․이용기간 또는 정보주체로부터 개인정보를 수집시에 동의받은 개인정보 보유․이용기간 내에서 개인정보를 처리․보유합니다.
-
- 
-
  
    ② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.
 
@@ -298,48 +305,53 @@
 
 
                     </textarea><br>
-                    
-                    <label>
-                        <input type="checkbox" value="remember-me">개인정보처리방침 이용약관에 동의합니다.
-                    </label>
-                </div>
-                <br>
 
-                <div class="form-group text-center">
-                    <button type="submit" id="signup" class="btn btn-primary">
-                        회원가입<i class="fa fa-check spaceLeft"></i>
-                    </button>
-                    <button type="submit" class="btn btn-warning">
-                        가입취소<i class="fa fa-times spaceLeft"></i>
-                    </button>
-                </div>
+                        <label>
+                            <input type="checkbox" value="remember-me">개인정보처리방침 이용약관에 동의합니다.
+                        </label>
+                    </div>
+                    <br>
 
-                <script type="text/javascript"> 
-                    $(function(){ 
-                        $("#alert-success").hide(); 
-                        $("#alert-danger").hide(); 
-                        $("input").keyup(function(){ 
-                            var pwd1=$("#pass").val(); 
-                            var pwd2=$("#confirm_pass").val(); 
-                            if(pwd1 != "" || pwd2 != ""){ 
-                                if(pwd1 == pwd2){ 
-                                    $("#alert-success").show(); 
-                                    $("#alert-danger").hide(); 
-                                    $("#signup").removeAttr("disabled"); 
-                                }else{ 
-                                    $("#alert-success").hide(); 
-                                    $("#alert-danger").show(); 
-                                    $("#signup").attr("disabled", "disabled"); 
-                                } 
-                            } 
+                    <div class="form-group text-center">
+                        <button type="submit" id="signup" class="btn btn-primary">
+                            회원가입<i class="fa fa-check spaceLeft"></i>
+                        </button>
+                        <button type="submit" class="btn btn-warning">
+                            가입취소<i class="fa fa-times spaceLeft"></i>
+                        </button>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#alert-success").hide();
+                            $("#alert-danger").hide();
+                            $("input").keyup(function () {
+                                var pwd1 = $("#pass").val();
+                                var pwd2 = $("#confirm_pass").val();
+                                if (pwd1 != "" || pwd2 != "") {
+                                    if (pwd1 == pwd2) {
+                                        $("#alert-success").show();
+                                        $("#alert-danger").hide();
+                                        $("#signup").removeAttr("disabled");
+                                    } else {
+                                        $("#alert-success").hide();
+                                        $("#alert-danger").show();
+                                        $("#signup").attr("disabled", "disabled");
+                                    }
+                                }
+                            });
                         }); 
-                    }); 
-                </script>
-            </form>
+                    </script>
+                </form>
+
+            </div>
+            <!-- /.회원가입 정보입력 -->
 
         </div>
-</div>
-</div>
+        
+    </div>
+    <!-- /.body(background css) -->
+
     <!-- Footer -->
     <footer class="footer">
         <%- include ("../reference/footer.ejs") %>

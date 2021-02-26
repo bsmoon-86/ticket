@@ -19,7 +19,7 @@
 </head>
 <script>
   function index() {
-    location.href="/"
+    location.href = "/"
   }
 </script>
 
@@ -29,7 +29,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">티켓 예매</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -62,21 +63,22 @@
       <form method="POST" action="/ticket/search" class="row">
         <div class="input-group mb-3">
           <span class="input-group-text" id="inputGroup-sizing-default">예약자 이름</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
+          <input type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default" name="name">
         </div>
         <button type="submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">조회</button>
         <button type="button" class="btn btn-secondary btn-lg" onclick=index();>취소</button>
       </form>
-        
+
     </div>
     <!-- /.row -->
 
   </div>
   <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="footer">
-      <%- include ("../reference/footer.ejs") %>
+  <!-- Footer -->
+  <footer class="footer">
+    <%- include ("../reference/footer.ejs") %>
   </footer>
 
   <!-- Bootstrap core JavaScript -->

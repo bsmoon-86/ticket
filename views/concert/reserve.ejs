@@ -8,192 +8,228 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- header gnb -->
     <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
 
-    <div class="container text-center reserve-wrap">
+    <!-- body(background css) -->
+    <div class="body">
 
-        <div class="row">
-            <h3 class="main"><%=data[0]%></h3>
-        </div>
+        <div class="container text-center reserve-wrap">
 
-        <!--포스터이미지, 공연상세정보-->
-        <div class="row">
-            <div class="col-lg-4 main-img">
-                <img src="<%=poster_img%>" class="rounded float-start" alt="img">
+            <div class="row">
+                <h3 class="main">
+                    <%=data[0]%>
+                </h3>
             </div>
-            <div class="col-lg-8 text-left">
-                <div class="col title-txt">아무 소리도 들리지 않는 고요한 밤 은은한 달빛이 어우러지는 거대한 고양이들의 놀이터 일년 중 단 하루 열리는 '젤리클 축제'에 여러분을
-                    초대합니다.
+
+            <!--포스터이미지, 공연상세정보-->
+            <div class="row">
+                <div class="col-lg-4 main-img">
+                    <img src="<%=poster_img%>" class="rounded float-start" alt="img">
                 </div>
-                
-                <div class="col table-wrap">
-                    <table class="table table-borderless table-list">
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="th-list">공연기간</th>
-                                <td><%=data[2]%></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">공연장</th>
-                                <td><%=data[1]%></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">관람시간</th>
-                                <td>
-                                    <%=
-                                        concert[0].showtime+"분"
-                                    %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">장르</th>
-                                <td>
-                                    <%if(concert[0].genre == 0){%>
-                                    뮤지컬
-                                    <%} else if(concert[0].genre == 1){%>
-                                    콘서트
-                                    <%} else if(concert[0].genre == 2){%>
-                                    연극
-                                    <%}%>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">관람등급</th>
-                                <td>
-                                    <%if(concert[0].rating == 0){%>
-                                    전 연령 입장 가능
-                                    <%} else if(concert[0].rating == 1){%>
-                                    미취학 아동 입장 불가
-                                    <%} else if(concert[0].rating == 2){%>
-                                    15세 이하 입장 불가
-                                    <%} else if(concert[0].rating == 3){%>
-                                    청소년 입장 불가
-                                    <%}%>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div class="col-lg-8 text-left">
+                    <div class="col title-txt">아무 소리도 들리지 않는 고요한 밤 은은한 달빛이 어우러지는 거대한 고양이들의 놀이터 일년 중 단 하루 열리는 '젤리클 축제'에
+                        여러분을
+                        초대합니다.
+                    </div>
+
+                    <div class="col table-wrap">
+                        <table class="table table-borderless table-list">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="th-list">공연기간</th>
+                                    <td>
+                                        <%=data[2]%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">공연장</th>
+                                    <td>
+                                        <%=data[1]%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">관람시간</th>
+                                    <td>
+                                        <%= concert[0].showtime+"분" %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">장르</th>
+                                    <td>
+                                        <%if(concert[0].genre==0){%>
+                                            뮤지컬
+                                        <%} else if(concert[0].genre==1){%>
+                                            콘서트
+                                        <%} else if(concert[0].genre==2){%>
+                                            연극
+                                        <%}%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">관람등급</th>
+                                    <td>
+                                        <%if(concert[0].rating==0){%>
+                                            전 연령 입장 가능
+                                        <%} else if(concert[0].rating==1){%>
+                                            미취학 아동 입장 불가
+                                        <%} else if(concert[0].rating==2){%>
+                                            15세 이하 입장 불가
+                                        <%} else if(concert[0].rating==3){%>
+                                            청소년 입장 불가
+                                        <%}%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--/.title_wrap-->
                 </div>
+                <!-- /.text_left -->
             </div>
-        </div>
+            <!--/.포스터이미지, 공연상세정보-->
 
-       <div class="container-fiuld reserve-choice">
 
-        <div class="d-flex" style="justify-content: center;">
-            <div class="p-2 flex-fill">날짜선택</div>
-            <div class="p-2 flex-fill">시간선택</div>
-            <div class="p-2 flex-fill">가격안내</div>
-        </div>
-        <form action="/concert/select" method="post">
-            <div class="card-body" style="display: none;" >
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertname" value="<%=data[0]%>">
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "concertId" value="<%=concert[0].id%>">
-                <input type="text" id="x" name="x">
-                <input type="text" id="y" name="y">
-                <input type="text" id="time_rap" name="time_rap">
+            <!-- 기본 정보 선택 wrap-->
+            <div class="container-fiuld reserve-choice">
+
+                <div class="d-flex" style="justify-content: center;">
+                    <div class="p-2 flex-fill">날짜선택</div>
+                    <div class="p-2 flex-fill">시간선택</div>
+                    <div class="p-2 flex-fill">가격안내</div>
+                </div>
+
+                <form action="/concert/select" method="post">
+                    <div class="card-body" style="display: none;">
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="concertname" value="<%=data[0]%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="concertId" value="<%=concert[0].id%>">
+                        <input type="text" id="x" name="x">
+                        <input type="text" id="y" name="y">
+                        <input type="text" id="time_rap" name="time_rap">
+                    </div>
+
+                    <!-- 선택페이지 -->
+                    <div class="container reservation">
+                        <!--날짜선택-->
+                        <div class="col-4 align-self-center">
+                            <div class="form-check">
+                                <input type="radio" name="date" value="<%=concert[0].date%>"
+                                    id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    <%= concert[0].date.slice(0,4)+"년"+concert[0].date.slice(4,6)+"월"+concert[0].date.slice(6,8)+"일" %>
+                                </label>
+                            </div>
+                        </div>
+                        <!--시간선택-->
+                        <div class="col-4 align-self-center">
+                            <div class="form-check">
+                                <input type="checkbox" name="time" value="<%=concert[0].time%>"
+                                    id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    <%= concert[0].time.slice(0,2)+" : "+concert[0].time.slice(2,4) %>
+                                </label>
+                            </div>
+                        </div>
+                        <!--좌석가격현황-->
+                        <div class=" col-4 align-self-center price-list">
+                            <%if(concert[0].seat1 !=0){%>
+                                <p>VIP&nbsp;&nbsp;&nbsp;<strong>
+                                    <%=concert[0].seat1%>원
+                                </strong></p>
+                            <%}%>
+                            <%if(concert[0].seat2 !=0){%>
+                                <p>R&nbsp;&nbsp;&nbsp;<strong>
+                                    <%=concert[0].seat2%>원
+                                </strong></p>
+                            <%}%>
+                            <%if(concert[0].seat3 !=0){%>
+                                <p>S&nbsp;&nbsp;&nbsp;<strong>
+                                    <%=concert[0].seat3%>원
+                                </strong></p>
+                            <%}%>
+                            <%if(concert[0].seat4 !=0){%>
+                                <p>A&nbsp;&nbsp;&nbsp;<strong>
+                                    <%=concert[0].seat4%>원
+                                </strong></p>
+                            <%}%>
+                            <%if(concert[0].seat5 !=0){%>
+                                <p>B&nbsp;&nbsp;&nbsp;<strong>
+                                    <%=concert[0].seat5%>원
+                                </strong></p>
+                            <%}%>
+                        </div>
+                    </div>
+                    <!-- 선택버튼 -->
+
+                    <!--예약하기 버튼-->
+                    <div class="d-grid gap-2 col-12 mx-auto reserve-button">
+                        <button class="btn" type="submit">예약하기</button>
+                    </div>
+
+                </form>
             </div>
-            <div class="d-flex reservation">
-                <!--날짜선택-->
-                <div class="col-4 align-self-center">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="date" value="<%=concert[0].date%>" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            <%=
-                                concert[0].date.slice(0,4)+"년"+concert[0].date.slice(4,6)+"월"+concert[0].date.slice(6,8)+"일"
-                            %>
-                        </label>
+            <!-- 기본 정보 선택 wrap -->
+
+            <!--모바일 공간박스-->
+            <div class="container-fluid m-box">
+            </div>
+
+            <!--상세정보 서브메뉴작업-->
+            <div class="container" style="margin-top:1rem">
+                <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                            aria-controls="home" aria-selected="true">상세정보</a>
+                    </li>
+                    <li class="nav-item mb_none" role="presentation">
+                        <a class="nav-link" id="avaluation-tab" data-bs-toggle="tab" href="#avaluation" role="tab"
+                            aria-controls="profile" aria-selected="false">기대평</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="qna-tab" data-bs-toggle="tab" href="#qna" role="tab"
+                            aria-controls="contact" aria-selected="false">Q&amp;A</a>
+                    </li>
+                    <li class="nav-item mb_none" role="presentation">
+                        <a class="nav-link" id="place-tab" data-bs-toggle="tab" href="#place" role="tab"
+                            aria-controls="contact" aria-selected="false">공연장안내</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="explanation-tab" data-bs-toggle="tab" href="#explanation" role="tab"
+                            aria-controls="contact" aria-selected="false">예매안내</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        상세페이지<br>
+                        <img class="img-fluid rounded" style="width: 100%;" src="<%=info_img%>" alt="">
+                    </div>
+                    <div class="tab-pane fade mb_none" id="avaluation" role="tabpanel" aria-labelledby="avaluation-tab">기대평
+                    </div>
+                    <div class="tab-pane fade" id="qna" role="tabpanel" aria-labelledby="qna-tab">Q&amp;A</div>
+                    <div class="tab-pane fade mb_none" id="place" role="tabpanel" aria-labelledby="place-tab">공연장안내</div>
+                    <div class="tab-pane fade" id="explanation" role="tabpanel" aria-labelledby="explanation-tab">예매안내
                     </div>
                 </div>
-                <!--시간선택-->
-                <div class="col-4 align-self-center">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="time" value="<%=concert[0].time%>" id="flexRadioDefault3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            <%=
-                                concert[0].time.slice(0,2)+" : "+concert[0].time.slice(2,4)
-                            %>
-                        </label>
-                    </div>
-                </div>
-                <!--좌석현황-->
-                <div class="col-4 align-self-center price-list">
-                    <%if(concert[0].seat1 != 0){%>
-                    <p>VIP&nbsp;&nbsp;&nbsp;<strong><%=concert[0].seat1%>원</strong></p>
-                    <%}%>
-                    <%if(concert[0].seat2 != 0){%>
-                    <p>R&nbsp;&nbsp;&nbsp;<strong><%=concert[0].seat2%>원</strong></p>
-                    <%}%>
-                    <%if(concert[0].seat3 != 0){%>
-                    <p>S&nbsp;&nbsp;&nbsp;<strong><%=concert[0].seat3%>원</strong></p>
-                    <%}%>
-                    <%if(concert[0].seat4 != 0){%>
-                    <p>A&nbsp;&nbsp;&nbsp;<strong><%=concert[0].seat4%>원</strong></p>
-                    <%}%>
-                    <%if(concert[0].seat5 != 0){%>
-                    <p>B&nbsp;&nbsp;&nbsp;<strong><%=concert[0].seat5%>원</strong></p>
-                    <%}%>
-                </div>
             </div>
-            <!--./reservation-->
-            </div>
-            
+            <!—상세정보 서브메뉴작업—>
 
-            <!--예약하기 버튼-->
-            <div class="d-grid gap-2 col-12 mx-auto reserve-button">
-                <button class="btn" type="submit">예약하기</button>
-            </div>
-        </form>
-    </div>
-
-<!--모바일 공간박스-->
-<div class="container-fluid m-box">
-</div>
-
-
-    <div class="container" style="margin-top:1rem">
-
-        <!--상세정보 서브메뉴작업-->
-        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">상세정보</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="avaluation-tab" data-bs-toggle="tab" href="#avaluation" role="tab" aria-controls="profile" aria-selected="false">기대평</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="qna-tab" data-bs-toggle="tab" href="#qna" role="tab" aria-controls="contact" aria-selected="false">Q&amp;A</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="place-tab" data-bs-toggle="tab" href="#place" role="tab" aria-controls="contact" aria-selected="false">공연장안내</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="explanation-tab" data-bs-toggle="tab" href="#explanation" role="tab" aria-controls="contact" aria-selected="false">예매안내</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                상세페이지<br>    
-                <img class="img-fluid rounded" style="width: 100%;" src="<%=info_img%>" alt="">  
-            </div>
-            <div class="tab-pane fade" id="avaluation" role="tabpanel" aria-labelledby="avaluation-tab">기대평</div>
-            <div class="tab-pane fade" id="qna" role="tabpanel" aria-labelledby="qna-tab">Q&amp;A</div>
-            <div class="tab-pane fade" id="place" role="tabpanel" aria-labelledby="place-tab">공연장안내</div>
-            <div class="tab-pane fade" id="explanation" role="tabpanel" aria-labelledby="explanation-tab">예매안내</div>
         </div>
+        <!— /.reserve-wrap —>
 
     </div>
+    <!— body(background css) —>
 
-
-
-    <!-- Footer -->
+    <!— Footer —>
     <footer class="footer">
         <%- include ("../reference/footer.ejs") %>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
+    <!— Bootstrap core JavaScript —>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

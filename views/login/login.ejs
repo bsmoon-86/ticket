@@ -10,11 +10,14 @@
 
 <body>
 
+    <!-- header gnb -->
     <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
 
-<div class="body">
+    <!-- body(background css) -->
+    <div class="body">
+
         <div class="login_wrap card align-middle">
 
             <div class="card-title" style="padding-top:30px;">
@@ -24,37 +27,43 @@
             <div class="card-body">
                 <form class="form-signin" method="POST" onSubmit="logincall();return false" action="/login/main">
                     <label for="inputEmail" class="sr-only">Your ID</label>
-                    <input type="text" id="uid" class="form-control" placeholder="Your ID" name="id" required autofocus><br>
+                    <input type="text" id="uid" class="form-control" placeholder="Your ID" name="id" required
+                        autofocus><br>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="upw" class="form-control" placeholder="Password" name="pass" required><br>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="remember-me"> 자동로그인
-                            </label>
-                        </div>
+                    <input type="password" id="upw" class="form-control" placeholder="Password" name="pass"
+                        required><br>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> 자동로그인
+                        </label>
+                    </div>
                     <button id="btn-Yes" class="btn btn-lg btn-block" type="submit">로 그 인</button>
 
 
-                <nav class="nav nav-justified login-link">
-                  <!-- <a class="nav-link" href="/login/find">아이디/비밀번호찾기</a>             -->
-                  <a class="nav-link" href="/login/signup">회원가입</a>            
-                </nav>
+                    <nav class="nav nav-justified login-link">
+                        <!-- <a class="nav-link" href="/login/find">아이디/비밀번호찾기</a> -->
+                        <a class="nav-link" href="/login/signup">회원가입</a>
+                    </nav>
 
-                <div class="sns-body">
-                    <p>소셜로그인</p>
-                    <a href="#"><img src="img/k.png" alt="img"></a>  
-                    <a href="#"><img src="img/g.png" alt="img"></a> 
-                    <a href="#"><img src="img/f.png" alt="img"></a> 
-                </div>
+                    <div class="sns-body">
+                        <p>소셜로그인</p>
+                        <a href="#"><img src="img/k.png" alt="img"></a>
+                        <a href="#"><img src="img/g.png" alt="img"></a>
+                        <a href="#"><img src="img/f.png" alt="img"></a>
+                    </div>
                 </form>
-
             </div>
+
         </div>
-</div>
+        <!-- /.login_wrap -->
+        
+    </div>
+    <!-- /.body(background css) -->
+
     <!-- Footer -->
     <footer class="footer">
         <%- include ("../reference/footer.ejs") %>
-    </footer>        
+    </footer>
 
 </body>
 

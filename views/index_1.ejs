@@ -4,51 +4,54 @@
 <head>
     <%- include ("./reference/head.ejs") %>
 
-    <script>
-        
-        function info(concert){
-            console.log("info suc")
-            location.href = "/concert/index?concert="+concert;
-        }
+        <script>
 
-    </script>
+            function info(concert) {
+                console.log("info suc")
+                location.href = "/concert/index?concert=" + concert;
+            }
+
+        </script>
 </head>
 
 <body>
 
+    <!-- header gnb -->
     <div class="header">
         <%- include ("./reference/header.ejs") %>
     </div>
 
+    <!-- index page wrap box = body_main -->
     <div class="body_main">
-    <!--header-slide-->
-    <header id="carouselExampleCaptions" class="carousel slide visual" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" id="img-slide">
-            <div class="carousel-item active" >
-                <a href="#">
 
-                </a>
+        <!-- img slde start -->
+        <header id="carouselExampleCaptions" class="carousel slide visual" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" id="img-slide">
+                <div class="carousel-item active">
+                    <a href="#">
+                    <!-- slide img1 = css background  //이미지 변경시 css 백그라운드 이미지 url 변경-->
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                    <!-- lide img2 = css background -->
+                    </a>
+
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                    <!-- lide img3 = css background -->
+                    </a>
+                </div>
             </div>
-            <div class="carousel-item">
-                <a href="#">
 
-                </a>
-
-            </div>
-            <div class="carousel-item">
-                <a href="#">
-
-                </a>
-            </div>
-
-
-        </div>
-                    <a class="carousel-control-prev slide_btn" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+            <a class="carousel-control-prev slide_btn" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden"></span>
             </a>
@@ -57,192 +60,214 @@
                 <span class="visually-hidden"></span>
             </a>
 
-    </header>
+        </header>
+        <!-- img slde end -->
 
-    <!—모바일 메뉴 스타일—>
-    <div class="d-flex text-center m-menu">
-        <div class="p-2 w-25">
-            <a href="javascript:menu('0')">
-                <i class="fas fa-headphones-alt fa-2x" style="color:#46c0f7"></i>
-                <span>공연</span>
-            </a>
-        </div>
-        <div class="p-2 w-25">
-            <a href="javascript:menu('1')">
-                <i class="far fa-images fa-2x" style="color:#46a7f7"></i>
-                <span>전시</span>
-            </a>
-        </div>
-        <div class="p-2 w-25">
-            <a href="javascript:menu('2')">
-                <i class="fas fa-running fa-2x" style="color:#7881f6"></i>
-                <span>스포츠</span>
-            </a>
-        </div>
-        <div class="p-2 w-25">
-            
-            <%if(!loggedname){%>
-                <a href="/login">
-                    <i class="fas fa-ticket-alt fa-2x" style="color:#a44af5"></i>
-                    <span>로그인</span>
+        <!-- mobile menu start-->
+        <div class="d-flex text-center m-menu">
+            <div class="p-2 w-25">
+                <a href="javascript:menu('0')">
+                    <i class="fas fa-headphones-alt fa-2x" style="color:#46c0f7"></i>
+                    <span>공연</span>
                 </a>
+            </div>
+            <div class="p-2 w-25">
+                <a href="javascript:menu('1')">
+                    <i class="far fa-images fa-2x" style="color:#46a7f7"></i>
+                    <span>전시</span>
+                </a>
+            </div>
+            <div class="p-2 w-25">
+                <a href="javascript:menu('2')">
+                    <i class="fas fa-running fa-2x" style="color:#7881f6"></i>
+                    <span>스포츠</span>
+                </a>
+            </div>
+            <div class="p-2 w-25">
+                <%if(!loggedname){%>
+                    <a href="/login">
+                        <i class="fas fa-ticket-alt fa-2x" style="color:#a44af5"></i>
+                        <span>로그인</span>
+                    </a>
                 <%}else{%>
-                <a href="/logout">
-                    <i class="fas fa-ticket-alt fa-2x" style="color:#a44af5"></i>
-                    <span>로그아웃</span>
-                </a>
+                    <a href="/logout">
+                        <i class="fas fa-ticket-alt fa-2x" style="color:#a44af5"></i>
+                        <span>로그아웃</span>
+                    </a>
                 <%}%>
-        </div>
-    </div>
-
-    <!--모바일 공간박스-->
-    <div class="container-fluid m-box">
-    </div>
-
-
-    <!-- Page Content -->
-    <div class="container my-3">
-
-
-        <!-- Page Features -->
-        <div class="row">
-
-            <div class="col-12 title_bg">
-                <h3>Ticket Zone</h3>
             </div>
+        </div>
+        <!-- mobile menu end-->
 
-            <%for(var i = 0; i < concert.length; i++){%>
-                <div class="col-lg-3 col-md-4 col-6 mb-3 p-2">
-                  <div class="card card-radius card-box">
-                      <a href="javascript:info('<%=concert[i].id%>', '<%=loggedname%>')">
-                          <div class="card-img-top">
-                              <img src="<%=concert[i].poster_img%>" alt="">
-                          </div>
-                          
-                          <div class="card-body card-title ">
-                              <p><strong><%=concert[i].name%></strong></p>
-                              <div class="card-text fs-6">
-                              <span><%=concert[i].date%></span>
-                              <small><%=concert[i].place%></small>
-                              </div>
-                          </div>
-                      </a>
-                  </div>
-                </div>
-              <%}%>
+        <!--모바일 공간박스-->
+        <div class="container-fluid m-box">
+        </div>
+
+
+        <!-- ticket zone wrap box -->
+        <div class="container my-3">
+
             
-
-        </div>
-        <!-- /.row -->
-
-
-
-    </div>
-    <!-- /.container -->
-
-
-    <!-- 인기상품 레이아웃 test 작업중 -->
-    <div class="jumbotron container">
-        <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <h4 class="text-center">신규티켓</h4>
-                    <div class="row my-3 jumbotron-wrap"
-                        style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
-                        <div class="jumbotron-img">
-                            <img src="https://ticketimage.interpark.com/Play/image/large/20/20010593_p.gif"
-                                width="70%" height="100%" alt="...">
-                                
-                        </div>
-                        <div class="jumbotron-body">
-                            <div class="badge bg-danger">신규오픈</div>
-                            <a href="#">
-                                <h5>뮤지컬 〈스웨그에이지 : 외쳐, 조선!〉</h5>
-                                <!--p=모바일 노출-->
-                                <p><strong>[오픈]</strong>21.01.12(화)</p>
-                                <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
-                                <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row g-0 my-3" style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
-                        <div class="jumbotron-img">
-                            <img src="https://ticketimage.interpark.com/Play/image/large/20/20010646_p.gif"
-                                width="70%" height="100%" alt="...">
-                        </div>
-                        <div class="jumbotron-body">
-                            <div class="badge bg-danger">신규오픈</div>
-                            <a href="#">
-                                <h5 class="">MUSICAL AUDITION CONCERT 내가 광이 날 상인가</h5>
-                                <!--p=모바일 노출-->
-                                <p><strong>[오픈]</strong>21.01.12(화)</p>
-                                <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
-                                <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row g-0 my-3" style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
-                        <div class="jumbotron-img">
-                            <img src="https://ticketimage.interpark.com/Play/image/large/20/20011269_p.gif"
-                                width="70%" height="100%" alt="...">
-                        </div>
-                        <div class="jumbotron-body">
-                            <div class="badge bg-danger">신규오픈</div>
-                            <a href="#">
-                                <h5 class="">데이비드 자민展</h5>
-                                <!--p=모바일 노출-->
-                                <p><strong>[오픈]</strong>21.01.12(화)</p>
-                                <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
-                                <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
-                            </a>
-                        </div>
-                    </div>
+                <!-- ticket zone title -->
+                <div class="col-12 title_bg">
+                    <h3>Ticket Zone</h3>
                 </div>
-                <div class="col-lg-4 text-center event-padding">
-                    <h4 class="text-center">EVNET</h4>
-                    <div class="col-12 my-3">
-                        <a href="#">
-                            <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127103844_16007528.gif"
-                                width="150%" class="img-thumbnail" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-12 my-3">
-                        <a href="#">
-                            <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210126034200_20003124.gif"
-                                width="150%" class="img-thumbnail" alt="...">
-                        </a>
-                    </div>
-                    <div class="col-12 my-3 m-none">
-                        <a href="#">
-                            <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127021752_14014163.gif"
-                                width="150%" class="img-thumbnail" alt="...">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="evnet-wrap">
-        <div id="carouselExampleSlidesOnly" class="carousel slide event-bn" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active banner">
-                     <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127103844_16007528.gif" class="d-block w-100" alt="…">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210126034200_20003124.gif" class="d-block w-100" alt="…">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127021752_14014163.gif" class="d-block w-100" alt="…">
-                </div>
-            </div>
-        </div>
-    </div>
 
-</div>
-    <!-- Footer -->
+                <!-- 티켓등록시에 보여지는 리스트 -->
+                <%for(var i=0; i < concert.length; i++){%>
+                    <div class="col-lg-3 col-md-4 col-6 mb-3 p-2">
+                        <div class="card card-radius card-box">
+                            <a href="javascript:info('<%=concert[i].id%>', '<%=loggedname%>')">
+                                <div class="card-img-top">
+                                    <img src="<%=concert[i].poster_img%>" alt="">
+                                </div>
+
+                                <div class="card-body card-title ">
+                                    <p><strong>
+                                            <%=concert[i].name%>
+                                        </strong></p>
+                                    <div class="card-text fs-6">
+                                        <span>
+                                            <%=concert[i].date%>
+                                        </span>
+                                        <small>
+                                            <%=concert[i].place%>
+                                        </small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <%}%>
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.ticket zone wrap box -->
+
+
+        <!-- sub conent box background -->
+        <div class="jumbotron container">
+
+            <div class="container">
+                <div class="row">
+                    <!-- new ticket wrap -->
+                    <div class="col-lg-8">
+                        <h4 class="text-center">신규티켓</h4>
+                        <div class="row my-3 jumbotron-wrap"
+                            style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
+                            <div class="jumbotron-img">
+                                <img src="https://ticketimage.interpark.com/Play/image/large/20/20010593_p.gif"
+                                    width="70%" height="100%" alt="...">
+                            </div>
+                            <div class="jumbotron-body">
+                                <div class="badge bg-danger">신규오픈</div>
+                                <a href="#">
+                                    <h5>뮤지컬 〈스웨그에이지 : 외쳐, 조선!〉</h5>
+                                    <!--p=모바일 노출-->
+                                    <p><strong>[오픈]</strong>21.01.12(화)</p>
+                                    <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
+                                    <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row g-0 my-3"
+                            style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
+                            <div class="jumbotron-img">
+                                <img src="https://ticketimage.interpark.com/Play/image/large/20/20010646_p.gif"
+                                    width="70%" height="100%" alt="...">
+                            </div>
+                            <div class="jumbotron-body">
+                                <div class="badge bg-danger">신규오픈</div>
+                                <a href="#">
+                                    <h5 class="">MUSICAL AUDITION CONCERT 내가 광이 날 상인가</h5>
+                                    <!--p=모바일 노출-->
+                                    <p><strong>[오픈]</strong>21.01.12(화)</p>
+                                    <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
+                                    <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row g-0 my-3"
+                            style="background-color:#fff; padding-top:1rem; padding-bottom:1rem;">
+                            <div class="jumbotron-img">
+                                <img src="https://ticketimage.interpark.com/Play/image/large/20/20011269_p.gif"
+                                    width="70%" height="100%" alt="...">
+                            </div>
+                            <div class="jumbotron-body">
+                                <div class="badge bg-danger">신규오픈</div>
+                                <a href="#">
+                                    <h5 class="">데이비드 자민展</h5>
+                                    <!--p=모바일 노출-->
+                                    <p><strong>[오픈]</strong>21.01.12(화)</p>
+                                    <span><strong>공연일시</strong> 2020.11.19~2021.02.21</span>
+                                    <span><strong>공연장소</strong> 두산 아트센터 연강홀</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./new ticket wrap -->
+
+                    <!-- event wrap(mobile=none) -->
+                    <div class="col-lg-4 text-center event-padding">
+                        <h4 class="text-center">EVNET</h4>
+                        <div class="col-12 my-3">
+                            <a href="#">
+                                <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127103844_16007528.gif"
+                                    width="150%" class="img-thumbnail" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-12 my-3">
+                            <a href="#">
+                                <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210126034200_20003124.gif"
+                                    width="150%" class="img-thumbnail" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-12 my-3 m-none">
+                            <a href="#">
+                                <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127021752_14014163.gif"
+                                    width="150%" class="img-thumbnail" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.event wrap -->
+                </div>
+            </div>
+            <!-- /.sub/container -->
+        </div>
+        <!-- sub conent box background -->
+
+        <!-- (mobile) envent slide -->
+        <div class="evnet-wrap">
+            <div id="carouselExampleSlidesOnly" class="carousel slide event-bn" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active banner">
+                        <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127103844_16007528.gif"
+                            class="d-block w-100" alt="…">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210126034200_20003124.gif"
+                            class="d-block w-100" alt="…">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://ticketimage.interpark.com/TCMS3.0/MMain/Promotion/2101/210127021752_14014163.gif"
+                            class="d-block w-100" alt="…">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.mobile envent slide -->
+
+    </div>
+    <!-- /.body_main -->
+
+    <!-- footer -->
     <footer class="footer">
         <%- include ("./reference/footer.ejs") %>
     </footer>
+    <!-- /.footer -->
 
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>

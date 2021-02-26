@@ -13,86 +13,106 @@
 <script type="text/javascript">
     
 </script>
-<body>
-    
+<body onload="makeCode('<%=ticket[0].ticketId%>', '<%=ticket[0].name%>', '<%=date%>', '<%=ticket[0].seat%>'), date('<%=ticket[0].date%>', '<%=ticket[0].time%>')">
+
+    <!-- header gnb -->
     <div class="header">
         <%- include ("../reference/header.ejs") %>
     </div>
 
+    <!-- body(background css) -->
+    <div class="body">
 
-<div class="body">
-    <div class="myticket-wrap">
-       
-        
-        
-        <div class="myticket-title">
-            <div class="myticket-title-box">
-                <a href="javascript:history.back();">&lt;</a>
-                <h5 class="myticket-h5">MY TICKET</h5>
+        <!-- mywallet -> myticket wrap -->
+        <div class="myticket-wrap">
+
+            <div class="myticket-title"> 
+                <div class="myticket-title-box">
+                    <a href="javascript:history.back();">&lt;</a>
+                    <h5 class="myticket-h5">MY TICKET</h5>
+                </div>
+                <div class="my-circle"></div>
             </div>
-            <div class="my-circle"></div>
-        </div> 
-         
-         <div class="my-ticket-box">
-             <div class="my-ticket-title">
-                 <h6><%=ticket[0].c_name%></h6>
-             </div>
-             
-             <div class="my-ticket-poster">
-                 <div class="my-ticker-poster-img">
-                     <img src="<%=ticket[0].poster_img%>" alt="poster">
-                 </div>
-             </div>
-             
-             <div class="my-ticket-intro">
-                 <ul class="my-ticket-intro1">
-                    <li id="qrcode"></li>
-                    <li><%=ticket[0].date%> | <%=ticket[0].time%></li>
-                    <li><%=ticket[0].seat%></li>
-                    <li><%=ticket[0].place%></li>
-                 </ul>
-                 <ul class="my-ticket-intro2">
-                         <li>
-                             <a href="#">티켓번호&nbsp;
-                                 <img id="try2" src="/img/try2.png" width="15px;">
+
+            <div class="my-ticket-box">
+
+                <div class="my-ticket-title">
+                    <h6>
+                        <!-- ticket title -->
+                        <%=ticket[0].c_name%>
+                    </h6>
+                </div>
+
+                <div class="my-ticket-poster">
+                    <div class="my-ticker-poster-img">
+                        <img src="<%=ticket[0].poster_img%>" alt="poster">
+                    </div>
+                </div>
+
+                <!-- ticket information -->
+                <div class="my-ticket-intro">
+                    <ul class="my-ticket-intro1" style="height: auto;">
+                        <li id="qrcode"></li>
+                        <li id="date"></li>
+                        <li><%=ticket[0].seat%></li>
+                        <li><%=ticket[0].place%></li>
+                     </ul>
+                    <ul class="my-ticket-intro2">
+                        <li>
+                            <a href="#">티켓번호&nbsp;
+                                <img id="try2" src="/img/try2.png" width="15px;">
                             </a>
-                             <div class="toggle"><%=ticket[0].ticketId%></div>
+                            <div class="toggle">
+                                <%=ticket[0].ticketId%>
+                            </div>
                         </li>
 
-                         <li>결제금액<span><%=ticket[0].price%>원</span> </li>
-                         <li>소유자<span><%=ticket[0].user%></span> </li>                         
-                 </ul>
+                        <li>결제금액<span>
+                                <%=ticket[0].price%>원
+                            </span> </li>
+                        <li>소유자<span>
+                                <%=ticket[0].user%>
+                            </span> </li>
+                    </ul>
+
                     <div class="my-ticket-intro3">
                         <!-- <form method="POST" action="/qrcode"> -->
-                        <div style="display: none;">
-                            <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
-                            <input type="text" name="name" value="<%=ticket[0].name%>">
-                        </div>
-                        <p>현장 본인인증 후 사용가능 한 티켓입니다.</p>
-                        <button class="button" onclick="makeCode('<%=ticket[0].ticketId%>', '<%=ticket[0].name%>')">인증하기</button>
-                        <!-- </form> -->
-                        
+                            <div style="display: none;">
+                                <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
+                                <input type="text" name="name" value="<%=ticket[0].name%>">
+                            </div>
+                            <p>현장 본인인증 후 사용가능 한 티켓입니다.</p>
+                            <p id="limit"></p>
+                            <!-- </form> -->
+
                         <form method="POST" action="/ticket/transfer" style="margin-top: 0.5rem;">
-                        <div style="display: none;">
-                            <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
-                        </div>
-                        <button class="button" type="submit">양도하기</button>
+                            <div style="display: none;">
+                                <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
+                            </div>
+                            <button class="button" type="submit">양도하기</button>
                         </form>
                     </div>
-             </div>
-         </div>
-         
-        
+
+                </div>
+                <!-- /.ticket information -->
+
+            </div>
+            
+        </div>
+        <!-- /.mywallet -> myticket wrap -->
+
     </div>
-</div>
+    <!-- body(background css) -->
 
     <script>
         var i =1;
+        var limit = 60;
 
 
         $(document).ready(function(){
+                setInterval("time()", 1000);
             
-            $("#qrcode").hide();
+            //$("#qrcode").hide();
 
             $(".toggle").hide();
             // $("ul > li:first-child a").next().show();
@@ -111,13 +131,38 @@
             width : 150,
             height : 150
         });
+
+        function time(){
+            if(limit > 0){
+                document.getElementById("limit").innerHTML = limit+"초";
+                limit--;
+            }else{
+                document.getElementById("limit").innerHTML = "인증 시간이 만료되었습니다.";
+                deleteCode();
+            }
+        }
+
+        function date(date, time){
+            var d = date.substring(0,4) + "년" + date.substring(4,6) + "월" + date.substring(6,8) + "일";
+            var t = time.substring(0,2) + "시" + time.substring(2,4) + "분";
+            document.getElementById("date").innerHTML = d + t;
+        }
         
-        function makeCode (ticketId, name) {	
+        function makeCode (ticketId, name, time, seat) {	
             $("#qrcode").show();
-            var elText = "{ticketId : "+ticketId+",name : "+name+"}";
+            var a = seat.substring(0,1);
+            if(a == "v" && a == "r"){
+                var c = 1;
+            }else{
+                var c = 2;
+            }
+            var elText = "{ticketId : "+ticketId+", name : "+name+", time : "+time+", floor = "+c+"}";
             
             
             qrcode.makeCode(elText);
+        }
+        function deleteCode(){
+            $("#qrcode").hide();
         }
         $("#qrcode > img").css({"margin":"auto"});
 </script>

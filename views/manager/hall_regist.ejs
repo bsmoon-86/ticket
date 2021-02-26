@@ -8,115 +8,121 @@
 </head>
 <script>
   function index() {
-    location.href="/"
+    location.href = "/"
   }
 </script>
 
 <body class="regist-wrap">
-  
-  
+
+  <!-- manager box wrap -->
   <div class="regist-container">
-    
-     <div class="regist-header">
+
+    <!-- manager header -->
+    <div class="regist-header">
       <h1 class="regist-logo"><a><img src="../img/mainlogo.png" alt="logo"></a></h1>
-         
-         <nav class="regist-gnb">
-             <ul class="regist-navi">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/manager">대시보드</a>
-                  </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="/manager/regist">공연 등록</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/manager/hall">공연장 등록</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/logout">로그아웃</a>
-                  </li>
-                  
-             </ul>
-         </nav>
-         
-     </div>
-     
-     <div class="regist-body">
-         <div class="regist-body-top">
-             <h2 class="regist-body-title">공연장 등록</h2>
-             
-             
-         </div>
-         <div class="regist-body-middle">
-             
-  <!-- Page Content -->
-  <div class="container">
 
-    <div class="row" style="margin: 20px 20px 20px 20px;">
+      <nav class="regist-gnb">
+        <ul class="regist-navi">
+          <li class="nav-item">
+            <a class="nav-link" href="/manager">대시보드</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/manager/regist">공연 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/manager/hall">공연장 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">로그아웃</a>
+          </li>
+        </ul>
+      </nav>
 
-      <form method="POST" action="/manager/hall2" class="row">
-      
-      <div class="input-bg-1">
-       <div class="regist-h mb-3">공연장 정보</div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "name">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "address">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">연락처</span>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name = "phone">
-        </div>
-      </div>
-      <div class="input-bg-1"> 
-       <div class="regist-h mb-3">공연 좌석 수</div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">VIP 좌석수</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat1">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">R 좌석수</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat2">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">S 좌석수</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat3">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">A 좌석수</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat4">
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-default">B 좌석수</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name ="seat5">
-        </div>
-       </div>    
-        <div class="regist-h">
-        <button type="submit" class="btn btn-primary btn-lg regist-button" style="margin-right: 10px;">등록</button>
-        <button type="button" class="btn btn-secondary btn-lg regist-button" onclick=index();>취소</button>
-        </div>
-      </form>
-        
     </div>
-    <!-- /.row -->
+    <!-- /.manager header -->
+
+    <div class="regist-body">
+
+      <div class="regist-body-top">
+        <h2 class="regist-body-title">공연장 등록</h2>
+      </div>
+
+      <div class="regist-body-middle">
+        <div class="container">
+
+          <div class="row" style="margin: 20px 20px 20px 20px;">
+
+            <!-- 공연장 정보 입력 -->
+            <form method="POST" action="/manager/hall2" class="row">
+              <div class="input-bg-1">
+                <div class="regist-h mb-3">공연장 정보</div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="name">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="address">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">연락처</span>
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="phone">
+                </div>
+              </div>
+              <div class="input-bg-1">
+                <div class="regist-h mb-3">공연 좌석 수</div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">VIP 좌석수</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="seat1">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">R 좌석수</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="seat2">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">S 좌석수</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="seat3">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">A 좌석수</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="seat4">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">B 좌석수</span>
+                  <input type="number" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="seat5">
+                </div>
+              </div>
+              <div class="regist-h">
+                <button type="submit" class="btn btn-primary btn-lg regist-button"
+                  style="margin-right: 10px;">등록</button>
+                <button type="button" class="btn btn-secondary btn-lg regist-button" onclick=index();>취소</button>
+              </div>
+            </form>
+            <!-- /.공연장 정보 입력 -->
+
+          </div>
+          <!-- /.row -->
+
+        </div>
+        <!-- /.container -->
+      </div>
+
+    </div>
 
   </div>
-  <!-- /.container -->            
-             
-             
-             
-         </div>
-     </div>
-     
-      
-  </div>
+  <!-- manager box wrap -->
 
-
-    <!-- Footer -->
-    <footer class="footer">
-      <%- include ("../reference/footer.ejs") %>
+  <!-- Footer -->
+  <footer class="footer">
+    <%- include ("../reference/footer.ejs") %>
   </footer>
 
   <!-- Bootstrap core JavaScript -->

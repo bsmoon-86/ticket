@@ -11,18 +11,18 @@
 
 
 
-* {
-    list-style: none;
+*{
+    list-style:none;
     font-family: 'Nanum Gothic';
 }
 
-a {
-    color: black;
+a{
+    color:black;
     display: block;
     text-decoration: none;
 }
 
-a:hover {
+a:hover{
     text-decoration: none;
 }
 
@@ -31,7 +31,7 @@ a:hover {
 
 .top {
     width: 100%;
-    height: 138px;
+    height:138px;
     position: relative;
     z-index: 99;
     background-color: #fff;
@@ -39,7 +39,7 @@ a:hover {
 }
 
 .top-line {
-    width: 100%;
+    width:100%;
     max-width: 75rem;
     margin: 0 auto;
     height: 95px;
@@ -51,33 +51,30 @@ a:hover {
     float: left;
     margin-top: 8px;
 }
-
-.logo img {
-    width: 90%;
-    padding-top: 17px;
+.logo img{
+    width:90%;
+    padding-top:17px;
 }
 
 
 .gnb-box {
     width: 100%;
-    margin: 0 auto;
+    margin:0 auto;
     height: 50px;
-    padding: 0;
+    padding:0;
     line-height: 50px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-left: none;
-    border-right: none;
-
+    background:#fff;
+    border:1px solid #ddd;
+    border-left:none;
+    border-right:none;
+   
 }
-
-.gnb {
+.gnb{
     width: 100%;
     max-width: 75rem;
-    margin: 0 auto;
-
+    margin:0 auto;
+   
 }
-
 .navi {
     display: flex;
     height: 50px;
@@ -92,7 +89,7 @@ a:hover {
     margin: 2px;
     box-sizing: border-box;
     border-radius: 50px;
-    font-weight: 500;
+    font-weight:500;
 
 }
 
@@ -102,8 +99,8 @@ a:hover {
 
 /*serch 박스 설정*/
 
-.serch {
-    width: 25%;
+.serch{
+    width:25%;
     float: right;
     margin-top: 38px;
     position: relative;
@@ -113,41 +110,40 @@ a:hover {
 .serch input {
     width: 100%;
     height: 35px;
-    background: #fff;
+    background:#fff;
     /* border-bottom-style: solid;
     border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
     border-image-slice:3; */
-    border: 1px solid #ddd;
+    border:1px solid #ddd;
     border-radius: 1rem;
 }
 
 .serch button {
     position: absolute;
-    top: 1px;
-    right: 0;
+    top:1px;
+    right:0;
     z-index: 999;
-    padding: 0;
-    width: 35px;
-    height: 35px;
-    border: none;
-    background: rgba(250, 250, 250, 0);
+    padding:0;
+    width:35px;
+    height:35px;
+    border:none;
+    background:rgba(250, 250, 250, 0);
 }
-
-.serch button i {
+.serch button i{
     display: inherit;
-    color: #7881f6;
+    color:#7881f6;
 }
 
 /*자바스크립트 메뉴 상단고정*/
 .sticky {
-    width: 100%;
+    width:100%;
     position: fixed;
     top: 0;
     z-index: 996;
-    background: #fff;
+    background:#fff;
 }
 
-.header-box {
+.header-box{
     display: none;
 }
 
@@ -166,16 +162,9 @@ a:hover {
         text-align: left;
     }
 
-    .logo img {
-        width: 70%;
-        padding-top: 17px;
-        padding-left:7px;
+    .top{
+        height:95px;
     }
-
-    .top {
-        height: 95px;
-    }
-
     .top-line {
         border-bottom-style: solid;
         border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
@@ -205,69 +194,63 @@ a:hover {
     z-index: 999;
     top: 0;
     right: 0;
-    background: #fff;
+    background:#fff;
     transition: 0.5s;
     overflow: hidden;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.16) inset;
 }
 
-.overlay-title {
+.overlay-title{
     position: relative;
-    width: 100%;
-    height: 80px;
+    width:100%;
+    height:80px;
     text-align: center;
     background-image: linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
 }
-
-.overlay-title a {
-    position: absolute;
+.overlay-title a{
+    position:absolute;
 }
-
-.overlay-title a:nth-child(1) {
-    top: 27px;
-    left: 13px;
+.overlay-title a:nth-child(1){
+    top:27px;
+    left:13px;
     width: 74px;
     height: 28px;
     color: #ffffff;
 }
-
 .overlay-title a:nth-child(2),
 .overlay-title a:nth-child(3) {
-    top: 27px;
-    left: 70%;
+    top:27px;
+    left:70%;
     width: 63px;
     height: 23px;
     font-size: 14px;
     text-align: center;
     color: #ffffff;
-    border: 1px solid #fff;
+    border:1px solid #fff;
 }
 
-.overlay-content {
-    position: absolute;
-    left: -10%;
-    width: 120%;
-    padding: 0;
+.overlay-content{
+    position:absolute;
+    left:-10%;
+    width:120%;
+    padding:0;
 }
-
-.overlay-content li {
-    width: 100%;
-    height: 50px;
+.overlay-content li{
+    width:100%;
+    height:50px;
     margin-top: 10px;
-    padding-left: 5%;
-    background: #fff;
+    padding-left:5%;
+    background:#fff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 }
-
 .overlay-content li a {
     height: 50px;
     line-height: 50px;
     display: inline-block;
 }
-
-.overlay-content i {
+.overlay-content i{
     vertical-align: middle;
-    padding: 0 5% 0 10%;
+    padding:0 5% 0 10%;
 }
 
 .overlay a:hover,
@@ -280,12 +263,12 @@ a:hover {
     z-index: 999;
     top: 28rem;
     left: 0px;
-    width: 100%;
-    height: 3rem;
+    width:100%;
+    height:3rem;
     line-height: 3rem;
     font-size: 20px;
     color: #fff;
-    background: linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
+    background:linear-gradient(to right, #46c0f7 0%, #7881f6 58%, #a44af5);
     text-align: center;
 }
 
@@ -300,54 +283,48 @@ a:hover {
 /**********************2.img_slide 이미지 슬라이드 작업 (22일작업 파일)*****************************/
 
 
-.visual {
+.visual{
     width: 100%;
-    margin: 0 auto;
-    margin-top: 1rem;
+    margin:0 auto;
+    margin-top:1rem;
     /* background:rgba(167, 201, 211, 0.2) */
 }
-
-#img-slide {
-    width: 100%;
+#img-slide{
+    width:100%;
     max-width: 90rem;
-    margin: 0 auto;
+    margin:0 auto;
 }
 
-#img-slide div {
-    width: 100%;
-    height: 350px;
+#img-slide div{
+    width:100%;
+    height:350px;
 }
-
-#img-slide div:nth-child(1) {
+#img-slide div:nth-child(1){
     background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202010/MainVisual_4071e68b-a84f-4cca-8f9f-e1911f5c2a55.jpg');
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
+    background-position:center;
+    background-size:cover;
+   
 }
-
 #img-slide div:nth-child(2) {
     background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202101/MainVisual_bd119d0d-1b0a-4307-a1ad-069eab13322b.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-
 #img-slide div:nth-child(3) {
     background-image: url('http://ticketimage.interpark.com/TCMS4/Main/202102/MainVisual_72d4cfdc-95a0-4c87-830c-24ecf3d21cd0.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size:cover;
 }
-
-#img-slide div a {
-    width: 100%;
+#img-slide div a{
+    width:100%;
     height: 100%;
 }
 
 /* 모바일 메뉴 작업 */
-.m-menu,
-.m-menu a {
+.m-menu, .m-menu a{
     display: none;
 
 }
@@ -355,7 +332,7 @@ a:hover {
 
 
 /*****2.img_slide 이미지 슬라이드 작업*****/
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px){
 
     .visual {
         width: 100%;
@@ -368,63 +345,62 @@ a:hover {
     }
 
 
-
-    .m-menu,
-    .m-menu a {
-        display: block;
-
-
-    }
-
-    .m-menu {
-        width: 100%;
-        margin: 0 auto;
-        margin-top: 1.5rem;
-    }
+  
+.m-menu,
+.m-menu a {
+    display: block;
 
 
-    .m-menu span {
-        display: block;
-        font-size: .8rem;
-        padding-top: 10px;
-    }
+}
+.m-menu{
+    width: 100%;
+    margin: 0 auto;
+    margin-top:1.5rem;
+}
 
-    /* 모바일 공간박스 */
 
-    .m-box {
-        height: 10px;
-        background: #eee;
-        margin: 1.5rem 0 2rem 0;
-        box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2) inset,
-            0px 0px 2px rgba(200, 200, 200, 0.4)
-    }
+.m-menu span{
+    display: block;
+    font-size:.8rem;
+    padding-top:10px;
+}
 
-    #img-slide div {
-        width: 100%;
-        height: 300px;
-    }
+/* 모바일 공간박스 */
 
-    #img-slide div:nth-child(1) {
-        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2101/210105090614_20009551.gif');
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
+.m-box{
+    height:10px;
+    background:#eee;
+    margin:1.5rem 0 2rem 0;
+    box-shadow: 0px 0px 2px rgba(50, 50, 50, 0.2) inset,
+    0px 0px 2px rgba(200, 200, 200, 0.4)
+}
 
-    }
+#img-slide div {
+    width: 100%;
+    height: 300px;
+}
 
-    #img-slide div:nth-child(2) {
-        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2012/201211113931_20010583.gif');
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-    }
+#img-slide div:nth-child(1) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2101/210105090614_20009551.gif');
+    background-repeat: no-repeat;
+    background-position:center top;
+    background-size:cover;
 
-    #img-slide div:nth-child(3) {
-        background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2010/201006035547_20007956.gif');
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
-    }
+}
+
+#img-slide div:nth-child(2) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2012/201211113931_20010583.gif');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+
+#img-slide div:nth-child(3) {
+    background-image: url('http://ticketimage.interpark.com/TCMS3.0/MMain/TopBanner/2010/201006035547_20007956.gif');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
 
 
 }
@@ -434,18 +410,18 @@ a:hover {
 /**********************3.index 인덱스 페이지 작업*****************************/
 
 
-.title_bg h3 {
-    padding: 20px;
-    font-size: 1.5rem;
+.title_bg h3{
+    padding:20px;
+    font-size:1.5rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 1.5rem;
     position: relative;
 }
 
-.title_bg h3::before {
-    content: "___";
-    color: #46c0f7;
+.title_bg h3::before{
+    content:"___";
+    color:#46c0f7;
 }
 
 .title_bg h3::after {
@@ -518,71 +494,67 @@ a:hover {
 
 
 
-.jumbotron-img {
-    width: 25%;
-    float: left;
+.jumbotron-img{
+    width:25%;
+    float:left;
     overflow: hidden;
     text-align: center;
 }
 
-.jumbotron-body {
-    width: 75%;
-    float: left;
-    font-size: .8rem;
+.jumbotron-body{
+    width:75%;
+    float:left;
+    font-size:.8rem;
 }
-
-.jumbotron-body h5 {
+.jumbotron-body h5{
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space:nowrap;
     font-weight: bold;
-    font-size: 1rem;
-    padding: 10px 10px 5px 0;
+    font-size:1rem;
+    padding:10px 10px 5px 0;
 }
 
-.jumbotron-body p {
+.jumbotron-body p{
     display: none;
 }
 
-.jumbotron-body div {
+.jumbotron-body div{
     padding: 3px;
-    color: #fff;
+    color:#fff;
     font-weight: normal;
 }
-
-.jumbotron-body span {
+.jumbotron-body span{
     display: block;
-    font-size: .9rem;
+    font-size:.9rem;
 }
 
-.card-box a:hover {
-    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    color: #fff;
+.card-box a:hover{
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color:#fff;
 }
 
-.card-box a:hover small {
-    color: #fff;
+.card-box a:hover small{
+    color:#fff;
 }
 
 /**********모바일 화면 index 작업************/
-@media only screen and (max-width:768px) {
-
-    .jumbotron-body span {
+@media only screen and (max-width:768px){
+    
+    .jumbotron-body span{
         display: none;
     }
-
-    .jumbotron-body p {
+    .jumbotron-body p{
         display: block;
-        color: seagreen;
+        color:seagreen;
     }
-
-
+    
+    
     /*이벤트페이지 2종류 숨김*/
-    .event-padding {
-        margin-top: 3rem;
+    .event-padding{
+        margin-top:3rem;
         display: none;
     }
-
     .card-img-top img {
         width: 100%;
         height: 185px;
@@ -598,152 +570,120 @@ a:hover {
 
 /**********************4.예약페이지 작업*****************************/
 
-.main {
-    width: 95%;
-    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    height: auto;
-    margin: 0 auto;
-    padding: 1.5rem;
+.main{
+    width:95%;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    height:auto;
+    margin:0 auto;
+    padding:1.5rem;
+}
+.reserve-wrap{
+    margin-top:2rem;
+    padding-bottom:2rem;
+    border:1px solid #eee;
 }
 
-.reserve-wrap {
-    margin-top: 2rem;
-    padding-bottom: 2rem;
-    border: 1px solid #eee;
+.main-img{
+    padding-bottom:2rem;
+    border-bottom:none;
 }
 
-.main-img {
-    padding-bottom: 2rem;
-    border-bottom: none;
+.table-wrap{
+    margin-top:1rem;
 }
-
-.table-wrap {
-    margin-top: 1rem;
-}
-
-.table-wrap tbody {
+.table-wrap tbody{
     text-align: justify;
 }
 
-.reserve-wrap div:nth-child(1) {
-    padding: 1rem 0;
+.reserve-wrap div:nth-child(1){
+    padding:1rem 0;
 
 }
-
-.reserve_tab {
-    display: flexbox;
-    flex-direction: row;
+.reserve-choice form{
+    margin-top:10px;
+    margin-bottom:10px;
 }
-
-.reserve-choice>div>div:nth-child(1) {
-    background: #ddd;
+.reserve-choice>div>div:nth-child(1){
+    background:#ddd;
     border-radius: 20px 0 0 20px;
 }
-
 .reserve-choice>div>div:nth-child(2) {
-    background: #ddd;
-    border-left: 2px solid #fff;
-    border-right: 2px solid #fff;
+    background:#ddd;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
 }
-
 .reserve-choice>div>div:nth-child(3) {
-    background: #ddd;
+    background:#ddd;
     border-radius: 0 20px 20px 0;
 }
 
-.price-list p {
-    font-size: .5rem;
-    margin: 0;
-    padding: 2px;
+.price-list p{
+    font-size:.5rem;
+    margin:0;
+    padding:2px;
 }
 
-.reserve-button button {
-    width: 50%;
+.reserve-button button{
+    width:50%;
     max-width: 15rem;
-    padding: .3rem;
-    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    padding:.3rem;
+    background:repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
     border-radius: 20px;
-    border: none;
-    margin-top:.8rem;
+    border:none;
 }
-.reservation{
-    display: flex;
-    flex-direction: row;
-}
+/* .reserve-button button{
+    font-size:.8rem;
+} */
 
 /* 상세페이지 작업 */
-.details-wrap {
-    max-width: 75em;
+.details-wrap{
+    max-width:75em;
 }
-
 .details {
     width: 100%;
-    height: 60px;
+    height:60px;
     background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
 }
-
-.details li a {
-    height: 40px;
-    border: none;
-    background: none;
-    margin: 10px 5px 5px 5px;
+.details li a{
+    height:40px;
+    border:none;
+    background:none;
+    margin:10px 5px 5px 5px;
 }
 
 /**********모바일 화면 index 작업************/
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px){
 
-    .sub_list_wrap {
+    .sub_list_wrap{
+        display: none;
+    }
+    .reserve-wrap{
+        margin-top:0;
+        padding-top:0;
+        border-top:none;
+    }
+
+    .title-txt{
         display: none;
     }
 
-    .reserve-wrap {
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-    }
-
-    .title-txt {
-        display: none;
-    }
-
-    .main {
-        font-size: 1.2rem;
-        width: 100%;
+    .main{
+        font-size:1.2rem;
+        width:100%;
 
     }
 
     .details-wrap {
-        width: 100%;
-
+        width:100%;
+       
     }
-
     .main-img {
         padding-bottom: 2rem;
         border-bottom: 1px solid #ddd;
     }
 
     .reserve-wrap>div:nth-child(1) {
-        padding-top: 0;
-    }
-
-    .reservation>div:nth-child(1){
-        width:100%;
-    }
-    .form-check{
-        width:100%;
-        height:auto;
-        padding:0;
-        margin:0;
-    }
-    .form-check label{
-        font-size: .8rem;
-    }
-    .form-check input{
-        display: block;
-        margin:0 auto;
-    }
-    .mb_none{
-        display: none;
+      padding-top:0;
     }
 
 }
@@ -751,13 +691,13 @@ a:hover {
 /**********************5.좌석선택 예약페이지 작업*****************************/
 
 .seat-wrap {
-    width: 90%;
-    padding: 1rem;
+    width:90%;
+    padding:1rem;
     margin: 0 auto;
-    margin-bottom: 16rem;
+    margin-bottom:16rem;
     background: #fff;
-    margin-top: 2em;
-    border: 1px solid #eee;
+    margin-top:2em;
+    border:1px solid #eee;
 }
 
 .reserve_title {
@@ -774,7 +714,7 @@ a:hover {
 .reserve_title h2 {
     font-size: 1.8rem;
     line-height: 60px;
-    padding: 0 1rem;
+    padding:0 1rem;
 }
 
 /* 다른날짜박스 */
@@ -807,26 +747,25 @@ a:hover {
 
 .article-box {
     width: 100%;
-    height: auto;
+    height:auto;
     margin: 0 auto;
-
+  
 }
 
 .left-article {
     width: 55%;
-    height: auto;
+    height:auto;
     padding: 0;
     position: relative;
 }
-
-.tab-content {
-    margin-top: 5rem;
+.tab-content{
+    margin-top:5rem;
 }
 
 .right-article {
     width: 45%;
     border-left: 2px solid #ddd;
-    padding: 0;
+    padding:0;
 }
 
 .right-article div {
@@ -939,7 +878,7 @@ a:hover {
 .input-style p {
     width: .8em;
     height: .8em;
-    float: left;
+    float:left;
     margin: 1px 1px 0 1px;
 }
 
@@ -993,7 +932,7 @@ a:hover {
     width: 100%;
     height: auto;
     background: #eee;
-    padding: .5rem 0 0 0;
+    padding:.5rem 0 0 0;
 
 }
 
@@ -1084,7 +1023,7 @@ a:hover {
         padding: 0;
         margin: 0 auto;
         position: relative;
-        border: none;
+        border:none;
     }
 
     .reserve_title {
@@ -1101,11 +1040,9 @@ a:hover {
         text-align: center;
 
     }
-
-    .reserve_tab {
-        margin-top: 2rem;
-    }
-
+.tab-content {
+    margin-top: 2rem;
+}
     .h2-title {
         display: none;
     }
@@ -1122,23 +1059,22 @@ a:hover {
 
     .left-article {
         width: 100%;
-        height: auto;
+        height:auto;
         padding-left: 0;
         border-bottom-style: solid;
         border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
         border-image-slice: 2;
-        margin-top: 300px;
+        margin-top:300px;
     }
 
     .right-article {
         width: 100%;
-        height: auto;
-        border: none;
+        height:auto;
+        border:none;
     }
-
-    .button_box {
-        position: absolute;
-        top: 80px;
+    .button_box{
+        position:absolute;
+        top:80px;
         text-align: center;
     }
 
@@ -1212,7 +1148,7 @@ a:hover {
     height: 100%;
     margin: 4rem auto;
     padding-bottom: 40px;
-    background: #fff;
+    background:#fff;
 }
 
 .login_wrap .card {
@@ -1298,8 +1234,8 @@ a:hover {
         height: 100%;
         margin: 0;
         padding-bottom: 40px;
-        background: #fff;
-        border: none;
+        background:#fff;
+        border:none;
     }
 
     .login_wrap .card {
@@ -1312,11 +1248,9 @@ a:hover {
         border-image: linear-gradient(to right, #01c9ca 0%, #a44af5 100%);
         border-image-slice: 1;
     }
-
     .sns-body img {
         width: 3rem;
     }
-
     .login-link a {
         margin: 10px 0 0 0;
         font-size: .8rem;
@@ -1370,22 +1304,21 @@ input[type=password] {
 
 /*결제페이지*/
 
-.pay-wrap {
-    background: #fff;
-    width: 90%;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 1px solid #eee;
+.pay-wrap{
+    background:#fff;
+    width:90%;
+    margin:0 auto;
+    padding:1rem;
+    border:1px solid #eee;
 }
 
-.body {
-    max-width: 75em;
-    height: fit-content;
-    margin: 0 auto;
-    padding: 2rem 0;
+.body{
+    max-width:75em;
+    height:fit-content;
+    margin:0 auto;
+    padding:2rem 0;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 }
-
 .body_main {
     max-width: 80em;
     height: fit-content;
@@ -1394,41 +1327,35 @@ input[type=password] {
     /* border:1px solid #eee; */
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 }
-
 /*내결제 정보*/
-.pay-title {
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    padding: 1rem 0;
+.pay-title{
+    margin:0 auto;
+    width:100%;
+    height:auto;
+    padding:1rem 0;
     background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-
+    
 }
-
-.pay-title-box {
-    background: rgba(250, 250, 250, 0.3);
+.pay-title-box{
+   background:rgba(250, 250, 250, 0.3);
 }
-
-.pay-title-box ul {
+.pay-title-box ul{
     display: flex;
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: .5rem;
+    width:90%;
+    height:auto;
+    margin:0 auto;
+    padding:.5rem;
     /* margin-top:.9rem; */
     text-align: center;
 }
-
-.pay-title-box li {
-    width: 20%;
-    height: auto;
+.pay-title-box li{
+    width:20%;
+    height:auto;
 }
-
-.pay-title-box ul li img {
-    width: 3rem;
-    background: #fff;
+.pay-title-box ul li img{
+    width:3rem;
+    background:#fff;
 }
-
 .pay-title-box li:nth-child(2) {
     width: 80%;
     text-align: left;
@@ -1452,187 +1379,165 @@ input[type=password] {
 } */
 
 /*할인쿠폰*/
-.pay-coupon-bg {
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 80%;
-    height: 110px;
-    background: #fff;
-    padding: 10px 0 10px 0;
+.pay-coupon-bg{
+    margin:0 auto;
+    margin-top:10px;
+    width:80%;
+    height:110px;
+    background:#fff;
+    padding:10px 0 10px 0;
 }
-
-.pay-coupon {
-    margin: 0 auto;
-    width: 90%;
-    height: 80px;
+.pay-coupon{
+    margin:0 auto;
+    width:90%;
+    height:80px;
 }
-
-.coupon-list {
-    width: 100%;
-    height: 50px;
+.coupon-list{
+    width:100%;
+    height:50px;
     line-height: 50px;
-    border: 1px solid #ddd;
+    border:1px solid #ddd;
 }
-
-.coupon-list ul {
-    width: 100%;
-    height: 50px;
-    padding: 0 0.5rem;
-    text-align: center;
+.coupon-list ul{
+    width:100%;
+    height:50px;
+    padding:0 0.5rem;
+    text-align:center;
 }
-
-.coupon-list li {
-    float: left;
-    text-align: left;
-    width: fit-content;
+.coupon-list li{
+    float:left;
+    text-align:left;
+    width:fit-content;
 }
-
-.coupon-list li:nth-child(2) {
+.coupon-list li:nth-child(2){
     float: right;
 }
-
-.coupon-list button {
+.coupon-list button{
     line-height: 30px;
-    border: 1px solid #bbb;
-    background: #fff;
+    border:1px solid #bbb;
+    background:#fff;
 }
-
-.pay-h5 {
-    width: 100%;
-    height: 30px;
+.pay-h5{
+    width:100%;
+    height:30px;
     line-height: 30px;
     font-weight: normal;
     font-size: 1.1rem;
 }
 
 /*결제수단*/
-.pay-body-bg {
-    margin: 0 auto;
-    margin-top: 10px;
-    width: 80%;
-    height: 200px;
-    background: #fff;
-    padding: 10px 0 10px 0;
+.pay-body-bg{
+    margin:0 auto;
+    margin-top:10px;
+    width:80%;
+    height:200px;
+    background:#fff;
+    padding:10px 0 10px 0;
 }
-
-.pay-body {
-    margin: 0 auto;
-    width: 90%;
-    height: 185px;
+.pay-body{
+    margin:0 auto;
+    width:90%;
+    height:185px;
 }
-
-.pay-tab {
-    width: 100%;
-    height: 125px;
+.pay-tab{
+    width:100%;
+    height:125px;
     position: relative;
-    padding: 0;
-    margin-top: 0;
+    padding:0;
+    margin-top:0;
 }
-
-.pay-tab li {
-    width: 100%;
-    padding-top: 1rem;
+.pay-tab li{
+    width:100%;
+    padding-top:1rem;
 
 }
-
 /* .pay-tab li {
     float: left;
     width: 50%;
     border: 1px solid #ddd;
 
 } */
-.pay-tab li a {
+.pay-tab li a{
     display: block;
-    padding: 0;
-    height: 80px;
+    padding:0;
+    height:80px;
     line-height: 80px;
 }
-
-.tabCon {
+.tabCon{
     display: none;
     position: absolute;
-    left: 0;
-    top: 80px;
-    width: 100%;
-    height: 55px;
-    border: 1px solid #ddd;
+    left:0;
+    top:80px;
+    width:100%;
+    height:55px;
+    border:1px solid #ddd;
 
 }
-
-.tabCon select {
-    width: 30%;
-    margin-left: 35%;
-    height: 30px;
-    margin-top: 10px;
+.tabCon select{
+    width:30%;
+    margin-left:35%;
+    height:30px;
+    margin-top:10px;
 }
-
-.pay-tab li:nth-child(2) select {
-    width: 30%;
-    margin-left: 20%;
+.pay-tab li:nth-child(2) select{
+    width:30%;
+    margin-left:20%;
 }
-
-.pay-tab li:nth-child(2) select+select {
-    width: 30%;
-    margin-left: 0;
+.pay-tab li:nth-child(2) select+select{
+    width:30%;
+    margin-left:0;
 }
-
-.btnCon:target a {
-    color: red;
+.btnCon:target a{
+  color:red;
 }
-
-.btnCon:target .tabCon {
-    display: inline-block;
+.btnCon:target .tabCon{
+  display: inline-block;
 }
 
 
 /*결제예정금액*/
-.pay-bottom-bg {
-    margin: 0 auto;
-    width: 100%;
-    height: 245px;
-    background: #eee;
-    padding-top: 10px;
+.pay-bottom-bg{
+    margin:0 auto;
+    width:100%;
+    height:245px;
+    background:#eee;
+    padding-top:10px;
     text-align: center;
-
+    
 }
-
-.pay-bottom {
-    margin: 0 auto;
-    width: 70%;
-    height: 136px;
+.pay-bottom{
+    margin:0 auto;
+    width:70%;
+    height:136px;
     text-align: left;
 }
-
-.pay {
-    width: 100%;
-    padding: 0;
-    background: #fff;
+.pay{
+    width:100%;
+    padding:0;
+     background:#fff;
 }
-
-.pay li {
-    margin: 0 auto;
-    width: 90%;
-    height: 50px;
+.pay li{
+    margin:0 auto;
+    width:90%;
+    height:50px;
     line-height: 50px;
     text-align: right;
-    padding: 0;
-
+    padding:0;
+   
 }
-
-.pay li:nth-child(2) {
+.pay li:nth-child(2){
     border-top: 1px solid #ddd;
-    font-size: 1.3rem;
-    color: crimson;
+    font-size:1.3rem;
+    color:crimson;
 }
-
-.pay-bottom-bg button {
-    width: 70%;
-    height: 60px;
-    margin-top: 20px;
-    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    color: #fff;
-    font-size: 1.2rem;
-    border: none;
+.pay-bottom-bg button{
+    width:70%;
+    height:60px;
+    margin-top:20px;
+     background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color:#fff;
+    font-size:1.2rem;
+    border:none;
 }
 
 @media only screen and (max-width:768px) {
@@ -1641,48 +1546,42 @@ input[type=password] {
         width: 100%;
 
     }
-
-    .pay-wrap {
-        background: #eee;
-        width: 100%;
-        margin: 0 auto;
-        padding: 0;
-        border: none;
+       .pay-wrap{
+        background:#eee;
+        width:100%;
+        margin:0 auto;
+        padding:0;
+        border:none;
     }
-
-    .pay-title {
-        width: 100%;
+        .pay-title{
+        width:100%;
         /* height:100px;
         line-height: 100px;
         background: linear-gradient(to right, #01c9ca 0%, #a44af5 100%); */
 
     }
-
-    .pay-coupon-bg {
-        margin-top: 10px;
-        width: 100%;
-        height: 110px;
-        background: #fff;
-        padding: 10px 0 10px 0;
-    }
-
-    .pay-body-bg {
-        margin-top: 10px;
-        width: 100%;
-        height: 200px;
-        background: #fff;
-        padding: 10px 0 10px 0;
-    }
-
-    .pay-bottom-bg {
-        width: 100%;
-        height: 245px;
-        background: #eee;
-        padding-top: 10px;
-        text-align: center;
-
-    }
-
+    .pay-coupon-bg{
+    margin-top:10px;
+    width:100%;
+    height:110px;
+    background:#fff;
+    padding:10px 0 10px 0;
+}
+    .pay-body-bg{
+    margin-top:10px;
+    width:100%;
+    height:200px;
+    background:#fff;
+    padding:10px 0 10px 0;
+}
+    .pay-bottom-bg{
+    width:100%;
+    height:245px;
+    background:#eee;
+    padding-top:10px;
+    text-align: center;
+    
+}
     .body {
         padding-top: 0;
         margin-top: 0;
@@ -1811,15 +1710,15 @@ input[type=password] {
     max-width: 75em;
     margin: 3rem auto;
     padding: 0;
-    margin-bottom: 18rem;
+    margin-bottom:18rem;
 }
 
 .mypage-title {
     margin: 0 auto;
     width: 90%;
-    height: auto;
+    height:auto;
     background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    margin-bottom: 3rem;
+    margin-bottom:3rem;
     padding: 3rem 0;
 }
 
@@ -1834,7 +1733,7 @@ input[type=password] {
     color: #fff;
     line-height: 50px;
     text-align: center;
-    font-size: 2rem;
+    font-size:2rem;
 }
 
 .mypage-body {
@@ -1847,17 +1746,15 @@ input[type=password] {
 }
 
 .mypage-body>h6 {
-    width: 100%;
-    text-align: center;
-    padding: 10px 0 25px 0;
-    font-size: 1.3rem;
+   width:100%;
+   text-align: center;
+   padding:10px 0 25px 0;
+   font-size:1.3rem;
 }
+.mypage-body .txt{
 
-.mypage-body .txt {
-
-    padding: 0 10px;
+    padding:0 10px;
 }
-
 .my-box {
     width: 90%;
     height: auto;
@@ -1866,9 +1763,8 @@ input[type=password] {
     border-radius: 20px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
     position: relative;
-    padding: 1rem 0;
+    padding:1rem 0;
 }
-
 .my-box2 {
     width: fit-content;
     height: auto;
@@ -1879,14 +1775,13 @@ input[type=password] {
     padding: .5rem 1.4rem;
     text-align: center;
 }
-
 .my-intro {
     width: 100%;
 }
 
 .my-intro ul {
-    padding-top: .5rem;
-    padding-left: 3rem;
+    padding-top:.5rem;
+    padding-left:3rem;
 }
 
 .my-intro li {
@@ -1898,7 +1793,7 @@ input[type=password] {
 .my-intro li:nth-child(1) {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #333;
+    color:#333;
 }
 
 .intro-link {
@@ -1910,32 +1805,28 @@ input[type=password] {
     cursor: pointer;
 }
 
-.pick {
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: .5rem 0;
+.pick{
+    width:90%;
+    height:auto;
+    margin:0 auto;
+    padding:.5rem 0;
     display: flex;
     text-align: center;
 }
-
-.pick li {
-    width: 50%;
-    height: auto;
-    background: orange;
+.pick li{
+    width:50%;
+    height:auto;
+    background:orange;
 }
-
-.pick li a {
-    width: auto;
-    height: 10rem;
-    background: orchid;
+.pick li a{
+    width:auto;
+    height:10rem;
+    background:orchid;
 }
-
-.pick li a img {
-    height: 100%;
+.pick li a img{
+    height:100%;
 }
-
-.pick li span {
+.pick li span{
     font-size: .8rem;
 }
 
@@ -1955,8 +1846,7 @@ input[type=password] {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
     display: flex;
 }
-
-.mypage-ticket-box2>div {
+.mypage-ticket-box2>div{
     display: block;
     width: 90%;
     height: auto;
@@ -1968,20 +1858,17 @@ input[type=password] {
     display: flex;
     text-align: center;
 }
-
-.mypage-ticket-box2 p {
-    width: 100%;
-    padding: 1.5rem 0;
+.mypage-ticket-box2 p{
+    width:100%;
+    padding:1.5rem 0;
     text-align: center;
 }
-
-.ticket_us {
-    margin-top: 25px;
+.ticket_us{
+    margin-top:25px;
 }
-
 .mypage-ticket-img {
     width: 20%;
-    height: 150px;
+    height:150px;
     min-width: 7em;
 }
 
@@ -2024,8 +1911,7 @@ input[type=password] {
     color: #777;
     margin-top: 30px;
 }
-
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px){
     .mypage-wrap {
         background: #fff;
         max-width: 75em;
@@ -2041,7 +1927,6 @@ input[type=password] {
         margin-bottom: 2rem;
         padding: .8rem 0;
     }
-
     .mypage-h5 {
         color: #fff;
         line-height: 50px;
@@ -2119,7 +2004,7 @@ input[type=password] {
 
 .my-ticket-box h6 {
     font-size: 1.3rem;
-    padding: 1.5rem 0 1rem 0;
+    padding:1.5rem 0 1rem 0;
 }
 
 /*티켓 이미지*/
@@ -2152,7 +2037,7 @@ input[type=password] {
 .my-ticket-intro1 {
     padding: 15px 0 0 0;
     width: 95%;
-    height: 100px;
+    height: auto;
     line-height: 22px;
     text-align: center;
     margin-bottom: 0;
@@ -2191,8 +2076,8 @@ input[type=password] {
 }
 
 .my-ticket-intro2 span {
-    float: right;
-    display: block;
+    float:right;
+    display:block;
     font-weight: normal;
     font-size: .8rem;
     text-align: right;
@@ -2207,32 +2092,28 @@ input[type=password] {
     background: #333;
     color: #fff;
     font-size: .8rem;
-    padding: .8rem;
+    padding:.8rem;
 }
-
-.my-ticket-intro3 p {
-    margin-bottom: .5rem;
+.my-ticket-intro3 p{
+    margin-bottom:.5rem;
 }
-
-.button {
-    padding: .3rem .8rem;
+.button{
+    padding:.3rem .8rem;
     background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-    border: none;
-    font-size: .9rem;
+    border:none;
+    font-size:.9rem;
     transition: .3s ease-out;
-    color: #fff;
+    color:#fff;
 }
-
-.button:hover {
+.button:hover{
     opacity: .7;
     transition: .3s ease-out;
-
+    
 }
-
-.toggle {
-    width: 100%;
-    height: auto;
-    font-size: .8rem;
+.toggle{    
+    width:100%;
+    height:auto;
+    font-size:.8rem;
     text-align: center;
     overflow-wrap: break-word;
 }
@@ -2249,41 +2130,41 @@ input[type=password] {
     background:#fff;
 } */
 
-.ticket-search-wrap form {
-    width: 95%;
+.ticket-search-wrap form{
+    width:95%;
     max-width: 60rem;
-    height: auto;
-    margin: 5rem auto;
+    height:auto;
+    margin:5rem auto;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
     padding: 5rem 0;
     border-radius: 1rem;
     text-align: center;
-    margin-bottom: 25rem;
+    margin-bottom:25rem;
 }
 
-.ticket-search-wrap h2 {
-    width: 90%;
+.ticket-search-wrap h2{
+    width:90%;
     max-width: 75rem;
-    height: auto;
+    height:auto;
     background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
     /* width:fit-content; */
-    font-size: 1.8rem;
-    padding: 4rem;
-    margin: 3rem auto;
+    font-size:1.8rem;
+    padding:4rem;
+    margin:3rem auto;
     text-align: center;
-    color: #fff;
-
+    color:#fff;
+   
 }
 
-.ticket-search-bg label {
-    margin-right: .3rem;
-    font-size: 1.2rem;
+.ticket-search-bg label{
+    margin-right:.3rem;
+    font-size:1.2rem;
 }
 
-.ticket-search-bg label::before {
-    content: "*";
-    color: red;
-    padding-right: .2rem;
+.ticket-search-bg label::before{
+    content:"*";
+    color:red;
+    padding-right:.2rem;
 }
 
 /* 양도페이지 */
@@ -2293,49 +2174,46 @@ input[type=password] {
     padding-right: .2rem;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px){
 
-    .myticket-wrap {
-        margin: 0rem;
+.myticket-wrap{
+    margin:0rem;
 
-    }
+}
+.ticket-search-wrap {
+    width:100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background: #fff;
+    margin-bottom:15rem;
+}
+.ticket-search-wrap form {
+    width:95%;
+    margin:0 auto;
+    padding: 1rem 0;
+    border-radius: 1rem;
+}
+.ticket-search-wrap h2 {
+    width: 100%;
+    font-size: 1.7rem;
+    margin: 0 auto;
+    padding:2rem;
+    margin-bottom:3rem;
+    background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    color:#fff;
+}
 
-    .ticket-search-wrap {
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
-        padding: 0;
-        text-align: center;
-        background: #fff;
-        margin-bottom: 15rem;
-    }
+.ticket-search-bg label {
+    margin-right: .3rem;
+}
 
-    .ticket-search-wrap form {
-        width: 95%;
-        margin: 0 auto;
-        padding: 1rem 0;
-        border-radius: 1rem;
-    }
-
-    .ticket-search-wrap h2 {
-        width: 100%;
-        font-size: 1.7rem;
-        margin: 0 auto;
-        padding: 2rem;
-        margin-bottom: 3rem;
-        background: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-        color: #fff;
-    }
-
-    .ticket-search-bg label {
-        margin-right: .3rem;
-    }
-
-    .ticket-search-bg label::before {
-        content: "*";
-        color: red;
-        padding-right: .2rem;
-    }
+.ticket-search-bg label::before {
+    content: "*";
+    color: red;
+    padding-right: .2rem;
+}
 
     /* .ticket-search-bg {
         width: 95%;
@@ -2361,11 +2239,10 @@ input[type=password] {
     position: relative;
     background-image: url(/img/sport1.gif);
     background-position: center;
-    background-size: contain;
+    background-size:contain;
     background-repeat: no-repeat;
-    background-color: #eee;
+    background-color:#eee;
 }
-
 .rect {
     width: 90%;
     height: 35px;
@@ -2390,12 +2267,10 @@ input[type=password] {
     top: 150px;
     z-index: 99;
 }
-
-.map_btn2 {
-    width: 100%;
-    height: 100%;
+.map_btn2{
+    width:100%;
+    height:100%;
 }
-
 .map_btn2 a:nth-child(3) {
     min-width: 14%;
     height: 150px;
@@ -2405,7 +2280,6 @@ input[type=password] {
     right: 43%;
     z-index: 99;
 }
-
 .map_btn2 a:nth-child(4) {
     min-width: 43%;
     height: 150px;
@@ -2433,7 +2307,6 @@ input[type=password] {
     margin-top: 20px;
     padding-left: 2.8px;
 }
-
 .rectangle-wrap-second2 {
     width: 300px;
     height: auto;
@@ -2441,7 +2314,6 @@ input[type=password] {
     margin-top: 20px;
     padding-left: 2.8px;
 }
-
 .sport2-1 {
     width: 300px;
 }
@@ -2451,9 +2323,8 @@ input[type=password] {
 }
 
 .sport2-3 {
-    width: 450px;
+    width:450px;
 }
-
 .sport3-1 {
     width: 150px;
 }
@@ -2465,29 +2336,26 @@ input[type=password] {
 
 /* 스포츠 우측 좌측*/
 
-.sport1-1 p {
+.sport1-1 p{
     width: 20em;
     height: 4em;
     line-height: 2em;
-    font-size: .9rem;
+    font-size:.9rem;
 }
-
 .sport1-2 p {
     width: 20em;
-    height: 3em;
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 2px solid #ddd;
+    height:3em;
+    margin-top:2em;
+    padding-top:1em;
+    border-top:2px solid #ddd;
 }
-
-.sport1-2 form {
-    width: 20em;
-    height: 8em;
+.sport1-2 form{
+    width:20em;
+    height:8em;
 
 }
-
-.sport1-2 select {
-    width: 3em;
+.sport1-2 select{
+    width:3em;
 
 }
 
@@ -2497,14 +2365,14 @@ input[type=password] {
     width: 100%;
     height: auto;
     padding: 30px 0;
-    margin: 0 auto;
-    overflow: scroll;
+    margin:0 auto;
+    overflow: scroll;  
 }
 
 .rect3 {
-    width: 90%;
+    width:90%;
     height: 35px;
-    background: rgb(149, 184, 121, 0.5);
+    background:rgb(149, 184, 121, 0.5);
     margin: 0 auto;
     line-height: 35px;
     color: darkgrey;
@@ -2538,7 +2406,6 @@ input[type=password] {
     padding-left: 2.8px;
     text-align: center;
 }
-
 .soccer1-1,
 .soccer1-2,
 .soccer2-1,
@@ -2547,41 +2414,35 @@ input[type=password] {
 .soccer4-2 {
     width: 100%;
 }
-
 /* 축구장 좌석 top*/
 
-.soccer-select {
-    width: 100%;
-    height: 100px
+.soccer-select{
+    width:100%;
+    height:100px
 }
-
-.soccer-select p {
-    width: 100%;
+.soccer-select p{
+    width:100%;
     line-height: 25px;
-    font-size: .8rem;
-    margin-bottom: 10px;
+    font-size:.8rem;
+    margin-bottom:10px;
 }
-
-.soccer-select form {
-    margin-top: 3rem;
+.soccer-select form{
+    margin-top:3rem;
 }
-
-.soccer-select input {
+.soccer-select input{
     width: 30px;
-    height: 20px;
+    height:20px;
 }
-
 .button_box3 {
     width: 100%;
     height: 300px;
     padding: 0;
     background-image: url(/img/soccer2.gif);
-    background-size: contain;
-    background-position: center;
+    background-size:contain;
+    background-position:center;
     background-repeat: no-repeat;
-    position: relative;
+    position: relative; 
 }
-
 .soccerimg1 {
     width: 100%;
     height: 100%;
@@ -2589,7 +2450,6 @@ input[type=password] {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 .soccerimg2 {
     width: 100%;
     height: 100%;
@@ -2598,7 +2458,6 @@ input[type=password] {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 .soccerimg3 {
     width: 100%;
     height: 100%;
@@ -2607,7 +2466,6 @@ input[type=password] {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 .soccerimg4 {
     width: 100%;
     height: 100%;
@@ -2618,12 +2476,11 @@ input[type=password] {
 }
 
 .map_btn3 a:nth-child(1) {
-    width: 100%;
-    height: 100px;
+    width:100%;
+    height:100px;
     text-align: center;
-    padding: 0;
+    padding:0;
 }
-
 .map_btn3 a:nth-child(2) {
     min-width: 50%;
     height: 100px;
@@ -2632,23 +2489,21 @@ input[type=password] {
     top: 100px;
     z-index: 99;
 }
-
 .map_btn3 a:nth-child(3) {
     min-width: 50%;
     height: 100px;
     padding: 0;
     position: absolute;
     top: 100px;
-    right: 0;
+    right:0;
     z-index: 99;
 }
-
 .map_btn3 a:nth-child(4) {
-    width: 100%;
-    height: 100px;
+    width:100%;
+    height:100px;
     text-align: center;
-    padding: 0;
-    margin-top: 100px;
+    padding:0;
+    margin-top:100px;
 }
 
 
@@ -2658,7 +2513,7 @@ input[type=password] {
     margin: 0;
     padding: 0;
     color: #333;
-
+    
 }
 
 .regist-container {
@@ -2700,8 +2555,8 @@ input[type=password] {
     height: 120px;
     background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
 }
-
-ftitle .regist-logo a {
+ftitle
+.regist-logo a {
     text-align: center;
     line-height: 120px;
     color: #fff;
@@ -2766,19 +2621,19 @@ ftitle .regist-logo a {
         margin: 0;
     }
 
-    .regist-navi li {
-        float: left;
-        width: 25%;
-        text-align: center;
+    .regist-navi li{
+    float:left;
+    width: 25%;
+    text-align: center;
     }
 
     .regist-navi li a {
-        width: 100%;
+        width:100%;
         height: 50px;
         line-height: 50px;
-        font-size: .8rem;
+        font-size:.8rem;
         color: #fff;
-        padding: 0;
+        padding:0;
     }
 
     .regist-body {
@@ -2872,7 +2727,6 @@ ftitle .regist-logo a {
     line-height: 50px;
     font-weight: bold;
 }
-
 .regist-table {
     width: 90%;
     margin: 0 auto;
@@ -2880,82 +2734,67 @@ ftitle .regist-logo a {
     background: #fff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 }
-
 .regist-table thead tr {
     width: 100%;
     height: 40px;
 }
-
 .regist-table tbody {
     width: 100%;
     height: 100px;
     border-top: 1px solid #ddd;
 }
-
 /*id 테이블 작업*/
 .regist-table tbody td:nth-child(1) {
     width: 10%;
     font-size: .7rem;
 }
-
 /*포스터 테이블 작업*/
 .regist-table tbody td:nth-child(2) {
     width: 20%;
 }
-
 .regist-table tbody td:nth-child(2) a {
     width: 100%;
     height: 100px;
 }
-
 .regist-table tbody td:nth-child(2) img {
     width: auto;
     height: 100%;
 }
-
 /*등록된 정보 테이블 작업*/
 .regist-table tbody td:nth-child(3) {
     width: 40%;
     text-align: left;
 }
-
 .regist-table tbody td:nth-child(3) ul {
     padding: 0;
     margin: 0;
-    font-size: .7rem;
+    font-size: .7rem;   
 }
-
 .regist-information li:nth-child(1) {
     font-size: 1rem;
 }
-
 .regist-information li:nth-child(1) span {
     font-size: .7rem;
 }
-
-.regist-information li:nth-child(1)~li {
+.regist-information li:nth-child(1) ~ li {
     margin-top: 2px
 }
-
 /*QR코드 테이블 작업*/
 .regist-table tbody td:nth-child(4) {
     width: 20%;
 }
-
 .regist-table tbody td:nth-child(4) button {
     min-width: 30%;
     background: #fff;
     border: 1px solid #aaa;
     font-size: .9rem;
-
+   
 }
-
 /*수정/삭제 테이블 작업*/
 .regist-table tbody td:nth-child(5) {
     width: 10%;
     padding: 10px 0;
 }
-
 .regist-table tbody td:nth-child(5) button {
     min-width: 30%;
     background: #fff;
@@ -2995,17 +2834,16 @@ ftitle .regist-logo a {
     border: none;
 
 }
-
-.btn {
-    padding: .1rem 0.5rem;
-    border: 1px solid #888;
+.btn{
+    padding:.1rem 0.5rem;
+    border:1px solid #888;
 }
 
 .evnet-wrap {
     display: none;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width:768px){
 
     .evnet-wrap {
         display: block;
@@ -3015,99 +2853,88 @@ ftitle .regist-logo a {
     }
 
 }
-
 /*푸터 css*/
 
-.footer_wrap {
-    width: 100%;
-    height: fit-content;
-    color: #eee;
+.footer_wrap{
+    width:100%;
+    height:fit-content;
+    color:#eee;
     text-align: center;
     display: flex;
-    margin: 0 auto;
-    margin-top: 0;
-    font-size: .9rem;
+    margin:0 auto;
+    margin-top:0;
+    font-size:.9rem;
 
 }
-
-.footer_bg {
-    width: 100%;
-    max-width: 75rem;
-    margin: 0 auto;
-    background: #333;
-    padding: 1rem 0;
+.footer_bg{
+    width:100%;
+    max-width:75rem;
+    margin:0 auto;
+    background:#333;
+    padding:1rem 0;
 }
-
-.footer_wrap>a {
-    width: 30%;
+.footer_wrap>a{
+    width:30%;
 }
-
-.footer_wrap>p {
+.footer_wrap>p{
     text-align: left;
-    width: 60%;
-    padding-left: 5rem;
+    width:60%;
+    padding-left:5rem;
 }
-
-.footer_wrap small {
-    font-size: .8rem;
-    color: #ddd;
+.footer_wrap small{
+    font-size:.8rem;
+    color:#ddd;
 }
-
-.footer_box {
-    width: 100%;
-    padding: 0;
+.footer_box{
+    width:100%;
+    padding:0;
     text-align: center;
 }
-
-.footer_box li {
+.footer_box li{
     display: inline-block;
     overflow-wrap: break-word;
 }
 
-.footer_box a {
-    font-size: .8rem;
+.footer_box a{
+    font-size:.8rem;
     overflow-wrap: break-word;
-    color: #ddd;
+    color:#ddd;
 }
-
 .footer_box a:hover {
-    opacity: 0.5;
+   opacity: 0.5;
 }
-
-@media only screen and (max-width:768px) {
-    .footer_wrap {
+@media only screen and (max-width:768px){
+    .footer_wrap{
         display: flex;
         flex-direction: column;
     }
-
     .footer_wrap>a {
         width: 100%;
     }
-
-    .footer_wrap>a img {
-        width: 35%;
-        margin-bottom: 1rem;
+    .footer_wrap>a img{
+       width:35%;
+       margin-bottom:1rem;
     }
 
     .footer_wrap>p {
         width: 100%;
-        text-align: center;
-        padding-left: 0;
+        text-align:center;
+        padding-left:0;
     }
 }
 
-.footer_body {
-    width: 100%;
-    height: 175px;
-    padding: 0;
-    margin: 0;
-    background: #333;
+.footer_body{
+    width:100%;
+    height:175px;
+    padding:0;
+    margin:0;
+    background:#333;
 }
 
-.date-box {
+.date-box{
     display: none;
 }
 
-.footer_mg {
-    margin-top: 25rem;
+.footer_mg{
+    margin-top:25rem;
 }

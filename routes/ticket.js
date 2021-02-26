@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 const request = require('request');
 require('dotenv').config();
+var moment = require("moment");
+require("moment-timezone");
+moment.tz.setDefault("Asia/Seoul");
 
 
 
@@ -26,6 +29,7 @@ module.exports = function(){
     //세부 티켓의 정보 확인 페이지 
     router.get("/ticket_info", function(req, res, next){
         var ticketId = req.query.ticket;
+        var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticketId);
         connection.query(
             `select * from ticket where ticketId = ?`,
@@ -35,7 +39,7 @@ module.exports = function(){
                     console.log("ticket_info sql error => ", err)
                 }else{
                     console.log("ticket_info => ", result)
-                    res.render("ticket/myticket", {ticket : result, loggedname : req.session.name});
+                    res.render("ticket/myticket", {ticket : result, loggedname : req.session.name, date : date});
                 }
             }
         )

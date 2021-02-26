@@ -5,113 +5,121 @@
 
   <%- include ("../reference/head.ejs") %>
 
-  <script>
-    function qrcode(concertId){
-      location.href="/qrcode?concertId="+concertId;
-    }
-  </script>
+    <script>
+      function qrcode(concertId) {
+        location.href = "/qrcode?concertId=" + concertId;
+      }
+    </script>
 </head>
 
 
 <body class="regist-wrap">
-  
-  
+
+  <!-- manager index wrap -->
   <div class="regist-container">
-    
-     <div class="regist-header">
+
+    <!-- manager header -->
+    <div class="regist-header">
       <h1 class="regist-logo"><a><img src="../img/mainlogo.png" alt="logo"></a></h1>
-         
-         <nav class="regist-gnb">
-             <ul class="regist-navi">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/manager">대시보드</a>
-                  </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="/manager/regist">공연 등록</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/manager/hall">공연장 등록</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/logout">로그아웃</a>
-                  </li>
-                  
-             </ul>
-         </nav>
-         
-     </div>
-     
-     <div class="regist-body">
-         <div class="regist-body-top">
-             <h2 class="regist-body-title">대시보드</h2>
-         </div>
-         
-         <div class="regist-title">공연 리스트</div>
-           
-            <table class="regist-table">
-              
-              <thead>
-                <tr>
-                      <th>ID</th>
-                      <th>포스터</th>
-                      <th>정보</th>
-                      <th>QR</th>
-                      <th>설정</th>
-                </tr>
-              </thead>
-              
-               <tbody>
-                  <%if(!concert){%>
-                    <tr>
-                      <td colspan="5">
-                        등록된 공연이 없습니다.
-                      </td>
-                    </tr>
 
-                  <%}else{
-                  for(var i = 0; i < concert.length; i++){%>
-                   <tr>
-                       <td><%=concert[i].id%></td>
-                       <td>
-                           <a href="#">
-                               <img src="<%=concert[i].poster_img%>" alt="img">
-                           </a>
-                       </td>
-                       <td>
-                           <ul class="regist-information">
-                               <li><span>&lang;<%=concert[i].genre%>&gt;</span><%=concert[i].name%></li>
-                               <li><%=concert[i].date%></li>
-                               <li><%=concert[i].place%></li>
-                               <li><%=concert[i].time%></li>
-                               <li><%=concert[i].rating%></li>
-                           </ul>
-                       </td>
-                       <td>
-                           <button onclick="javascript:qrcode('<%=concert[i].id%>')">QR</button>
-                       </td>
-                       <td>
-                           <button>수정</button>
-                           <button>삭제</button>
-                       </td>
-                       
-                   </tr>
-                  <%}}%>
-                   
-               </tbody>
-                
-            </table>
-             
+      <nav class="regist-gnb">
+        <ul class="regist-navi">
+          <li class="nav-item">
+            <a class="nav-link" href="/manager">대시보드</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/manager/regist">공연 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/manager/hall">공연장 등록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">로그아웃</a>
+          </li>
+        </ul>
+      </nav>
 
-     </div>
-     
-      
+    </div>
+    <!-- /.manager header -->
+
+    <!-- manager content -->
+    <div class="regist-body">
+      <div class="regist-body-top">
+        <h2 class="regist-body-title">대시보드</h2>
+      </div>
+
+      <div class="regist-title">공연 리스트</div>
+
+      <table class="regist-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>포스터</th>
+            <th>정보</th>
+            <th style="display:none;">QR</th>
+            <th>설정</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%if(!concert){%>
+            <tr>
+              <td colspan="5">
+                등록된 공연이 없습니다.
+              </td>
+            </tr>
+
+            <%}else{ for(var i=0; i < concert.length; i++){%>
+              <tr>
+                <td>
+                  <%=concert[i].id%>
+                </td>
+                <td>
+                  <a href="#">
+                    <img src="<%=concert[i].poster_img%>" alt="img">
+                  </a>
+                </td>
+                <td>
+                  <ul class="regist-information">
+                    <li><span>&lang;<%=concert[i].genre%>&gt;</span>
+                      <%=concert[i].name%>
+                    </li>
+                    <li>
+                      <%=concert[i].date%>
+                    </li>
+                    <li>
+                      <%=concert[i].place%>
+                    </li>
+                    <li>
+                      <%=concert[i].time%>
+                    </li>
+                    <li>
+                      <%=concert[i].rating%>
+                    </li>
+                  </ul>
+                </td>
+                <td style="display:none;">
+                  <button onclick="javascript:qrcode('<%=concert[i].id%>')">QR</button>
+                </td>
+                <td>
+                  <button>수정</button>
+                  <button>삭제</button>
+                </td>
+
+              </tr>
+              <%}}%>
+        </tbody>
+      </table>
+
+    </div>
+
   </div>
-  
+  <!-- /.manager index wrap -->
 
 
-    <!-- Footer -->
-    <footer class="footer">
-      <%- include ("../reference/footer.ejs") %>
+  <!-- Footer -->
+  <footer class="footer">
+    <%- include ("../reference/footer.ejs") %>
   </footer>
 
   <!-- Bootstrap core JavaScript -->

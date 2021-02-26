@@ -10,77 +10,105 @@
 
 <body>
 
+    <!-- header gnb -->
     <div class="header">
         <%- include ("../reference/header.ejs") %>
-    </div>    
-
-<div class="body">
-    <div class="myticket-wrap">
-       
-        
-        
-        <div class="myticket-title">
-            <div class="myticket-title-box">
-                <a href="javascript:history.back();">&lt;</a>
-                <h5 class="myticket-h5">SEARCH TICKET</h5>
-            </div>
-            <div class="my-circle"></div>
-        </div> 
-         
-         <div class="my-ticket-box">
-             <div class="my-ticket-title">
-                 <h6><%=ticket[0].c_name%></h6>
-             </div>
-             
-             <div class="my-ticket-poster">
-                 <div class="my-ticker-poster-img">
-                     <img src="<%=ticket[0].poster_img%>" alt="poster">
-                 </div>
-             </div>
-             
-             <div class="my-ticket-intro">
-                 <ul class="my-ticket-intro1">
-                    <li><%=ticket[0].date%> | <%=ticket[0].time%></li>
-                    <li><%=ticket[0].seat%></li>
-                    <li><%=ticket[0].place%></li>
-                 </ul>
-                 <ul class="my-ticket-intro2">
-                         <li>
-                             <a href="#">티켓번호&nbsp;
-                                 <img id="try2" src="/img/try2.png" width="15px;">
-                            </a>
-                             <div class="toggle"><%=ticket[0].ticketId%></div>
-                        </li>
-
-                         <li>결제금액<span><%=ticket[0].price%>원</span> </li>
-                         <li>소유자<span><%=user[9]%></span> </li>    
-                         <li>양도인<span>
-                            <%if (user[12]){%>
-                                <%=user[12]%>
-                            <%}else{%>
-                                -
-                            <%}%>      
-                        </span> </li>                     
-                 </ul>
-             </div>
-         </div>
-         
-        
     </div>
 
- </div>
+    <!-- body(background css) -->
+    <div class="body">
+
+        <!-- myticket_search -> search_ticket,transfer_ticket wrap -->
+        <div class="myticket-wrap">
+
+            <div class="myticket-title">
+                <div class="myticket-title-box">
+                    <a href="javascript:history.back();">&lt;</a>
+                    <h5 class="myticket-h5">SEARCH TICKET</h5>
+                </div>
+                <div class="my-circle"></div>
+            </div>
+
+            <div class="my-ticket-box">
+
+                <div class="my-ticket-title">
+                    <h6>
+                        <!-- ticket title -->
+                        <%=ticket[0].c_name%>
+                    </h6>
+                </div>
+
+                <div class="my-ticket-poster">
+                    <div class="my-ticker-poster-img">
+                        <img src="<%=ticket[0].poster_img%>" alt="ticket-poster">
+                    </div>
+                </div>
+
+                <!-- ticket information -->
+                <div class="my-ticket-intro">
+                    <ul class="my-ticket-intro1">
+                        <li>
+                            <%=ticket[0].date%> | <%=ticket[0].time%>
+                        </li>
+                        <li>
+                            <%=ticket[0].seat%>
+                        </li>
+                        <li>
+                            <%=ticket[0].place%>
+                        </li>
+                    </ul>
+                    <ul class="my-ticket-intro2">
+                        <li>
+                            <a href="#">티켓번호&nbsp;
+                                <img id="try2" src="/img/try2.png" width="15px;">
+                            </a>
+                            <div class="toggle">
+                                <%=ticket[0].ticketId%>
+                            </div>
+                        </li>
+                        <li>결제금액
+                            <span>
+                                <%=ticket[0].price%>원
+                            </span>
+                        </li>
+                        <li>소유자
+                            <span>
+                                <%=user[9]%>
+                            </span>
+                        </li>
+                        <li>양도인
+                            <span>
+                                <%if (user[12]){%>
+                                    <%=user[12]%>
+                                        <%}else{%>
+                                            -
+                                            <%}%>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.ticket information -->
+
+            </div>
+
+        </div>
+        <!-- /. myticket_search -> myticket wrap  -->
+
+    </div>
+    <!-- /.body(background css) -->
+
     <script>
-        var i =1;
-        $(document).ready(function(){
+        var i = 1;
+        $(document).ready(function () {
 
             $(".toggle").hide();
             // $("ul > li:first-child a").next().show();
-            $("ul li a").click(function(){
-                var rota = i*180;
+            $("ul li a").click(function () {
+                var rota = i * 180;
                 $(this).next().slideToggle();
                 $("ul li a").not(this).next().slideUp();
-                    $(this).find('img').css('transform','rotate('+rota+'deg)');
-                    i++
+                $(this).find('img').css('transform', 'rotate(' + rota + 'deg)');
+                i++
                 return false;
             });
         });        
@@ -89,7 +117,7 @@
     <!-- Footer -->
     <footer class="footer">
         <%- include ("../reference/footer.ejs") %>
-    </footer>     
+    </footer>
 
 </body>
 

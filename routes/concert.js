@@ -3,8 +3,8 @@ var router = express.Router();
 const request = require('request');
 var moment = require("moment");
 require("moment-timezone");
-require('dotenv').config();
 moment.tz.setDefault("Asia/Seoul");
+require('dotenv').config();
 
 
 var mysql = require("mysql2");

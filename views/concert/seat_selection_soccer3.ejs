@@ -6,102 +6,105 @@
 </head>
 
 <body>
-
+    <!-- body(background css) -->
+    <div class="body">
 
     <div class="container-fluid seat-wrap">
         <!--전체 겉 박스-->
 
-        <div class="d-flex reserve_title border-bottom" >
+        <div class="d-flex reserve_title border-bottom">
             <h2 class="h2-title">좌석선택</h2>
             <div>상암 월드컵경기장 축구</div>
 
             <div class="date-box">
                 <h5>다른날짜보기</h5>
-                    <select name="date">
-                        <option value="">날짜선택</option>
-                        <option value="date1">2020.12.24</option>
-                        <option value="date2">2020.12.27</option>
-                    </select>
-                    <select name="time">
-                        <option value="">시간 선택</option>
-                        <option value="date1">14:00 PM</option>
-                        <option value="date2">19:00 PM</option>
-                    </select>
+                <select name="date">
+                    <option value="">날짜선택</option>
+                    <option value="date1">2020.12.24</option>
+                    <option value="date2">2020.12.27</option>
+                </select>
+                <select name="time">
+                    <option value="">시간 선택</option>
+                    <option value="date1">14:00 PM</option>
+                    <option value="date2">19:00 PM</option>
+                </select>
             </div>
         </div>
 
         <div class="row article-box border">
             <!--내부 컨텐츠 박스-->
 
-            <div class="left-article">
-                <div class="tab-content text-center" id="v-pills-tabContent">
+            <div class="left-article-sc">
+                <div class="tab-content tab-content2 text-center" id="v-pills-tabContent">
 
                     <!--축구 예약 페이지 북쪽-->
-                    <div class="tab-pane fade show active third" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="tab-pane fade show active third" id="v-pills-home" role="tabpanel"
+                        aria-labelledby="v-pills-home-tab">
                         <div class="third-wrap">
 
-                            
+
 
                             <div class="d-flex flex-column rectangle-wrap3">
-                                    <div class="soccer1-1 input-style">
+                                <div class="soccer1-1 input-style">
 
-                                        <%for(var i = 1; i < 201;i++){%>
+                                    <%for(var i=1; i < 201;i++){%>
                                         <p style="background:rgb(102, 138, 216);" title="Ng<%=i%>">
                                             <input type="checkbox" id="Ng<%=i%>" name="Ng" value="Ng<%=i%>">
                                             <label for="Ng<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
 
                             </div>
                             <div class="d-flex flex-column rectangle-wrap3-1">
-                                    <div class="soccer1-2 input-style">
+                                <div class="soccer1-2 input-style">
 
-                                        <%for(var i = 1; i < 151;i++){%>
+                                    <%for(var i=1; i < 151;i++){%>
                                         <p style="background:rgb(170, 194, 247);" title="Ns<%=i%>">
                                             <input type="checkbox" id="Ns<%=i%>" name="Ns" value="Ns<%=i%>">
                                             <label for="Ns<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
                             </div>
 
 
 
                         </div>
 
-                            <!--**축구 예약 페이지 북쪽**-->
-                            <h5 class="rect3">STARDIUM</h5>
+                        <!--**축구 예약 페이지 북쪽**-->
+                        <h5 class="rect3">STARDIUM</h5>
                     </div>
 
                     <!--서쪽 좌석선택-->
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
 
                         <!--**축구 예약 페이지 서쪽**-->
                         <h5 class="rect3">STARDIUM</h5>
                         <div class="third-wrap">
 
                             <div class="d-flex flex-column rectangle-wrap3-2">
-                                    <div class="soccer2-1 input-style">
-                                        
-                                        <%for(var i = 1; i < 51;i++){%>
+                                <div class="soccer2-1 input-style">
+
+                                    <%for(var i=1; i < 51;i++){%>
                                         <p style="background:rgb(160, 158, 158);" title="Lg<%=i%>">
-                                            <input type="checkbox" id="Lg<%=i%>" name="Lg" value="Ss<%=i%>">
-                                            <label for="Ss<%=i%>"><span>&nbsp;</span></label>
+                                            <input type="checkbox" id="Lg<%=i%>" name="Lg" value="Lg<%=i%>">
+                                            <label for="Lg<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
                             </div>
 
                             <div class="d-flex flex-column rectangle-wrap3-2">
 
                                 <div class="soccer-select input-style ">
                                     <P>자유석(비지정석) 입니다.<br>
-                                    구매하실 티켓 수량을 선택해 주세요.</P>
-                                   <form>
+                                        구매하실 티켓 수량을 선택해 주세요.</P>
+                                    <form>
                                         <select>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -115,10 +118,11 @@
                                         </select>
                                         <p>
                                             <label>남은 좌석 수량 :</label>
-                                            <input type="text" size="15px" >
+                                            <input type="text" size="15px">
                                         </p>
                                     </form>
-                                </div> <!--./soccer form-box-->
+                                </div>
+                                <!--./soccer form-box-->
 
                             </div>
                             <!--**축구 예약 페이지 서쪽**-->
@@ -128,31 +132,32 @@
                     </div>
 
                     <!--동쪽 좌석선택-->
-                    <div class="tab-pane fade" id="v-pills-profile3" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="tab-pane fade" id="v-pills-profile3" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
                         <!--**축구 예약 페이지 동쪽**-->
                         <h5 class="rect3">STARDIUM</h5>
                         <div class="third-wrap">
 
                             <div class="d-flex flex-column rectangle-wrap3-2">
-                                
-                                    <div class="soccer3-1 input-style">
 
-                                        <%for(var i = 1; i < 51;i++){%>
+                                <div class="soccer3-1 input-style">
+
+                                    <%for(var i=1; i < 51;i++){%>
                                         <p style="background:rgb(245, 180, 180);" title="Rg<%=i%>">
                                             <input type="checkbox" id="Rg<%=i%>" name="Rg" value="Rg<%=i%>">
                                             <label for="Rg<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
                             </div>
 
                             <div class="d-flex flex-column rectangle-wrap3-2">
 
                                 <div class="soccer-select input-style" style="text-align: center;">
                                     <P>자유석(비지정석) 입니다.<br>
-                                    구매하실 티켓 수량을 선택해 주세요.</P>
-                                   <form>
+                                        구매하실 티켓 수량을 선택해 주세요.</P>
+                                    <form>
                                         <select>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -166,10 +171,11 @@
                                         </select>
                                         <p>
                                             <label>남은 좌석 수량 :</label>
-                                            <input type="text" >
+                                            <input type="text">
                                         </p>
                                     </form>
-                                </div> <!--./soccer form-box-->
+                                </div>
+                                <!--./soccer form-box-->
 
                             </div>
                             <!--**축구 예약 페이지 서쪽**-->
@@ -178,79 +184,88 @@
 
                     </div>
 
-                <!--남쪽 지정석 좌석선택-->
-                    <div class="tab-pane fade" id="v-pills-profile4" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <!--남쪽 지정석 좌석선택-->
+                    <div class="tab-pane fade" id="v-pills-profile4" role="tabpanel"
+                        aria-labelledby="v-pills-profile-tab">
 
                         <!--**축구 예약 페이지 남쪽**-->
                         <h5 class="rect3">STARDIUM</h5>
                         <div class="third-wrap">
 
                             <div class="d-flex flex-column rectangle-wrap3-1">
-                                
-                                    <div class="soccer4-1 input-style">
 
-                                        <%for(var i = 1; i < 151;i++){%>
+                                <div class="soccer4-1 input-style">
+
+                                    <%for(var i=1; i < 151;i++){%>
                                         <p style="background:rgb(168, 183, 184);" title="Ss<%=i%>">
                                             <input type="checkbox" id="Ss<%=i%>" name="Ss" value="Ss<%=i%>">
                                             <label for="Ss<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
                             </div>
 
                             <div class="d-flex flex-column rectangle-wrap3">
 
-                                    <div class="soccer4-2 input-style">
+                                <div class="soccer4-2 input-style">
 
-                                        <%for(var i = 1; i < 201;i++){%>
+                                    <%for(var i=1; i < 201;i++){%>
                                         <p style="background:rgb(143, 143, 160);" title="Sg<%=i%>">
                                             <input type="checkbox" id="Sg<%=i%>" name="Sg" value="Sg<%=i%>">
                                             <label for="Sg<%=i%>"><span>&nbsp;</span></label>
                                         </p>
                                         <%}%>
 
-                                    </div> 
+                                </div>
 
                             </div>
                             <!--**축구 예약 페이지 남쪽**-->
 
                         </div>
-                    </div>     
-                    
+                    </div>
+
 
                 </div>
             </div>
 
-                   <script>
-                        $( document ).ready( function() {
-                            $( '.map_btn3 a:nth-child(1)' ).click( function() {
-                                $( this ).parent().css({"background":"url(/img/soccer2.gif)", 
-                                                        "background-repeat": "no-repeat" , 
-                                                        "background-position": "center"});
-                                
-                            } );
+            <script>
+                $(document).ready(function () {
+                    $('.map_btn3 a:nth-child(1)').click(function () {
+                        $(this).parent().css({
+                            "background": "url(/img/soccer2.gif)",
+                            "background-repeat": "no-repeat",
+                            "background-position": "center"
+                        });
 
-                            $( '.map_btn3 a:nth-child(2)' ).click( function() {
-                                $( this ).parent().css({"background":"url(/img/soccer3.gif)", 
-                                                        "background-repeat": "no-repeat" , 
-                                                        "background-position": "center"});
-                            } );
+                    });
 
-                            $( '.map_btn3 a:nth-child(3)' ).click( function() {
-                                $( this ).parent().css({"background":"url(/img/soccer4.gif)", 
-                                                        "background-repeat": "no-repeat" , 
-                                                        "background-position": "center"});
-                            } );
+                    $('.map_btn3 a:nth-child(2)').click(function () {
+                        $(this).parent().css({
+                            "background": "url(/img/soccer3.gif)",
+                            "background-repeat": "no-repeat",
+                            "background-position": "center"
+                        });
+                    });
 
-                            $( '.map_btn3 a:nth-child(4)' ).click( function() {
-                                $( this ).parent().css({"background":"url(/img/soccer5.gif)", 
-                                                        "background-repeat": "no-repeat" , 
-                                                        "background-position": "center"});
-                            } );
-                        } );
+                    $('.map_btn3 a:nth-child(3)').click(function () {
+                        $(this).parent().css({
+                            "background": "url(/img/soccer4.gif)",
+                            "background-repeat": "no-repeat",
+                            "background-position": "center"
+                        });
+                    });
 
-                    </script>
+                    $('.map_btn3 a:nth-child(4)').click(function () {
+                        $(this).parent().css({
+                            "background": "url(/img/soccer5.gif)",
+                            "background-repeat": "no-repeat",
+                            "background-position": "center"
+                        });
+                    });
+                });
+
+            </script>
 
 
 
@@ -258,29 +273,33 @@
 
                 <!--스포츠좌석 탭메뉴-->
                 <div class="button_box3">
-            
-                        <div class="nav me-3 map_btn3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            
-                            <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"></a>    
-                            <a class="nav-link" id="v-pills-content-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
-                            <a class="nav-link" id="v-pills-content2-tab" data-bs-toggle="pill" href="#v-pills-profile3" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
-                            <a class="nav-link" id="v-pills-content3-tab" data-bs-toggle="pill" href="#v-pills-profile4" role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
-                        </div>
-                    
+
+                    <div class="nav me-3 map_btn3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                        <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true"></a>
+                        <a class="nav-link" id="v-pills-content-tab" data-bs-toggle="pill" href="#v-pills-profile"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                        <a class="nav-link" id="v-pills-content2-tab" data-bs-toggle="pill" href="#v-pills-profile3"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                        <a class="nav-link" id="v-pills-content3-tab" data-bs-toggle="pill" href="#v-pills-profile4"
+                            role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                    </div>
+
                 </div>
- 
+
 
                 <div class="row text-center seat-price-box" style="overflow: hidden;">
-            
+
                     <!--좌석현황/가격-->
                     <div class="seat-price">
-                       
-                            <h6>선택좌석안내</h6>
-    
-                            <div style="width:100%;overflow:hidden;word-wrap:break-word;">
-                               선택좌석 화면 표시
-                            </div>
-                        
+
+                        <h6>선택좌석안내</h6>
+
+                        <div style="width:100%;overflow:hidden;word-wrap:break-word;">
+                            선택좌석 화면 표시
+                        </div>
+
                     </div>
                     <div class="seat-price">
                         <ul>
@@ -293,9 +312,9 @@
 
                 <div class="row flex-column text-center reserve_button">
                     <!--예약하기 취소,새로고침 버튼-->
-    
-                        <button type="button" class="btn btn-primary btn-lg">이전단계</button>
-                        <button type="button" class="btn btn-primary btn-lg">예약하기</button>
+
+                    <button type="button" class="btn btn-primary btn-lg">이전단계</button>
+                    <button type="button" class="btn btn-primary btn-lg">예약하기</button>
 
                 </div>
             </div>
@@ -305,14 +324,14 @@
         <!--./ 내부 컨텐츠 박스-->
     </div>
     <!--./ 전체 겉 박스-->
-
+</div><!--/.body-->
 
 
 
 
 
     <!-- Footer -->
-    <footer class="footer footer_mg">
+    <footer class="footer">
         <%- include ("../reference/footer.ejs") %>
     </footer>
 

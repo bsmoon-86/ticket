@@ -94,6 +94,9 @@ app.get("/qrcode2", function(req, res) {
   })
 });
 
+app.get("/qrcode_test", function(req, res) {
+  res.render("qrcode");
+});
 app.get("/logout", function(req, res){
   
   var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간

@@ -818,9 +818,19 @@ a:hover {
     padding: 0;
     position: relative;
 }
+.left-article-sc {
+    width: 55%;
+    height: auto;
+    padding: 0;
+    position: relative;
+}
 
 .tab-content {
     margin-top: 5rem;
+}
+.tab-content2 {
+    margin-top: 0rem;
+    margin-bottom:.8rem;
 }
 
 .right-article {
@@ -1129,7 +1139,15 @@ a:hover {
         border-image-slice: 2;
         margin-top: 300px;
     }
+    .left-article-sc {
+        width: 100%;
+        height: auto;
+        padding-left: 0;
+        border-bottom-style: solid;
+        border-image: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        border-image-slice: 2;
 
+    }
     .right-article {
         width: 100%;
         height: auto;
@@ -2150,9 +2168,9 @@ input[type=password] {
 }
 
 .my-ticket-intro1 {
-    padding: 15px 0 0 0;
+    padding: 15px 0 20px 0;
     width: 95%;
-    height: 100px;
+    height: auto;
     line-height: 22px;
     text-align: center;
     margin-bottom: 0;
@@ -2496,7 +2514,7 @@ input[type=password] {
 .third-wrap {
     width: 100%;
     height: auto;
-    padding: 30px 0;
+    padding: 0;
     margin: 0 auto;
     overflow: scroll;
 }
@@ -2654,24 +2672,19 @@ input[type=password] {
 
 /**************관리자 페이지 작업****************/
 
-.regist-wrap {
-    margin: 0;
-    padding: 0;
-    color: #333;
 
-}
 
 .regist-container {
     width: 100%;
-    max-width: 120em;
+    max-width: 120rem;
     height: auto;
     margin: 0 auto;
-    padding: 0;
+    padding: 0px;
     display: flex;
 }
 
 .regist-header {
-    width: 20%;
+    width: 250px;
     height: auto;
     background: #333;
 }
@@ -2698,40 +2711,53 @@ input[type=password] {
 .regist-logo {
     width: 100%;
     height: 120px;
-    background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+    background: #fff;
+    border:1px solid #ddd;
 }
 
-ftitle .regist-logo a {
+.regist-logo a {
     text-align: center;
     line-height: 120px;
     color: #fff;
 }
-
+.regist-logo a img{
+ width:180px;
+}
 .regist-body {
-    width: 80%;
+    width: 100%;
     height: auto;
-    background: #eee;
+    background: #fff;
+    border:1px solid #ddd;
+    border-left:none;
     padding-bottom: 5px;
 }
 
 .regist-body-top {
     width: 100%;
     height: 60px;
-    background: #fff;
-    border: 1px solid #ddd;
+    background:#eee;
+    border-bottom:1px solid #ddd;
+    color:#333;
     padding: 0 0 0 10px;
 }
 
 .regist-body-top h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 60px;
 }
+.regist-body-top h2::before{
+    content:"▶";
+    padding:5px;
 
-.regist-body-title {
-    float: left;
 }
 
-
+.footer2{
+    max-width: 120rem;
+    margin:0 auto;
+    text-align: center;
+    padding:1rem 0;
+    font-size:.8rem;
+}
 
 @media only screen and (max-width:768px) {
     .regist-container {
@@ -2752,7 +2778,7 @@ ftitle .regist-logo a {
     .regist-logo {
         width: 100%;
         height: 80px;
-        background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
+        background: #fff;
         margin-bottom: 0;
     }
 
@@ -2801,6 +2827,12 @@ ftitle .regist-logo a {
         margin: 0;
         text-align: center;
     }
+
+.regist-body-top h2::before {
+    content: "";
+    padding: 5px;
+
+}
 
 }
 
@@ -2861,6 +2893,7 @@ ftitle .regist-logo a {
 }
 
 .regist-button:nth-child(1) {
+    color:#fff;
     background: repeating-linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
 }
 

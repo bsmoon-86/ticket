@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" src="./vendor/bootstrap/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./vendor/bootstrap/js/qrcode.js"></script>
+
+
+</head>
+
+<script type="text/javascript">
+    
+</script>
+<body>
+
+
+    <!-- body(background css) -->
+    <div class="body">
+        <label>티켓ID</label>
+        <input type="text" id="ticket" value="d2211a5912a3a0722ae9a55f916bbde5dbcc3701cf3e551ea9aa89d3e7a07447"/ >
+        <br>
+        
+        <label>name</label>
+        <input type="text" id="name" value="문병선"/ >
+        <br>
+        <label>time</label>
+        <input type="text" id="time" value="20210303094520"/ >
+        <br>
+        <label>floor</label>
+        <input type="text" id="floor" value="1"/ >
+        <br>
+        <button onclick="makeCode()">qrcode생성
+        </button>
+            <p id="qrcode"></p>
+            
+
+    </div>
+    <!-- body(background css) -->
+
+    <script>
+
+        
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 150,
+            height : 150
+        });
+
+        
+        function makeCode() {	
+            var ticketId = $('#ticket').val();
+            var name = $("#name").val();
+            var time = $("#time").val();
+            var c = $("#floor").val();
+            var elText = "{ticketId : "+ticketId+", name : "+name+", time : "+time+", floor = "+c+"}";
+            
+            
+            qrcode.makeCode(elText);
+        }
+</script>
+
+</body>
+
+</html>

@@ -19,7 +19,8 @@ var connection = mysql.createConnection({
 module.exports = function() {
 
     router.route("/index").get(function(req, res, next){
-        var concert = req.query.concert;                                
+        var concert = req.query.concert;
+        var genre = req.query.genre;                                  
         // console.log(concert)
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
@@ -40,7 +41,11 @@ module.exports = function() {
                             console.log(err);
                         }else{
                         console.log(result);
-                            res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                            if(genre == 1){
+                                res.render("concert/reserve_exhibition", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                            }else{
+                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                            }
                         }
                     }
                 )              
@@ -214,6 +219,7 @@ module.exports = function() {
         }
 
     })
+    
 
 
     //티켓 구매 및 등록
@@ -296,14 +302,42 @@ module.exports = function() {
         }
 
         if(req.query.resultCode == "Success"){
-            for(var i = 0; i < ticket.length; i++){
-                function1(ticket[i]).then(function(result){
-                    console.log(result);
-                })
-                function2(ticket[i]).then(function(result2){
-                    console.log(result2);
-                })
-            }
+            var num;
+            connection.query(
+                `select count(*) as cnt from ticket where concertId = 'bbb1234' and state > 0 and seat like 'b%';`,
+                [concertId],
+                function(err3, result){
+                    if(err3){
+                        console.log(err3)
+                    }else{
+                        console.log("ticket cnt = ",result[0].cnt)
+                        num = result[0].cnt+1;
+                        
+                        for(var i = 0; i < ticket.length; i++){
+                            if(ticket[i].substr(0,1) != "자"){
+                                function1(ticket[i]).then(function(result){
+                                    console.log(result);
+                                })
+                                function2(ticket[i]).then(function(result2){
+                                    console.log(result2);
+                                })
+                            }else{
+                                console.log("ticket substring", ticket[i].substr(3,1));
+                                console.log(num);
+                                for(var j = 0; j < ticket[i].substr(3,1); j++){
+                                    var ticket_num = num + j;
+                                    function1("b"+ticket_num).then(function(result){
+                                        console.log(result);
+                                    })
+                                    function2("b"+ticket_num).then(function(result2){
+                                        console.log(result2);
+                                    })
+                                }
+                            }
+                        }
+                    }
+                }
+            )
         
             connection.query(
                 `insert mouse (time, time2, x_position, y_position, id, seat) values (?,?,?,?,?,?)`,

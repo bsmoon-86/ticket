@@ -7,6 +7,10 @@
 
 <body>
 
+    <!-- header gnb -->
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
     <!-- body(background css) -->
     <div class="body">
 
@@ -17,17 +21,20 @@
                 <h2 class="h2-title">좌석선택</h2>
                 <div>두산 VS LG</div>
 
-                <div class="date-box">
+                 <!-- 아래 코드는 현재 비활성화 상태(display:none) -->
+                 <div class="date-box">
                     <h5>다른날짜보기</h5>
                     <select name="date">
                         <option value="">날짜선택</option>
-                        <option value="date1">2020.12.24</option>
-                        <option value="date2">2020.12.27</option>
+                        <option value="date1">
+                            <%=date%>
+                        </option>
                     </select>
                     <select name="time">
                         <option value="">시간 선택</option>
-                        <option value="date1">14:00 PM</option>
-                        <option value="date2">19:00 PM</option>
+                        <option value="date1">
+                            <%=time%>
+                        </option>
                     </select>
                 </div>
             </div>
@@ -55,24 +62,17 @@
                                             구매하실 티켓 수량을 선택해 주세요.</P>
                                     </div>
 
-                                    <div class="sport1-2 input-style ">
-                                        <form>
-                                            <select>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                            </select>
-                                            <p>
-                                                <label>남은 좌석 수량 :</label>
-                                                <input type="text" size="15px">
-                                            </p>
-                                        </form>
+                                    <div class="sport1-2 input-style2 ">
+                                        <%for(var i=1; i < 10;i++){%>
+                                            <div class="flex">
+                                                <input type="radio" name="seat" id="fre<%=i%>" value="<%=i%>">
+                                                <label><%=i%>매</label>
+                                            </div>
+                                        <%}%>
+                                        <p>
+                                            <label>남은 좌석 수량 :</label>
+                                            <input type="text" size="15px">
+                                        </p>
                                     </div>
                                     <!--./sport form-box-->
 
@@ -93,32 +93,50 @@
                                 <div class="d-flex flex-row rectangle-wrap-second">
 
                                     <div class="sport2-1 input-style">
-                                        <%for(var i=1; i < 101;i++){%>
-                                            <p style="background:red;" title="red<%=i%>">
-                                                <input type="checkbox" id="red<%=i%>" name="red" value="red<%=i%>">
-                                                <label for="red<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=1; i < 101;i++){ for(var j=0; j < ticket.length;j++){
+                                            if(ticket[j].seat=='s' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:red;" title="red<%=i%>">
+                                                    <input type="checkbox" id="red<%=i%>" name="seat" value="s<%=i%>">
+                                                    <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="red<%=i%>">
+                                                    <input type="checkbox" id="red<%=i%>" name="seat" value="s<%=i%>" disabled>
+                                                    <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
                                     <div class="sport2-2 input-style">
-                                        <%for(var i=1; i < 41;i++){%>
-                                            <p style="background:skyblue;" title="sky<%=i%>">
-                                                <input type="checkbox" id="sky<%=i%>" name="sky" value="sky<%=i%>">
-                                                <label for="sky<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=1; i < 41;i++){ for(var j=0; j <
+                                            ticket.length;j++){ if(ticket[j].seat=='r' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:skyblue;" title="sky<%=i%>">
+                                                    <input type="checkbox" id="sky<%=i%>" name="seat" value="r<%=i%>">
+                                                    <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="sky<%=i%>">
+                                                    <input type="checkbox" id="sky<%=i%>" name="seat" value="r<%=i%>" disabled>
+                                                    <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
 
 
                                 </div>
                                 <div class="d-flex flex-row rectangle-wrap-second">
                                     <div class="sport2-3 input-style">
-                                        <%for(var i=1; i < 91;i++){%>
-                                            <p style="background:blue;" title="blue<%=i%>">
-                                                <input type="checkbox" id="blue<%=i%>" name="blue" value="blue<%=i%>">
-                                                <label for="blue<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=51; i < 141;i++){ for(var j=0; j <
+                                            ticket.length;j++){ if(ticket[j].seat=='r' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:blue;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>">
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>" disabled>
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
                                 </div>
                                 <!--**스포츠 예약 페이지 좌측**-->
@@ -137,23 +155,36 @@
                                 <div class="d-flex flex-column rectangle-wrap-second2">
 
                                     <div class="sport3-1 input-style">
-                                        <%for(var i=1; i < 51;i++){%>
-                                            <p style="background:orange;" title="Premium<%=i%>">
-                                                <input type="checkbox" id="Premium<%=i%>" name="Premium"
-                                                    value="Premium<%=i%>">
-                                                <label for="Premium<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=0; i < hall.seat1;i++){ for(var j=0; j < ticket.length;j++){
+                                            if(ticket[j].seat=='vip' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:orange;" title="Premium<%=i%>">
+                                                    <input type="checkbox" id="Premium<%=i%>" name="seat"
+                                                        value="vip<%=i%>">
+                                                    <label for="Premium<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="Premium<%=i%>">
+                                                    <input type="checkbox" id="Premium<%=i%>" name="seat"
+                                                        value="vip<%=i%>" disabled>
+                                                    <label for="Premium<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column rectangle-wrap-second2">
                                     <div class="sport3-2 input-style">
-                                        <%for(var i=1; i < 51;i++){%>
-                                            <p style="background:blue;" title="Cseat<%=i%>">
-                                                <input type="checkbox" id="Cseat<%=i%>" name="Cseat" value="Cseat<%=i%>">
-                                                <label for="Cseat<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=1; i < 51;i++){ for(var j=0; j <
+                                            ticket.length;j++){ if(ticket[j].seat=='r' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:blue;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>">
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>" disabled>
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
 
                                 </div>
@@ -173,33 +204,51 @@
                                 <div class="d-flex flex-row rectangle-wrap-second">
 
                                     <div class="sport2-2 input-style">
-                                        <%for(var i=1; i < 41;i++){%>
-                                            <p style="background:skyblue;" title="sky<%=i%>">
-                                                <input type="checkbox" id="sky<%=i%>" name="sky" value="sky<%=i%>">
-                                                <label for="sky<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=41; i < 81;i++){ for(var j=0; j <
+                                            ticket.length;j++){ if(ticket[j].seat=='r' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:skyblue;" title="sky<%=i%>">
+                                                    <input type="checkbox" id="sky<%=i%>" name="seat" value="r<%=i%>">
+                                                    <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="sky<%=i%>">
+                                                    <input type="checkbox" id="sky<%=i%>" name="seat" value="r<%=i%>" disabled>
+                                                    <label for="sky<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
 
                                     <div class="sport2-1 input-style">
-                                        <%for(var i=1; i < 101;i++){%>
-                                            <p style="background:red;" title="red<%=i%>">
-                                                <input type="checkbox" id="red<%=i%>" name="red" value="red<%=i%>">
-                                                <label for="red<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=101; i < 201;i++){ for(var j=0; j < ticket.length;j++){
+                                            if(ticket[j].seat=='s' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:red;" title="red<%=i%>">
+                                                    <input type="checkbox" id="red<%=i%>" name="seat" value="s<%=i%>">
+                                                    <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="red<%=i%>">
+                                                    <input type="checkbox" id="red<%=i%>" name="seat" value="s<%=i%>" disabled>
+                                                    <label for="red<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
 
                                 </div>
 
                                 <div class="d-flex flex-row rectangle-wrap-second">
                                     <div class="sport2-3 input-style">
-                                        <%for(var i=1; i < 91;i++){%>
-                                            <p style="background:blue;" title="blue<%=i%>">
-                                                <input type="checkbox" id="blue<%=i%>" name="blue" value="blue<%=i%>">
-                                                <label for="blue<%=i%>"><span>&nbsp;</span></label>
-                                            </p>
-                                            <%}%>
+                                        <%for(var i=141; i < 231;i++){ for(var j=0; j <
+                                            ticket.length;j++){ if(ticket[j].seat=='r' +i){ if(ticket[j].state==0){%>
+                                                <p style="background:blue;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>">
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                            <%}else{%>
+                                                <p style="background:black;" title="blue<%=i%>">
+                                                    <input type="checkbox" id="blue<%=i%>" name="seat" value="a<%=i%>" disabled>
+                                                    <label for="blue<%=i%>"><span>&nbsp;</span></label>
+                                                </p>
+                                                <%} } } }%>
                                     </div>
                                 </div>
                                 <!--**스포츠 예약 페이지 좌측**-->
@@ -251,52 +300,64 @@
 
 
                 <div class="right-article">
+                    <form method="POST" action="/concert/payment">
 
-                    <!--스포츠좌석 탭메뉴-->
-                    <div class="button_box2">
-
-                        <div class="nav me-3 map_btn2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-
-                            <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
-                                role="tab" aria-controls="v-pills-home" aria-selected="true"></a>
-                            <a class="nav-link" id="v-pills-content-tab" data-bs-toggle="pill" href="#v-pills-profile"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
-                            <a class="nav-link" id="v-pills-content2-tab" data-bs-toggle="pill" href="#v-pills-profile2"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
-                            <a class="nav-link" id="v-pills-content3-tab" data-bs-toggle="pill" href="#v-pills-profile3"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                        
+                        <div style="display: none;">
+                            <input type="text" id="concertId" name="concertId" value="<%=concert[0].id%>">
+                            <input type="text" name="date" value="<%=date%>">
+                            <input type="text" name="time" value="<%=time%>">
+                            <input type="text" id="n_seat" name="seat">
+                            <input type="text" id="n_price" name="price">
+                            <input type="text" id="x" name="x">
+                            <input type="text" id="y" name="y">
+                            <input type="text" id="time_rap" name="time_rap">
                         </div>
 
-                    </div>
+                        <!--스포츠좌석 탭메뉴-->
+                        <div class="button_box2">
 
-                    <div class="row text-center seat-price-box" style="overflow: hidden;">
+                            <div class="nav me-3 map_btn2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                        <!--좌석현황/가격-->
-                        <div class="seat-price">
-
-                            <h6>선택좌석안내</h6>
-
-                            <div style="width:100%;overflow:hidden;word-wrap:break-word;">
-                                선택좌석 화면 표시
+                                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home"
+                                    role="tab" aria-controls="v-pills-home" aria-selected="true"></a>
+                                <a class="nav-link" id="v-pills-content-tab" data-bs-toggle="pill" href="#v-pills-profile"
+                                    role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                                <a class="nav-link" id="v-pills-content2-tab" data-bs-toggle="pill" href="#v-pills-profile2"
+                                    role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
+                                <a class="nav-link" id="v-pills-content3-tab" data-bs-toggle="pill" href="#v-pills-profile3"
+                                    role="tab" aria-controls="v-pills-profile" aria-selected="false"></a>
                             </div>
 
                         </div>
-                        <div class="seat-price">
-                            <ul>
-                                <li>100,000 원</li>
-                                <li>최종결제금액 : </li>
-                            </ul>
-                        </div>
 
-                    </div>
+                        <div class="row text-center seat-price-box" style="overflow: hidden;">
+
+                            <!--좌석현황/가격-->
+                            <div class="seat-price">
+
+                                <h6>선택좌석안내</h6>
+                                <div style="width:100%;overflow:hidden;word-wrap:break-word;" id="seat">선택좌석 화면 표시</div>
+
+                            </div>
+                            <div class="seat-price">
+                                <ul>
+                                    <li id="price">0 원</li>
+                                    <li>최종결제금액 : </li>
+                                </ul>
+                            </div>
+
+                        </div>
 
                     <div class="row flex-column text-center reserve_button">
                         <!--예약하기 취소,새로고침 버튼-->
 
-                        <button type="button" class="btn btn-primary btn-lg">이전단계</button>
-                        <button type="button" class="btn btn-primary btn-lg">예약하기</button>
+                        <button type="button" class="btn btn-primary btn-lg" style="font-size:1rem;"
+                        onclick="javascript:history.go(-1)">이전단계</button>
+                        <button type="submit" class="btn btn-primary btn-lg" style="font-size:1rem;">예약하기</button>
 
                     </div>
+                    </form>
                 </div>
 
 
@@ -307,6 +368,46 @@
     </div> 
     <!--/.body-->
 
+    <script>
+        var select = [];
+        $(document).ready(function () {
+            $("input[name=seat]").change(function () {
+                var price = 0;
+                select = [];
+                for (var i = 0; i < 300; i++) {
+                    if ($("#Premium" + i).is(":checked")) {
+                        select.push($("#Premium" + i).val());
+                        price += "<%=concert[0].seat1%>" * 1
+                    }
+                    if ($("#sky" + i).is(":checked")) {
+                        select.push($("#sky" + i).val());
+                        price += "<%=concert[0].seat2%>" * 1
+                    }
+                    if ($("#red" + i).is(":checked")) {
+                        select.push($("#red" + i).val());
+                        price += "<%=concert[0].seat3%>" * 1
+                    }
+                    if ($("#blue" + i).is(":checked")) {
+                        select.push($("#blue" + i).val());
+                        price += "<%=concert[0].seat4%>" * 1
+                    }
+                    if ($("#fre" + i).is(":checked")) {
+                        select.push("자유석" + $("#fre" + i).val()+"매");
+                        price += "<%=concert[0].seat5%>" * $("#fre" + i).val()
+                    }
+                }
+                
+
+                // alert(select.sort());
+                console.log("price = ", price);
+                $("#seat").html(select.sort());
+                $("#price").html(price + "원");
+                $("#n_seat").val(select.sort());
+                $("#n_price").val(price);
+            });
+
+        });
+    </script>
 
 
 

@@ -177,9 +177,10 @@ a:hover {
     }
 
     .top-line {
-        border-bottom-style: solid;
+        border-style: solid;
         border-image: linear-gradient(to right, #46c0f7 0%, #a44af5 100%);
-        border-image-slice: 2;
+        border-image-slice: 1;
+        border-width: 0 0 4px 0;
     }
 
     .header-box {

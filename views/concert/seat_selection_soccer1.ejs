@@ -6,6 +6,11 @@
 </head>
 
 <body>
+    
+    <!-- header gnb -->
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
     <!-- body(background css) -->
     <div class="body">
 
@@ -16,17 +21,20 @@
             <h2 class="h2-title">좌석선택</h2>
             <div>상암 월드컵경기장 축구</div>
 
-            <div class="date-box">
+             <!-- 아래 코드는 현재 비활성화 상태(display:none) -->
+             <div class="date-box">
                 <h5>다른날짜보기</h5>
                 <select name="date">
                     <option value="">날짜선택</option>
-                    <option value="date1">2020.12.24</option>
-                    <option value="date2">2020.12.27</option>
+                    <option value="date1">
+                        <%=date%>
+                    </option>
                 </select>
                 <select name="time">
                     <option value="">시간 선택</option>
-                    <option value="date1">14:00 PM</option>
-                    <option value="date2">19:00 PM</option>
+                    <option value="date1">
+                        <%=time%>
+                    </option>
                 </select>
             </div>
         </div>

@@ -58,11 +58,26 @@ module.exports = function() {
         var rating = req.body.rating;
         var url1 = req.body.url1;
         var url2 = req.body.url2;
-        var seat1 = req.body.seat1;
-        var seat2 = req.body.seat2;
-        var seat3 = req.body.seat3;
-        var seat4 = req.body.seat4;
-        var seat5 = req.body.seat5;
+        var seat1 = 0;
+        if(req.body.seat1){
+            seat1 = req.body.seat1;
+        }
+        var seat2 = 0;
+        if(req.body.seat2){
+            seat1 = req.body.seat2;
+        }
+        var seat3 = 0;
+        if(req.body.seat3){
+            seat1 = req.body.seat3;
+        }
+        var seat4 = 0;
+        if(req.body.seat4){
+            seat1 = req.body.seat4;
+        }
+        var seat5 = 0;
+        if(req.body.seat5){
+            seat1 = req.body.seat5;
+        }
         var vip = req.body.vip;
         var r = req.body.r;
         var s = req.body.s;

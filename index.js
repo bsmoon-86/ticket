@@ -292,6 +292,11 @@ app.get("/pay", function(req, res){
   res.redirect("/");
 })
 
+app.get("/did_result", function(req, res){
+  console.log(req);
+  res.send(req);
+})
+
 var concertRoute = require("./routes/concert")();
 app.use("/concert", concertRoute);
 

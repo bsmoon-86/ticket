@@ -4,143 +4,113 @@
 <head>
 
     <%- include ("../reference/head.ejs") %>
-    <script>
-        var x = "<%=x%>".split(",");
-        var y = "<%=y%>".split(",");
-        var time = "<%=time_rap%>".split(",");        
-        var t1;
-        var t2;
-    
-        jQuery(document).ready(function(){
-            $(document).mousedown(function(e){      //마우스 클릭시 click에 좌표 입력
-                var tt = new Date().getTime();
-                
-                if(!t1){
-                    x.push(e.pageX);
-                    y.push(e.pageY);
-                    time.push("0");
-                    console.log("x = ", x , "y =", y, "time = 0");
-                    t1= tt;
-                    $('#x').val(x);
-                    $('#y').val(y);
-                    $('#time_rap').val(time);
-                    console.log(t1);
-                }else{
-                    t2 = tt;
-                    console.log("t2 = ",t2)
-                    console.log("t2-t1 = ",t2-t1)
-                    x.push(e.pageX);
-                    y.push(e.pageY);
-                    time.push(t2-t1);
-                    $('#x').val(x);
-                    $('#y').val(y);
-                    $('#time_rap').val(time);
-                    console.log("x = ", x , "y =", y, "time = ", time);
-                    t1= t2;
-                }
-            });
-        })
-    </script>
-
 
 </head>
 
 <body>
 
-    <div class="pay-wrap">
-  
-        <div class="pay-title">
-            <div class="pay-title-box">
-                <ul>
-                    <li><img src="<%=concert[0].poster_img%>"alt=""></li>
-                    <li>
-                        <h6><%=concert[0].name%></h6>
-                        <p><%=date%> | <%=time%> | <%=seat%></p>
-                    </li>
-                </ul>
-            </div>
-        </div>   
-        
-        <div class="pay-coupon-bg">
-            <div class="pay-coupon">
-                <h5 class="pay-h5">할인쿠폰</h5>
-                <div class="coupon-list">
+    <!-- header gnb -->
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
+
+    <!-- body(background css) -->
+    <div class="body">
+
+        <div class="pay-wrap">
+
+            <div class="pay-title">
+                <div class="pay-title-box">
                     <ul>
-                        <li>쿠폰정보표시란</li>
-                        <li><button>쿠폰</button></li>
+                        <li><img src="<%=concert[0].poster_img%>" alt=""></li>
+                        <li>
+                            <h6>
+                                <%=concert[0].name%>
+                            </h6>
+                            <p>
+                                <%=date%> | <%=seat%>
+                            </p>
+                        </li>
                     </ul>
                 </div>
-            </div>   
-        </div>   
-        
-        <div class="pay-body-bg">
-            <div class="pay-body">
-                <h5 class="pay-h5">결제수단</h5>
-                <ul class="pay-tab">
-                     <li id="tab1" class="btnCon">
-                        <a class="btn first" href="#tab1">무통장입금</a>
-                        <div class="tabCon">
-                            <select name="bank">
-                                <option value="basic">은행</option>
-                                <option value="basic">국민은행</option>
-                                <option value="basic">신한은행</option>
-                                <option value="basic">기업은행</option>
-                                <option value="basic">우리은행</option>
-                            </select>
-                        </div>
-                    </li>
-                    <li id="tab2" class="btnCon">
-                        <a class="btn first" href="#tab2">신용카드</a>
-                        <div class="tabCon" >
-                            <select name="bank">
-                                <option value="basic">은행</option>
-                                <option value="kb">국민은행</option>
-                                <option value="sh">신한은행</option>
-                                <option value="com">기업은행</option>
-                                <option value="we">우리은행</option>
-                            </select>
-                            <select name="hal">
-                                <option value="basic">할부</option>
-                                <option value="basic">1개월</option>
-                                <option value="basic">2개월</option>
-                                <option value="basic">3개월</option>
-                                <option value="basic">4개월</option>
-                            </select>
-                        </div>
-                    </li>
-                    
-                </ul>           
             </div>
-        </div>
-        <form method="POST" action="/concert/regist">
+
+            <div class="pay-coupon-bg">
+                <div class="pay-coupon">
+                    <h5 class="pay-h5">할인쿠폰</h5>
+                    <div class="coupon-list">
+                        <ul>
+                            <li>쿠폰정보표시란</li>
+                            <li><button>쿠폰</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pay-body-bg">
+                <div class="pay-body">
+                    <h5 class="pay-h5">결제수단</h5>
+                    <ul class="pay-tab">
+                        <li id="tab1" class="btnCon">
+                            <a class="btn first" href="#tab1">네이버페이</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="pay-bottom-bg">
-            
+
                 <div class="pay-bottom">
                     <h5 class="pay-h5">결제예정금액</h5>
                     <ul class="pay">
                         <li>할인</li>
-                        <li><%=price%> 원</li>
+                        <li>
+                            <%=price%> 원
+                        </li>
                     </ul>
                 </div>
 
-                <div>
-                    <input type="text" id="concertId" name="concertId" value="<%=concert[0].id%>">
-                    <input type="text" id="ticketId" name="ticketId" value="<%=seat%>">
-                    <input type="text" id="x" name="x" value="<%=x%>">
-                    <input type="text" id="y" name="y" value="<%=y%>">
-                    <input type="text" id="time_rap" name="time_rap" value="<%=time_rap%>">
+                <button class="button" id="naverPayBtn">결제하기</button>
+                <script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>
+                <script>
+                    var oPay = Naver.Pay.create({
+                        "mode": "production", // development or production
+                        "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
+                    });
 
-                </div>
-                
-                <button type="submit">결제하기</button>
-                
+                    //직접 만드신 네이버페이 결제버튼에 click Event를 할당하세요
+                    var elNaverPayBtn = document.getElementById("naverPayBtn");
+
+                    elNaverPayBtn.addEventListener("click", function () {
+                        oPay.open({
+                            "merchantUserKey": "kairos-link",
+                            "merchantPayKey": "kairos",
+                            "productName": "<%=concert[0].name%> [ <%=seat%> ]",
+                            "totalPayAmount": "<%=price%>",
+                            "taxScopeAmount": "<%=price%>",
+                            "taxExScopeAmount": "0",
+                            "returnUrl": "http://kairos-link.iptime.org:3333/concert/regist?concertId=<%=concert[0].id%>&ticketId=<%=seat%>"
+                        });
+                    });
+
+                </script>
             </div>
-        </form>
-        
+
+        </div>
+        <!-- /.pay_wrap-->
+
     </div>
-    
+    <!-- /. body(background css) -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>
+
+
+    <!--결제수단이 여러개로 나뉠때 사용하는 tab 메뉴 스크립트-->
     <script>
-    location.href = "#tab1";
+        location.href = "#tab1";
     </script>
 
 </body>

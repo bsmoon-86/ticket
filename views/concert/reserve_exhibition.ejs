@@ -6,6 +6,24 @@
     <%- include ("../reference/click.ejs") %>
 </head>
 
+
+<script>
+    var seat;
+    var price;
+    $(document).ready(function () {
+        seat = "자유석" + $("#seat").val();
+        price = "<%=concert[0].seat1%>" * $("#seat").val();
+        $("#seat").change(function(){
+            seat = "자유석" + $("#seat").val();
+            price = "<%=concert[0].seat1%>" * $("#seat").val();
+        });
+    });
+    function payment(){
+        //alert(seat);
+        location.href = "/concert/payment?concertId=<%=concert[0].id%>&date=<%=data[2]%>&seat="+seat+"&price="+price;
+    };
+</script>
+
 <body>
 
     <!-- header gnb -->
@@ -94,14 +112,13 @@
 
 
             <!-- 기본 정보 선택 wrap-->
-            <div class="container-fiuld reserve-choice reserve-choice2">
+            <div class="container-fiuld reserve-choice2">
 
                 <div class="d-flex" style="justify-content: center;">
                     <div class="p-2 flex-fill">날짜선택</div>
                     <div class="p-2 flex-fill">가격안내</div>
                 </div>
 
-                <form action="/concert/select" method="post">
                     <div class="card-body" style="display: none;">
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-default" name="concertname" value="<%=data[0]%>">
@@ -118,7 +135,7 @@
                         <div class="col-6 align-self-center">
                             <form class="form-check">
 
-                                <select style="width:4rem;">
+                                <select style="width:4rem;" name="seat" id="seat">
                                     <option value="1">1매</option>
                                     <option value="2">2매</option>
                                     <option value="3">3매</option>
@@ -133,30 +150,10 @@
                         </div>
 
                         <!--좌석가격현황-->
-                        <div class=" col-6 align-self-center price-list">
+                        <div class=" col-6 align-self-center price-list2">
                             <%if(concert[0].seat1 !=0){%>
-                                <p>VIP&nbsp;&nbsp;&nbsp;<strong>
+                                <p>티켓&nbsp;&nbsp;&nbsp;<strong>
                                     <%=concert[0].seat1%>원
-                                </strong></p>
-                            <%}%>
-                            <%if(concert[0].seat2 !=0){%>
-                                <p>R&nbsp;&nbsp;&nbsp;<strong>
-                                    <%=concert[0].seat2%>원
-                                </strong></p>
-                            <%}%>
-                            <%if(concert[0].seat3 !=0){%>
-                                <p>S&nbsp;&nbsp;&nbsp;<strong>
-                                    <%=concert[0].seat3%>원
-                                </strong></p>
-                            <%}%>
-                            <%if(concert[0].seat4 !=0){%>
-                                <p>A&nbsp;&nbsp;&nbsp;<strong>
-                                    <%=concert[0].seat4%>원
-                                </strong></p>
-                            <%}%>
-                            <%if(concert[0].seat5 !=0){%>
-                                <p>B&nbsp;&nbsp;&nbsp;<strong>
-                                    <%=concert[0].seat5%>원
                                 </strong></p>
                             <%}%>
                         </div>
@@ -165,10 +162,8 @@
 
                     <!--예약하기 버튼-->
                     <div class="d-grid gap-2 col-12 mx-auto reserve-button">
-                        <button class="btn" type="submit">결제하기</button>
+                        <button class="btn" onclick="payment()">결제하기</button>
                     </div>
-
-                </form>
             </div>
             <!-- 기본 정보 선택 wrap -->
 

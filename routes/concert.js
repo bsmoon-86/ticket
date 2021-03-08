@@ -217,7 +217,28 @@ module.exports = function() {
                 }
             )
         }
+    })
 
+    router.get("/payment", function(req, res, next){
+        if(!req.session.name){
+            res.redirect("/login")
+        }else{
+            var concertId = req.query.concertId;
+            var date = req.query.date;
+            var seat = req.query.seat;
+            var price = req.query.price;
+            connection.query(
+                `select * from concert where id=?`,
+                [concertId],
+                function(err, result){
+                    if (err){
+                        console.log(err);
+                    }else{
+                        res.render("concert/payment2", {date: date, seat: seat, price: price,  concertId : concertId, concert: result, loggedname : req.session.name});
+                    }
+                }
+            )
+        }
     })
     
 
@@ -226,9 +247,18 @@ module.exports = function() {
     router.get("/regist", function(req, res, next){
         var concertId = req.query.concertId;
         var ticketId = req.query.ticketId;
-        var x = req.query.x;
-        var y = req.query.y;
-        var time_rap = req.query.time_rap;
+        var x = [0];
+        var y = [0];
+        var time_rap = [0];
+        if(req.query.x){
+            x = req.query.x;
+        }
+        if(req.query.y){
+            y = req.query.y;
+        }
+        if(req.query.time_rap){
+            time_rap = req.query.time_rap;
+        }
         var ticket = ticketId.split(",");
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticket);
@@ -304,7 +334,7 @@ module.exports = function() {
         if(req.query.resultCode == "Success"){
             var num;
             connection.query(
-                `select count(*) as cnt from ticket where concertId = 'bbb1234' and state > 0 and seat like 'b%';`,
+                `select count(*) as cnt from ticket where concertId = ? and state > 0 and seat like 'b%';`,
                 [concertId],
                 function(err3, result){
                     if(err3){

@@ -6,6 +6,21 @@
     <%- include ("../reference/click.ejs") %>
 </head>
 
+<script>
+    function guid() {
+        function s4() {
+            return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    }
+    function did(){
+        var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
+        var url = "http://34.64.197.138:3333/did_result";
+        var state = guid();
+        var type = "1";
+        window.open("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
+    }
+</script>
 <body>
 
     <!-- header gnb -->
@@ -42,7 +57,7 @@
                                 <tr>
                                     <th scope="row" class="th-list">공연기간</th>
                                     <td>
-                                        <%=data[2]%>
+                                        <%=data[2].slice(0,4)+"년"+data[2].slice(4,6)+"월"+data[2].slice(6,8)+"일" %>
                                     </td>
                                 </tr>
                                 <tr>
@@ -169,6 +184,7 @@
                     <!--예약하기 버튼-->
                     <div class="d-grid gap-2 col-12 mx-auto reserve-button">
                         <button class="btn" type="submit">예약하기</button>
+                        <button class="btn" onclick="did()">본인인증</button>
                     </div>
 
                 </form>

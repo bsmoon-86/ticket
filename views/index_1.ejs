@@ -129,7 +129,7 @@
                                         </strong></p>
                                     <div class="card-text fs-6">
                                         <span>
-                                            <%=concert[i].date%>
+                                            <%=concert[i].date.slice(0,4)+"."+concert[i].date.slice(4,6)+"."+concert[i].date.slice(6,8)+"" %>
                                         </span>
                                         <small>
                                             <%=concert[i].place%>

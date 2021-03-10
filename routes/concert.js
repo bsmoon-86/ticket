@@ -51,6 +51,22 @@ module.exports = function() {
                 )              
             }
         })
+
+        
+
+        // var mykeepin = require('../Library/did-resolver/demo/index');
+        // const person = function test(){
+        //     return mykeepin();
+        // }
+        // person().then(function(result2){
+        //     console.log(result2[1]);
+        //     // if(result2[1] == req.session.name){
+        //     //     next();
+        //     // }else{
+        //     //         res.render("error")
+        //     // }
+
+        // })
     })
 
 
@@ -64,20 +80,7 @@ module.exports = function() {
             }
         }
         console.log(mecro);
-        // var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-        // const person = function test(){
-        //     return mykeepin();
-        // }
         
-        // person().then(function(result2){
-        //     console.log(result2[1]);
-        //     if(result2[1] == req.session.name){
-        //         next();
-        //     }else{
-        //             res.render("error")
-        //     }
-
-        // })
         
         if(!req.session.name){
             res.redirect("/login")

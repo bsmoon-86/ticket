@@ -39,7 +39,7 @@
                                             <%=ticket[i].c_name%>
                                         </li>
                                         <li>
-                                            <%=ticket[i].date%>
+                                            <%=ticket[i].date.slice(0,4)+"년"+ticket[i].date.slice(4,6)+"월"+ticket[i].date.slice(6,8)+"일"%>
                                         </li>
                                         <li>
                                             <%=ticket[i].place%>
@@ -73,7 +73,7 @@
                                                             <%=ticket_used[i].c_name%>
                                                         </li>
                                                         <li>
-                                                            <%=ticket_used[i].date%>
+                                                            <%=ticket_used[i].date.slice(0,4)+"년"+ticket_used[i].date.slice(4,6)+"월"+ticket_used[i].date.slice(6,8)+"일"%>
                                                         </li>
                                                         <li>
                                                             <%=ticket_used[i].place%>

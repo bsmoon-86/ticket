@@ -7,7 +7,7 @@ async function demo() {
   const didDocument = await resolver.getDocument(TEST_DID);
   console.log(didDocument);
 
-  const svc_id = '7e928682-4887-11ea-972f-0a0f3ad235f2';
+  const svc_id = '10523b7c-7cc2-11eb-a5b1-02c81e87218a';
   const message =
     '1402b3afb91287611e2b96e4f9fe0dbb5d5497ab31f0ee5f4f71dac7ad0b08b7';
   const signature =

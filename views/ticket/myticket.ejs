@@ -116,10 +116,10 @@
 
             $(".toggle").hide();
             // $("ul > li:first-child a").next().show();
-            $("ul li a").click(function(){
+            $(".my-ticket-intro2 li a").click(function(){
                 var rota = i*180;
                 $(this).next().slideToggle();
-                $("ul li a").not(this).next().slideUp();
+                $(".my-ticket-intro2 li a").not(this).next().slideUp();
                     $(this).find('img').css('transform','rotate('+rota+'deg)');
                     i++
                 return false;

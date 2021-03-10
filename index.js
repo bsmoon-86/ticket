@@ -295,6 +295,11 @@ app.get("/pay", function(req, res){
 
 app.get("/did_result", function(req, res){
   var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
+  var private = {
+    "kty": "RSA",
+    "e": "AQAB",
+    "n": "rSsy3QA0Y6-3TGD2eHswUaQvSE6F7AUthrSapXIiGo0ibYAwmlPf5VaILPw7zjjcadQ4LEEu-RH4bCxh-IcxwK3PF7NwXKA0XumU8gyu0YdFo4xXQXUPRIQRwh5U2_lol00Rtvtpd1MktHmyStxHU0R2Ge5l5p6Q-8leD5LCd_MUSJTqlC_k6Hsi1Uvh2wTTutNWIbKNuTLQU12s2NOMRwgL8T3z4ebUTfb8Q__QMeaNXCINmELe-XSqACSVSpAfc94k0awSOxhKIyPLOI_d5PBADfWbnSw6tyUnVlfUJ-H-BOj2bBALWTGbo9BPilH3xWujDOM0fZiKRosGqvL43Q"
+  }							
   var state = req.query.state;
   var code = req.query.code;
   console.log(req);
@@ -311,17 +316,19 @@ app.get("/did_result", function(req, res){
           var did = data.data.did;
           var vp = data.data.vp;
           var signature = data.data.signature;
-          var mykeepin = require('./Library/mykeepin-verify-sdk/index');
-          const person = function test(){
-            return mykeepin(did, data.data);
-          }
-          person().then(function(result2){
-            console.log(result2);
-            res.send(result2)
-            // did.push(result2);
-          }) 
-          // console.log(data.data.vp);
-          // res.send(body);
+          var verifier = require('./Library/mykeepin-verify-sdk/index');
+          var info = require('./test.json');
+          const veri = new verifier(did);
+          await veri.extract(vp, private);
+
+          
+          log('[*] Claim 만 조회');
+          const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
+          const claims = await veri.getClaims(vpInfo, { verifyByIssuer: true });
+          log(claims);
+          // return claims;
+                
+          res.send(claims);
         // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
         // ticket.push(body);
         }

@@ -1,0 +1,32 @@
+[
+  {
+    "vp": "TgetIngPresentation",
+    "vcs": [
+      {
+        "did": "did:meta:000000000000000000000000000000000000000000000000000000000000052f",
+        "vc": "NameCredential",
+        "name": "name"
+      },
+      {
+        "did": "did:meta:000000000000000000000000000000000000000000000000000000000000052f",
+        "vc": "MobileNumberCredential",
+        "name": "mobileNumber"
+      }
+    ]
+  },
+  {
+    "vp": "TgetViewPresentation",
+    "vcs": [
+      {
+        "did": "did:meta:000000000000000000000000000000000000000000000000000000000000052f",
+        "vc": "NameCredential",
+        "name": "name"
+      },
+      {
+        "did": "did:meta:000000000000000000000000000000000000000000000000000000000000052f",
+        "vc": "MobileNumberCredential",
+        "name": "mobileNumber"
+      }
+    ]
+  }
+]

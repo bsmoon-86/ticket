@@ -294,18 +294,12 @@ app.get("/pay", function(req, res){
 })
 
 app.get("/did_result", function(req, res){
-  function guid() {
-      function s4() {
-          return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
   var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
   var state = req.query.state;
   var code = req.query.code;
   console.log(req);
     let options = {
-      uri: "https://auth.mykeepin.com/didauth/v1/verify/:"+service_id+"/:"+state+"/:"+code,
+      uri: `https://auth.mykeepin.com/didauth/v1/verify/${service_id}/${state}/${code}`,
       method: 'get'
     };
     //console.log(options);
@@ -313,9 +307,21 @@ app.get("/did_result", function(req, res){
         if(err){
         console.log(err)
         }else{
-        console.log(httpResponse);
-        console.log(body.split(","));
-        res.send(body);
+          var data = JSON.parse(body);
+          var did = data.data.did;
+          var vp = data.data.vp;
+          var signature = data.data.signature;
+          var mykeepin = require('./Library/mykeepin-verify-sdk/index');
+          const person = function test(){
+            return mykeepin(did, data.data);
+          }
+          person().then(function(result2){
+            console.log(result2);
+            res.send(result2)
+            // did.push(result2);
+          }) 
+          // console.log(data.data.vp);
+          // res.send(body);
         // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
         // ticket.push(body);
         }

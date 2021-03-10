@@ -302,6 +302,8 @@ app.get("/did_result", function(req, res){
   }							
   var state = req.query.state;
   var code = req.query.code;
+  var type = 1;
+  var dataHash = "";
   console.log(req);
     let options = {
       uri: `https://auth.mykeepin.com/didauth/v1/verify/${service_id}/${state}/${code}`,
@@ -316,19 +318,15 @@ app.get("/did_result", function(req, res){
           var did = data.data.did;
           var vp = data.data.vp;
           var signature = data.data.signature;
-          var verifier = require('./Library/mykeepin-verify-sdk/index');
+          var verifier = require('./Library/mykeepin-verify-sdk');
           var info = require('./test.json');
-          const veri = new verifier(did);
-          await veri.extract(vp, private);
+          async function main(){
+            const veri = new verifier(did, {resolver : 'https://resolver.metadium.com/1.0'});
+            const verification = await veri.verifySignature(service_id, state, code, type, dataHash, signature);
+            console.log("Signature =", verification);
+            res.send(verification);
 
-          
-          log('[*] Claim 만 조회');
-          const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
-          const claims = await veri.getClaims(vpInfo, { verifyByIssuer: true });
-          log(claims);
-          // return claims;
-                
-          res.send(claims);
+          }
         // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
         // ticket.push(body);
         }

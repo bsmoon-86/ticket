@@ -296,10 +296,16 @@ app.get("/pay", function(req, res){
 app.get("/did_result", function(req, res){
   var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
   var private = {
-    "kty": "RSA",
-    "e": "AQAB",
-    "n": "rSsy3QA0Y6-3TGD2eHswUaQvSE6F7AUthrSapXIiGo0ibYAwmlPf5VaILPw7zjjcadQ4LEEu-RH4bCxh-IcxwK3PF7NwXKA0XumU8gyu0YdFo4xXQXUPRIQRwh5U2_lol00Rtvtpd1MktHmyStxHU0R2Ge5l5p6Q-8leD5LCd_MUSJTqlC_k6Hsi1Uvh2wTTutNWIbKNuTLQU12s2NOMRwgL8T3z4ebUTfb8Q__QMeaNXCINmELe-XSqACSVSpAfc94k0awSOxhKIyPLOI_d5PBADfWbnSw6tyUnVlfUJ-H-BOj2bBALWTGbo9BPilH3xWujDOM0fZiKRosGqvL43Q"
-  }							
+                    "p": "86Rc76JyFXR89TS0lqRHsrxW4Q_0U5pUQ-p65wS7HPPuK_jJkL-vcZDlkRKiV7glDZT6sFzasDts52eDzWm9YXghNntoM2wkpKBoDW3roZTRzEc73j2RQ7tA2c62Z0iPu4Ce31ogakZA0F27pqbw7aePUE5XMDLUIW1kbgClm90",
+                    "kty": "RSA",
+                    "q": "tfPBeljGq8cieCdV8v6cPQFX-4lrVuKnd-CfgbF5Yw1IYNPrh2alkhEW5FezEV5Eg0HYpL2QwAumWDcJO7NPAOQkWE083eZVKfpTI0LAxBM18O6mEbYgCXtTKz3waIV2qeIigtSKZhsEonsuGKqN01wjL9OsKH2JhqOnlsMfgQE",
+                    "d": "jjV3o75TR7o50WOfhPnFiIZIvhyeJmFqLcGLbmr4Ts2whDRNta9Do1cYpbjOdGCFwfMh3lX5eVmkpVEdc7eyyAT0mQYnNCnsWDWCt_RqbG-mZNUPoxW64A2Fd-Do121O01HbRmXZCsEg14VJQej8Ogly44C_9lApyFxp_mgLg-yiLSBkIzpx9bbIpTdgd1erY2vc0nMfYYfqOKzk-3mZ3oxY2Wv652Kr90_aBk7GNfDCf8dSAyY0JhGSB2spFwek9ge8ztUNjfr4f-FHZmkLiRl4unIM-zWUbYzCl7njVNfd1Oyj9Hd5obgzF82YitIJmbWsUy5bl4LP2hbfPTaQAQ",
+                    "e": "AQAB",
+                    "qi": "6m5hZNb2WYjf--NyfPEq1CbSgrxyShmRjpTYkKsF87xXsl0TQv7uUfWLIZ5PHoAVAc_EK956wCvb9t4zHN2SiAY37bLCjjvbh_xO_x95C9s1CrtsGmXBllT5T8OpTVPaPkwsSqflMhNxPbYPIGYWUpu4bNG_fq19-PmzA505JA0",
+                    "dp": "OSTEs2OrVELlB_HbpTVUp6Qq0FCYon8g4mj9eG-Qn0LLCr8oL2317THp1fPD5cUH076saW7tz8WwTjnmHOh_BXxSdd_N2bm0gnQo03WDfXtVFY9jiEVya6tgk3U7LNBE_do16PbPgX2GuBgz6etfuK3DHDezlVdmj4yDsJUwQnU",
+                    "dq": "cSTHrj3gJNdqrs6_GqCLJUBdprPYRKoiu1-5sFtdAWQ0GsoNDyCcWs03r_x9BJLbBcf_YMnkZheYdAidPDuPKB22IBa_f7kIQldANY__8K2FgHHWYPMgzuSaXixg_43msVNGZJaoDUBFzIfOrVX5ZXJJCyeUSYVu7IN95jklsQE",
+                    "n": "rSsy3QA0Y6-3TGD2eHswUaQvSE6F7AUthrSapXIiGo0ibYAwmlPf5VaILPw7zjjcadQ4LEEu-RH4bCxh-IcxwK3PF7NwXKA0XumU8gyu0YdFo4xXQXUPRIQRwh5U2_lol00Rtvtpd1MktHmyStxHU0R2Ge5l5p6Q-8leD5LCd_MUSJTqlC_k6Hsi1Uvh2wTTutNWIbKNuTLQU12s2NOMRwgL8T3z4ebUTfb8Q__QMeaNXCINmELe-XSqACSVSpAfc94k0awSOxhKIyPLOI_d5PBADfWbnSw6tyUnVlfUJ-H-BOj2bBALWTGbo9BPilH3xWujDOM0fZiKRosGqvL43Q"
+                }		
   var state = req.query.state;
   var code = req.query.code;
   var type = 1;
@@ -311,31 +317,42 @@ app.get("/did_result", function(req, res){
     };
     //console.log(options);
     request.get(options, function(err,httpResponse,body){
-        if(err){
-        console.log(err)
-        }else{
-          var data = JSON.parse(body);
-          var did = data.data.did;
-          var vp = data.data.vp;
-          var signature = data.data.signature;
-          var Verifier = require('mykeepin-verify-sdk');
-          var info = require('./test.json');
-          async function main(){
+      if(err){
+      console.log(err)
+      }else{
+        var data = JSON.parse(body);
+        var did = data.data.did;
+        var vp = data.data.vp;
+        var signature = data.data.signature;
+        var Verifier = require('mykeepin-verify-sdk');
+        var info = require('./test.json');
+        async function main(){
 
-             // 사용자 DID로 검증 객체 생성
-            const verifier = new Verifier(userDid, {
-              resolver: 'https://testnetresolver.metadium.com/1.0',
-            });
-            // Signature를 검증한다.
-            const verificationResult = await verifier.verifySignature(serviceId, state, code, type, dataHash, signature);
-            log('Signature verification:', verificationResult);
-            // const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
-            // const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
-            // log(claims);
-            // return claims;
+           // 사용자 DID로 검증 객체 생성
+          const verifier = new Verifier(did, {
+            resolver: 'https://resolver.metadium.com/1.0',
+          });
+          // vp, vc 추출
+          await verifier.extract(vp, private);
+          const getpresentation = await verifier.getPresentation();
+          console.log("getpresentationResult:", getpresentation);
+          // Signature를 검증한다.
+          const verificationResult = await verifier.verifySignature(service_id, state, code, type, dataHash, signature);
+          console.log('Signature verification:', verificationResult);
+          const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
+          const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
+          console.log(claims[0]);
 
+          
+          if(req.session.name == claims[0]){
+            res.render('move', {concert: req.session.concert, genre: req.session.genre});
+          }else{
+            res.send('인증 정보가 맞지 않습니다.');
           }
-          res.send(main());
+          // return claims;
+
+        }
+        main();
         // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
         // ticket.push(body);
         }

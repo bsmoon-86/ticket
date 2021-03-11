@@ -20,8 +20,14 @@ module.exports = function() {
 
     router.route("/index").get(function(req, res, next){
         var concert = req.query.concert;
-        var genre = req.query.genre;                                  
+        var genre = req.query.genre;
+        var did = 0;
+        if(req.session.did){
+            did = 1;
+        }
         // console.log(concert)
+        req.session.concert = concert;
+        req.session.genre = genre;
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
             uri: "http://kairos-link.iptime.org:8080/api/v1/get_concert?concertId="+concert,
@@ -42,9 +48,9 @@ module.exports = function() {
                         }else{
                         console.log(result);
                             if(genre == 1){
-                                res.render("concert/reserve_exhibition", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                                res.render("concert/reserve_exhibition", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name, did : did});   
                             }else{
-                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name});   
+                                res.render("concert/reserve", {data: body, concert: result, poster_img: result[0].poster_img , info_img: result[0].info_img, loggedname : req.session.name, did : did});   
                             }
                         }
                     }

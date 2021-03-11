@@ -6,7 +6,8 @@
 </head>
 <script>
     function did(ticket){
-        location.href("/did2", {ticket: ticket})
+        location.href("/did2?ticket="+ticket)
+        //alert(ticket);
     }
 </script>
 <body>
@@ -36,7 +37,7 @@
                             <%if(wallet){%>
                             <a href="/ticket/ticket_info?ticket=<%=ticket[i].ticketId%>">
                             <%}else{%>
-                            <a onclick="did('<%=ticket[i].ticketId%>');">
+                            <a href="javascript:did('<%=ticket[i].ticketId%>');">
                             <%}%>
                                 <div class="mypage-ticket-img">
                                     <div><img src="<%=ticket[i].poster_img%>" alt="img"></div>

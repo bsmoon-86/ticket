@@ -367,9 +367,9 @@ app.get("/did_result", function(req, res){
 app.get("/did1", function(req, res){
   res.render('confirm');
 })
-app.get("did2", function(req, res){
+app.get("/did2", function(req, res){
   req.session.ticket = req.query.ticket;
-  res.render('cofirm');
+  res.render('confirm');
 })
 
 var concertRoute = require("./routes/concert")();

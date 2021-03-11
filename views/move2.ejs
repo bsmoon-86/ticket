@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+<script>
+    function info(ticket) {
+        console.log("info suc")
+        location.href = "/ticket/ticket_info?ticket="+ticket;
+    }
+</script>
+
+<body onload="info('<%=ticket%>')">   
+</body>
+
+</html>

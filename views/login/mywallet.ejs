@@ -4,7 +4,11 @@
 <head>
     <%- include ("../reference/head.ejs") %>
 </head>
-
+<script>
+    function did(ticket){
+        location.href("/did2", {ticket: ticket})
+    }
+</script>
 <body>
 
     <!-- header gnb -->
@@ -29,7 +33,11 @@
                 <%if(ticket.length> 0) {
                     for(var i=0;i < ticket.length; i++){%>
                         <div class="mypage-ticket-box">
+                            <%if(wallet){%>
                             <a href="/ticket/ticket_info?ticket=<%=ticket[i].ticketId%>">
+                            <%}else{%>
+                            <a onclick="did('<%=ticket[i].ticketId%>');">
+                            <%}%>
                                 <div class="mypage-ticket-img">
                                     <div><img src="<%=ticket[i].poster_img%>" alt="img"></div>
                                 </div>

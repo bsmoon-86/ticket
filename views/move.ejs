@@ -4,14 +4,13 @@
 <head>
 </head>
 <script>
-    function info() {
+    function info(concert, genre) {
         console.log("info suc")
         location.href = "/concert/index?concert=" + concert + "&genre=" + genre;
     }
 </script>
 
-<body>
-    
+<body onload="info('<%=concert%>','<%=genre%>')">   
 </body>
 
 </html>

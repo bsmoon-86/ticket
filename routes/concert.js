@@ -21,6 +21,7 @@ module.exports = function() {
     router.route("/index").get(function(req, res, next){
         var concert = req.query.concert;
         var genre = req.query.genre;
+        req.session.confirm = 1;
         var did = 0;
         if(req.session.did){
             did = 1;
@@ -308,15 +309,7 @@ module.exports = function() {
                             if(err){
                                 console.log(err)
                             }else{     
-                                console.log(body);  
-                                var mykeepin = require('../Library/mykeepin-verify-sdk/example/example');
-                                const person = function test(){
-                                    return mykeepin();
-                                }
-                                person().then(function(result2){
-                                    console.log(result2);
-                                    did.push(result2);
-                                })                                            
+                                console.log(body);                                          
                             }
                         })
                     }
@@ -389,6 +382,7 @@ module.exports = function() {
                     }
                 }
             )
+            req.session.did = '';
             res.redirect("/");
         }else{
             res.render("error")

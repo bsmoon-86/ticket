@@ -343,11 +343,17 @@ app.get("/did_result", function(req, res){
           const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
           console.log(claims[0]);
 
-          
+
           if(req.session.name == claims[0]){
-            res.render('move', {concert: req.session.concert, genre: req.session.genre});
+            if(req.session.confirm == 1){
+              req.session.did = 1;
+              res.render('move', {concert: req.session.concert, genre: req.session.genre});
+            }else if(req.session.confirm == 2){
+              req.session.wallet = 1;
+              res.render('move2', {ticket: req.session.ticket});
+            }
           }else{
-            res.send('인증 정보가 맞지 않습니다.');
+            res.redirect('/');
           }
           // return claims;
 
@@ -357,6 +363,13 @@ app.get("/did_result", function(req, res){
         // ticket.push(body);
         }
     })
+})
+app.get("/did1", function(req, res){
+  res.render('confirm');
+})
+app.get("did2", function(req, res){
+  req.session.ticket = req.query.ticket;
+  res.render('cofirm');
 })
 
 var concertRoute = require("./routes/concert")();

@@ -209,10 +209,11 @@ module.exports = function() {
     })
 
     router.get("/ticket_wallet", function(req, res, next){
+        req.session.confirm = 2;
         if(!req.session.user){
             res.redirect("/login")
         }else{
-            res.render("login/mywallet", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, ticket_used : ticket_used , user: mypage_user});
+            res.render("login/mywallet", {loggedname : req.session.name, loggedemail : req.session.email, ticket : mypage_ticket, ticket_used : ticket_used , user: mypage_user, wallet: req.session.wallet});
         }
     })
 

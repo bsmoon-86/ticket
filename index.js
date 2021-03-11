@@ -318,15 +318,24 @@ app.get("/did_result", function(req, res){
           var did = data.data.did;
           var vp = data.data.vp;
           var signature = data.data.signature;
-          var verifier = require('./Library/mykeepin-verify-sdk');
+          var Verifier = require('mykeepin-verify-sdk');
           var info = require('./test.json');
           async function main(){
-            const veri = new verifier(did, {resolver : 'https://resolver.metadium.com/1.0'});
-            const verification = await veri.verifySignature(service_id, state, code, type, dataHash, signature);
-            console.log("Signature =", verification);
-            res.send(verification);
+
+             // 사용자 DID로 검증 객체 생성
+            const verifier = new Verifier(userDid, {
+              resolver: 'https://testnetresolver.metadium.com/1.0',
+            });
+            // Signature를 검증한다.
+            const verificationResult = await verifier.verifySignature(serviceId, state, code, type, dataHash, signature);
+            log('Signature verification:', verificationResult);
+            // const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
+            // const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
+            // log(claims);
+            // return claims;
 
           }
+          res.send(main());
         // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
         // ticket.push(body);
         }

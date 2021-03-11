@@ -5,7 +5,7 @@ module.exports = {
   // Auth server url
   authServer: 'https://testauth.metadium.com',
   // SP 서비스 아이디
-  serviceId: '10523b7c-7cc2-11eb-a5b1-02c81e87218a',
+  serviceId: 'f7c5b186-41b9-11ea-ab1a-0a0f3ad235f2',
   // Testnet did resolver url
   resolver: 'https://testnetresolver.metadium.com//1.0',
   // 테스트용 샘플

@@ -365,11 +365,31 @@ app.get("/did_result", function(req, res){
     })
 })
 app.get("/did1", function(req, res){
-  res.render('confirm');
+  function guid() {
+    function s4() {
+        return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
+    var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
+    var url = "http://34.64.197.138:3333/did_result";
+    var state = guid();
+    var type = "1";
+    res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
 })
 app.get("/did2", function(req, res){
   req.session.ticket = req.query.ticket;
-  res.render('confirm');
+  function guid() {
+    function s4() {
+        return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
+    var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
+    var url = "http://34.64.197.138:3333/did_result";
+    var state = guid();
+    var type = "1";
+    res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
 })
 
 var concertRoute = require("./routes/concert")();

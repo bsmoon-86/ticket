@@ -365,6 +365,7 @@ app.get("/did_result", function(req, res){
     })
 })
 app.get("/did1", function(req, res){
+  console.log("did1 start");
   function guid() {
     function s4() {
         return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
@@ -378,6 +379,7 @@ app.get("/did1", function(req, res){
     res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
 })
 app.get("/did2", function(req, res){
+  console.log("did2 start", req.query.ticket);
   req.session.ticket = req.query.ticket;
   function guid() {
     function s4() {

@@ -272,7 +272,6 @@ module.exports = function() {
         var ticket = ticketId.split(",");
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticket);
-        var did = [];
         console.log(req.query.resultCode);
         
 
@@ -383,7 +382,14 @@ module.exports = function() {
                 }
             )
             req.session.did = '';
-            res.redirect("/");
+            
+            connection.query(
+                `select * from where concertId = ?`,
+                [concertId],
+                function(err, result){
+                    res.render("concert/reserve_check", {name : result[0].name, date : result[0].date, place : result[0].place, seat: ticketId, poster_img: result[0].poster_img});
+                }
+            )
         }else{
             res.render("error")
         }

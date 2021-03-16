@@ -3160,3 +3160,33 @@ input[type=password] {
 .footer_mg {
     margin-top: 25rem;
 }
+/****************예매완료 페이지***************/
+.check_wrap{
+    max-width:70%;
+    margin:0 auto;
+    padding:1rem 0;
+}
+.check_wrap h1{
+    width:100%;
+    padding:3rem 0;
+    text-align: center;
+}
+.check_wrap .mypage-ticket-box a{
+    width:60%;
+}
+.ck-button{
+    width:100%;
+    text-align: center;
+    margin:2rem 0;
+}
+.ck-button .button{
+    width:5rem;
+}
+@media only screen and (max-width:768px){
+    .check_wrap {
+        max-width: 100%;
+    }
+    .check_wrap .mypage-ticket-box a {
+        width: 80%;
+    }
+}

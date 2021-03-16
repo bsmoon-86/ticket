@@ -70,6 +70,7 @@
                         <li><a href="/ticket/search" style="color:#7881f6;">티켓 조회</a></li>
                         <%if(!loggedname){%>
                         <li><a href="/login" style="color:#a44af5;">로그인</a></li>
+                        <li><a href="/login/signup" style="color:#a44af5;">회원가입</a></li>
                         <%}else{%>
                         <li><a href="/login/mypage" style="color:#a44af5;">마이페이지</a></li>
                         <li><a href="/login/ticket_wallet" style="color:#a44af5;">티켓지갑</a></li>
@@ -118,6 +119,8 @@
                     <%if(loggedname){%>
                     <li><i class="fas fa-ticket-alt"></i><a href="/login/mypage">마이페이지</a></li>
                     <li><i class="fas fa-wallet"></i></i><a href="/login/ticket_wallet">티켓 지갑</a></li>
+                    <%}else{%>
+                    <li><i class="fas fa-ticket-alt"></i><a href="/login/signup">회원가입</a></li>
                     <%}%>
             </ul>
             </div>

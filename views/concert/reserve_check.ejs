@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <%- include ("../reference/head.ejs") %>
+
+</head>
+<script>
+    function wallet(){
+        location.href("/login/mywallet");
+    }
+    function home(){
+        location.href("/");
+    }
+</script>
+<body>
+
+    <!-- header gnb -->
+    <div class="header">
+        <%- include ("../reference/header.ejs") %>
+    </div>
+
+    <!-- body(background css) -->
+    <div class="body">
+
+        <div class="check_wrap">
+            <h1>예매완료</h1>
+
+                <div class="mypage-ticket-box">
+                    <a href="">
+                        <div class="mypage-ticket-img">
+                            <div><img src="<%=poster_img%>" alt="img"></div>
+                        </div>
+                        <div class="mypage-ticket-intro">
+                            <ul>
+                                <li>
+                                    이름 : <%=name%>
+                                </li>
+                                <li>
+                                    날짜 : <%=date%>
+                                </li>
+                                <li>
+                                    장소 : <%=place%>
+                                </li>
+                                <li>
+                                    좌석 : <%=seat%>
+                                </li>
+                            </ul>
+                        </div>
+                    </a>
+                </div> 
+                <!-- /. mypage-ticket-img -->
+
+                <div class="ck-button">
+                    <button class="button" onclick="wallet()">확인하기</button>
+                    <button class="button" onclick="home()">Home</button>
+                </div>
+                
+
+        </div>
+
+
+    </div>
+    <!-- /.body(background css) -->
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <%- include ("../reference/footer.ejs") %>
+    </footer>
+
+</body>
+
+</html>

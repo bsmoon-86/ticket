@@ -217,18 +217,39 @@ app.post("/canvas", function(req,res){
   )
 })
 
+app.post("/search_sql", function(req, res){
+  var ticketId = req.body.ticketId;
 
+  connection.query(
+    `update ticket set state = 9 where ticketId = ?`,
+    [ticketId],
+    function(err2, result2){
+      if(err2){
+        console.log("scan sql2 error =", err2)
+      }else{
+        console.log("sql update success");
+        res.json({
+          "result" : "sql update complete"
+        })
+      }
+    }
+  )
+})
 
 app.get("/search", function(req, res){
   var ticketId = req.query.ticketId;
-  // var name = req.query.name;
+  var time = req.query.time;
+  var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
+  var time_rap = date - time;
   // var phone = req.query.phone;
   // var email = req.query.email;
+  console.log(time_rap);
   
   connection.query(
     `select * from ticket where ticketId=?`,
     [ticketId],
     function(err, result){
+      if(time_rap < 60){
         if(result.length > 0){
             let options = {
                 uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
@@ -241,31 +262,38 @@ app.get("/search", function(req, res){
                 }else{
                   console.log(result[0].state);
                   if(result[0].state == 1){
-                    connection.query(
-                      `update ticket set state = 9 where ticketId = ?`,
-                      [ticketId],
-                      function(err2, result2){
-                        if(err2){
-                          console.log("scan sql2 error =", err2)
-                        }else{
-                          //console.log(httpResponse);
-                          console.log(body.split(","));
-                          res.send(body.split(","));
-                        }
-                      }
-                    )
+                    //console.log(httpResponse);
+                    console.log(body.split(","));
+                    // res.send(body.split(","));
+                    res.json({
+                      "result" : 0,
+                      "message" : body.split(",")
+                    })
+                  }else if (result[0].state == 0){
+                    res.json({
+                      "result" : 4,
+                      "message" : "Ticket not book"
+                    })
                   }else{    
                     res.json({
-                      "result" : "Ticket used"
+                      "result" : 1,
+                      "message" : "Ticket used"
                     });
                   }
                 }
             })
         }else{
           res.json({
-            "result" : "empty"
+            "result" : 2,
+            "message" : "empty"
           });
         }
+      }else{
+        res.json({
+          "result" : 3,
+          "message" : "Invalid QRcode"
+        })
+      }
 
     }
 )
@@ -344,7 +372,7 @@ app.get("/did_result", function(req, res){
           console.log(claims[0]);
 
 
-          if(req.session.name == claims[0]){
+          if(req.session.name == claims[0] && req.session.phone == claims[1]){
             if(req.session.confirm == 1){
               req.session.did = 1;
               res.render('move', {concert: req.session.concert, genre: req.session.genre});
@@ -352,6 +380,8 @@ app.get("/did_result", function(req, res){
               req.session.wallet = 1;
               res.render('move2', {ticket: req.session.ticket});
             }
+          }else if(!req.session.name){
+            res.render('login');
           }else{
             res.redirect('/');
           }

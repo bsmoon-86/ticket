@@ -102,31 +102,31 @@
                       <option value="<%=hall[i].name%>">
                         <%=hall[i].name%>
                       </option>
-                      <%}%>
+                    <%}%>
                   </select>
                   <% for (var i=0; i < hall.length; i++){%>
                     <input id="<%=hall[i].name%>"
                       value="<%=hall[i].seat1%>,<%=hall[i].seat2%>,<%=hall[i].seat3%>,<%=hall[i].seat4%>,<%=hall[i].seat5%>"
                       style="display:none;">
-                    <%}%>
-                      <script>
-                        $('#selectbox').on("change", function (e) {
-                          var state = $('#selectbox option:selected').val();
-                          var state2 = $('#' + state).val().split(",");
-                          $('#vip').val(state2[0]);
-                          $('#r').val(state2[1]);
-                          $('#s').val(state2[2]);
-                          $('#a').val(state2[3]);
-                          $('#b').val(state2[4]);
-                        });
-                      </script>
-                      <div>
-                        <input type="text" id="vip" name="vip">
-                        <input type="text" id="r" name="r">
-                        <input type="text" id="s" name="s">
-                        <input type="text" id="a" name="a">
-                        <input type="text" id="b" name="b">
-                      </div>
+                  <%}%>
+                  <script>
+                    $('#selectbox').on("change", function (e) {
+                      var state = $('#selectbox option:selected').val();
+                      var state2 = $('#' + state).val().split(",");
+                      $('#vip').val(state2[0]);
+                      $('#r').val(state2[1]);
+                      $('#s').val(state2[2]);
+                      $('#a').val(state2[3]);
+                      $('#b').val(state2[4]);
+                    });
+                  </script>
+                  <div>
+                    <input type="text" id="vip" name="vip">
+                    <input type="text" id="r" name="r">
+                    <input type="text" id="s" name="s">
+                    <input type="text" id="a" name="a">
+                    <input type="text" id="b" name="b">
+                  </div>
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">공연 장르</span>

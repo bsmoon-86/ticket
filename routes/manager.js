@@ -18,6 +18,9 @@ var connection = mysql.createConnection({
 
 module.exports = function() {
     
+    /**
+     * 관리자 메인 화면
+     */
     router.get("/", function(req, res, next){
         connection.query(
             `select * from concert where register=?`,
@@ -32,6 +35,9 @@ module.exports = function() {
         )
     })
 
+    /**
+     * 공연 등록 화면
+     */
     router.route("/regist").get(function(req, res, next){
         connection.query(
             `select * from hall`,
@@ -46,7 +52,12 @@ module.exports = function() {
         )
     })
 
-    //공연 등록
+    /**
+     * 공연 등록 및 티켓 자동 생성
+     * 공연의 정보를 공연 DB 및 BlockChain에 등록
+     * 좌석의 갯수는 공연장의 DB 에서 불러와서 티켓을 자동으로 생성 
+     * 전시의 경우는 999장 자동 생성
+     */
     router.route("/regist2").post(function(req, res, next){ 
         var concertId = req.body.concertId;                                      
         var name = req.body.name;
@@ -181,7 +192,6 @@ module.exports = function() {
                 date: date 
             },
         };
-        console.log(options);
         request.post(options, function(err,httpResponse,body){
             if(err){
             console.log(err)
@@ -204,13 +214,18 @@ module.exports = function() {
         })
     })
 
-    
+    /**
+     * 공연장 등록 화면
+     */
     router.route("/hall").get(function(req, res, next){
         res.render("manager/hall_regist");
     })
 
 
-    //공연장 등록
+    /**
+     * 공연장 등록
+     * 공연장 정보를 공연장 DB에 등록 (공연장은 BlockChain에 등록하지 않는다)
+     */
     router.route("/hall2").post(function(req, res, next){ 
         var name = req.body.name;                                      
         var address = req.body.address;

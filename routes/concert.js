@@ -18,6 +18,13 @@ var connection = mysql.createConnection({
 
 module.exports = function() {
 
+    /**
+     * 공연 상세 정보 페이지
+     * did 인증 session 값이 존재하면 예매하기 버튼 활성화
+     * 인증 session이 존재하지 않으면 본인인증 버튼 활성화
+     * 공연의 종류가 전시라면 현재 페이지에서 티켓 갯수를 정하고 바로 결제
+     * 그 외의 공연은 좌석 선택 페이지로 이동
+     */
     router.route("/index").get(function(req, res, next){
         var concert = req.query.concert;
         var genre = req.query.genre;
@@ -58,25 +65,15 @@ module.exports = function() {
                 )              
             }
         })
-
-        
-
-        // var mykeepin = require('../Library/did-resolver/demo/index');
-        // const person = function test(){
-        //     return mykeepin();
-        // }
-        // person().then(function(result2){
-        //     console.log(result2[1]);
-        //     // if(result2[1] == req.session.name){
-        //     //     next();
-        //     // }else{
-        //     //         res.render("error")
-        //     // }
-
-        // })
     })
 
 
+    /**
+     * 좌석 선택 화면
+     * 공연의 장르에 따라 좌석은 다르게 구성
+     * 공연 상세화면에서 클릭 시간이 1초 이하 3번 이상이면 좌석 선택 페이지 1~3 랜덤하게 표시
+     * 3번 미만이면 1번 화면으로 표시
+     */
     router.post("/select", function(req, res, next){
         var time_rap = req.body.time_rap;
         var time_rap2 = time_rap.split(",");
@@ -87,7 +84,6 @@ module.exports = function() {
             }
         }
         console.log(mecro);
-        
         
         if(!req.session.name){
             res.redirect("/login")
@@ -132,12 +128,9 @@ module.exports = function() {
                                                 }
                                             }
                                         )
-
                                     }
-
                                 }
-                            )
-                                
+                            )     
                         }
                     }
                 )   
@@ -147,62 +140,61 @@ module.exports = function() {
         }  
 
     })
-    
-    
-    //좌석 선택 
     router.post("/select", function(req, res, next){
-            var date = req.body.date;
-            var time = req.body.time;
-            var concertId = req.body.concertId;
-            
-            connection.query(
-                `select * from concert where id=?`,
-                [concertId],
-                function(err, result){
-                    if (err){
-                        console.log(err);
-                    }else{
-                    console.log(result);
-                        connection.query(
-                            `select * from hall where name=?`,
-                            [result[0].place],
-                            function(err, result2){
-                                if(err){
-                                    console.log("select => ", err)
-                                }else{
-                                    connection.query(
-                                        `select * from ticket where concertId = ?`,
-                                        [concertId],
-                                        function(err, result3){
-                                            var min = Math.ceil(1);
-                                            var max = Math.floor(4);
-                                            var ran = Math.floor(Math.random() * (max - min)) + min; 
-                                            if(err){
-                                                console.log("select2 => ", err)
-                                            }else{
-                                                if(result[0].genre == 0){
-                                                    res.render("concert/seat_selection"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
-                                                }else if(result[0].genre == 1){
-                                                    res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
-                                                }else if(result[0].genre == 2){
-                                                    res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
-                                                }else if(result[0].genre == 3){
-                                                    res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
-                                                }
+        var date = req.body.date;
+        var time = req.body.time;
+        var concertId = req.body.concertId;
+        
+        connection.query(
+            `select * from concert where id=?`,
+            [concertId],
+            function(err, result){
+                if (err){
+                    console.log(err);
+                }else{
+                console.log(result);
+                    connection.query(
+                        `select * from hall where name=?`,
+                        [result[0].place],
+                        function(err, result2){
+                            if(err){
+                                console.log("select => ", err)
+                            }else{
+                                connection.query(
+                                    `select * from ticket where concertId = ?`,
+                                    [concertId],
+                                    function(err, result3){
+                                        var min = Math.ceil(1);
+                                        var max = Math.floor(4);
+                                        var ran = Math.floor(Math.random() * (max - min)) + min; 
+                                        if(err){
+                                            console.log("select2 => ", err)
+                                        }else{
+                                            if(result[0].genre == 0){
+                                                res.render("concert/seat_selection"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                            }else if(result[0].genre == 1){
+                                                res.render("concert/seat_selection", {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                            }else if(result[0].genre == 2){
+                                                res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
+                                            }else if(result[0].genre == 3){
+                                                res.render("concert/seat_selection_sport"+ran, {concert: result, hall: result2[0], ticket: result3, time : time, date : date, loggedname : req.session.name});   
                                             }
                                         }
-                                    )
-
-                                }
-
+                                    }
+                                )
                             }
-                        )
-                            
-                    }
+                        }
+                    )
                 }
-            )   
+            }
+        )   
     })
-    //티켓 결제 페이지 이동
+
+
+    /**
+     * 티켓 결제 화면
+     * get 형식은 전시의 경우 그 외의 경우는 post로 나누어둠
+     */
     router.post("/payment", function(req, res, next){
         if(!req.session.name){
             res.redirect("/login")
@@ -228,7 +220,6 @@ module.exports = function() {
             )
         }
     })
-
     router.get("/payment", function(req, res, next){
         if(!req.session.name){
             res.redirect("/login")
@@ -253,7 +244,12 @@ module.exports = function() {
     
 
 
-    //티켓 구매 및 등록
+    /**
+     * 티켓 구매 완료 및 DB 및 BlockCahin에 등록
+     * 네이버페이로 정상적으로 결제 후 티켓의 정보를 DB update 를 하고
+     * BlockChain API를 통해 데이터 저장
+     * 저장이 정상적으로 완료하면 결제 완료 페이지로 이동
+     */
     router.get("/regist", function(req, res, next){
         var concertId = req.query.concertId;
         var ticketId = req.query.ticketId;
@@ -384,10 +380,14 @@ module.exports = function() {
             req.session.did = '';
             
             connection.query(
-                `select * from where concertId = ?`,
+                `select * from concert where id = ?`,
                 [concertId],
                 function(err, result){
-                    res.render("concert/reserve_check", {name : result[0].name, date : result[0].date, place : result[0].place, seat: ticketId, poster_img: result[0].poster_img});
+                    if(err){
+                        res.send(err)
+                    }else{
+                        res.render("concert/reserve_check", {name : result[0].name, date : result[0].date, place : result[0].place, seat: ticketId, poster_img: result[0].poster_img, loggedname : req.session.name});
+                    }
                 }
             )
         }else{
@@ -398,7 +398,10 @@ module.exports = function() {
 
 
 
-    //공연 변경
+    /**
+     * 공연 정보 변경
+     * 공연의 정보를 DB update 및 BlockChain API를 이용하여 데이터 변경
+     */
     router.route("/update").post(function(req, res, next){ 
         var concertId = req.body.concertId;                                     
         var name = req.body.name;
@@ -425,7 +428,6 @@ module.exports = function() {
                 date: date
             },
         };
-        console.log(options);
         request.put(options, function(err,httpResponse,body){
             if(err){
             console.log(err)

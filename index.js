@@ -42,6 +42,10 @@ app.use(
   })
 );
 
+/**
+ * Main 화면
+ * get형식으로 genre 값이 존재하면 입력받은 genre의 공연만 보여준다
+ */
 app.get("/", function (req, res) {
   if(!req.query.genre){
     connection.query(
@@ -72,32 +76,12 @@ app.get("/", function (req, res) {
       }
     )
   }
-
-        
 });
 
-app.get("/qrcode2", function(req, res) {
-  var cofirm = {
-    "ticketId" : "e3f370c6d51e6098ff4fac992a789e9f09241fc01b1db8ea7b32df75bd12d3ca",
-    "name" : "김태경",
-    "phone" : "01084969889",
-    "email" : "moduedu@gmail.com" 
-  }  //input 값 변수
-    QRCode.toDataURL(JSON.stringify(cofirm), function (err, url) {
-      //console.log(url)
-      let data = url.replace(/.*,/,'')
-      let img = new Buffer.from(data,'base64')
-      res.writeHead(200,{
-          'Content-Type' : 'image/png',
-          'Content-Length' : img.length
-      })
-      res.end(img);
-  })
-});
-
-app.get("/qrcode_test", function(req, res) {
-  res.render("qrcode");
-});
+/**
+ * 로그아웃
+ * 해당 아이디 로그아웃 시간을 DB에 저장하며 로그아웃 시 session 삭제
+ */
 app.get("/logout", function(req, res){
   
   var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
@@ -120,73 +104,11 @@ app.get("/logout", function(req, res){
       }
     }
   )
-
-
-    
 })
 
-app.post("/sql", function(req, res){
-  connection.query(
-    `select * from mouse`,
-    function(err, result){
-      if(err){
-        console.log("sql error => ", err)
-      }else{
-        console.log(result);
-        res.json(result);
-      }
-    }
-  )
-})
-
-app.get("/sql", function(req, res){
-  var id = req.query.id;
-  connection.query(
-    `select * from mouse where id =?`,
-    [id],
-    function(err, result){
-      if(err){
-        console.log("sql error => ", err)
-      }else{
-        console.log(result);
-        res.json(result);
-      }
-    }
-  )
-})
-
-app.post("/sql_update", function(req, res){
-  var no = req.body.no;
-  var probability = req.body.probability;
-  connection.query(
-    `update mouse set probability = ? where no =?`,
-    [probability, no],
-    function(err, result){
-      if(err){
-        res.send(err)
-      }else{
-        res.send("1");
-      }
-    }
-  )
-})
-
-app.get("/time", function(req, res){
-  var id = req.query.id;
-  connection.query(
-    `select * from login where id =?`,
-    [id],
-    function(err, result){
-      if(err){
-        console.log("sql error => ", err)
-      }else{
-        console.log(result);
-        res.json(result);
-      }
-    }
-  )
-})
-
+/**
+ * 매크로 체크 화면
+ */
 app.get("/canvas", function(req,res){
   connection.query(
     `select * from mouse order by time desc`,
@@ -201,6 +123,10 @@ app.get("/canvas", function(req,res){
   )
 })
 
+/**
+ * 매크로 체크 화면
+ * 입력 받은 아이디 값의 최근 예매 시 마우스 좌표 및 클릭한 시간 차이를 표시
+ */
 app.post("/canvas", function(req,res){
   var id = req.body.id;
   connection.query(
@@ -217,6 +143,9 @@ app.post("/canvas", function(req,res){
   )
 })
 
+/**
+ * 티켓 사용 시 DB update API
+ */
 app.post("/search_sql", function(req, res){
   var ticketId = req.body.ticketId;
 
@@ -236,13 +165,14 @@ app.post("/search_sql", function(req, res){
   )
 })
 
+/**
+ * QRcode Scan 시 정상 체크 유무 API
+ */
 app.get("/search", function(req, res){
   var ticketId = req.query.ticketId;
   var time = req.query.time;
   var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
   var time_rap = date - time;
-  // var phone = req.query.phone;
-  // var email = req.query.email;
   console.log(time_rap);
   
   connection.query(
@@ -299,28 +229,17 @@ app.get("/search", function(req, res){
 )
 })
 
-
-app.get("/chart", function(req, res){
-  res.render("concert/seat_selection_soccer1");
-})
-
+/**
+ * 에러 페이지
+ */
 app.get("/error", function(req, res){
   res.render("error");
 })
 
-app.get("/ticket1", function(req, res){
-  console.log("android connecting")
-  // var input = req.body;
-  // console.log(input)
-  // res.json(input);
-})
-
-app.get("/pay", function(req, res){
-  // console.log(req);
-  console.log(req.query.concertId);
-  res.redirect("/");
-})
-
+/**
+ * mykeepin redirect URL 
+ * mykeepin에서 리턴 받은 데이터를 암호화 해제 및 session의 값과 비교하여 본인 인증
+ */
 app.get("/did_result", function(req, res){
   var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
   var private = {
@@ -394,23 +313,15 @@ app.get("/did_result", function(req, res){
         }
     })
 })
+
+/**
+ * DID 인증 요청
+ */
 app.get("/did1", function(req, res){
   console.log("did1 start");
-  function guid() {
-    function s4() {
-        return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  if(req.query.ticket){
+    req.session.ticket = req.query.ticket;
   }
-    var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
-    var url = "http://34.64.197.138:3333/did_result";
-    var state = guid();
-    var type = "1";
-    res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
-})
-app.get("/did2", function(req, res){
-  console.log("did2 start", req.query.ticket);
-  req.session.ticket = req.query.ticket;
   function guid() {
     function s4() {
         return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);

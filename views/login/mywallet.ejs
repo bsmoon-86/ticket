@@ -7,7 +7,7 @@
 <script>
     function did(ticket){
         //alert(ticket);
-        location.href = "/did2?ticket="+ticket;
+        location.href = "/did1?ticket="+ticket;
     }
 </script>
 <body>
@@ -35,7 +35,7 @@
                     for(var i=0;i < ticket.length; i++){%>
                         <div class="mypage-ticket-box">
                             <%if(wallet){%>
-                            <a href="/ticket/ticket_info?ticket=<%=ticket[i].ticketId%>">
+                            <a href="/ticket/ticket_info?ticket=<%=ticket[i].ticketId%>&used=0">
                             <%}else{%>
                             <a href="javascript:did('<%=ticket[i].ticketId%>');">
                             <%}%>
@@ -60,47 +60,48 @@
                                 </div>
                             </a>
                         </div>
-                        <%} } else {%>
-                            <div class="mypage-ticket-box2">
-                                <div class="mypage-ticket-intro2">
-                                    <p>보유한 티켓이 존재 하지 않습니다.</p>
+                    <%}%>
+                <%} else {%>
+                    <div class="mypage-ticket-box2">
+                        <div class="mypage-ticket-intro2">
+                            <p>보유한 티켓이 존재 하지 않습니다.</p>
+                        </div>
+                    </div>
+                <%}%>
+                <h6 class="ticket_us">사용한 티켓</h6>
+                <%if(ticket_used.length> 0){
+                    for(var i=0;i < ticket_used.length; i++){%>
+                        <div class="mypage-ticket-box">
+                            <a href="/ticket/ticket_info?ticket=<%=ticket_used[i].ticketId%>&used=1">
+                                <div class="mypage-ticket-img">
+                                    <div><img src="<%=ticket_used[i].poster_img%>" alt="img"></div>
                                 </div>
-                            </div>
-                            <%}%>
-
-                                <h6 class="ticket_us">사용한 티켓</h6>
-                                <%if(ticket_used.length> 0){
-                                    for(var i=0;i < ticket_used.length; i++){%>
-                                        <div class="mypage-ticket-box">
-                                            <a href="/ticket/ticket_info?ticket=<%=ticket_used[i].ticketId%>">
-                                                <div class="mypage-ticket-img">
-                                                    <div><img src="<%=ticket_used[i].poster_img%>" alt="img"></div>
-                                                </div>
-                                                <div class="mypage-ticket-intro">
-                                                    <ul>
-                                                        <li>
-                                                            <%=ticket_used[i].c_name%>
-                                                        </li>
-                                                        <li>
-                                                            <%=ticket_used[i].date.slice(0,4)+"년"+ticket_used[i].date.slice(4,6)+"월"+ticket_used[i].date.slice(6,8)+"일"%>
-                                                        </li>
-                                                        <li>
-                                                            <%=ticket_used[i].place%>
-                                                        </li>
-                                                        <li>
-                                                            <%=ticket_used[i].seat%>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <%} } else {%>
-                                            <div class="mypage-ticket-box2">
-                                                <div class="mypage-ticket-intro2">
-                                                    <p>보유한 티켓이 존재 하지 않습니다.</p>
-                                                </div>
-                                            </div>
-                                            <%}%>
+                                <div class="mypage-ticket-intro">
+                                    <ul>
+                                        <li>
+                                            <%=ticket_used[i].c_name%>
+                                        </li>
+                                        <li>
+                                            <%=ticket_used[i].date.slice(0,4)+"년"+ticket_used[i].date.slice(4,6)+"월"+ticket_used[i].date.slice(6,8)+"일"%>
+                                        </li>
+                                        <li>
+                                            <%=ticket_used[i].place%>
+                                        </li>
+                                        <li>
+                                            <%=ticket_used[i].seat%>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
+                        </div>
+                    <%}%> 
+                <%} else {%>
+                    <div class="mypage-ticket-box2">
+                        <div class="mypage-ticket-intro2">
+                            <p>보유한 티켓이 존재 하지 않습니다.</p>
+                        </div>
+                    </div>
+                <%}%>
             </div>
 
         </div>

@@ -71,45 +71,45 @@
               </td>
             </tr>
 
-            <%}else{ for(var i=0; i < concert.length; i++){%>
-              <tr>
-                <td>
-                  <%=concert[i].id%>
-                </td>
-                <td>
-                  <a href="#">
-                    <img src="<%=concert[i].poster_img%>" alt="img">
-                  </a>
-                </td>
-                <td>
-                  <ul class="regist-information">
-                    <li><span>&lang;<%=concert[i].genre%>&gt;</span>
-                      <%=concert[i].name%>
-                    </li>
-                    <li>
-                      <%=concert[i].date%>
-                    </li>
-                    <li>
-                      <%=concert[i].place%>
-                    </li>
-                    <li>
-                      <%=concert[i].time%>
-                    </li>
-                    <li>
-                      <%=concert[i].rating%>
-                    </li>
-                  </ul>
-                </td>
-                <td style="display:none;">
-                  <button onclick="javascript:qrcode('<%=concert[i].id%>')">QR</button>
-                </td>
-                <td>
-                  <button>수정</button>
-                  <button>삭제</button>
-                </td>
+          <%}else{ for(var i=0; i < concert.length; i++){%>
+            <tr>
+              <td>
+                <%=concert[i].id%>
+              </td>
+              <td>
+                <a href="#">
+                  <img src="<%=concert[i].poster_img%>" alt="img">
+                </a>
+              </td>
+              <td>
+                <ul class="regist-information">
+                  <li><span>&lang;<%=concert[i].genre%>&gt;</span>
+                    <%=concert[i].name%>
+                  </li>
+                  <li>
+                    <%=concert[i].date%>
+                  </li>
+                  <li>
+                    <%=concert[i].place%>
+                  </li>
+                  <li>
+                    <%=concert[i].time%>
+                  </li>
+                  <li>
+                    <%=concert[i].rating%>
+                  </li>
+                </ul>
+              </td>
+              <td style="display:none;">
+                <button onclick="javascript:qrcode('<%=concert[i].id%>')">QR</button>
+              </td>
+              <td>
+                <button>수정</button>
+                <button>삭제</button>
+              </td>
 
-              </tr>
-              <%}}%>
+            </tr>
+          <%}}%>
         </tbody>
       </table>
 

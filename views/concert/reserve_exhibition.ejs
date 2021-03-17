@@ -122,55 +122,55 @@
                     <div class="p-2 flex-fill">가격안내</div>
                 </div>
 
-                    <div class="card-body" style="display: none;">
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="concertname" value="<%=data[0]%>">
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="concertId" value="<%=concert[0].id%>">
-                        <input type="text" id="x" name="x">
-                        <input type="text" id="y" name="y">
-                        <input type="text" id="time_rap" name="time_rap">
+                <div class="card-body" style="display: none;">
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" name="concertname" value="<%=data[0]%>">
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" name="concertId" value="<%=concert[0].id%>">
+                    <input type="text" id="x" name="x">
+                    <input type="text" id="y" name="y">
+                    <input type="text" id="time_rap" name="time_rap">
+                </div>
+
+                <!-- 선택페이지 -->
+                <div class="container reservation">
+                    <!--날짜선택-->
+                    <div class="col-6 align-self-center">
+                        <form class="form-check">
+
+                            <select style="width:4rem;" name="seat" id="seat">
+                                <option value="1">1매</option>
+                                <option value="2">2매</option>
+                                <option value="3">3매</option>
+                                <option value="4">4매</option>
+                                <option value="5">5매</option>
+                                <option value="6">6매</option>
+                                <option value="7">7매</option>
+                                <option value="8">8매</option>
+                                <option value="9">9매</option>
+                            </select>
+                        </form>
                     </div>
 
-                    <!-- 선택페이지 -->
-                    <div class="container reservation">
-                        <!--날짜선택-->
-                        <div class="col-6 align-self-center">
-                            <form class="form-check">
-
-                                <select style="width:4rem;" name="seat" id="seat">
-                                    <option value="1">1매</option>
-                                    <option value="2">2매</option>
-                                    <option value="3">3매</option>
-                                    <option value="4">4매</option>
-                                    <option value="5">5매</option>
-                                    <option value="6">6매</option>
-                                    <option value="7">7매</option>
-                                    <option value="8">8매</option>
-                                    <option value="9">9매</option>
-                                </select>
-                            </form>
-                        </div>
-
-                        <!--좌석가격현황-->
-                        <div class=" col-6 align-self-center price-list2">
-                            <%if(concert[0].seat1 !=0){%>
-                                <p>티켓&nbsp;&nbsp;&nbsp;<strong>
-                                    <%=concert[0].seat1%>원
-                                </strong></p>
-                            <%}%>
-                        </div>
-                    </div>
-                    <!-- 선택버튼 -->
-
-                    <!--예약하기 버튼-->
-                    <div class="d-grid gap-2 col-12 mx-auto reserve-button">
-                        <%if (did > 0){%>
-                        <button class="btn" onclick="payment()">예약하기</button>
-                        <%}else{%>
-                        <button class="btn" onclick="did()">본인인증</button>
+                    <!--좌석가격현황-->
+                    <div class=" col-6 align-self-center price-list2">
+                        <%if(concert[0].seat1 !=0){%>
+                            <p>티켓&nbsp;&nbsp;&nbsp;<strong>
+                                <%=concert[0].seat1%>원
+                            </strong></p>
                         <%}%>
                     </div>
+                </div>
+                <!-- 선택버튼 -->
+
+                <!--예약하기 버튼-->
+                <div class="d-grid gap-2 col-12 mx-auto reserve-button">
+                    <%if (did > 0){%>
+                    <button class="btn" onclick="payment()">예약하기</button>
+                    <%}else{%>
+                    <button class="btn" onclick="did()">본인인증</button>
+                    <%}%>
+                </div>
             </div>
             <!-- 기본 정보 선택 wrap -->
 

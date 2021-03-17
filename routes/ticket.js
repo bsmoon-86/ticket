@@ -19,16 +19,15 @@ var connection = mysql.createConnection({
 
 
 module.exports = function(){
-
-    router.get("/", function(req, res, next){
-        var concertId = req.query.concertId;
-        res.render("confirm/login", {concertId: concertId, loggedname : req.session.name});
-    })
-
     
-    //세부 티켓의 정보 확인 페이지 
+    /**
+     * 티켓 정보 조회 화면
+     * 이미 사용된 티켓은 myticket2로 이동
+     * 사용되지 않은 티켓은 myticket으로 이동
+     */
     router.get("/ticket_info", function(req, res, next){
         var ticketId = req.query.ticket;
+        var used = req.query.used;
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         console.log(ticketId);
         connection.query(
@@ -38,20 +37,30 @@ module.exports = function(){
                 if(err){
                     console.log("ticket_info sql error => ", err)
                 }else{
-                    console.log("ticket_info => ", result)
-                    res.render("ticket/myticket", {ticket : result, loggedname : req.session.name, date : date});
+                    if(used == 0){
+                        console.log("ticket_info => ", result)
+                        res.render("ticket/myticket", {ticket : result, loggedname : req.session.name, date : date});
+                    }else{
+                        console.log("ticket_info =>", result, "used => 2")
+                        res.render("ticket/myticket2", {ticket : result, loggedname : req.session.name, date : date});
+                    }
                 }
             }
         )
     })
 
-    //티켓 조회 페이지 
+    /**
+     * 티켓 조회 화면
+     */
     router.get("/search", function(req, res, next){
         res.render("ticket/myticket_search" ,{loggedname : req.session.name});
     })
     
 
-     //티켓 정보 조회 (로그인 없이 가능)
+    /**
+     * 조회된 티켓 정보 화면
+     * BlockChain의 티켓 데이터를 표시
+     */
     router.post("/search", function(req, res, next){    
         var ticketId = req.body.ticketId;
 
@@ -78,11 +87,14 @@ module.exports = function(){
                 }else{
                     res.redirect("/error")
                 }
-
             }
         )
     })
 
+    /**
+     * 티켓 양도 화면
+     * 티켓 지갑 -> 티켓 상세 정보 -> 양도하기 
+     */
     router.post("/transfer", function(req, res, next){
         var ticket = req.body.ticketId;
         var concertId;
@@ -108,9 +120,11 @@ module.exports = function(){
         )
     })
 
+    /**
+     * 티켓 양도 페이지에서 양도받을 아이디 유무 체크
+     */
     router.post("/check", function(req, res, next){
         var id = req.body.id;
-        console.log(id)
         connection.query(
             `select * from user where id = ?`,
             [id],
@@ -128,181 +142,10 @@ module.exports = function(){
         )
     })
 
-    
-
-    // //티켓 확인
-    // router.post("/search", function(req, res, next){    
-    //     var concertId = req.body.concertId;
-    //     // var ticketId = req.body.ticketId;
-    //     var ticket = [];
-    //     connection.query(`select * from ticket where concertId =?`,
-    //     [concertId],
-    //     async function(err, result){
-    //         if(err){
-    //             console.log("err", err)
-    //         }else{
-    //             //console.log(result.length)
-    //             for(var i=0; i < result.length; i++){            
-    //                 let options = {
-    //                     uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+concertId+"&ticketId="+i,
-    //                     method: 'get'
-    //                 };
-    //                 //console.log(options);
-    //                 request.get(options, function(err,httpResponse,body){
-    //                     if(err){
-    //                     console.log(err)
-    //                     }else{
-    //                     console.log(body);
-    //                     ticket.push(body);
-    //                     }
-    //                 })
-    //             };    
-    //             console.log(ticket)
-    //             res.json(ticket);
-    //         }
-    //     }
-    //     )
-    //     //res.render("ticket/view copy", {data: body, concertId: concertId, ticketId: ticketId});
-    // })
-
-
-    //티켓 등록 
-    router.post("/regist", async function(req, res, next){
-        if(!req.session.name){
-            res.redirect("/login")
-        }else{
-            var concertId = req.body.concertId;
-            var ticketId = req.body.ticketId;
-            var date = req.body.date;
-            var time = req.body.time;
-            var seat = req.body.seat;
-            var price = req.body.price;
-            var discount = "0";
-            var discountRate = 0;
-            var fee = req.body.fee;
-            var cancleDate = req.body.cancleDate;
-            var cancleFee = req.body.cancleFee;    
-
-            let options = {
-                uri: "http://kairos-link.iptime.org:8080/api/v1/regist_ticket",
-                method: 'post',
-                json: {
-                    concertId: concertId,
-                    ticketId: ticketId,
-                    date: date,
-                    time: time,
-                    seat: seat,
-                    discount: discount,
-                    price: price,
-                    discountRate: discountRate,
-                    fee: fee,
-                    cancleDate: cancleDate,
-                    cancleFee: cancleFee,
-                },
-            };
-            request.post(options, function(err,httpResponse,body){
-                if(err){
-                    console.log(err)
-                }else{        
-                    connection.query(                               //블록에 티켓 정보를 저장 후 DB에도 같은 정보를 저장
-                        `insert into ticket (concertId, ticketId, date, time, seat, discount, price,
-                        discountRate, fee, cancleDate, cancleFee, state) values (?,?,?,?,?,?,?,?,?,?,?,0)`,
-                        [concertId, ticketId, date, time, seat, discount, price, discountRate, fee, cancleDate, cancleFee],
-                        function(err, result){
-                            if(err){
-                                console.log(err)
-                            }else{
-                                console.log(body)
-                                res.redirect("/")
-                            }
-                        }
-                    )
-                }
-            })
-        }
-    })
-
-    //티켓 정보 변경
-    router.post("/update", function(req, res, next){
-        var concertId = req.body.concertId;
-        var ticketId = req.body.ticketId;
-        var date = Number(req.body.date);
-        var time = Number(req.body.time);
-        var seat = req.body.seat;
-        var discount = req.body.discount;
-        var price = req.body.price;
-        var discountRate = Number(req.body.discountRate);
-        var fee = Number(req.body.fee);
-        var cancleDate = req.body.cancleDate;
-        var cancleFee = req.body.cancleFee;    
-        let options = {
-            uri: "http://kairos-link.iptime.org:8080/api/v1/update_ticket",
-            method: 'post',
-            json: {
-                concertId: concertId,
-                ticketId: ticketId,
-                date: date,
-                time: time,
-                seat: seat,
-                discount: discount,
-                price: price,
-                discountRate: discountRate,
-                fee: fee,
-                cancleDate: cancleDate,
-                cancleFee: cancleFee
-            },
-        };
-        request.put(options, function(err,httpResponse,body){
-            if(err){
-                console.log(err)
-            }else{
-                connection.query(
-                    `update ticket set concertId = ? , ticketId = ?, date = ?, time = ?, seat = ?, discount = ?, price = ?, 
-                    discountRate = ?, fee = ?, cancleDate = ?, cancleFee = ? where concertId = ? and ticketId = ?`,
-                    [concertId, ticketId, date, time, seat, discount, price, discountRate, fee, cancleDate, cancleFee, concertId, ticketId],
-                    function(err, result){
-                        if(err){
-                            console.log(err)
-                        }else{
-                            console.log(result)
-                            res.redirect("/ticket")
-                        }
-                    }
-                )
-            }
-        })
-    })
-
-    router.post("/payment", function(req, res, next){
-        var concertId = req.body.concertId;
-        var ticketId = req.body.ticketId;
-        var did = req.body.did.split(",");
-        var payment = req.body.payment;
-        console.log(did[0]);
-        let options = {
-            uri: "http://kairos-link.iptime.org:8080/api/v1/buy_ticket",
-            method: 'post',
-            json: {
-                concertId: concertId,
-                ticketId: ticketId,
-                ticketerName : did[1],
-                ticketerPhoneNumber : did[2],
-                ticketerEmail : did[0]
-            },
-        };
-        request.post(options, function(err,httpResponse,body){
-            if(err){
-            console.log(err)
-            }else{
-                console.log(body)
-                res.redirect("/ticket")
-            }
-        })
-    })
-
-    
-
-    //티켓 소유자 변경
+    /**
+     * 티켓의 소유주 변경
+     * 티켓의 소유주 정보를 BlockChain 및 DB에 변경하여 저장
+     */
     router.post("/transfer2", function(req, res, next){
         var concertId = req.body.concertId;
         var ticketId = req.body.ticketId;
@@ -353,11 +196,9 @@ module.exports = function(){
                             )
                         }
                     })
-
                 }
             }
         )
-
     })
 
     return router;

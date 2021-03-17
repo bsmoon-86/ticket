@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body onload="date('<%=ticket[0].date%>', '<%=ticket[0].time%>')">
 
     <!-- header gnb -->
     <div class="header">
@@ -34,7 +34,13 @@
                 <div class="my-ticket-title">
                     <h6>
                         <!-- ticket title -->
-                        <%=ticket[0].c_name%>
+                        <%if(ticket[0].state == 9){%>
+                            <STRIKE><%=ticket[0].c_name%></STRIKE>
+                        <%}else if(ticket[0].state == 1){%>
+                            <%=ticket[0].c_name%>
+                        <%}else{%>
+                            구매 전 티켓입니다.
+                        <%}%>
                     </h6>
                 </div>
 
@@ -47,9 +53,7 @@
                 <!-- ticket information -->
                 <div class="my-ticket-intro">
                     <ul class="my-ticket-intro1">
-                        <li>
-                            <%=ticket[0].date%> | <%=ticket[0].time%>
-                        </li>
+                        <li id="date"></li>
                         <li>
                             <%=ticket[0].seat%>
                         </li>
@@ -111,7 +115,12 @@
                 i++
                 return false;
             });
-        });        
+        });  
+        function date(date, time){
+            var d = date.substring(0,4) + "년" + date.substring(4,6) + "월" + date.substring(6,8) + "일";
+            var t = time.substring(0,2) + "시" + time.substring(2,4) + "분";
+            document.getElementById("date").innerHTML = d + t;
+        }      
     </script>
 
     <!-- Footer -->

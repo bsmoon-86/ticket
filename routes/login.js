@@ -24,14 +24,24 @@ var connection = mysql.createConnection({
 
 module.exports = function() {
 
+    /**
+     * 로그인 페이지
+     */
     router.get("/", function(req, res, next){
         res.render("login/login", {loggedname : req.session.name});
     })
 
+    /**
+     * 회원가입 페이지
+     */
     router.get("/signup", function(req, res, next){
         res.render("login/signup", {loggedname : req.session.name})
     })
 
+    /**
+     * 회원가입 DB 저장
+     * 해당 ID의 중복 여부 확인 후 중복이 아니면 회원가입
+     */
     router.post("/signup", function(req, res, next){
         var id = req.body.id;
         var password = req.body.pass;
@@ -70,10 +80,15 @@ module.exports = function() {
         )
     })
 
-    router.get("/find", function(req, res, next){
-        res.render("login/idpw-find");
-    })
+    // router.get("/find", function(req, res, next){
+    //     res.render("login/idpw-find");
+    // })
 
+    /**
+     * 로그인 성공시 메인 페이지
+     * 관리자 계정으로 로그인 시 관리자 페이지로 이동 (회원 DB의 linkcode가 0은 관리자, 1은 유저)
+     * 로그인 실패시 로그인 화면
+     */
     router.post("/main", function(req, res, next){
         var id = req.body.id;
         var pass = req.body.pass;
@@ -139,14 +154,14 @@ module.exports = function() {
         )
     })
 
-    router.get("/main", function(req, res, next){
-        res.redirect("/manager/main")
-    })
-
     var mypage_ticket;
     var ticket_used;
     var mypage_user;
 
+    /**
+     * 마이 페이지
+     * 회원 정보 표시
+     */
     router.get("/mypage", function(req, res, next){
         connection.query(
             `select * from user where id = ?`,
@@ -161,7 +176,6 @@ module.exports = function() {
             }
         )
     })
-
     router.get("/mypage", function(req, res, next){
         if(!req.session.user){
             res.redirect("/login")
@@ -171,6 +185,11 @@ module.exports = function() {
     })
 
 
+    /**
+     * 티켓 지갑 화면
+     * 로그인 한 유저가 소유한 티켓의 정보를 표시
+     * 사용한 티켓과 사용하지 않은 티켓으로 구분하여 표시(ticket DB의 state가 1이면 사용 전, 9면 사용, 0은 구매 전 티켓)
+     */
     router.get("/ticket_wallet", function(req, res, next){
         connection.query(
             `select * from ticket where user =? and state = 9`,
@@ -207,7 +226,6 @@ module.exports = function() {
             }
         )
     })
-
     router.get("/ticket_wallet", function(req, res, next){
         req.session.confirm = 2;
         if(!req.session.user){

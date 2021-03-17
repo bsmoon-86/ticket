@@ -69,12 +69,12 @@
                         <li><a href="javascript:menu('2')" style="color:#7881f6;">스포츠</a></li>
                         <li><a href="/ticket/search" style="color:#7881f6;">티켓 조회</a></li>
                         <%if(!loggedname){%>
-                        <li><a href="/login" style="color:#a44af5;">로그인</a></li>
-                        <li><a href="/login/signup" style="color:#a44af5;">회원가입</a></li>
+                            <li><a href="/login" style="color:#a44af5;">로그인</a></li>
+                            <li><a href="/login/signup" style="color:#a44af5;">회원가입</a></li>
                         <%}else{%>
-                        <li><a href="/login/mypage" style="color:#a44af5;">마이페이지</a></li>
-                        <li><a href="/login/ticket_wallet" style="color:#a44af5;">티켓지갑</a></li>
-                        <li><a href="/logout" style="color:#a44af5;">로그아웃</a></li>
+                            <li><a href="/login/mypage" style="color:#a44af5;">마이페이지</a></li>
+                            <li><a href="/login/ticket_wallet" style="color:#a44af5;">티켓지갑</a></li>
+                            <li><a href="/logout" style="color:#a44af5;">로그아웃</a></li>
                         <%}%>
                     </ul>
                 </nav>
@@ -104,24 +104,24 @@
             <div class="overlay-title">
                 <a href="/">HOME</a>
                 <%if(!loggedname){%>
-                <a href="/login">LOGIN</a>
+                    <a href="/login">LOGIN</a>
                 <%}else{%>
-                <a href="/logout">LOGOUT</a>
+                    <a href="/logout">LOGOUT</a>
                 <%}%>
             </div>
             <div>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">close&times;</a>
             <ul class="overlay-content">
-                    <li><i class="fas fa-headphones-alt"></i><a href="javascript:menu('0')">공연</a></li>
-                    <li><i class="fas fa-images"></i><a href="javascript:menu('1')">전시</a></li>
-                    <li><i class="fas fa-running"></i><a href="javascript:menu('2')">스포츠</a></li>
-                    <li><i class="fab fa-sistrix"></i><a href="/ticket/search">티켓 조회</a></li>
-                    <%if(loggedname){%>
+                <li><i class="fas fa-headphones-alt"></i><a href="javascript:menu('0')">공연</a></li>
+                <li><i class="fas fa-images"></i><a href="javascript:menu('1')">전시</a></li>
+                <li><i class="fas fa-running"></i><a href="javascript:menu('2')">스포츠</a></li>
+                <li><i class="fab fa-sistrix"></i><a href="/ticket/search">티켓 조회</a></li>
+                <%if(loggedname){%>
                     <li><i class="fas fa-ticket-alt"></i><a href="/login/mypage">마이페이지</a></li>
                     <li><i class="fas fa-wallet"></i></i><a href="/login/ticket_wallet">티켓 지갑</a></li>
-                    <%}else{%>
+                <%}else{%>
                     <li><i class="fas fa-ticket-alt"></i><a href="/login/signup">회원가입</a></li>
-                    <%}%>
+                <%}%>
             </ul>
             </div>
             <div class="overlay-line">

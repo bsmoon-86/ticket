@@ -3180,7 +3180,7 @@ input[type=password] {
     margin:2rem 0;
 }
 .ck-button .button{
-    width:5rem;
+    width:6rem;
 }
 @media only screen and (max-width:768px){
     .check_wrap {

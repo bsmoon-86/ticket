@@ -51,9 +51,12 @@
             var name = $("#name").val();
             var time = $("#time").val();
             var c = $("#floor").val();
-            var elText = "{ticketId : "+ticketId+", name : "+name+", time : "+time+", floor = "+c+"}";
-            
-            
+            var elText = JSON.stringify({
+                            "ticketId":ticketId,
+                            "name":name,
+                            "time":time,
+                            "floor": c
+                        });
             qrcode.makeCode(elText);
         }
 </script>

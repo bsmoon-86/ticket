@@ -3190,3 +3190,11 @@ input[type=password] {
         width: 80%;
     }
 }
+.kakao{
+    width:fit-content;
+    text-align: center;
+    background:#fef01b;
+    margin:0 auto;
+    padding:1rem 2rem;
+    border-radius:1.5rem;
+}

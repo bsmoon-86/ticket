@@ -155,7 +155,12 @@
             }else{
                 var c = 2;
             }
-            var elText = "{ticketId : "+ticketId+", name : "+name+", time : "+time+", floor = "+c+"}";
+            var elText = JSON.stringify({
+                            "ticketId":ticketId,
+                            "name":name,
+                            "time":time,
+                            "floor": c
+                        });
             
             
             qrcode.makeCode(elText);

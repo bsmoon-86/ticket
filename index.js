@@ -165,6 +165,28 @@ app.post("/search_sql", function(req, res){
   )
 })
 
+app.post("/search_sql_test", function(req, res){
+  var ticketId = req.body.ticketId;
+  console.log(ticketId);
+
+  connection.query(
+    `update ticket_test set state = 9 where ticketId = ?`,
+    [ticketId],
+    function(err2, result2){
+      if(err2){
+        console.log("scan sql2 error =", err2)
+        res.json({
+          "result" : "sql update fail"
+        })
+      }else{
+        console.log("sql update success");
+        res.json({
+          "result" : "sql update complete"
+        })
+      }
+    }
+  )
+})
 /**
  * QRcode Scan 시 정상 체크 유무 API
  */
@@ -212,6 +234,60 @@ app.get("/search", function(req, res){
                   }
                 }
             })
+        }else{
+          res.json({
+            "result" : 2,
+            "message" : "empty"
+          });
+        }
+      }else{
+        res.json({
+          "result" : 3,
+          "message" : "Invalid QRcode"
+        })
+      }
+
+    }
+)
+})
+
+app.get("/search_test", function(req, res){
+  var ticketId = req.query.ticketId;
+  var time = req.query.time;
+  var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
+  var time_rap = date - time;
+  console.log(time_rap);
+  
+  connection.query(
+    `select * from ticket_test where ticketId=?`,
+    [ticketId],
+    function(err, result){
+      if(time_rap < 60){
+        if(result.length > 0){
+          if(err){
+          console.log(err)
+          }else{
+            console.log(result[0].state);
+            if(result[0].state == 1){
+              //console.log(httpResponse);
+              console.log(result[0]);
+              // res.send(body.split(","));
+              res.json({
+                "result" : 0,
+                "message" : result[0]
+              })
+            }else if (result[0].state == 0){
+              res.json({
+                "result" : 4,
+                "message" : "Ticket not book"
+              })
+            }else{    
+              res.json({
+                "result" : 1,
+                "message" : "Ticket used"
+              });
+            }
+          }
         }else{
           res.json({
             "result" : 2,
@@ -333,6 +409,10 @@ app.get("/did1", function(req, res){
     var state = guid();
     var type = "1";
     res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)
+})
+
+app.get("/qrcode_test", function(req, res){
+  res.render("qrcode");
 })
 
 var concertRoute = require("./routes/concert")();

@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+const passport = require('passport')
+const KakaoStrategy = require('passport-kakao').Strategy;
 const request = require('request');
 require('dotenv').config();
 var Crypto = require("crypto");
@@ -10,6 +12,23 @@ var moment = require("moment");
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
 
+var kakao_id;
+
+passport.use('kakao', new KakaoStrategy({
+    clientID: process.env.kakaoid,
+    clientSecret: process.env.kakaosecret,
+    callbackURL: 'http://kairos-link.iptime.org:3333/login/main_kakao',     // 위에서 설정한 Redirect URI
+  }, async (accessToken, refreshToken, profile, done) => {
+      console.log(refreshToken);
+    console.log(`accessToken : ${accessToken}`)
+      console.log(`사용자 profile: ${JSON.stringify(profile._json)}`)
+      kakao_id = profile._json;
+    //   return done(accessToken);
+
+    // //save(accessToken, refreshToken, profile)
+      return done(null, profile._json)
+}
+))
 
 
 var mysql = require("mysql2");
@@ -39,6 +58,34 @@ module.exports = function() {
     })
 
     /**
+     * 회원가입 페이지(카카오)
+     */
+    router.get("/signup2", function(req, res, next){
+        console.log(kakao_id.id);
+        var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
+        connection.query(
+            `select * from user where kakao_id = ?`,
+            [kakao_id.id],
+            function(err, result){
+                if(err){
+                    res.render('error');
+                }else{
+                    if(result.length > 0){
+                        req.session.user = result[0].id;
+                        req.session.name = result[0].name;
+                        req.session.phone = result[0].phone;
+                        req.session.email = result[0].email;
+                        req.session.logintime = date;
+                        res.redirect("/");
+                    }else{
+                        res.render("login/signup_kakao", {loggedname : req.session.name})
+                    }
+                }
+            }
+        )
+    })
+
+    /**
      * 회원가입 DB 저장
      * 해당 ID의 중복 여부 확인 후 중복이 아니면 회원가입
      */
@@ -65,6 +112,48 @@ module.exports = function() {
                         connection.query(
                             `insert into user (id, password, name, email, phone, linkcode) values (?,?,?,?,?,?)`,
                             [id, encrypted, name, email, phone, linkcode],
+                            function(err, result){
+                                if(err){
+                                    console.log("err", err)
+                                }else{
+                                    console.log(result);
+                                    res.redirect("/login")
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+        )
+    })
+
+    /**
+     * 회원가입 DB 저장
+     * 해당 ID의 중복 여부 확인 후 중복이 아니면 회원가입
+     */
+    router.post("/signup_kakao", function(req, res, next){
+        
+        var name = req.body.name;
+        var email = req.body.email;
+        var phone = req.body.phone;
+        var linkcode = 1;
+        var encrypted = Crypto.createHmac('sha256', secretKey).update("kairoslinksecret").digest('hex');
+        var id = phone+"_kakao";
+        console.log(encrypted);
+        connection.query(
+            `select * from user where id =?`,
+            [id],
+            function(err, result){
+                if(err){
+                    console.log("err", err)
+                }else{
+                    if(result.length > 0){
+                        console.log("존재하는 id")
+                        res.render('error');
+                    }else{
+                        connection.query(
+                            `insert into user (id, password, name, email, phone, linkcode, kakao_id) values (?,?,?,?,?,?,?)`,
+                            [id, encrypted, name, email, phone, linkcode, kakao_id.id],
                             function(err, result){
                                 if(err){
                                     console.log("err", err)
@@ -235,7 +324,16 @@ module.exports = function() {
         }
     })
 
+    router.get('/kakao', passport.authenticate('kakao'));
 
+    router.get('/main_kakao', passport.authenticate('kakao',{
+        successRedirect: "/login/signup2",
+        session: false,
+        failureRedirect: '/error',
+        }), function(res, req){
+            console.log("123456789");
+        }
+    );
     
     return router;
 }

@@ -49,7 +49,9 @@
                 <!-- ticket information -->
                 <div class="my-ticket-intro">
                     <ul class="my-ticket-intro1" style="height: auto;">
-                        <li id="qrcode"></li>
+                        <li id="img">
+                            <img src="/ticket/qrcode?ticketId=<%=ticket[0].ticketId%>&name=<%=ticket[0].name%>&seat=<%=ticket[0].seat%>">
+                        </li>
                         <li id="date"></li>
                         <li><%=ticket[0].seat%></li>
                         <li><%=ticket[0].place%></li>
@@ -73,14 +75,15 @@
                     </ul>
 
                     <div class="my-ticket-intro3">
-                        <!-- <form method="POST" action="/qrcode"> -->
+                        <!-- <form method="POST" action="/ticket/qrcode"> -->
                             <div style="display: none;">
                                 <input type="text" name="ticketId" value="<%=ticket[0].ticketId%>">
                                 <input type="text" name="name" value="<%=ticket[0].name%>">
+                                <input type="text" name="seat" value="<%=ticket[0].seat%>">
                             </div>
                             <p>현장 본인인증 후 사용가능 한 티켓입니다.</p>
                             <p id="limit"></p>
-                            <!-- </form> -->
+                        <!-- </form> -->
 
                         <form method="POST" action="/ticket/transfer" style="margin-top: 0.5rem;">
                             <div style="display: none;">
@@ -161,15 +164,12 @@
                             "time":time,
                             "floor": c
                         });
-            
-            
             qrcode.makeCode(elText);
         }
         function deleteCode(){
-            $("#qrcode").hide();
+            $("#img").hide();
         }
         $("#qrcode > img").css({"margin":"auto"});
-</script>
 
     </script>
  

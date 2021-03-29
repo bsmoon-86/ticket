@@ -93,7 +93,6 @@ module.exports = function() {
         var id = req.body.id;
         var password = req.body.pass;
         var name = req.body.name;
-        var birth = req.body.birth;
         var email = req.body.email;
         var phone = req.body.phone;
         var linkcode = req.body.linkcode;
@@ -132,12 +131,17 @@ module.exports = function() {
      * 해당 ID의 중복 여부 확인 후 중복이 아니면 회원가입
      */
     router.post("/signup_kakao", function(req, res, next){
-        
+        function guid() {
+            function s4() {
+                return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+            }
+            return s4();
+        }
         var name = req.body.name;
         var email = req.body.email;
         var phone = req.body.phone;
         var linkcode = 1;
-        var encrypted = Crypto.createHmac('sha256', secretKey).update("kairoslinksecret").digest('hex');
+        var encrypted = Crypto.createHmac('sha256', secretKey).update(guid()).digest('hex');
         var id = phone+"_kakao";
         console.log(encrypted);
         connection.query(
@@ -182,6 +186,7 @@ module.exports = function() {
         var id = req.body.id;
         var pass = req.body.pass;
         var encrypted = Crypto.createHmac('sha256', secretKey).update(pass).digest('hex');
+        console.log(encrypted);
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         connection.query(
             `select * from user where id = ? and password = ?`,

@@ -16,22 +16,23 @@
 
     <!-- body(background css) -->
     <div class="body">
-        <label>티켓ID</label>
-        <input type="text" id="ticket" value="d2211a5912a3a0722ae9a55f916bbde5dbcc3701cf3e551ea9aa89d3e7a07447"/ >
-        <br>
-        
-        <label>name</label>
-        <input type="text" id="name" value="문병선"/ >
-        <br>
-        <label>time</label>
-        <input type="text" id="time" value="20210303094520"/ >
-        <br>
-        <label>floor</label>
-        <input type="text" id="floor" value="1"/ >
-        <br>
-        <button onclick="makeCode()">qrcode생성
-        </button>
-            <p id="qrcode"></p>
+        <!-- <form method="POST" action="/qrcode"> -->
+            <label>티켓ID</label>
+            <input type="text" id="ticketId" name="ticketId" value="d2211a5912a3a0722ae9a55f916bbde5dbcc3701cf3e551ea9aa89d3e7a07447"/ >
+            <br>
+            
+            <label>name</label>
+            <input type="text" id="name" name="name" value="문병선"/ >
+            <br>
+            <label>floor</label>
+            <input type="text" id="floor" name="floor" value="1"/ >
+            <br>
+
+            <button onclick="makeCode()">qrcode 생성
+            </button>
+            <div id="img">
+            </div>
+        <!-- </form> -->
             
 
     </div>
@@ -47,17 +48,17 @@
 
         
         function makeCode() {	
-            var ticketId = $('#ticket').val();
+            var ticketId = $('#ticketId').val();
             var name = $("#name").val();
-            var time = $("#time").val();
-            var c = $("#floor").val();
-            var elText = JSON.stringify({
-                            "ticketId":ticketId,
-                            "name":name,
-                            "time":time,
-                            "floor": c
-                        });
-            qrcode.makeCode(elText);
+            var floor = $("#floor").val();
+            img= $('<img>', {
+                'src' : '/qrcode?ticketId='+ticketId+'&name='+name+'&floor='+floor,
+                'width' : '200px',
+                'height' : '200px'
+            })
+            $('#img *').remove();
+            $(img).appendTo('#img');
+
         }
 </script>
 

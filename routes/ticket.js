@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const request = require('request');
+const QRCode = require('qrcode')
 require('dotenv').config();
 var moment = require("moment");
 require("moment-timezone");
@@ -89,6 +90,44 @@ module.exports = function(){
                 }
             }
         )
+    })
+
+    /**
+     * 티켓 qrcode 화면
+     */
+    router.get("/qrcode", function(req , res, next){
+        var ticketId = req.query.ticketId;
+        var name = req.query.name;
+        var time = moment().format("YYYYMMDDHHmmss");
+        var seat = req.query.seat;
+
+        var a = seat.substring(0,1);
+        if(a == "v"){
+            var floor = 1;
+        }else if(a == "r"){
+            var floor = 1;
+        }else{
+            var floor = 2;
+        }
+        
+        var string = JSON.stringify({
+            "ticketId":ticketId,
+            "name":name,
+            "time":time,
+            "floor": floor
+        });
+        console.log(string);
+        QRCode.toDataURL(string,{type:'terminal'}, function (err, url) {
+          if(err) throw err;
+         //console.log(url);
+         let data = url.replace(/.*,/,'')
+            let img = new Buffer(data,'base64')
+            res.writeHead(200,{
+                'Content-Type' : 'image/png',
+                'Content-Length' : img.length
+            })
+            res.end(img)
+        })
     })
 
     /**

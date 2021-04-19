@@ -40,6 +40,8 @@ var connection = mysql.createConnection({
   database: process.env.database, // database 이름
 });
 
+var check_login = 0;
+
 
 module.exports = function() {
 
@@ -47,7 +49,7 @@ module.exports = function() {
      * 로그인 페이지
      */
     router.get("/", function(req, res, next){
-        res.render("login/login", {loggedname : req.session.name});
+        res.render("login/login", {loggedname : req.session.name, check: check_login});
     })
 
     /**
@@ -186,7 +188,6 @@ module.exports = function() {
         var id = req.body.id;
         var pass = req.body.pass;
         var encrypted = Crypto.createHmac('sha256', secretKey).update(pass).digest('hex');
-        console.log(encrypted);
         var date = moment().format("YYYYMMDDHHmmss");       //moment를 이용한 현재 시간
         connection.query(
             `select * from user where id = ? and password = ?`,
@@ -241,6 +242,7 @@ module.exports = function() {
                         }
                     } else{
                         console.log("아이디나 비밀번호가 맞지 않습니다.")
+                        check_login = 1;
                         res.redirect("/login")
                     }
                 }

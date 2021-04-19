@@ -32,11 +32,16 @@
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input type="password" id="upw" class="form-control" placeholder="Password" name="pass"
                         required><br>
-                    <div class="checkbox">
+                    <!-- check == 1인 경우는 로그인에 실패하는 경우 메시지 창 display -->
+                    <%if(check == 1){%>
+                    <div class="alert alert-danger" id="alert-danger">아이디나 비밀번호가 맞지 않습니다.</div>
+                    <%}%>
+                    <!-- <div class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me"> 자동로그인
                         </label>
-                    </div>
+                    </div> -->
+                    <!-- form 형식으로 submit을 통해 /login/main으로 이동 -->
                     <button id="btn-Yes" class="btn btn-lg btn-block" type="submit">로 그 인</button>
 
 
@@ -47,7 +52,9 @@
 
                     <div class="sns-body">
                         <p>소셜로그인</p>
+                        <!-- 카카오 로그인 -->
                         <a href="/login/kakao"><img src="img/k.png" alt="img"></a>
+                        <!-- 구글 로그인(구현예정) -->
                         <a href="#"><img src="img/g.png" alt="img"></a>
                     </div>
                 </form>

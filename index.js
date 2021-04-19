@@ -317,8 +317,18 @@ app.get("/error", function(req, res){
  * mykeepin에서 리턴 받은 데이터를 암호화 해제 및 session의 값과 비교하여 본인 인증
  */
 app.get("/did_result", function(req, res){
-  var service_id = process.env.service_id;
-  var private = process.env.private;
+  var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a"
+  var private = {
+    "p": "86Rc76JyFXR89TS0lqRHsrxW4Q_0U5pUQ-p65wS7HPPuK_jJkL-vcZDlkRKiV7glDZT6sFzasDts52eDzWm9YXghNntoM2wkpKBoDW3roZTRzEc73j2RQ7tA2c62Z0iPu4Ce31ogakZA0F27pqbw7aePUE5XMDLUIW1kbgClm90",
+    "kty": "RSA",
+    "q": "tfPBeljGq8cieCdV8v6cPQFX-4lrVuKnd-CfgbF5Yw1IYNPrh2alkhEW5FezEV5Eg0HYpL2QwAumWDcJO7NPAOQkWE083eZVKfpTI0LAxBM18O6mEbYgCXtTKz3waIV2qeIigtSKZhsEonsuGKqN01wjL9OsKH2JhqOnlsMfgQE",
+    "d": "jjV3o75TR7o50WOfhPnFiIZIvhyeJmFqLcGLbmr4Ts2whDRNta9Do1cYpbjOdGCFwfMh3lX5eVmkpVEdc7eyyAT0mQYnNCnsWDWCt_RqbG-mZNUPoxW64A2Fd-Do121O01HbRmXZCsEg14VJQej8Ogly44C_9lApyFxp_mgLg-yiLSBkIzpx9bbIpTdgd1erY2vc0nMfYYfqOKzk-3mZ3oxY2Wv652Kr90_aBk7GNfDCf8dSAyY0JhGSB2spFwek9ge8ztUNjfr4f-FHZmkLiRl4unIM-zWUbYzCl7njVNfd1Oyj9Hd5obgzF82YitIJmbWsUy5bl4LP2hbfPTaQAQ",
+    "e": "AQAB",
+    "qi": "6m5hZNb2WYjf--NyfPEq1CbSgrxyShmRjpTYkKsF87xXsl0TQv7uUfWLIZ5PHoAVAc_EK956wCvb9t4zHN2SiAY37bLCjjvbh_xO_x95C9s1CrtsGmXBllT5T8OpTVPaPkwsSqflMhNxPbYPIGYWUpu4bNG_fq19-PmzA505JA0",
+    "dp": "OSTEs2OrVELlB_HbpTVUp6Qq0FCYon8g4mj9eG-Qn0LLCr8oL2317THp1fPD5cUH076saW7tz8WwTjnmHOh_BXxSdd_N2bm0gnQo03WDfXtVFY9jiEVya6tgk3U7LNBE_do16PbPgX2GuBgz6etfuK3DHDezlVdmj4yDsJUwQnU",
+    "dq": "cSTHrj3gJNdqrs6_GqCLJUBdprPYRKoiu1-5sFtdAWQ0GsoNDyCcWs03r_x9BJLbBcf_YMnkZheYdAidPDuPKB22IBa_f7kIQldANY__8K2FgHHWYPMgzuSaXixg_43msVNGZJaoDUBFzIfOrVX5ZXJJCyeUSYVu7IN95jklsQE",
+    "n": "rSsy3QA0Y6-3TGD2eHswUaQvSE6F7AUthrSapXIiGo0ibYAwmlPf5VaILPw7zjjcadQ4LEEu-RH4bCxh-IcxwK3PF7NwXKA0XumU8gyu0YdFo4xXQXUPRIQRwh5U2_lol00Rtvtpd1MktHmyStxHU0R2Ge5l5p6Q-8leD5LCd_MUSJTqlC_k6Hsi1Uvh2wTTutNWIbKNuTLQU12s2NOMRwgL8T3z4ebUTfb8Q__QMeaNXCINmELe-XSqACSVSpAfc94k0awSOxhKIyPLOI_d5PBADfWbnSw6tyUnVlfUJ-H-BOj2bBALWTGbo9BPilH3xWujDOM0fZiKRosGqvL43Q"
+}
   var state = req.query.state;
   var code = req.query.code;
   var type = 1;
@@ -368,7 +378,7 @@ app.get("/did_result", function(req, res){
           }else if(!req.session.name){
             res.render('login');
           }else{
-            res.redirect('/');
+            res.render('error_did');
           }
           // return claims;
 
@@ -394,8 +404,8 @@ app.get("/did1", function(req, res){
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
-    var service_id = process.env.service_id;
-    var url = process.env.redirect;
+    var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
+    var url = "http://34.64.197.138:3333/did_result";
     var state = guid();
     var type = "1";
     res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)

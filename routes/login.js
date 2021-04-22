@@ -17,7 +17,7 @@ var kakao_id;
 passport.use('kakao', new KakaoStrategy({
     clientID: process.env.kakaoid,
     clientSecret: process.env.kakaosecret,
-    callbackURL: 'http://kairos-link.iptime.org:3333/login/main_kakao',     // 위에서 설정한 Redirect URI
+    callbackURL: 'http://34.64.197.138:3333/login/main_kakao',     // 위에서 설정한 Redirect URI
   }, async (accessToken, refreshToken, profile, done) => {
       console.log(refreshToken);
     console.log(`accessToken : ${accessToken}`)
@@ -49,8 +49,17 @@ module.exports = function() {
      * 로그인 페이지
      */
     router.get("/", function(req, res, next){
-        res.render("login/login", {loggedname : req.session.name, check: check_login});
+        req.session.destroy(function (err2) {
+            if (err2) {
+              console.log(err2);
+              res.render("error");
+            } else {
+                res.render("login/login", {loggedname : null, check: check_login});
+            }
+          }); 
     })
+
+
 
     /**
      * 회원가입 페이지

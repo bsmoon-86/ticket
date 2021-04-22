@@ -311,7 +311,9 @@ app.get("/search_test", function(req, res){
 app.get("/error", function(req, res){
   res.render("error");
 })
-
+app.get("/error_did", function(req, res){
+  res.render("error_did");
+})
 /**
  * mykeepin redirect URL 
  * mykeepin에서 리턴 받은 데이터를 암호화 해제 및 session의 값과 비교하여 본인 인증
@@ -376,9 +378,9 @@ app.get("/did_result", function(req, res){
               res.render('move2', {ticket: req.session.ticket});
             }
           }else if(!req.session.name){
-            res.render('login');
+            res.render("login/login", {loggedname : null, check: check_login});
           }else{
-            res.render('error_did');
+            res.render("login/login", {loggedname : null, did: 1});
           }
           // return claims;
 

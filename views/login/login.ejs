@@ -36,6 +36,9 @@
                     <%if(check == 1){%>
                     <div class="alert alert-danger" id="alert-danger">아이디나 비밀번호가 맞지 않습니다.</div>
                     <%}%>
+                    <%if(did == 1){%>
+                        <div class="alert alert-danger" id="alert-danger">DID 인증 정보와 로그인한 회원님의 정보가 일치하지 않습니다.</div>
+                        <%}%>
                     <!-- <div class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me"> 자동로그인

@@ -24,6 +24,9 @@
         function home(){
             location.href = "/";
         }
+        function signup(){
+            location.href = "/login/signup";
+        }
     </script>
 
 </head>
@@ -40,11 +43,19 @@
         </div>
                    
         <div class="error-message">
-            EX&#41;DID와 회원님의 정보가 일치하지 않습니다.
+            EX&#41;DID 인증 정보와 로그인한 회원님의 정보가 일치하지 않습니다.
         </div>
                    
         <button class="error-btn" onclick="home()">
             메인으로 돌아가기
+        </button>
+
+        <div class="error-message">
+            회원 가입을 하시려면 아래 버튼을 클릭하시면 됩니다.
+        </div>
+
+        <button class="error-btn" onclick="signup()">
+            회원 가입
         </button>
                     
   

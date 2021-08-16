@@ -7,6 +7,8 @@ moment.tz.setDefault("Asia/Seoul");
 require('dotenv').config();
 
 
+const bc_host = process.env.bc_host;
+
 var mysql = require("mysql2");
 var connection = mysql.createConnection({
   host: process.env.host,
@@ -38,7 +40,7 @@ module.exports = function() {
         req.session.genre = genre;
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://kairos-link.iptime.org:8080/api/v1/get_concert?concertId="+concert,
+            uri: bc_host+"/api/v1/get_concert?concertId="+concert,
             method: 'get',
             json:true //json으로 보낼경우 true로 해주어야 header값이 json으로 설정됩니다.
         };
@@ -281,7 +283,7 @@ module.exports = function() {
                     }else{
                         console.log(result[0])
                         let options = {
-                            uri: "http://kairos-link.iptime.org:8080/api/v1/buy_ticket",
+                            uri: bc_host+"/api/v1/buy_ticket",
                             method: 'post',
                             json: {
                                 concertId: result[0].concertId,
@@ -419,7 +421,7 @@ module.exports = function() {
         var seat4 = req.body.seat4;
         var seat5 = req.body.seat5;
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://kairos-link.iptime.org:8080/api/v1/update_concert",
+            uri: bc_host+"/api/v1/update_concert",
             method: 'put',
             json: {
                 concertId : concertId,

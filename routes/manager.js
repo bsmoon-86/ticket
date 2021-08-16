@@ -6,6 +6,7 @@ var Crypto = require("crypto");
 
 var secretKey = process.env.secretKey;
 
+const bc_host = process.env.bc_host;
 
 var mysql = require("mysql2");
 var connection = mysql.createConnection({

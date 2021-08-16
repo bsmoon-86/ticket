@@ -7,6 +7,7 @@ var moment = require("moment");
 require("moment-timezone");
 moment.tz.setDefault("Asia/Seoul");
 
+const bc_host = process.env.bc_host;
 
 
 var mysql = require("mysql2");
@@ -71,7 +72,7 @@ module.exports = function(){
             function(err, result){
                 if(result.length > 0){
                     let options = {
-                        uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
+                        uri: bc_host+"/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
                         method: 'get'
                     };
                     //console.log(options);
@@ -206,7 +207,7 @@ module.exports = function(){
                     ticketerPhoneNumber = result[0].phone;
                     ticketerEmail = result[0].email;
                     let options = {
-                        uri: "http://kairos-link.iptime.org:8080/api/v1/transfer_ticket",
+                        uri: bc_host+"/api/v1/transfer_ticket",
                         method: 'post',
                         json: {
                             concertId: concertId,

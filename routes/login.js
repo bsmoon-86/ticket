@@ -17,7 +17,7 @@ var kakao_id;
 passport.use('kakao', new KakaoStrategy({
     clientID: process.env.kakaoid,
     clientSecret: process.env.kakaosecret,
-    callbackURL: 'http://34.64.197.138:3333/login/main_kakao',     // 위에서 설정한 Redirect URI
+    callbackURL: 'http://34.64.74.84:3333/login/main_kakao',     // 위에서 설정한 Redirect URI
   }, async (accessToken, refreshToken, profile, done) => {
       console.log(refreshToken);
     console.log(`accessToken : ${accessToken}`)
@@ -54,7 +54,7 @@ module.exports = function() {
               console.log(err2);
               res.render("error");
             } else {
-                res.render("login/login", {loggedname : null, check: check_login});
+                res.render("login/login", {loggedname : null, check: check_login, did:null});
             }
           }); 
     })

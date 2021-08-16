@@ -13,6 +13,8 @@ const request = require('request');
 require("moment-timezone");
 require('dotenv').config();
 moment.tz.setDefault("Asia/Seoul");
+ 
+const bc_host = process.env.bc_host;
 
 var mysql = require("mysql2");
 var connection = mysql.createConnection({
@@ -204,7 +206,7 @@ app.get("/search", function(req, res){
       if(time_rap < 60){
         if(result.length > 0){
             let options = {
-                uri: "http://kairos-link.iptime.org:8080/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
+                uri: bc_host+"/api/v1/get_ticket?concertId="+result[0].concertId+"&ticketId="+ticketId,
                 method: 'get'
             };
             //console.log(options);
@@ -378,16 +380,13 @@ app.get("/did_result", function(req, res){
               res.render('move2', {ticket: req.session.ticket});
             }
           }else if(!req.session.name){
-            res.render("login/login", {loggedname : null, check: check_login});
+            res.render("login/login", {loggedname : null, check: check_login, did: null});
           }else{
-            res.render("login/login", {loggedname : null, did: 1});
+            res.render("login/login", {loggedname : null, check: null, did: 1});
           }
-          // return claims;
 
         }
         main();
-        // res.render("ticket/search_ticket" ,{ticket : result, user : body.split(","), loggedname : req.session.name})
-        // ticket.push(body);
         }
     })
 })

@@ -406,7 +406,7 @@ app.get("/did1", function(req, res){
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   }
     var service_id = "10523b7c-7cc2-11eb-a5b1-02c81e87218a";
-    var url = "http://34.64.197.138:3333/did_result";
+    var url = process.env.redirect_uri;
     var state = guid();
     var type = "1";
     res.redirect("https://auth.mykeepin.com/didauth/v1/authorize/view?service_id="+service_id+"&redirect_uri="+url+"&state="+state+"&type="+type)

@@ -32,6 +32,7 @@ module.exports = function() {
         var genre = req.query.genre;
         req.session.confirm = 1;
         var did = 0;
+        console.log(bc_host)
         if(req.session.did){
             did = 1;
         }
@@ -44,6 +45,7 @@ module.exports = function() {
             method: 'get',
             json:true //json으로 보낼경우 true로 해주어야 header값이 json으로 설정됩니다.
         };
+        console.log(options)
         request.get(options, function(err,httpResponse,body){                               //contract를 통하여 받은 return 값은 body라는 변수로 등록
             if(err){
             console.log(err)

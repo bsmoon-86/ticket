@@ -184,7 +184,7 @@ module.exports = function() {
 
 
         let options = {                                                                     //request에 들어갈 옵션 값 url, method, json 값 등록
-            uri: "http://kairos-link.iptime.org:8080/api/v1/regist_concert",
+            uri: bc_host+"/api/v1/regist_concert",
             method: 'post',
             json: {
                 concertId : concertId,
@@ -196,7 +196,7 @@ module.exports = function() {
         request.post(options, function(err,httpResponse,body){
             if(err){
             console.log(err)
-            res.redirect("/concert")
+            res.redirect("/manager")
             }else{
                 connection.query(
                   `insert into concert (id, name, place, date, time, showtime, genre, rating, poster_img, info_img, seat1, seat2, seat3, seat4, seat5, register) 

@@ -40,7 +40,10 @@ app.use(
     secret: "dndkimleemoonchoi",
     resave: false,
     saveUninitialized: true,
-    maxAge: 3600000
+    cookie : {
+      maxAge: 3600000, 
+      sameSite : "none"
+    }
   })
 );
 
@@ -354,35 +357,58 @@ app.get("/did_result", function(req, res){
         var Verifier = require('mykeepin-verify-sdk');
         var info = require('./test.json');
         async function main(){
+          try{
+            // 사용자 DID로 검증 객체 생성
+            const verifier = new Verifier(did, {
+              resolver: 'https://resolver.metadium.com/1.0',
+            });
+            // vp, vc 추출
+            await verifier.extract(vp, private);
+            const getpresentation = await verifier.getPresentation();
+            console.log("getpresentationResult:", getpresentation);
+            // Signature를 검증한다.
+            const verificationResult = await verifier.verifySignature(service_id, state, code, type, dataHash, signature);
+            console.log('Signature verification:', verificationResult);
+            const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
+            const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
+            console.log(claims[0]);
 
-           // 사용자 DID로 검증 객체 생성
-          const verifier = new Verifier(did, {
-            resolver: 'https://resolver.metadium.com/1.0',
-          });
-          // vp, vc 추출
-          await verifier.extract(vp, private);
-          const getpresentation = await verifier.getPresentation();
-          console.log("getpresentationResult:", getpresentation);
-          // Signature를 검증한다.
-          const verificationResult = await verifier.verifySignature(service_id, state, code, type, dataHash, signature);
-          console.log('Signature verification:', verificationResult);
-          const vpInfo = info.find((vpVo) => vpVo.vp === 'TgetIngPresentation');
-          const claims = await verifier.getClaims(vpInfo, { verifyByIssuer: true });
-          console.log(claims[0]);
 
+            connection.query(
+              `select * from user where name = ? and phone = ?`, 
+              [claims[0], claims[1]], 
+              function(err, result){
+                if(err){
+                  res.render('error');
+                }else{
+                    if(result.length > 0){
+                        req.session.user = result[0].id;
+                        req.session.name = result[0].name;
+                        req.session.phone = result[0].phone;
+                        req.session.email = result[0].email;
+                        req.session.logintime = date;
+                        req.session.did = 1;
+                        res.redirect("/");
+                    }
+                }
+              }
+            )
 
-          if(req.session.name == claims[0] && req.session.phone == claims[1]){
-            if(req.session.confirm == 1){
-              req.session.did = 1;
-              res.render('move', {concert: req.session.concert, genre: req.session.genre});
-            }else if(req.session.confirm == 2){
-              req.session.wallet = 1;
-              res.render('move2', {ticket: req.session.ticket});
-            }
-          }else if(!req.session.name){
-            res.render("login/login", {loggedname : null, check: check_login, did: null});
-          }else{
-            res.render("login/login", {loggedname : null, check: null, did: 1});
+            // if(req.session.name == claims[0] && req.session.phone == claims[1]){
+            //   if(req.session.confirm == 1){
+            //     req.session.did = 1;
+            //     res.render('move', {concert: req.session.concert, genre: req.session.genre});
+            //   }else if(req.session.confirm == 2){
+            //     req.session.wallet = 1;
+            //     res.render('move2', {ticket: req.session.ticket});
+            //   }
+            // }else if(!req.session.name){
+            //   res.render("login/login", {loggedname : null, check: check_login, did: null});
+            // }else{
+            //   res.render("login/login", {loggedname : null, check: null, did: 1});
+            // }
+          }catch(err){
+            console.log(err)
           }
 
         }

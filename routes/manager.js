@@ -76,19 +76,19 @@ module.exports = function() {
         }
         var seat2 = 0;
         if(req.body.seat2){
-            seat1 = req.body.seat2;
+            seat2 = req.body.seat2;
         }
         var seat3 = 0;
         if(req.body.seat3){
-            seat1 = req.body.seat3;
+            seat3 = req.body.seat3;
         }
         var seat4 = 0;
         if(req.body.seat4){
-            seat1 = req.body.seat4;
+            seat4 = req.body.seat4;
         }
         var seat5 = 0;
         if(req.body.seat5){
-            seat1 = req.body.seat5;
+            seat5 = req.body.seat5;
         }
         var vip = req.body.vip;
         var r = req.body.r;
